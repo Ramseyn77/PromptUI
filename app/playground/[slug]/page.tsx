@@ -1,0 +1,32 @@
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+import { getComponentBySlug } from '@/data/components';
+import { InteractivePlayground } from '@/components/library/InteractivePlayground';
+import { CodeBlock } from '@/components/ui/CodeBlock';
+import { CopyButton } from '@/components/ui/CopyButton';
+
+export default async function PlaygroundPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const item = getComponentBySlug(slug);
+  if (!item) notFound();
+
+  return (
+    <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+      <div className="flex flex-col justify-between gap-4 border-b border-[var(--line)] pb-6 sm:flex-row sm:items-center">
+        <div>
+          <Link href={`/components/${item.slug}`} className="inline-flex items-center gap-2 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--foreground)]"><ArrowLeft size={15}/>Fiche composant</Link>
+          <h1 className="mt-2 text-2xl font-semibold tracking-tight">Tester {item.name}</h1>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <CopyButton value={item.code} label="Copier le code"/>
+          <CopyButton value={item.prompt} label="Copier le prompt"/>
+        </div>
+      </div>
+      <div className="mt-6 grid gap-5">
+        <InteractivePlayground slug={item.slug} name={item.name}/>
+        <section><CodeBlock code={item.code}/></section>
+      </div>
+    </main>
+  );
+}
