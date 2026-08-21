@@ -13,7 +13,7 @@ export default async function PlaygroundPage({ params }: { params: Promise<{ slu
   if (!item) notFound();
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+    <main className="mx-auto w-full max-w-7xl overflow-x-hidden px-4 py-8 sm:px-6">
       <ComponentViewTracker slug={item.slug} name={item.name}/>
       <div className="flex flex-col justify-between gap-4 border-b border-[var(--line)] pb-6 sm:flex-row sm:items-center">
         <div>
@@ -25,9 +25,9 @@ export default async function PlaygroundPage({ params }: { params: Promise<{ slu
           <CopyButton value={item.prompt} label="Copier le prompt" analyticsType="prompt_copied" componentSlug={item.slug} componentName={item.name}/>
         </div>
       </div>
-      <div className="mt-6 grid gap-5">
+      <div className="mt-6 grid min-w-0 gap-5">
         <InteractivePlayground slug={item.slug} name={item.name}/>
-        <section><CodeBlock code={item.code} componentSlug={item.slug} componentName={item.name}/></section>
+        <section className="min-w-0"><CodeBlock code={item.code} componentSlug={item.slug} componentName={item.name}/></section>
       </div>
     </main>
   );

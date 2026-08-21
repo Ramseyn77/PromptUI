@@ -89,10 +89,15 @@ async function supabaseRequest<T>(path: string, init?: RequestInit): Promise<T |
         ...init?.headers,
       },
     });
-    if (!response.ok) return null;
+    if (!response.ok) {
+      const detail = await response.text();
+      console.warn('[PromptUI analytics] Supabase request failed', response.status, path, detail);
+      return null;
+    }
     if (response.status === 204) return null;
     return await response.json() as T;
-  } catch {
+  } catch (error) {
+    console.warn('[PromptUI analytics] Supabase request error', path, error);
     return null;
   }
 }

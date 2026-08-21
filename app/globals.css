@@ -30,10 +30,12 @@
 html {
   scroll-behavior: smooth;
   background: var(--background);
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  overflow-x: hidden;
   background:
     linear-gradient(180deg, rgba(255, 253, 247, .84), rgba(247, 245, 240, 0) 340px),
     radial-gradient(circle at 12% 0%, rgba(15, 118, 110, .14), transparent 32rem),
