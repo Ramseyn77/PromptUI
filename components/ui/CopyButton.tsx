@@ -1,11 +1,14 @@
 'use client';
 import { Check, Copy } from 'lucide-react';
 import { useState } from 'react';
+import type { AnalyticsEventType } from '@/utils/analytics';
+import { trackEvent } from '@/utils/analytics';
 
-export function CopyButton({ value, label }: { value: string; label: string }) {
+export function CopyButton({ value, label, analyticsType, componentSlug, componentName }: { value: string; label: string; analyticsType?: AnalyticsEventType; componentSlug?: string; componentName?: string }) {
   const [copied, setCopied] = useState(false);
   async function copy() {
     await navigator.clipboard.writeText(value);
+    if (analyticsType) trackEvent({ type: analyticsType, componentSlug, componentName });
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1600);
   }

@@ -16,6 +16,9 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
             <a href="/#categories" className="rounded-full px-4 py-2 transition hover:bg-black/[.04] hover:text-[var(--foreground)] dark:hover:bg-white/[.07]">
               Categories
             </a>
+            <Link href="/analytics" className="rounded-full px-4 py-2 transition hover:bg-black/[.04] hover:text-[var(--foreground)] dark:hover:bg-white/[.07]">
+              Analytics
+            </Link>
             <a href="https://example.com" aria-label="Documentation" className="grid size-9 place-items-center rounded-full transition hover:bg-black/[.04] hover:text-[var(--foreground)] dark:hover:bg-white/[.07]">
               <BookOpen size={17} />
             </a>

@@ -6,6 +6,8 @@ import { components, getComponentBySlug } from '@/data/components';
 import { ComponentPreview } from '@/components/library/ComponentPreview';
 import { CodeBlock } from '@/components/ui/CodeBlock';
 import { CopyButton } from '@/components/ui/CopyButton';
+import { ComponentViewTracker } from '@/components/analytics/ComponentViewTracker';
+import { ShareButton } from '@/components/analytics/ShareButton';
 
 export function generateStaticParams() { return components.map((item) => ({ slug: item.slug })); }
 
@@ -23,6 +25,7 @@ export default async function ComponentDetail({ params }: { params: Promise<{ sl
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+      <ComponentViewTracker slug={item.slug} name={item.name}/>
       <Link href="/library" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--foreground)]"><ArrowLeft size={15}/>Retour a la bibliotheque</Link>
       <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
         <div className="max-w-3xl">
@@ -33,7 +36,10 @@ export default async function ComponentDetail({ params }: { params: Promise<{ sl
           <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">{item.name}</h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--muted)]">{item.description}</p>
         </div>
-        <Link href={`/playground/${item.slug}`} className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-3 text-sm font-semibold text-[var(--background)] shadow-sm transition hover:-translate-y-0.5">Tester le composant <ArrowUpRight size={16}/></Link>
+        <div className="flex flex-wrap gap-2">
+          <ShareButton slug={item.slug} name={item.name}/>
+          <Link href={`/playground/${item.slug}`} className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-3 text-sm font-semibold text-[var(--background)] shadow-sm transition hover:-translate-y-0.5">Tester le composant <ArrowUpRight size={16}/></Link>
+        </div>
       </div>
 
       <section className="preview-grid mt-8 flex min-h-[430px] items-center overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[#f1eee5] p-5 md:p-10 dark:bg-black/20">
@@ -52,7 +58,7 @@ export default async function ComponentDetail({ params }: { params: Promise<{ sl
             <p className="text-sm font-semibold text-[var(--accent)]">Source</p>
             <h2 className="mt-1 text-2xl font-semibold">Copier le code du composant</h2>
           </div>
-          <CodeBlock code={item.code}/>
+          <CodeBlock code={item.code} componentSlug={item.slug} componentName={item.name}/>
         </section>
         <aside>
           <div className="mb-4">
@@ -62,7 +68,7 @@ export default async function ComponentDetail({ params }: { params: Promise<{ sl
           <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5 shadow-sm">
             <div className="flex items-center gap-2 text-sm font-semibold"><Sparkles size={16} className="text-[var(--accent)]"/>Prompt pour ton outil IA</div>
             <p className="mt-4 whitespace-pre-wrap text-sm leading-7 text-[var(--muted)]">{item.prompt}</p>
-            <div className="mt-5"><CopyButton value={item.prompt} label="Copier le prompt"/></div>
+            <div className="mt-5"><CopyButton value={item.prompt} label="Copier le prompt" analyticsType="prompt_copied" componentSlug={item.slug} componentName={item.name}/></div>
           </div>
           <div className="mt-4 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5">
             <div className="flex items-center gap-2 text-sm font-semibold"><MonitorSmartphone size={16}/>Note d implementation</div>
