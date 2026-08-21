@@ -1,8 +1,8 @@
 'use client';
 
-import { BarChart3, ClipboardCopy, Eye, MessageSquare, RefreshCw, Share2, Sparkles, Trash2, Users } from 'lucide-react';
+import { BarChart3, ClipboardCopy, Eye, MessageSquare, RefreshCw, Share2, Sparkles, Users } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
-import { AnalyticsEvent, FeedbackRecord, clearAnalyticsEvents, getAnalyticsEvents, getRemoteAnalytics } from '@/utils/analytics';
+import { AnalyticsEvent, FeedbackRecord, getAnalyticsEvents, getRemoteAnalytics } from '@/utils/analytics';
 
 const labels: Record<AnalyticsEvent['type'], string> = {
   visitor: 'Visiteur',
@@ -28,30 +28,31 @@ export function AnalyticsDashboard() {
   const [feedback, setFeedback] = useState<FeedbackRecord[]>([]);
   const [source, setSource] = useState<'supabase' | 'local'>('local');
 
-  useEffect(() => {
-    async function sync() {
-      const remote = await getRemoteAnalytics();
-      if (remote.usingSupabase) {
-        setEvents(remote.events);
-        setFeedback(remote.feedback);
-        setSource('supabase');
-        return;
-      }
-      const localEvents = getAnalyticsEvents();
-      setEvents(localEvents);
-      setFeedback(localEvents.filter((event) => event.type === 'feedback').map((event) => {
-        const payload = event.payload as any;
-        return {
-          id: event.id,
-          useful: payload?.useful ?? 'Peut-etre',
-          favorite: payload?.favorite ?? 'Autre',
-          missing: payload?.missing ?? '',
-          visitorId: event.visitorId,
-          createdAt: event.createdAt,
-        };
-      }));
-      setSource('local');
+  async function sync() {
+    const remote = await getRemoteAnalytics();
+    if (remote.usingSupabase) {
+      setEvents(remote.events);
+      setFeedback(remote.feedback);
+      setSource('supabase');
+      return;
     }
+    const localEvents = getAnalyticsEvents();
+    setEvents(localEvents);
+    setFeedback(localEvents.filter((event) => event.type === 'feedback').map((event) => {
+      const payload = event.payload as any;
+      return {
+        id: event.id,
+        useful: payload?.useful ?? 'Peut-etre',
+        favorite: payload?.favorite ?? 'Autre',
+        missing: payload?.missing ?? '',
+        visitorId: event.visitorId,
+        createdAt: event.createdAt,
+      };
+    }));
+    setSource('local');
+  }
+
+  useEffect(() => {
     void sync();
     const onSync = () => void sync();
     window.addEventListener('promptui-analytics-updated', onSync);
@@ -98,9 +99,9 @@ export function AnalyticsDashboard() {
           <p className="mt-3 max-w-2xl text-[var(--muted)]">Parcours : visiteur, composant consulte, code copie, prompt copie, retour et partage.</p>
           <p className="mt-2 text-sm text-[var(--muted)]">Source actuelle : {source === 'supabase' ? 'Supabase' : 'localStorage fallback'}</p>
         </div>
-        <button onClick={() => clearAnalyticsEvents()} className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-4 py-2.5 text-sm font-semibold shadow-sm">
-          <Trash2 size={15}/>
-          Reinitialiser
+        <button onClick={() => void sync()} className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-4 py-2.5 text-sm font-semibold shadow-sm">
+          <RefreshCw size={15}/>
+          Actualiser
         </button>
       </div>
 
