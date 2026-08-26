@@ -1,13 +1,13 @@
 'use client';
 
 import { Maximize2, Monitor, Smartphone, Tablet } from 'lucide-react';
-import { useState } from 'react';
-import { ComponentPreview } from './ComponentPreview';
+import { useEffect, useRef, useState } from 'react';
+import { EmulatedComponentPreview } from './EmulatedComponentPreview';
 
 const sizes = {
-  mobile: { label: 'Mobile', width: 360, icon: Smartphone },
-  tablet: { label: 'Tablette', width: 620, icon: Tablet },
-  desktop: { label: 'Desktop', width: 920, icon: Monitor },
+  mobile: { label: 'Mobile', width: 360, height: 640, frameWidth: 376, frameHeight: 656, icon: Smartphone },
+  tablet: { label: 'Tablette', width: 768, height: 600, frameWidth: 788, frameHeight: 620, icon: Tablet },
+  desktop: { label: 'Desktop', width: 920, height: 480, frameWidth: 922, frameHeight: 514, icon: Monitor },
 } as const;
 
 const backgrounds = {
@@ -21,9 +21,28 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
   const [zoom, setZoom] = useState(100);
   const [padding, setPadding] = useState(32);
   const [background, setBackground] = useState<keyof typeof backgrounds>('warm');
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [stageSize, setStageSize] = useState({ width: 0, height: 0 });
+  const viewport = sizes[size];
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setStageSize({ width: entry.contentRect.width, height: entry.contentRect.height });
+    });
+    observer.observe(stage);
+    return () => observer.disconnect();
+  }, []);
+
+  const requestedScale = zoom / 100;
+  const availableScale = stageSize.width && stageSize.height
+    ? Math.min(stageSize.width / viewport.frameWidth, stageSize.height / viewport.frameHeight)
+    : 1;
+  const renderedScale = Math.min(requestedScale, availableScale);
 
   return (
-    <section className="grid gap-4 xl:grid-cols-[280px_1fr]">
+    <section className="grid min-w-0 gap-4 xl:grid-cols-[240px_minmax(0,1fr)]">
       <aside className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4 shadow-sm">
         <div className="flex items-center gap-2 text-sm font-semibold">
           <Maximize2 size={15}/>
@@ -67,15 +86,21 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
         </div>
       </aside>
 
-      <div className={`preview-grid min-h-[620px] overflow-auto rounded-[1.75rem] border border-[var(--line)] ${backgrounds[background]}`} style={{ padding }}>
-        <div className="mb-4 flex items-center justify-between rounded-2xl border border-[var(--line)] bg-[var(--surface)]/90 px-4 py-3 text-xs font-medium text-[var(--muted)] shadow-sm">
+      <div className={`preview-grid grid min-h-[680px] min-w-0 grid-rows-[auto_1fr] overflow-hidden rounded-[1.75rem] border border-[var(--line)] p-4 ${backgrounds[background]}`}>
+        <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)]/90 px-4 py-3 text-xs font-medium text-[var(--muted)] shadow-sm">
           <span>{name ?? slug}</span>
-          <span>{sizes[size].label} / {zoom}%</span>
+          <span>{viewport.label} · {viewport.width} × {viewport.height} / {Math.round(renderedScale * 100)}%</span>
         </div>
-        <div className="mx-auto w-full transition-all duration-300" style={{ maxWidth: sizes[size].width }}>
-          <div className="min-h-40 transition-transform duration-300" style={{ transform: `scale(${zoom / 100})`, transformOrigin: 'top center' }}>
-            <ComponentPreview slug={slug}/>
-          </div>
+
+        <div ref={stageRef} className="flex min-h-[600px] min-w-0 items-center justify-center overflow-hidden">
+          <EmulatedComponentPreview
+            slug={slug}
+            device={size}
+            width={viewport.width}
+            height={viewport.height}
+            padding={padding}
+            scale={renderedScale}
+          />
         </div>
       </div>
     </section>
