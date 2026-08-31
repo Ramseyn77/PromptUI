@@ -1,13 +1,13 @@
 'use client';
 
 import { Maximize2, Monitor, Smartphone, Tablet } from 'lucide-react';
-import { useState } from 'react';
-import { ComponentPreview } from './ComponentPreview';
+import { useEffect, useRef, useState } from 'react';
+import { EmulatedComponentPreview } from './EmulatedComponentPreview';
 
 const sizes = {
-  mobile: { label: 'Mobile', width: 360, icon: Smartphone },
-  tablet: { label: 'Tablette', width: 620, icon: Tablet },
-  desktop: { label: 'Desktop', width: 760, icon: Monitor },
+  mobile: { label: 'Mobile', width: 360, height: 640, frameWidth: 376, frameHeight: 656, icon: Smartphone },
+  tablet: { label: 'Tablette', width: 768, height: 600, frameWidth: 788, frameHeight: 620, icon: Tablet },
+  desktop: { label: 'Desktop', width: 760, height: 480, frameWidth: 762, frameHeight: 514, icon: Monitor },
 } as const;
 
 const backgrounds = {
@@ -21,10 +21,28 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
   const [zoom, setZoom] = useState(90);
   const [padding, setPadding] = useState(32);
   const [background, setBackground] = useState<keyof typeof backgrounds>('warm');
-  const canvasWidth = Math.round(sizes[size].width * (zoom / 100));
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [stageSize, setStageSize] = useState({ width: 0, height: 0 });
+  const viewport = sizes[size];
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setStageSize({ width: entry.contentRect.width, height: entry.contentRect.height });
+    });
+    observer.observe(stage);
+    return () => observer.disconnect();
+  }, []);
+
+  const requestedScale = zoom / 100;
+  const availableScale = stageSize.width && stageSize.height
+    ? Math.min(stageSize.width / viewport.frameWidth, stageSize.height / viewport.frameHeight)
+    : 1;
+  const renderedScale = Math.min(requestedScale, availableScale);
 
   return (
-    <section className="grid w-full min-w-0 max-w-full gap-4 xl:grid-cols-[280px_minmax(0,1fr)]">
+    <section className="grid w-full min-w-0 max-w-full gap-4 xl:grid-cols-[240px_minmax(0,1fr)]">
       <aside className="min-w-0 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4 shadow-sm">
         <div className="flex items-center gap-2 text-sm font-semibold">
           <Maximize2 size={15}/>
@@ -68,15 +86,21 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
         </div>
       </aside>
 
-      <div className={`preview-grid w-full min-w-0 max-w-full overflow-hidden rounded-[1.75rem] border border-[var(--line)] ${backgrounds[background]}`} style={{ padding, minHeight: 520 }}>
-        <div className="mb-4 flex items-center justify-between rounded-2xl border border-[var(--line)] bg-[var(--surface)]/90 px-4 py-3 text-xs font-medium text-[var(--muted)] shadow-sm">
-          <span>{name ?? slug}</span>
-          <span>{sizes[size].label} / {zoom}%</span>
+      <div className={`preview-grid grid min-h-[680px] min-w-0 max-w-full grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-[1.75rem] border border-[var(--line)] p-4 ${backgrounds[background]}`}>
+        <div className="flex min-w-0 flex-wrap items-center justify-between gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)]/90 px-4 py-3 text-xs font-medium text-[var(--muted)] shadow-sm">
+          <span className="truncate">{name ?? slug}</span>
+          <span>{viewport.label} / {viewport.width}x{viewport.height} / {Math.round(renderedScale * 100)}%</span>
         </div>
-        <div className="grid w-full min-w-0 max-w-full place-items-center overflow-hidden">
-          <div className="mx-auto w-full max-w-full transition-all duration-300" style={{ maxWidth: canvasWidth }}>
-            <ComponentPreview slug={slug}/>
-          </div>
+
+        <div ref={stageRef} className="flex min-h-0 min-w-0 items-center justify-center overflow-hidden">
+          <EmulatedComponentPreview
+            slug={slug}
+            device={size}
+            width={viewport.width}
+            height={viewport.height}
+            padding={padding}
+            scale={renderedScale}
+          />
         </div>
       </div>
     </section>

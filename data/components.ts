@@ -29,12 +29,14 @@ export const components = [
   {
     slug: 'command-navbar', name: 'Command Navbar', category: 'Navbar', style: 'Minimal', featured: true, responsive: true,
     description: 'A compact navigation bar with product mark, links, command-search affordance and CTA.', technologies: ['React','TypeScript','Tailwind','Lucide'],
-    code: `import { Search } from 'lucide-react';
+    code: `import { useState } from 'react';
+import { Menu, Search, X } from 'lucide-react';
 export function CommandNavbar() {
-  return <nav className="flex items-center justify-between rounded-2xl border bg-white p-3 shadow-sm dark:bg-zinc-950">
-    <div className="flex items-center gap-6"><strong>PromptUI</strong><div className="hidden gap-5 text-sm text-zinc-500 md:flex"><a href="#">Library</a><a href="#">Docs</a><a href="#">Changelog</a></div></div>
-    <div className="flex items-center gap-2"><button className="hidden items-center gap-2 rounded-lg border px-3 py-2 text-sm text-zinc-500 sm:flex"><Search size={15}/> Search <kbd>⌘K</kbd></button><button className="rounded-lg bg-zinc-950 px-3 py-2 text-sm text-white dark:bg-white dark:text-zinc-950">Browse</button></div>
-  </nav>;
+  const [open,setOpen]=useState(false);
+  return <div className="relative"><nav className="flex items-center justify-between rounded-2xl border bg-white p-3 shadow-sm dark:bg-zinc-950">
+    <div className="flex items-center gap-6"><strong>PromptUI</strong><div className="hidden gap-5 text-sm text-zinc-500 sm:flex"><a href="#">Library</a><a href="#">Docs</a><a href="#">Changelog</a></div></div>
+    <div className="flex items-center gap-2"><button className="hidden items-center gap-2 rounded-lg border px-3 py-2 text-sm text-zinc-500 md:flex"><Search size={15}/> Search</button><button className="rounded-lg bg-zinc-950 px-3 py-2 text-sm text-white dark:bg-white dark:text-zinc-950">Browse</button><button aria-label="Ouvrir le menu" aria-expanded={open} onClick={()=>setOpen(!open)} className="grid size-9 place-items-center rounded-lg border sm:hidden">{open?<X/>:<Menu/>}</button></div>
+  </nav>{open&&<div className="absolute inset-x-0 top-[calc(100%+.5rem)] z-20 grid rounded-2xl border bg-white p-2 shadow-xl sm:hidden dark:bg-zinc-950">{['Library','Docs','Changelog'].map(item=><a key={item} className="rounded-xl px-3 py-2" href="#">{item}</a>)}</div>}</div>;
 }`,
     prompt: ''
   },
@@ -103,7 +105,9 @@ export function ActivityDashboard(){ return <div className="grid gap-4 rounded-3
   {
     slug: 'floating-navbar', name: 'Floating Navbar', category: 'Navbar', style: 'Glass', responsive: true,
     description: 'Pill-shaped floating navbar with glass treatment and compact mobile-friendly actions.', technologies: ['React','TypeScript','Tailwind'],
-    code: `export function FloatingNavbar(){return <nav className="mx-auto flex max-w-3xl items-center justify-between rounded-full border bg-white/80 px-4 py-2 shadow-lg backdrop-blur dark:bg-zinc-950/80"><strong className="pl-2">P/UI</strong><div className="hidden gap-5 text-sm text-zinc-500 sm:flex"><a>Components</a><a>Prompts</a><a>Docs</a></div><button className="rounded-full bg-zinc-950 px-4 py-2 text-sm text-white dark:bg-white dark:text-zinc-950">Get started</button></nav>}`,
+    code: `import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+export function FloatingNavbar(){const [open,setOpen]=useState(false);return <div className="relative"><nav className="mx-auto flex max-w-3xl items-center justify-between rounded-full border bg-white/80 px-4 py-2 shadow-lg backdrop-blur dark:bg-zinc-950/80"><strong className="pl-2">P/UI</strong><div className="hidden gap-5 text-sm text-zinc-500 sm:flex"><a>Components</a><a>Prompts</a><a>Docs</a></div><div className="flex items-center gap-2"><button className="rounded-full bg-zinc-950 px-4 py-2 text-sm text-white dark:bg-white dark:text-zinc-950">Get started</button><button aria-label="Ouvrir le menu" aria-expanded={open} onClick={()=>setOpen(!open)} className="grid size-9 place-items-center rounded-full border sm:hidden">{open?<X/>:<Menu/>}</button></div></nav>{open&&<div className="absolute inset-x-3 top-[calc(100%+.5rem)] z-20 grid rounded-2xl border bg-white p-2 shadow-xl sm:hidden dark:bg-zinc-950">{['Components','Prompts','Docs'].map(item=><a key={item} className="rounded-xl px-3 py-2">{item}</a>)}</div>}</div>}`,
     prompt: ''
   },
   {
