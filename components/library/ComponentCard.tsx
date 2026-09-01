@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ShieldCheck } from 'lucide-react';
 import type { LibraryComponent } from '@/types/component';
 import { ComponentPreview } from './ComponentPreview';
 
@@ -21,6 +21,12 @@ export function ComponentCard({ item }: { item: LibraryComponent }) {
             </span>
           </div>
           <p className="mt-2 line-clamp-2 text-sm leading-6 text-[var(--muted)]">{item.description}</p>
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {item.responsiveModes.map((mode) => (
+              <span key={mode} className="rounded-full border border-[var(--line)] px-2.5 py-1 text-[10px] font-medium text-[var(--muted)]">{mode}</span>
+            ))}
+            <span className="inline-flex items-center gap-1 rounded-full bg-[var(--accent)]/10 px-2.5 py-1 text-[10px] font-semibold text-[var(--accent)]"><ShieldCheck size={11}/>Checks MVP</span>
+          </div>
           <div className="mt-4 flex flex-wrap gap-1.5">
             {item.technologies.slice(0, 3).map((tech) => (
               <span key={tech} className="rounded-full bg-[var(--background)] px-2.5 py-1 text-[10px] font-medium text-[var(--muted)]">{tech}</span>

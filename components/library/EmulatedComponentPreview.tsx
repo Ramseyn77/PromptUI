@@ -11,6 +11,8 @@ export function EmulatedComponentPreview({
   height,
   padding,
   scale,
+  theme,
+  showBounds,
 }: {
   slug: string;
   device: 'mobile' | 'tablet' | 'desktop';
@@ -18,6 +20,8 @@ export function EmulatedComponentPreview({
   height: number;
   padding: number;
   scale: number;
+  theme: 'auto' | 'light' | 'dark';
+  showBounds: boolean;
 }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [mountNode, setMountNode] = useState<HTMLElement | null>(null);
@@ -38,11 +42,12 @@ export function EmulatedComponentPreview({
       const reset = frameDocument.createElement('style');
       reset.textContent = `
         html, body { width: 100%; min-height: 100%; margin: 0; background: transparent !important; }
-        body { overflow: auto; }
+        body { overflow: hidden; color: var(--foreground); }
         #component-preview-root { display: grid; width: 100%; min-height: 100vh; place-items: center; box-sizing: border-box; }
+        .show-preview-bounds * { outline: 1px solid rgba(20, 184, 166, .28); outline-offset: -1px; }
       `;
       frameDocument.head.appendChild(reset);
-      frameDocument.documentElement.className = document.documentElement.className;
+      frameDocument.documentElement.className = theme === 'auto' ? document.documentElement.className : theme;
 
       let root = frameDocument.getElementById('component-preview-root');
       if (!root) {
@@ -58,7 +63,7 @@ export function EmulatedComponentPreview({
 
     const themeObserver = new MutationObserver(() => {
       const frameDocument = iframe.contentDocument;
-      if (frameDocument) frameDocument.documentElement.className = document.documentElement.className;
+      if (frameDocument && theme === 'auto') frameDocument.documentElement.className = document.documentElement.className;
     });
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
@@ -66,7 +71,13 @@ export function EmulatedComponentPreview({
       iframe.removeEventListener('load', prepareFrame);
       themeObserver.disconnect();
     };
-  }, [device]);
+  }, [device, theme]);
+
+  useEffect(() => {
+    const frameDocument = iframeRef.current?.contentDocument;
+    if (!frameDocument) return;
+    frameDocument.documentElement.className = theme === 'auto' ? document.documentElement.className : theme;
+  }, [theme]);
 
   const viewport = (
     <iframe
@@ -109,7 +120,7 @@ export function EmulatedComponentPreview({
       )}
 
       {mountNode && createPortal(
-        <div style={{ padding }}>
+        <div className={showBounds ? 'show-preview-bounds' : ''} style={{ padding }}>
           <ComponentPreview slug={slug}/>
         </div>,
         mountNode,

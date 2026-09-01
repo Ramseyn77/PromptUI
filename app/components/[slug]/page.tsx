@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, MonitorSmartphone, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CheckCircle2, MonitorSmartphone, ShieldCheck, Sparkles } from 'lucide-react';
 import { components, getComponentBySlug } from '@/data/components';
 import { ComponentPreview } from '@/components/library/ComponentPreview';
 import { CodeBlock } from '@/components/ui/CodeBlock';
@@ -46,10 +46,11 @@ export default async function ComponentDetail({ params }: { params: Promise<{ sl
         <ComponentPreview slug={item.slug}/>
       </section>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-3">
+      <div className="mt-8 grid gap-4 md:grid-cols-4">
         <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4"><p className="text-xs text-[var(--muted)]">Categorie</p><p className="mt-1 font-medium">{item.category}</p></div>
         <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4"><p className="text-xs text-[var(--muted)]">Technologies</p><p className="mt-1 font-medium">{item.technologies.join(' / ')}</p></div>
-        <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4"><p className="text-xs text-[var(--muted)]">Responsive</p><p className="mt-1 inline-flex items-center gap-2 font-medium"><CheckCircle2 size={16} className="text-[var(--accent)]"/>Mobile + desktop</p></div>
+        <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4"><p className="text-xs text-[var(--muted)]">Responsive</p><p className="mt-1 inline-flex items-center gap-2 font-medium"><CheckCircle2 size={16} className="text-[var(--accent)]"/>{item.responsiveModes.join(' / ')}</p></div>
+        <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4"><p className="text-xs text-[var(--muted)]">Safety</p><p className="mt-1 inline-flex items-center gap-2 font-medium"><ShieldCheck size={16} className="text-[var(--accent)]"/>Checks MVP</p></div>
       </div>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(320px,.75fr)]">
@@ -73,6 +74,13 @@ export default async function ComponentDetail({ params }: { params: Promise<{ sl
           <div className="mt-4 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5">
             <div className="flex items-center gap-2 text-sm font-semibold"><MonitorSmartphone size={16}/>Note d implementation</div>
             <p className="mt-2 text-sm leading-6 text-[var(--muted)]">La demo utilise seulement React et du style local. Pas de backend, compte ou dependance payante.</p>
+          </div>
+          <div className="mt-4 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5">
+            <div className="flex items-center gap-2 text-sm font-semibold"><ShieldCheck size={16}/>Ce qui est verifie</div>
+            <ul className="mt-3 space-y-2 text-sm text-[var(--muted)]">
+              {item.safetyNotes.map((note) => <li key={note} className="flex gap-2"><CheckCircle2 size={15} className="mt-0.5 text-[var(--accent)]"/>{note}</li>)}
+            </ul>
+            <p className="mt-3 text-xs leading-5 text-[var(--muted)]">Ce n'est pas un audit securite complet : teste toujours le composant dans ton contexte produit.</p>
           </div>
         </aside>
       </div>

@@ -15,11 +15,11 @@
 
 .dark {
   color-scheme: dark;
-  --background: #0d0d0b;
-  --foreground: #f7f2e8;
-  --surface: #151512;
-  --muted: #aaa293;
-  --line: rgba(247, 242, 232, .14);
+  --background: #080a09;
+  --foreground: #fffaf0;
+  --surface: #141815;
+  --muted: #c9c2b4;
+  --line: rgba(255, 250, 240, .2);
   --accent: #2dd4bf;
   --accent-strong: #5eead4;
   --gold: #f4c430;
@@ -46,8 +46,8 @@ body {
 
 .dark body {
   background:
-    linear-gradient(180deg, rgba(21, 21, 18, .84), rgba(13, 13, 11, 0) 340px),
-    radial-gradient(circle at 12% 0%, rgba(45, 212, 191, .12), transparent 32rem),
+    linear-gradient(180deg, rgba(20, 24, 21, .92), rgba(8, 10, 9, 0) 340px),
+    radial-gradient(circle at 12% 0%, rgba(45, 212, 191, .18), transparent 32rem),
     var(--background);
 }
 

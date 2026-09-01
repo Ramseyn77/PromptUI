@@ -1,6 +1,6 @@
 'use client';
 
-import { Maximize2, Monitor, Smartphone, Tablet } from 'lucide-react';
+import { Eye, Maximize2, Monitor, RotateCcw, Smartphone, Tablet } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { EmulatedComponentPreview } from './EmulatedComponentPreview';
 
@@ -16,11 +16,19 @@ const backgrounds = {
   dark: 'bg-[#151512]',
 } as const;
 
+const themes = {
+  auto: 'Auto',
+  light: 'Clair',
+  dark: 'Sombre',
+} as const;
+
 export function InteractivePlayground({ slug, name }: { slug: string; name?: string }) {
   const [size, setSize] = useState<keyof typeof sizes>('desktop');
   const [zoom, setZoom] = useState(90);
   const [padding, setPadding] = useState(32);
   const [background, setBackground] = useState<keyof typeof backgrounds>('warm');
+  const [theme, setTheme] = useState<keyof typeof themes>('auto');
+  const [showBounds, setShowBounds] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
   const [stageSize, setStageSize] = useState({ width: 0, height: 0 });
   const viewport = sizes[size];
@@ -40,6 +48,14 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
     ? Math.min(stageSize.width / viewport.frameWidth, stageSize.height / viewport.frameHeight)
     : 1;
   const renderedScale = Math.min(requestedScale, availableScale);
+  const reset = () => {
+    setSize('desktop');
+    setZoom(90);
+    setPadding(32);
+    setBackground('warm');
+    setTheme('auto');
+    setShowBounds(false);
+  };
 
   return (
     <section className="grid w-full min-w-0 max-w-full gap-4 xl:grid-cols-[240px_minmax(0,1fr)]">
@@ -48,6 +64,7 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
           <Maximize2 size={15}/>
           Reglages live
         </div>
+        <p className="mt-2 text-xs leading-5 text-[var(--muted)]">Teste le rendu, le theme et les tailles avant de copier.</p>
 
         <div className="mt-5 space-y-5">
           <div>
@@ -77,19 +94,45 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
 
           <label className="block">
             <span className="text-xs font-semibold uppercase text-[var(--muted)]">Fond</span>
-            <select value={background} onChange={(e) => setBackground(e.target.value as keyof typeof backgrounds)} className="mt-2 h-10 w-full rounded-xl border border-[var(--line)] bg-transparent px-3 text-sm outline-none">
+            <select value={background} onChange={(e) => {
+              const next = e.target.value as keyof typeof backgrounds;
+              setBackground(next);
+              if (next === 'dark') setTheme('dark');
+              if (next !== 'dark' && theme === 'dark') setTheme('auto');
+            }} className="mt-2 h-10 w-full rounded-xl border border-[var(--line)] bg-transparent px-3 text-sm outline-none">
               <option value="warm">Chaud</option>
               <option value="clean">Neutre</option>
               <option value="dark">Sombre</option>
             </select>
           </label>
+
+          <div>
+            <p className="mb-2 text-xs font-semibold uppercase text-[var(--muted)]">Theme du composant</p>
+            <div className="grid grid-cols-3 gap-2">
+              {(Object.entries(themes) as Array<[keyof typeof themes, string]>).map(([key, label]) => (
+                <button key={key} onClick={() => setTheme(key)} className={`rounded-xl border px-2 py-2 text-xs font-medium transition ${theme === key ? 'border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]' : 'border-[var(--line)] text-[var(--muted)] hover:text-[var(--foreground)]'}`}>
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <button onClick={() => setShowBounds((value) => !value)} className={`flex w-full items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium transition ${showBounds ? 'border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]' : 'border-[var(--line)] text-[var(--muted)] hover:text-[var(--foreground)]'}`}>
+            <Eye size={15}/>
+            Voir les contours
+          </button>
+
+          <button onClick={reset} className="flex w-full items-center gap-2 rounded-xl border border-[var(--line)] px-3 py-2 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--foreground)]">
+            <RotateCcw size={15}/>
+            Reinitialiser la vue
+          </button>
         </div>
       </aside>
 
       <div className={`preview-grid grid min-h-[680px] min-w-0 max-w-full grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-[1.75rem] border border-[var(--line)] p-4 ${backgrounds[background]}`}>
         <div className="flex min-w-0 flex-wrap items-center justify-between gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)]/90 px-4 py-3 text-xs font-medium text-[var(--muted)] shadow-sm">
           <span className="truncate">{name ?? slug}</span>
-          <span>{viewport.label} / {viewport.width}x{viewport.height} / {Math.round(renderedScale * 100)}%</span>
+          <span>{viewport.label} / {viewport.width}x{viewport.height} / {themes[theme]} / {Math.round(renderedScale * 100)}%</span>
         </div>
 
         <div ref={stageRef} className="flex min-h-0 min-w-0 items-center justify-center overflow-hidden">
@@ -100,6 +143,8 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
             height={viewport.height}
             padding={padding}
             scale={renderedScale}
+            theme={theme}
+            showBounds={showBounds}
           />
         </div>
       </div>

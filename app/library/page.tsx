@@ -11,7 +11,7 @@ export default async function LibraryPage({ searchParams }: { searchParams: Prom
         <div className="max-w-3xl">
           <p className="text-sm font-semibold text-[var(--accent)]">Bibliotheque de composants</p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight md:text-5xl">Parcourir, tester et copier.</h1>
-          <p className="mt-4 max-w-2xl leading-7 text-[var(--muted)]">Cherche des patterns UI par categorie, style ou technologie. Chaque entree inclut le code source et un prompt pour recreer le design.</p>
+          <p className="mt-4 max-w-2xl leading-7 text-[var(--muted)]">Cherche des patterns UI par categorie, style ou technologie. Ouvre une fiche pour tester le responsive, verifier les checks MVP, copier le code ou copier le prompt IA.</p>
         </div>
         <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5 shadow-sm">
           <p className="text-xs font-semibold uppercase text-[var(--muted)]">Inventaire MVP</p>
@@ -23,6 +23,11 @@ export default async function LibraryPage({ searchParams }: { searchParams: Prom
         </div>
       </div>
       <div className="mt-8">
+        <div className="mb-5 grid gap-3 md:grid-cols-3">
+          {['Apercu rapide sur chaque carte', 'Test responsive dans chaque fiche', 'Code et prompt copiables en un clic'].map((text) => (
+            <div key={text} className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] px-4 py-3 text-sm font-medium text-[var(--muted)]">{text}</div>
+          ))}
+        </div>
         <LibraryExplorer initialQuery={params.q ?? ''} initialCategory={params.category ?? 'All'}/>
       </div>
     </main>

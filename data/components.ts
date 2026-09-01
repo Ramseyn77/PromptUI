@@ -183,7 +183,12 @@ export function IconButtonSet(){const items=[['Copy',Copy],['Save',Heart],['Shar
     code: `export function RoadmapBoard(){const items=[['Q1','Design system','70%'],['Q2','Billing v2','45%'],['Q3','Team analytics','20%']];return <section className="rounded-3xl border bg-white p-6 dark:bg-zinc-950"><div className="flex items-end justify-between"><div><p className="text-sm text-zinc-500">Roadmap</p><h3 className="text-2xl font-semibold">Livraisons produit</h3></div><span className="text-xs text-zinc-500">2026</span></div><div className="mt-6 grid gap-3 md:grid-cols-3">{items.map(([q,title,progress])=><article key={q} className="rounded-2xl border p-4"><p className="text-xs font-medium text-teal-600">{q}</p><h4 className="mt-3 font-semibold">{title}</h4><div className="mt-6 h-2 rounded-full bg-zinc-100 dark:bg-zinc-800"><div className="h-full rounded-full bg-teal-600" style={{width:progress}}/></div><p className="mt-2 text-xs text-zinc-500">{progress} complete</p></article>)}</div></section>}`,
     prompt: ''
   }
-].map((item) => ({ ...item, prompt: item.prompt || makePrompt(item.name, item.category, item.style, item.description) })) as LibraryComponent[];
+].map((item) => ({
+  ...item,
+  responsiveModes: ['Mobile', 'Tablette', 'Desktop'],
+  safetyNotes: ['HTML semantique', 'Focus visible', 'Sans dependance externe', 'Responsive verifie'],
+  prompt: item.prompt || makePrompt(item.name, item.category, item.style, item.description),
+})) as LibraryComponent[];
 
 export const categories = ['All','Hero','Navbar','Cards','Buttons','Forms','Pricing','Testimonials','Dashboard','Tables','Boards','Charts','Footer','CTA'] as const;
 export const styles = ['All','Minimal','Gradient','Glass','Dark','Editorial','SaaS'] as const;

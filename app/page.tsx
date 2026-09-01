@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Bot, Braces, Code2, Layers3, Search, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, Bot, Braces, Code2, Layers3, MousePointer2, Search, Sparkles, Zap } from 'lucide-react';
 import { categories, components } from '@/data/components';
 import { ComponentCard } from '@/components/library/ComponentCard';
 import { ComponentPreview } from '@/components/library/ComponentPreview';
@@ -26,7 +26,7 @@ export default function HomePage() {
               Des composants UI qui donnent deja envie de les copier.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-[var(--muted)] md:text-lg">
-              PromptUI rassemble des patterns React propres, avec TypeScript, Tailwind, le code source et le prompt derriere chaque design.
+              PromptUI rassemble des patterns React propres. Choisis un composant, teste son rendu responsive, copie le code ou recupere le prompt IA pour le modifier.
             </p>
             <form action="/library" className="mt-8 flex max-w-2xl items-center gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-2 shadow-xl shadow-black/[.04]">
               <Search size={19} className="ml-2 text-[var(--muted)]"/>
@@ -96,6 +96,26 @@ export default function HomePage() {
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+        <div className="rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-6 shadow-sm md:p-8">
+          <div className="flex items-center gap-2 text-sm font-semibold text-[var(--accent)]"><MousePointer2 size={16}/>Comment utiliser PromptUI</div>
+          <div className="mt-6 grid gap-4 md:grid-cols-4">
+            {[
+              ['1', 'Parcourir', 'Filtre par categorie : boards, tables, charts, dashboard.'],
+              ['2', 'Tester', 'Verifie mobile, tablette, desktop et theme sombre.'],
+              ['3', 'Copier', 'Recupere le code React/Tailwind ou le prompt IA.'],
+              ['4', 'Adapter', 'Colle dans ton projet puis ajuste le contenu et les props.'],
+            ].map(([step, title, text]) => (
+              <div key={step} className="rounded-2xl border border-[var(--line)] bg-[var(--background)] p-4">
+                <span className="grid size-8 place-items-center rounded-full bg-[var(--foreground)] text-xs font-semibold text-[var(--background)]">{step}</span>
+                <h3 className="mt-4 font-semibold">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

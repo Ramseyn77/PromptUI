@@ -23,6 +23,8 @@ export interface LibraryComponent {
   style: ComponentStyle;
   technologies: string[];
   responsive: boolean;
+  responsiveModes: string[];
+  safetyNotes: string[];
   featured?: boolean;
   recent?: boolean;
   code: string;
