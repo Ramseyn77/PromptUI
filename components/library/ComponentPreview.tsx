@@ -1,9 +1,26 @@
 'use client';
 import { useState } from 'react';
-import { Activity, ArrowUpRight, Check, Copy, Heart, Menu, MoreHorizontal, Search, Share2, Users, X } from 'lucide-react';
+import { Activity, ArrowUpRight, Bell, BarChart3, Bike, Check, ChevronDown, ChevronsUpDown, Code2, Copy, FolderKanban, Hash, Heart, Home, Inbox, LayoutDashboard, LayoutGrid, LogOut, Menu, MessageSquare, MoreHorizontal, Package, Plus, Search, Settings, Share2, Store, TriangleAlert, Users, X } from 'lucide-react';
+
+const radialMenuItems = [
+  { icon: LayoutGrid, label: 'Dashboard', active: true },
+  { icon: Package, label: 'Colis' },
+  { icon: TriangleAlert, label: 'Incidents' },
+  { icon: Store, label: 'Points relais' },
+  { icon: Users, label: 'Equipe' },
+  { icon: Bike, label: 'Coursiers' },
+  { icon: Code2, label: 'API' },
+  { icon: Home, label: 'Zones' },
+  { icon: BarChart3, label: 'Rapports' },
+  { icon: Bell, label: 'Alertes' },
+  { icon: Settings, label: 'Reglages' },
+];
 
 export function ComponentPreview({ slug, compact = false }: { slug: string; compact?: boolean }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [fabOpen, setFabOpen] = useState(false);
+  const [railActive, setRailActive] = useState('home');
+  const [projectsOpen, setProjectsOpen] = useState(true);
   const wrap = `w-full ${compact ? 'scale-[.82] origin-center' : ''}`;
   switch (slug) {
     case 'aurora-hero': return <div className={wrap}><section className="relative overflow-hidden rounded-3xl border bg-zinc-950 px-5 py-12 text-center text-white"><div className="absolute inset-x-14 top-0 h-32 rounded-full bg-violet-500/20 blur-3xl"/><div className="relative mx-auto max-w-xl"><span className="rounded-full border border-white/15 px-3 py-1 text-[10px] text-zinc-300">Ship interfaces faster</span><h3 className="mt-5 text-3xl font-semibold tracking-tight">Build beautiful products without starting from zero.</h3><p className="mx-auto mt-3 max-w-md text-sm text-zinc-400">Copy polished UI, adapt the source, or use the AI prompt.</p><div className="mt-6 flex justify-center gap-2"><button className="rounded-lg bg-white px-4 py-2 text-xs font-medium text-zinc-950">Browse components</button><button className="rounded-lg border border-white/15 px-4 py-2 text-xs">GitHub</button></div></div></section></div>;
@@ -30,6 +47,87 @@ export function ComponentPreview({ slug, compact = false }: { slug: string; comp
     case 'roadmap-board': return <div className={wrap}><section className="rounded-3xl border bg-white p-5 dark:bg-zinc-950"><div className="flex items-end justify-between"><div><p className="text-xs text-zinc-500">Roadmap</p><h3 className="text-xl font-semibold">Livraisons produit</h3></div><span className="text-xs text-zinc-500">2026</span></div><div className="mt-5 grid gap-3 md:grid-cols-3">{[['Q1','Design system','70%'],['Q2','Billing v2','45%'],['Q3','Analytics','20%']].map(([q,title,progress])=><article key={q} className="rounded-2xl border p-4"><p className="text-xs font-medium text-teal-600">{q}</p><h4 className="mt-3 text-sm font-semibold">{title}</h4><div className="mt-5 h-2 rounded-full bg-zinc-100 dark:bg-zinc-800"><div className="h-full rounded-full bg-teal-600" style={{width:progress}}/></div><p className="mt-2 text-[10px] text-zinc-500">{progress} complete</p></article>)}</div></section></div>;
     case 'link-footer': return <div className={wrap}><footer className="rounded-3xl bg-zinc-950 p-7 text-white"><div className="grid gap-6 sm:grid-cols-4"><div className="sm:col-span-2"><strong>PromptUI</strong><p className="mt-2 max-w-sm text-xs text-zinc-400">Open UI building blocks with source and AI prompts.</p></div>{[['Build','Components','Prompts'],['Learn','Docs','Examples']].map(group=><div key={group[0]}><p className="text-xs font-medium">{group[0]}</p>{group.slice(1).map(x=><p key={x} className="mt-2 text-xs text-zinc-400">{x}</p>)}</div>)}</div></footer></div>;
     case 'newsletter-cta': return <div className={wrap}><section className="rounded-3xl border p-7"><div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end"><div><p className="text-xs text-zinc-500">Weekly component drop</p><h2 className="mt-2 max-w-lg text-2xl font-semibold">One useful interface pattern, every Friday.</h2></div><div className="flex gap-2"><input placeholder="you@example.com" className="min-w-0 rounded-xl border bg-transparent px-3 py-2.5 text-xs"/><button className="rounded-xl bg-zinc-950 px-4 py-2.5 text-xs text-white dark:bg-white dark:text-zinc-950">Subscribe</button></div></div></section></div>;
+    case 'radial-action-menu': return <div className={`${wrap} relative h-96 overflow-hidden rounded-3xl border bg-[#faf9f6] bg-[radial-gradient(circle_at_1px_1px,rgba(21,21,18,.14)_1px,transparent_0)] bg-size-[22px_22px] dark:bg-zinc-950 dark:bg-[radial-gradient(circle_at_1px_1px,rgba(247,242,232,.12)_1px,transparent_0)]`}>
+      {radialMenuItems.map((item, i) => {
+        const t = i / (radialMenuItems.length - 1);
+        const Icon = item.icon;
+        return (
+          <button
+            key={item.label}
+            aria-label={item.label}
+            style={{ top: `${8 + t * 82}%`, right: `${10 + 30 * Math.sin(t * Math.PI)}%`, transitionDelay: `${fabOpen ? i * 30 : 0}ms` }}
+            className={`absolute grid size-10 -translate-y-1/2 place-items-center rounded-full shadow-lg ring-1 transition-all duration-300 ease-[cubic-bezier(.34,1.56,.64,1)] ${fabOpen ? 'scale-100 opacity-100' : 'pointer-events-none scale-0 opacity-0'} ${item.active ? 'bg-amber-400 text-zinc-950 shadow-amber-500/30 ring-amber-200/60' : 'bg-zinc-900 text-white shadow-black/20 ring-white/10 hover:scale-110 hover:bg-zinc-800'}`}
+          >
+            <Icon size={15}/>
+          </button>
+        );
+      })}
+      <button
+        onClick={() => setFabOpen((value) => !value)}
+        aria-label={fabOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+        className={`absolute right-[10%] top-[62%] grid size-13 -translate-y-1/2 place-items-center rounded-full shadow-xl ring-4 ring-white/50 transition-all duration-300 dark:ring-zinc-950/60 ${fabOpen ? 'rotate-90 bg-red-500 text-white shadow-red-500/30' : 'bg-amber-400 text-zinc-950 shadow-amber-500/30 hover:scale-105'}`}
+      >
+        {fabOpen ? <X size={18}/> : <Menu size={18}/>}
+      </button>
+    </div>;
+    case 'dark-dashboard-sidebar': return <div className={wrap}><aside className="flex h-105 w-56 flex-col justify-between rounded-3xl border border-white/10 bg-zinc-950 p-3 text-zinc-300">
+      <div>
+        <div className="flex items-center gap-2 px-1">
+          <div className="grid size-7 place-items-center rounded-lg bg-white text-xs font-bold text-zinc-950">P</div>
+          <span className="text-xs font-semibold text-white">PromptUI</span>
+        </div>
+        <nav className="mt-6 space-y-1">
+          {[[LayoutDashboard,'Overview',true,undefined],[Inbox,'Inbox',false,4],[FolderKanban,'Projects',false,undefined],[Users,'Team',false,undefined],[BarChart3,'Reports',false,undefined]].map(([Icon,label,active,count]: any)=>(
+            <div key={label} className={`flex items-center justify-between rounded-xl px-2.5 py-2 text-xs font-medium transition ${active?'bg-white/10 text-white':'text-zinc-400 hover:bg-white/5 hover:text-white'}`}>
+              <span className="flex items-center gap-2"><Icon size={15}/>{label}</span>
+              {count && <span className="rounded-full bg-emerald-500/15 px-1.5 py-0.5 text-[10px] text-emerald-400">{count}</span>}
+            </div>
+          ))}
+        </nav>
+      </div>
+      <div>
+        <div className="flex items-center gap-2 rounded-xl px-2.5 py-2 text-xs font-medium text-zinc-400 transition hover:bg-white/5 hover:text-white"><Settings size={15}/>Settings</div>
+        <div className="mt-2 flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 p-2">
+          <div className="grid size-7 place-items-center rounded-full bg-violet-500 text-[10px] font-semibold text-white">AM</div>
+          <div className="min-w-0 flex-1"><p className="truncate text-xs font-medium text-white">Amina Mensah</p><p className="truncate text-[10px] text-zinc-500">amina@promptui.dev</p></div>
+          <LogOut size={14} className="shrink-0 text-zinc-500"/>
+        </div>
+      </div>
+    </aside></div>;
+    case 'icon-rail-sidebar': return <div className={wrap}><aside className="flex h-96 w-18 flex-col items-center justify-between rounded-3xl border bg-white py-4 dark:bg-zinc-950">
+      <div className="grid size-9 place-items-center rounded-xl bg-zinc-950 text-sm font-bold text-white dark:bg-white dark:text-zinc-950">P</div>
+      <nav className="flex flex-1 flex-col items-center justify-center gap-2">
+        {[['home',Home,'Accueil'],['projects',FolderKanban,'Projets'],['team',Users,'Equipe'],['chat',MessageSquare,'Messages'],['reports',BarChart3,'Rapports'],['alerts',Bell,'Alertes']].map(([key,Icon,label]: any)=>(
+          <button key={key} onClick={()=>setRailActive(key)} aria-label={label} className={`group relative flex size-11 items-center justify-center rounded-xl transition ${railActive===key?'bg-teal-600 text-white':'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-900'}`}>
+            <Icon size={18}/>
+            <span className="pointer-events-none absolute left-[calc(100%+10px)] z-10 whitespace-nowrap rounded-lg bg-zinc-950 px-2.5 py-1.5 text-xs font-medium text-white opacity-0 shadow-lg transition group-hover:opacity-100 dark:bg-white dark:text-zinc-950">{label}</span>
+          </button>
+        ))}
+      </nav>
+      <button aria-label="Reglages" className="grid size-9 place-items-center rounded-xl text-zinc-500 transition hover:bg-zinc-100 dark:hover:bg-zinc-900"><Settings size={17}/></button>
+    </aside></div>;
+    case 'workspace-sidebar': return <div className={wrap}><aside className="flex h-105 w-64 flex-col rounded-3xl border bg-white p-3 dark:bg-zinc-950">
+      <button className="flex items-center gap-2 rounded-xl border px-2.5 py-2 text-left">
+        <div className="grid size-6 place-items-center rounded-lg bg-teal-600 text-[10px] font-bold text-white">N</div>
+        <div className="min-w-0 flex-1"><p className="truncate text-xs font-semibold">Northstar Labs</p><p className="text-[10px] text-zinc-500">Plan Pro</p></div>
+        <ChevronsUpDown size={14} className="shrink-0 text-zinc-400"/>
+      </button>
+      <button className="mt-2 flex items-center gap-2 rounded-xl border border-dashed px-2.5 py-2 text-xs text-zinc-500"><Search size={14}/>Rechercher<kbd className="ml-auto rounded-md bg-zinc-100 px-1.5 py-0.5 text-[9px] font-medium dark:bg-zinc-900">⌘K</kbd></button>
+      <nav className="mt-4 space-y-1"><div className="flex items-center gap-2 rounded-xl bg-teal-600/10 px-2.5 py-2 text-xs font-medium text-teal-700 dark:text-teal-400"><LayoutDashboard size={15}/>Vue densemble</div></nav>
+      <div className="mt-5">
+        <button onClick={()=>setProjectsOpen(v=>!v)} className="flex w-full items-center justify-between px-1 text-[10px] font-semibold uppercase text-zinc-400">Projets<ChevronDown size={13} className={`transition ${projectsOpen?'':'-rotate-90'}`}/></button>
+        {projectsOpen && <div className="mt-2 space-y-1">
+          {['Design system','Marketing site','Mobile app'].map(project=>(
+            <div key={project} className="flex items-center gap-2 rounded-xl px-2.5 py-1.5 text-xs text-zinc-600 transition hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-900"><Hash size={14} className="text-zinc-400"/>{project}</div>
+          ))}
+          <button className="flex w-full items-center gap-2 rounded-xl px-2.5 py-1.5 text-xs text-zinc-400 transition hover:bg-zinc-100 dark:hover:bg-zinc-900"><Plus size={14}/>Nouveau projet</button>
+        </div>}
+      </div>
+      <div className="mt-auto flex items-center gap-2 border-t pt-3">
+        <div className="grid size-7 place-items-center rounded-full bg-violet-500 text-[10px] font-semibold text-white">AM</div>
+        <div className="min-w-0 flex-1"><p className="truncate text-xs font-medium">Amina Mensah</p><p className="truncate text-[10px] text-zinc-500">Founder</p></div>
+      </div>
+    </aside></div>;
     default: return <div className="grid h-44 place-items-center text-sm text-zinc-500">Preview unavailable</div>;
   }
 }

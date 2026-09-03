@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { getComponentBySlug } from '@/data/components';
 import { InteractivePlayground } from '@/components/library/InteractivePlayground';
-import { CodeBlock } from '@/components/ui/CodeBlock';
 import { CopyButton } from '@/components/ui/CopyButton';
 import { ComponentViewTracker } from '@/components/analytics/ComponentViewTracker';
 
@@ -27,7 +26,6 @@ export default async function PlaygroundPage({ params }: { params: Promise<{ slu
       </div>
       <div className="mt-6 grid min-w-0 grid-cols-[minmax(0,1fr)] gap-5">
         <InteractivePlayground slug={item.slug} name={item.name}/>
-        <section className="min-w-0"><CodeBlock code={item.code} componentSlug={item.slug} componentName={item.name}/></section>
       </div>
     </main>
   );

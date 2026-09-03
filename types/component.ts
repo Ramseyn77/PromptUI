@@ -11,7 +11,9 @@ export type ComponentCategory =
   | 'Boards'
   | 'Charts'
   | 'Footer'
-  | 'CTA';
+  | 'CTA'
+  | 'Menu'
+  | 'Sidebar';
 
 export type ComponentStyle = 'Minimal' | 'Gradient' | 'Glass' | 'Dark' | 'Editorial' | 'SaaS';
 

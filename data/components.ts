@@ -182,6 +182,245 @@ export function IconButtonSet(){const items=[['Copy',Copy],['Save',Heart],['Shar
     description: 'Vue roadmap par trimestre avec jalons, progression et priorites de livraison.', technologies: ['React','TypeScript','Tailwind'],
     code: `export function RoadmapBoard(){const items=[['Q1','Design system','70%'],['Q2','Billing v2','45%'],['Q3','Team analytics','20%']];return <section className="rounded-3xl border bg-white p-6 dark:bg-zinc-950"><div className="flex items-end justify-between"><div><p className="text-sm text-zinc-500">Roadmap</p><h3 className="text-2xl font-semibold">Livraisons produit</h3></div><span className="text-xs text-zinc-500">2026</span></div><div className="mt-6 grid gap-3 md:grid-cols-3">{items.map(([q,title,progress])=><article key={q} className="rounded-2xl border p-4"><p className="text-xs font-medium text-teal-600">{q}</p><h4 className="mt-3 font-semibold">{title}</h4><div className="mt-6 h-2 rounded-full bg-zinc-100 dark:bg-zinc-800"><div className="h-full rounded-full bg-teal-600" style={{width:progress}}/></div><p className="mt-2 text-xs text-zinc-500">{progress} complete</p></article>)}</div></section>}`,
     prompt: ''
+  },
+  {
+    slug: 'radial-action-menu', name: 'Radial Action Menu', category: 'Menu', style: 'SaaS', recent: true, responsive: true,
+    description: 'Menu radial flottant : un bouton daction se deploie en eventail courbe dicones avec degrades, ombres et animation ressort.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `'use client';
+import { useState } from 'react';
+import { Bell, BarChart3, Bike, Code2, Home, LayoutGrid, Menu, Package, Settings, Store, TriangleAlert, Users, X } from 'lucide-react';
+
+export function RadialActionMenu() {
+  const [open, setOpen] = useState(false);
+  const items = [
+    { icon: LayoutGrid, label: 'Dashboard', active: true },
+    { icon: Package, label: 'Colis' },
+    { icon: TriangleAlert, label: 'Incidents' },
+    { icon: Store, label: 'Points relais' },
+    { icon: Users, label: 'Equipe' },
+    { icon: Bike, label: 'Coursiers' },
+    { icon: Code2, label: 'API' },
+    { icon: Home, label: 'Zones' },
+    { icon: BarChart3, label: 'Rapports' },
+    { icon: Bell, label: 'Alertes' },
+    { icon: Settings, label: 'Reglages' },
+  ];
+
+  return (
+    <div className="relative h-115 w-full overflow-hidden rounded-3xl border bg-[#faf9f6] bg-[radial-gradient(circle_at_1px_1px,rgba(21,21,18,.14)_1px,transparent_0)] bg-size-[22px_22px] dark:bg-zinc-950 dark:bg-[radial-gradient(circle_at_1px_1px,rgba(247,242,232,.12)_1px,transparent_0)]">
+      {items.map((item, i) => {
+        const t = i / (items.length - 1);
+        const Icon = item.icon;
+        return (
+          <button
+            key={item.label}
+            aria-label={item.label}
+            style={{
+              top: \`\${8 + t * 82}%\`,
+              right: \`\${10 + 30 * Math.sin(t * Math.PI)}%\`,
+              transitionDelay: \`\${open ? i * 30 : 0}ms\`,
+            }}
+            className={\`absolute grid size-11 -translate-y-1/2 place-items-center rounded-full shadow-lg ring-1 transition-all duration-300 ease-[cubic-bezier(.34,1.56,.64,1)] \${
+              open ? 'scale-100 opacity-100' : 'pointer-events-none scale-0 opacity-0'
+            } \${
+              item.active
+                ? 'bg-amber-400 text-zinc-950 shadow-amber-500/30 ring-amber-200/60'
+                : 'bg-zinc-900 text-white shadow-black/20 ring-white/10 hover:scale-110 hover:bg-zinc-800'
+            }\`}
+          >
+            <Icon size={16} />
+          </button>
+        );
+      })}
+
+      <button
+        onClick={() => setOpen((value) => !value)}
+        aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
+        className={\`absolute right-[10%] top-[62%] grid size-14 -translate-y-1/2 place-items-center rounded-full shadow-xl ring-4 ring-white/50 transition-all duration-300 dark:ring-zinc-950/60 \${
+          open
+            ? 'rotate-90 bg-red-500 text-white shadow-red-500/30'
+            : 'bg-amber-400 text-zinc-950 shadow-amber-500/30 hover:scale-105'
+        }\`}
+      >
+        {open ? <X size={20} /> : <Menu size={20} />}
+      </button>
+    </div>
+  );
+}`,
+    prompt: ''
+  },
+  {
+    slug: 'dark-dashboard-sidebar', name: 'Dark Dashboard Sidebar', category: 'Sidebar', style: 'Dark', featured: true, recent: true, responsive: true,
+    description: 'Sidebar dadministration sombre avec navigation groupee, badge de notification et carte utilisateur en pied de page.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `import { BarChart3, FolderKanban, Inbox, LayoutDashboard, LogOut, Settings, Users } from 'lucide-react';
+
+export function DarkDashboardSidebar() {
+  const nav = [
+    { icon: LayoutDashboard, label: 'Overview', active: true },
+    { icon: Inbox, label: 'Inbox', count: 4 },
+    { icon: FolderKanban, label: 'Projects' },
+    { icon: Users, label: 'Team' },
+    { icon: BarChart3, label: 'Reports' },
+  ];
+
+  return (
+    <aside className="flex h-130 w-64 flex-col justify-between rounded-3xl border border-white/10 bg-zinc-950 p-4 text-zinc-300">
+      <div>
+        <div className="flex items-center gap-2 px-2">
+          <div className="grid size-8 place-items-center rounded-lg bg-white text-sm font-bold text-zinc-950">P</div>
+          <span className="text-sm font-semibold text-white">PromptUI</span>
+        </div>
+
+        <nav className="mt-8 space-y-1">
+          {nav.map((item) => {
+            const Icon = item.icon;
+            return (
+              <a
+                key={item.label}
+                href="#"
+                className={\`flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium transition \${
+                  item.active ? 'bg-white/10 text-white' : 'text-zinc-400 hover:bg-white/5 hover:text-white'
+                }\`}
+              >
+                <span className="flex items-center gap-3"><Icon size={17} />{item.label}</span>
+                {item.count && <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-xs text-emerald-400">{item.count}</span>}
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+
+      <div>
+        <a href="#" className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-400 transition hover:bg-white/5 hover:text-white">
+          <Settings size={17} />Settings
+        </a>
+        <div className="mt-3 flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3">
+          <div className="grid size-9 place-items-center rounded-full bg-violet-500 text-xs font-semibold text-white">AM</div>
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-medium text-white">Amina Mensah</p>
+            <p className="truncate text-xs text-zinc-500">amina@promptui.dev</p>
+          </div>
+          <LogOut size={16} className="shrink-0 text-zinc-500" />
+        </div>
+      </div>
+    </aside>
+  );
+}`,
+    prompt: ''
+  },
+  {
+    slug: 'icon-rail-sidebar', name: 'Icon Rail Sidebar', category: 'Sidebar', style: 'Minimal', recent: true, responsive: true,
+    description: 'Rail de navigation compact avec icones actives et infobulles au survol, inspire des barres dactivite doutils dev.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `import { useState } from 'react';
+import { BarChart3, Bell, FolderKanban, Home, MessageSquare, Settings, Users } from 'lucide-react';
+
+export function IconRailSidebar() {
+  const [active, setActive] = useState('home');
+  const items = [
+    { key: 'home', icon: Home, label: 'Accueil' },
+    { key: 'projects', icon: FolderKanban, label: 'Projets' },
+    { key: 'team', icon: Users, label: 'Equipe' },
+    { key: 'chat', icon: MessageSquare, label: 'Messages' },
+    { key: 'reports', icon: BarChart3, label: 'Rapports' },
+    { key: 'alerts', icon: Bell, label: 'Alertes' },
+  ];
+
+  return (
+    <aside className="flex h-120 w-18 flex-col items-center justify-between rounded-3xl border bg-white py-4 dark:bg-zinc-950">
+      <div className="grid size-9 place-items-center rounded-xl bg-zinc-950 text-sm font-bold text-white dark:bg-white dark:text-zinc-950">P</div>
+
+      <nav className="flex flex-1 flex-col items-center justify-center gap-2">
+        {items.map((item) => {
+          const Icon = item.icon;
+          const isActive = active === item.key;
+          return (
+            <button
+              key={item.key}
+              onClick={() => setActive(item.key)}
+              aria-label={item.label}
+              className={\`group relative flex size-11 items-center justify-center rounded-xl transition \${
+                isActive ? 'bg-teal-600 text-white' : 'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-900'
+              }\`}
+            >
+              <Icon size={18} />
+              <span className="pointer-events-none absolute left-[calc(100%+10px)] z-10 whitespace-nowrap rounded-lg bg-zinc-950 px-2.5 py-1.5 text-xs font-medium text-white opacity-0 shadow-lg transition group-hover:opacity-100 dark:bg-white dark:text-zinc-950">
+                {item.label}
+              </span>
+            </button>
+          );
+        })}
+      </nav>
+
+      <button aria-label="Reglages" className="grid size-9 place-items-center rounded-xl text-zinc-500 transition hover:bg-zinc-100 dark:hover:bg-zinc-900">
+        <Settings size={17} />
+      </button>
+    </aside>
+  );
+}`,
+    prompt: ''
+  },
+  {
+    slug: 'workspace-sidebar', name: 'Workspace Sidebar', category: 'Sidebar', style: 'SaaS', featured: true, responsive: true,
+    description: 'Sidebar SaaS claire avec selecteur despace de travail, recherche rapide et groupe de projets repliable.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `import { useState } from 'react';
+import { ChevronDown, ChevronsUpDown, Hash, LayoutDashboard, Plus, Search } from 'lucide-react';
+
+export function WorkspaceSidebar() {
+  const [projectsOpen, setProjectsOpen] = useState(true);
+  const projects = ['Design system', 'Marketing site', 'Mobile app'];
+
+  return (
+    <aside className="flex h-130 w-72 flex-col rounded-3xl border bg-white p-4 dark:bg-zinc-950">
+      <button className="flex items-center gap-2 rounded-xl border px-3 py-2.5 text-left">
+        <div className="grid size-7 place-items-center rounded-lg bg-teal-600 text-xs font-bold text-white">N</div>
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-sm font-semibold">Northstar Labs</p>
+          <p className="text-xs text-zinc-500">Plan Pro</p>
+        </div>
+        <ChevronsUpDown size={15} className="shrink-0 text-zinc-400" />
+      </button>
+
+      <button className="mt-3 flex items-center gap-2 rounded-xl border border-dashed px-3 py-2.5 text-sm text-zinc-500 transition hover:border-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200">
+        <Search size={15} />Rechercher
+        <kbd className="ml-auto rounded-md bg-zinc-100 px-1.5 py-0.5 text-[10px] font-medium dark:bg-zinc-900">⌘K</kbd>
+      </button>
+
+      <nav className="mt-5 space-y-1">
+        <a href="#" className="flex items-center gap-3 rounded-xl bg-teal-600/10 px-3 py-2.5 text-sm font-medium text-teal-700 dark:text-teal-400">
+          <LayoutDashboard size={16} />Vue densemble
+        </a>
+      </nav>
+
+      <div className="mt-6">
+        <button onClick={() => setProjectsOpen((value) => !value)} className="flex w-full items-center justify-between px-2 text-xs font-semibold uppercase text-zinc-400">
+          Projets
+          <ChevronDown size={14} className={\`transition \${projectsOpen ? '' : '-rotate-90'}\`} />
+        </button>
+        {projectsOpen && (
+          <div className="mt-2 space-y-1">
+            {projects.map((project) => (
+              <a key={project} href="#" className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-zinc-600 transition hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-900">
+                <Hash size={15} className="text-zinc-400" />{project}
+              </a>
+            ))}
+            <button className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-zinc-400 transition hover:bg-zinc-100 dark:hover:bg-zinc-900">
+              <Plus size={15} />Nouveau projet
+            </button>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-auto flex items-center gap-3 border-t pt-4">
+        <div className="grid size-8 place-items-center rounded-full bg-violet-500 text-xs font-semibold text-white">AM</div>
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-sm font-medium">Amina Mensah</p>
+          <p className="truncate text-xs text-zinc-500">Founder</p>
+        </div>
+      </div>
+    </aside>
+  );
+}`,
+    prompt: ''
   }
 ].map((item) => ({
   ...item,
@@ -190,7 +429,7 @@ export function IconButtonSet(){const items=[['Copy',Copy],['Save',Heart],['Shar
   prompt: item.prompt || makePrompt(item.name, item.category, item.style, item.description),
 })) as LibraryComponent[];
 
-export const categories = ['All','Hero','Navbar','Cards','Buttons','Forms','Pricing','Testimonials','Dashboard','Tables','Boards','Charts','Footer','CTA'] as const;
+export const categories = ['All','Hero','Navbar','Cards','Buttons','Forms','Pricing','Testimonials','Dashboard','Tables','Boards','Charts','Footer','CTA','Menu','Sidebar'] as const;
 export const styles = ['All','Minimal','Gradient','Glass','Dark','Editorial','SaaS'] as const;
 
 export function getComponentBySlug(slug: string) {
