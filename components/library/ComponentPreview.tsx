@@ -21,6 +21,7 @@ export function ComponentPreview({ slug, compact = false }: { slug: string; comp
   const [fabOpen, setFabOpen] = useState(false);
   const [railActive, setRailActive] = useState('home');
   const [projectsOpen, setProjectsOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const wrap = `w-full ${compact ? 'scale-[.82] origin-center' : ''}`;
   switch (slug) {
     case 'aurora-hero': return <div className={wrap}><section className="relative overflow-hidden rounded-3xl border bg-zinc-950 px-5 py-12 text-center text-white"><div className="absolute inset-x-14 top-0 h-32 rounded-full bg-violet-500/20 blur-3xl"/><div className="relative mx-auto max-w-xl"><span className="rounded-full border border-white/15 px-3 py-1 text-[10px] text-zinc-300">Ship interfaces faster</span><h3 className="mt-5 text-3xl font-semibold tracking-tight">Build beautiful products without starting from zero.</h3><p className="mx-auto mt-3 max-w-md text-sm text-zinc-400">Copy polished UI, adapt the source, or use the AI prompt.</p><div className="mt-6 flex justify-center gap-2"><button className="rounded-lg bg-white px-4 py-2 text-xs font-medium text-zinc-950">Browse components</button><button className="rounded-lg border border-white/15 px-4 py-2 text-xs">GitHub</button></div></div></section></div>;
@@ -50,12 +51,17 @@ export function ComponentPreview({ slug, compact = false }: { slug: string; comp
     case 'radial-action-menu': return <div className={`${wrap} relative h-96 overflow-hidden rounded-3xl border bg-[#faf9f6] bg-[radial-gradient(circle_at_1px_1px,rgba(21,21,18,.14)_1px,transparent_0)] bg-size-[22px_22px] dark:bg-zinc-950 dark:bg-[radial-gradient(circle_at_1px_1px,rgba(247,242,232,.12)_1px,transparent_0)]`}>
       {radialMenuItems.map((item, i) => {
         const t = i / (radialMenuItems.length - 1);
+        const angle = -Math.PI / 2 + t * Math.PI;
         const Icon = item.icon;
         return (
           <button
             key={item.label}
             aria-label={item.label}
-            style={{ top: `${8 + t * 82}%`, right: `${10 + 30 * Math.sin(t * Math.PI)}%`, transitionDelay: `${fabOpen ? i * 30 : 0}ms` }}
+            style={{
+              top: `calc(50% + ${Math.sin(angle) * 150}px)`,
+              right: `calc(8% + ${Math.cos(angle) * 150}px)`,
+              transitionDelay: `${fabOpen ? i * 30 : 0}ms`,
+            }}
             className={`absolute grid size-10 -translate-y-1/2 place-items-center rounded-full shadow-lg ring-1 transition-all duration-300 ease-[cubic-bezier(.34,1.56,.64,1)] ${fabOpen ? 'scale-100 opacity-100' : 'pointer-events-none scale-0 opacity-0'} ${item.active ? 'bg-amber-400 text-zinc-950 shadow-amber-500/30 ring-amber-200/60' : 'bg-zinc-900 text-white shadow-black/20 ring-white/10 hover:scale-110 hover:bg-zinc-800'}`}
           >
             <Icon size={15}/>
@@ -65,12 +71,12 @@ export function ComponentPreview({ slug, compact = false }: { slug: string; comp
       <button
         onClick={() => setFabOpen((value) => !value)}
         aria-label={fabOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-        className={`absolute right-[10%] top-[62%] grid size-13 -translate-y-1/2 place-items-center rounded-full shadow-xl ring-4 ring-white/50 transition-all duration-300 dark:ring-zinc-950/60 ${fabOpen ? 'rotate-90 bg-red-500 text-white shadow-red-500/30' : 'bg-amber-400 text-zinc-950 shadow-amber-500/30 hover:scale-105'}`}
+        className={`absolute right-[8%] top-1/2 grid size-13 -translate-y-1/2 place-items-center rounded-full shadow-xl ring-4 ring-white/50 transition-all duration-300 dark:ring-zinc-950/60 ${fabOpen ? 'rotate-90 bg-red-500 text-white shadow-red-500/30' : 'bg-amber-400 text-zinc-950 shadow-amber-500/30 hover:scale-105'}`}
       >
         {fabOpen ? <X size={18}/> : <Menu size={18}/>}
       </button>
     </div>;
-    case 'dark-dashboard-sidebar': return <div className={wrap}><aside className="flex h-105 w-56 flex-col justify-between rounded-3xl border border-white/10 bg-zinc-950 p-3 text-zinc-300">
+    case 'dark-dashboard-sidebar': return <div className={`${wrap} relative min-h-105`}><button type="button" onClick={()=>setSidebarOpen(value=>!value)} aria-expanded={sidebarOpen} aria-controls="dark-dashboard-sidebar-panel" aria-label={sidebarOpen?'Masquer la navigation':'Afficher la navigation'} className="absolute left-3 top-3 z-30 grid size-10 place-items-center rounded-xl border bg-white shadow-lg sm:hidden dark:bg-zinc-950">{sidebarOpen?<X size={18}/>:<Menu size={18}/>}</button><aside id="dark-dashboard-sidebar-panel" className={`${sidebarOpen?'flex':'hidden'} absolute left-3 top-14 z-20 h-105 w-56 flex-col justify-between rounded-3xl border border-white/10 bg-zinc-950 p-3 text-zinc-300 shadow-2xl sm:static sm:flex sm:shadow-none`}>
       <div>
         <div className="flex items-center gap-2 px-1">
           <div className="grid size-7 place-items-center rounded-lg bg-white text-xs font-bold text-zinc-950">P</div>
@@ -94,7 +100,7 @@ export function ComponentPreview({ slug, compact = false }: { slug: string; comp
         </div>
       </div>
     </aside></div>;
-    case 'icon-rail-sidebar': return <div className={wrap}><aside className="flex h-96 w-18 flex-col items-center justify-between rounded-3xl border bg-white py-4 dark:bg-zinc-950">
+    case 'icon-rail-sidebar': return <div className={`${wrap} relative min-h-96`}><button type="button" onClick={()=>setSidebarOpen(value=>!value)} aria-expanded={sidebarOpen} aria-controls="icon-rail-sidebar-panel" aria-label={sidebarOpen?'Masquer la navigation':'Afficher la navigation'} className="absolute left-3 top-3 z-30 grid size-10 place-items-center rounded-xl border bg-white shadow-lg sm:hidden dark:bg-zinc-950">{sidebarOpen?<X size={18}/>:<Menu size={18}/>}</button><aside id="icon-rail-sidebar-panel" className={`${sidebarOpen?'flex':'hidden'} absolute left-3 top-14 z-20 h-96 w-18 flex-col items-center justify-between rounded-3xl border bg-white py-4 shadow-2xl sm:static sm:flex sm:shadow-none dark:bg-zinc-950`}>
       <div className="grid size-9 place-items-center rounded-xl bg-zinc-950 text-sm font-bold text-white dark:bg-white dark:text-zinc-950">P</div>
       <nav className="flex flex-1 flex-col items-center justify-center gap-2">
         {[['home',Home,'Accueil'],['projects',FolderKanban,'Projets'],['team',Users,'Equipe'],['chat',MessageSquare,'Messages'],['reports',BarChart3,'Rapports'],['alerts',Bell,'Alertes']].map(([key,Icon,label]: any)=>(
@@ -106,7 +112,7 @@ export function ComponentPreview({ slug, compact = false }: { slug: string; comp
       </nav>
       <button aria-label="Reglages" className="grid size-9 place-items-center rounded-xl text-zinc-500 transition hover:bg-zinc-100 dark:hover:bg-zinc-900"><Settings size={17}/></button>
     </aside></div>;
-    case 'workspace-sidebar': return <div className={wrap}><aside className="flex h-105 w-64 flex-col rounded-3xl border bg-white p-3 dark:bg-zinc-950">
+    case 'workspace-sidebar': return <div className={`${wrap} relative min-h-105`}><button type="button" onClick={()=>setSidebarOpen(value=>!value)} aria-expanded={sidebarOpen} aria-controls="workspace-sidebar-panel" aria-label={sidebarOpen?'Masquer la navigation':'Afficher la navigation'} className="absolute left-3 top-3 z-30 grid size-10 place-items-center rounded-xl border bg-white shadow-lg sm:hidden dark:bg-zinc-950">{sidebarOpen?<X size={18}/>:<Menu size={18}/>}</button><aside id="workspace-sidebar-panel" className={`${sidebarOpen?'flex':'hidden'} absolute left-3 top-14 z-20 h-105 w-64 flex-col rounded-3xl border bg-white p-3 shadow-2xl sm:static sm:flex sm:shadow-none dark:bg-zinc-950`}>
       <button className="flex items-center gap-2 rounded-xl border px-2.5 py-2 text-left">
         <div className="grid size-6 place-items-center rounded-lg bg-teal-600 text-[10px] font-bold text-white">N</div>
         <div className="min-w-0 flex-1"><p className="truncate text-xs font-semibold">Northstar Labs</p><p className="text-[10px] text-zinc-500">Plan Pro</p></div>

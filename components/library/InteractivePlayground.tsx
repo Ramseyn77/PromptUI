@@ -8,11 +8,14 @@ import { EmulatedComponentPreview, EmulatedComponentPreviewHandle } from './Emul
 import { PlaygroundToolbar } from './PlaygroundToolbar';
 import { VisualEditorPanel } from './VisualEditorPanel';
 import { formatHtml } from '@/utils/formatHtml';
+import { previewDevices, validatePreviewDevices } from '@/utils/previewDevices';
+
+validatePreviewDevices();
 
 const sizes = {
-  mobile: { label: 'Mobile', width: 360, height: 640, frameWidth: 376, frameHeight: 656, icon: Smartphone },
-  tablet: { label: 'Tablette', width: 768, height: 600, frameWidth: 788, frameHeight: 620, icon: Tablet },
-  desktop: { label: 'Desktop', width: 760, height: 480, frameWidth: 762, frameHeight: 514, icon: Monitor },
+  mobile: { label: 'Mobile', ...previewDevices.mobile, icon: Smartphone },
+  tablet: { label: 'Tablette', ...previewDevices.tablet, icon: Tablet },
+  desktop: { label: 'Desktop', ...previewDevices.desktop, icon: Monitor },
 } as const;
 
 const sizeOptions = (Object.entries(sizes) as Array<[keyof typeof sizes, typeof sizes[keyof typeof sizes]]>).map(([key, item]) => ({

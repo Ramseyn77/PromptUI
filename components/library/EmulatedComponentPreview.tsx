@@ -79,6 +79,7 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
         html, body { width: 100%; min-height: 100%; margin: 0; background: transparent !important; }
         body { overflow: hidden; color: var(--foreground); }
         #component-preview-root { display: grid; width: 100%; min-height: 100vh; place-items: center; box-sizing: border-box; }
+        #component-preview-root > * { width: 100%; box-sizing: border-box; }
         .show-preview-bounds * { outline: 1px solid rgba(20, 184, 166, .28); outline-offset: -1px; }
         .viz-hover { outline: 1.5px dashed rgba(13, 148, 136, .7); outline-offset: 1px; cursor: pointer; }
         .viz-selected { outline: 2px solid #0d9488 !important; outline-offset: 1px; }
@@ -228,7 +229,7 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
       )}
 
       {mountNode && editableHtml === undefined && createPortal(
-        <div className={showBounds ? 'show-preview-bounds' : ''} style={{ padding }}>
+        <div className={`w-full ${showBounds ? 'show-preview-bounds' : ''}`} style={{ padding }}>
           <ComponentPreview slug={slug}/>
         </div>,
         mountNode,

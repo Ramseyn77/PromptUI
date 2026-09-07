@@ -207,20 +207,21 @@ export function RadialActionMenu() {
   ];
 
   return (
-    <div className="relative h-115 w-full overflow-hidden rounded-3xl border bg-[#faf9f6] bg-[radial-gradient(circle_at_1px_1px,rgba(21,21,18,.14)_1px,transparent_0)] bg-size-[22px_22px] dark:bg-zinc-950 dark:bg-[radial-gradient(circle_at_1px_1px,rgba(247,242,232,.12)_1px,transparent_0)]">
+    <div className="relative h-96 w-full overflow-hidden rounded-3xl border bg-[#faf9f6] bg-[radial-gradient(circle_at_1px_1px,rgba(21,21,18,.14)_1px,transparent_0)] bg-size-[22px_22px] dark:bg-zinc-950 dark:bg-[radial-gradient(circle_at_1px_1px,rgba(247,242,232,.12)_1px,transparent_0)]">
       {items.map((item, i) => {
         const t = i / (items.length - 1);
+        const angle = -Math.PI / 2 + t * Math.PI;
         const Icon = item.icon;
         return (
           <button
             key={item.label}
             aria-label={item.label}
             style={{
-              top: \`\${8 + t * 82}%\`,
-              right: \`\${10 + 30 * Math.sin(t * Math.PI)}%\`,
+              top: \`calc(50% + \${Math.sin(angle) * 150}px)\`,
+              right: \`calc(8% + \${Math.cos(angle) * 150}px)\`,
               transitionDelay: \`\${open ? i * 30 : 0}ms\`,
             }}
-            className={\`absolute grid size-11 -translate-y-1/2 place-items-center rounded-full shadow-lg ring-1 transition-all duration-300 ease-[cubic-bezier(.34,1.56,.64,1)] \${
+            className={\`absolute grid size-10 -translate-y-1/2 place-items-center rounded-full shadow-lg ring-1 transition-all duration-300 ease-[cubic-bezier(.34,1.56,.64,1)] \${
               open ? 'scale-100 opacity-100' : 'pointer-events-none scale-0 opacity-0'
             } \${
               item.active
@@ -228,7 +229,7 @@ export function RadialActionMenu() {
                 : 'bg-zinc-900 text-white shadow-black/20 ring-white/10 hover:scale-110 hover:bg-zinc-800'
             }\`}
           >
-            <Icon size={16} />
+            <Icon size={15} />
           </button>
         );
       })}
@@ -236,13 +237,13 @@ export function RadialActionMenu() {
       <button
         onClick={() => setOpen((value) => !value)}
         aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
-        className={\`absolute right-[10%] top-[62%] grid size-14 -translate-y-1/2 place-items-center rounded-full shadow-xl ring-4 ring-white/50 transition-all duration-300 dark:ring-zinc-950/60 \${
+        className={\`absolute right-[8%] top-1/2 grid size-13 -translate-y-1/2 place-items-center rounded-full shadow-xl ring-4 ring-white/50 transition-all duration-300 dark:ring-zinc-950/60 \${
           open
             ? 'rotate-90 bg-red-500 text-white shadow-red-500/30'
             : 'bg-amber-400 text-zinc-950 shadow-amber-500/30 hover:scale-105'
         }\`}
       >
-        {open ? <X size={20} /> : <Menu size={20} />}
+        {open ? <X size={18} /> : <Menu size={18} />}
       </button>
     </div>
   );
@@ -312,10 +313,11 @@ export function DarkDashboardSidebar() {
     slug: 'icon-rail-sidebar', name: 'Icon Rail Sidebar', category: 'Sidebar', style: 'Minimal', recent: true, responsive: true,
     description: 'Rail de navigation compact avec icones actives et infobulles au survol, inspire des barres dactivite doutils dev.', technologies: ['React','TypeScript','Tailwind','Lucide'],
     code: `import { useState } from 'react';
-import { BarChart3, Bell, FolderKanban, Home, MessageSquare, Settings, Users } from 'lucide-react';
+import { BarChart3, Bell, FolderKanban, Home, Menu, MessageSquare, Settings, Users, X } from 'lucide-react';
 
 export function IconRailSidebar() {
   const [active, setActive] = useState('home');
+  const [open, setOpen] = useState(false);
   const items = [
     { key: 'home', icon: Home, label: 'Accueil' },
     { key: 'projects', icon: FolderKanban, label: 'Projets' },
@@ -326,7 +328,11 @@ export function IconRailSidebar() {
   ];
 
   return (
-    <aside className="flex h-120 w-18 flex-col items-center justify-between rounded-3xl border bg-white py-4 dark:bg-zinc-950">
+    <div className="relative min-h-120">
+      <button type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="icon-rail" aria-label={open ? 'Masquer la navigation' : 'Afficher la navigation'} className="absolute left-3 top-3 z-30 grid size-10 place-items-center rounded-xl border bg-white shadow-lg sm:hidden dark:bg-zinc-950">
+        {open ? <X size={18} /> : <Menu size={18} />}
+      </button>
+      <aside id="icon-rail" className={\`\${open ? 'flex' : 'hidden'} absolute left-3 top-14 z-20 h-120 w-18 flex-col items-center justify-between rounded-3xl border bg-white py-4 shadow-2xl sm:static sm:flex sm:shadow-none dark:bg-zinc-950\`}>
       <div className="grid size-9 place-items-center rounded-xl bg-zinc-950 text-sm font-bold text-white dark:bg-white dark:text-zinc-950">P</div>
 
       <nav className="flex flex-1 flex-col items-center justify-center gap-2">
@@ -354,7 +360,8 @@ export function IconRailSidebar() {
       <button aria-label="Reglages" className="grid size-9 place-items-center rounded-xl text-zinc-500 transition hover:bg-zinc-100 dark:hover:bg-zinc-900">
         <Settings size={17} />
       </button>
-    </aside>
+      </aside>
+    </div>
   );
 }`,
     prompt: ''
