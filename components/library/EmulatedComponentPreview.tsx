@@ -263,6 +263,61 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
     return () => cleanups.forEach((cleanup) => cleanup());
   }, [mountNode, slug, editableHtml]);
 
+  useEffect(() => {
+    if (!mountNode || slug !== 'gradient-segmented-tabs') return;
+
+    const buttons = [...mountNode.querySelectorAll<HTMLButtonElement>('[data-gradient-tab]')];
+    const title = mountNode.querySelector<HTMLElement>('[data-gradient-title]');
+    const description = mountNode.querySelector<HTMLElement>('[data-gradient-desc]');
+    if (!buttons.length || !title || !description) return;
+
+    const copy: Record<string, string> = {
+      Design: 'Ajuste la direction visuelle.',
+      Code: 'Prepare un composant propre.',
+      Ship: 'Passe au build plus vite.',
+    };
+    const activeClass = 'bg-gradient-to-r from-teal-500 via-sky-500 to-violet-500 text-white shadow-lg shadow-sky-900/15';
+    const idleClass = 'text-zinc-500 hover:text-zinc-950 dark:hover:text-white';
+
+    const selectTab = (activeButton: HTMLButtonElement) => {
+      const value = activeButton.dataset.gradientTab ?? 'Design';
+      buttons.forEach((button) => {
+        const isActive = button === activeButton;
+        button.className = `rounded-xl px-3 py-2.5 text-xs font-black transition ${isActive ? activeClass : idleClass}`;
+      });
+      title.textContent = value;
+      description.textContent = copy[value] ?? copy.Design;
+    };
+
+    const cleanups = buttons.map((button) => {
+      const handler = () => selectTab(button);
+      button.addEventListener('click', handler);
+      return () => button.removeEventListener('click', handler);
+    });
+
+    selectTab(buttons[0]);
+    return () => cleanups.forEach((cleanup) => cleanup());
+  }, [mountNode, slug, editableHtml]);
+
+  useEffect(() => {
+    if (!mountNode || slug !== 'gradient-progress-slider') return;
+
+    const input = mountNode.querySelector<HTMLInputElement>('input[type="range"][aria-label="Ajuster la progression"]');
+    const value = mountNode.querySelector<HTMLElement>('[data-progress-value]');
+    const fill = mountNode.querySelector<HTMLElement>('[data-progress-fill]');
+    if (!input || !value || !fill) return;
+
+    const updateProgress = () => {
+      value.textContent = `${input.value}%`;
+      fill.style.width = `${input.value}%`;
+    };
+
+    updateProgress();
+    input.addEventListener('input', updateProgress);
+
+    return () => input.removeEventListener('input', updateProgress);
+  }, [mountNode, slug, editableHtml]);
+
   const viewport = isHtmlPreview ? (
       <iframe
         ref={iframeRef}

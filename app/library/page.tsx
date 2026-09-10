@@ -1,10 +1,14 @@
 import type { Metadata } from 'next';
 import { LibraryExplorer } from '@/components/library/LibraryExplorer';
+import { categories, components, styles } from '@/data/components';
 
 export const metadata: Metadata = { title: 'Bibliotheque de composants', description: 'Parcourir des composants React gratuits avec code source et prompts IA.' };
 
 export default async function LibraryPage({ searchParams }: { searchParams: Promise<{ q?: string; category?: string }> }) {
   const params = await searchParams;
+  const categoryCount = categories.filter((item) => item !== 'All').length;
+  const styleCount = styles.filter((item) => item !== 'All').length;
+
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
       <div className="grid gap-8 border-b border-[var(--line)] pb-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
@@ -16,9 +20,9 @@ export default async function LibraryPage({ searchParams }: { searchParams: Prom
         <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5 shadow-sm">
           <p className="text-xs font-semibold uppercase text-[var(--muted)]">Inventaire MVP</p>
           <div className="mt-4 grid grid-cols-3 gap-3 text-center">
-            <div><p className="text-2xl font-semibold">24</p><p className="text-xs text-[var(--muted)]">items</p></div>
-            <div><p className="text-2xl font-semibold">14</p><p className="text-xs text-[var(--muted)]">types</p></div>
-            <div><p className="text-2xl font-semibold">7</p><p className="text-xs text-[var(--muted)]">styles</p></div>
+            <div><p className="text-2xl font-semibold">{components.length}</p><p className="text-xs text-[var(--muted)]">items</p></div>
+            <div><p className="text-2xl font-semibold">{categoryCount}</p><p className="text-xs text-[var(--muted)]">categories</p></div>
+            <div><p className="text-2xl font-semibold">{styleCount}</p><p className="text-xs text-[var(--muted)]">types</p></div>
           </div>
         </div>
       </div>

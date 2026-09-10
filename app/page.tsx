@@ -1,15 +1,17 @@
 import Link from 'next/link';
 import { ArrowRight, Bot, Braces, Code2, Layers3, MousePointer2, Search, Sparkles, Zap } from 'lucide-react';
-import { categories, components } from '@/data/components';
+import { categories, components, styles } from '@/data/components';
 import { ComponentCard } from '@/components/library/ComponentCard';
 import { ComponentPreview } from '@/components/library/ComponentPreview';
 
 export default function HomePage() {
   const featured = components.filter((x) => x.featured).slice(0, 6);
   const categoryList = categories.filter((x) => x !== 'All');
+  const styleList = styles.filter((x) => x !== 'All');
   const stats = [
-    ['24', 'composants'],
-    ['7', 'styles'],
+    [String(components.length), 'composants'],
+    [String(categoryList.length), 'categories'],
+    [String(styleList.length), 'types'],
     ['0', 'compte requis'],
   ];
 
@@ -41,7 +43,7 @@ export default function HomePage() {
                 Voir un composant
               </Link>
             </div>
-            <div className="mt-10 grid max-w-lg grid-cols-3 border-y border-[var(--line)] py-5">
+            <div className="mt-10 grid max-w-xl grid-cols-2 gap-y-5 border-y border-[var(--line)] py-5 sm:grid-cols-4">
               {stats.map(([value, label]) => (
                 <div key={label}>
                   <p className="text-3xl font-semibold tracking-tight">{value}</p>
@@ -151,7 +153,7 @@ export default function HomePage() {
         <div className="overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[#151512] px-6 py-12 text-white shadow-2xl shadow-black/10 md:px-12 md:py-16">
           <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
             <div>
-              <p className="text-sm text-teal-200">24 composants inclus dans le MVP</p>
+              <p className="text-sm text-teal-200">{components.length} composants inclus dans le MVP</p>
               <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">Previsualiser. Copier. Prompter. Livrer.</h2>
               <p className="mt-4 max-w-xl text-sm leading-6 text-zinc-400">Pas de compte, pas de paiement, pas de labyrinthe de configuration. PromptUI reste simple pour valider l idee avec des developpeurs.</p>
             </div>

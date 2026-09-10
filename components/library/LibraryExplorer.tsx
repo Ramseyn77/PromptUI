@@ -2,7 +2,38 @@
 import { Search, SlidersHorizontal, X } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { categories, components, styles } from '@/data/components';
+import type { LibraryComponent } from '@/types/component';
 import { ComponentCard } from './ComponentCard';
+
+const mixComponents = (items: LibraryComponent[]) => {
+  const groups = new Map<string, LibraryComponent[]>();
+
+  items.forEach((item) => {
+    const group = groups.get(item.category) ?? [];
+    group.push(item);
+    groups.set(item.category, group);
+  });
+
+  const mixed: LibraryComponent[] = [];
+  const orderedGroups = [...groups.values()];
+  let index = 0;
+
+  while (mixed.length < items.length) {
+    orderedGroups.forEach((group) => {
+      if (group[index]) mixed.push(group[index]);
+    });
+    index += 1;
+  }
+
+  return mixed;
+};
+
+const recentFirst = (items: LibraryComponent[]) => {
+  const recent = items.filter((item) => item.recent).slice(-6).reverse();
+  const recentSlugs = new Set(recent.map((item) => item.slug));
+  const rest = mixComponents(items.filter((item) => !recentSlugs.has(item.slug)));
+  return [...recent, ...rest];
+};
 
 export function LibraryExplorer({ initialQuery = '', initialCategory = 'All' }: { initialQuery?: string; initialCategory?: string }) {
   const [query, setQuery] = useState(initialQuery);
@@ -12,6 +43,7 @@ export function LibraryExplorer({ initialQuery = '', initialCategory = 'All' }: 
     const text = `${item.name} ${item.description} ${item.category} ${item.style} ${item.technologies.join(' ')}`.toLowerCase();
     return text.includes(query.toLowerCase()) && (category === 'All' || item.category === category) && (style === 'All' || item.style === style);
   }), [query, category, style]);
+  const mixed = useMemo(() => recentFirst(filtered), [filtered]);
   const active = query || category !== 'All' || style !== 'All';
 
   return (
@@ -38,7 +70,7 @@ export function LibraryExplorer({ initialQuery = '', initialCategory = 'All' }: 
       </div>
       {filtered.length ? (
         <div className="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {filtered.map((item) => <ComponentCard key={item.slug} item={item}/>)}
+          {mixed.map((item) => <ComponentCard key={item.slug} item={item}/>)}
         </div>
       ) : (
         <div className="mt-8 rounded-2xl border border-dashed border-[var(--line)] bg-[var(--surface)] p-16 text-center">

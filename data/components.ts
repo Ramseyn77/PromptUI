@@ -437,18 +437,19 @@ export function WorkspaceSidebar() {
 export function CourseHistogram() {
   const [active, setActive] = useState('Total');
   const items = [
-    { key: 'Aujourd hui', label: 'J', value: 18, color: 'bg-yellow-400' },
+    { key: 'Aujourd hui', label: 'Auj.', value: 18, color: 'bg-yellow-400' },
     { key: '7 jours', label: '7j', value: 22, color: 'bg-yellow-400' },
     { key: '30 jours', label: '30j', value: 44, color: 'bg-yellow-400' },
-    { key: 'Total', label: 'All', value: 100, color: 'bg-emerald-500' },
+    { key: 'Total', label: 'Tout', value: 100, color: 'bg-emerald-500' },
   ];
 
   return (
-    <div className="grid h-64 w-full max-w-md grid-cols-4 gap-3 rounded-3xl bg-[#1c1815] p-5">
+    <div className="grid h-64 w-full max-w-md grid-cols-4 gap-1.5 rounded-3xl bg-[#1c1815] p-3 sm:gap-3 sm:p-5">
       <style>{'@keyframes barGrow{from{transform:scaleY(.08)}to{transform:scaleY(1)}}'}</style>
       {items.map((item) => (
-        <button key={item.key} aria-label={item.key} onClick={() => setActive(item.key)} className={\`flex items-end justify-center rounded-2xl transition \${active === item.key ? 'bg-white/10' : 'bg-white/[.06] hover:bg-white/10'}\`}>
-          <span className={\`w-12 origin-bottom rounded-full \${item.color} transition-all\`} style={{ height: \`\${Math.max(item.value, 18)}%\`, animation: 'barGrow .65s cubic-bezier(.2,.8,.2,1) both' }} />
+        <button key={item.key} aria-label={item.key} onClick={() => setActive(item.key)} className={\`flex min-w-0 flex-col items-center justify-end rounded-2xl px-0.5 pb-3 transition \${active === item.key ? 'bg-white/10' : 'bg-white/[.06] hover:bg-white/10'}\`}>
+          <span className={\`w-8 origin-bottom rounded-full sm:w-12 \${item.color} transition-all\`} style={{ height: \`\${Math.max(item.value, 18)}%\`, animation: 'barGrow .65s cubic-bezier(.2,.8,.2,1) both' }} />
+          <span className="mt-3 block w-full text-center text-[9px] font-black leading-none text-zinc-200 sm:text-xs">{item.label}</span>
         </button>
       ))}
     </div>
@@ -467,7 +468,7 @@ export function GainsCurve() {
     { key: 'Aujourd hui', label: 'J', value: 0, y: 138 },
     { key: '7 jours', label: '7j', value: 0, y: 138 },
     { key: '30 jours', label: '30j', value: 4, y: 92 },
-    { key: 'Total', label: 'All', value: 13, y: 34 },
+    { key: 'Total', label: 'Tout', value: 13, y: 34 },
   ];
 
   return (
@@ -509,6 +510,204 @@ export function AcceptanceDonut() {
         </div>
       </div>
       <input aria-label="Ajuster le taux" type="range" min="20" max="90" value={rate} onChange={(event) => setRate(Number(event.target.value))} className="w-56 accent-yellow-400" />
+    </div>
+  );
+}`,
+    prompt: ''
+  },
+  {
+    slug: 'progress-rings', name: 'Anneaux de progression', category: 'Charts', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Graphique en anneaux concentriques avec focus cliquable et animation de trace.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function ProgressRings() {
+  const [active, setActive] = useState(1);
+  const rings = [
+    { label: 'Vues', value: 72, color: '#14b8a6', radius: 88 },
+    { label: 'Copies', value: 54, color: '#facc15', radius: 66 },
+    { label: 'Retours', value: 38, color: '#ef4444', radius: 44 },
+  ];
+
+  return (
+    <svg viewBox="0 0 220 220" className="h-72 w-full max-w-sm overflow-visible">
+      <style>{'@keyframes ringDraw{from{stroke-dashoffset:560}to{stroke-dashoffset:var(--offset)}}'}</style>
+      {rings.map((item, index) => {
+        const circumference = 2 * Math.PI * item.radius;
+        const offset = circumference * (1 - item.value / 100);
+        return (
+          <g key={item.label} role="button" tabIndex={0} onClick={() => setActive(index)} className="cursor-pointer outline-none">
+            <circle cx="110" cy="110" r={item.radius} fill="none" stroke="currentColor" strokeWidth={active === index ? 14 : 10} className="text-zinc-200 transition-all dark:text-zinc-800" />
+            <circle cx="110" cy="110" r={item.radius} fill="none" stroke={item.color} strokeWidth={active === index ? 14 : 10} strokeLinecap="round" strokeDasharray={circumference} transform="rotate(-90 110 110)" style={{ '--offset': String(offset), strokeDashoffset: offset, animation: 'ringDraw .9s ease-out both' }} />
+          </g>
+        );
+      })}
+      <text x="110" y="103" textAnchor="middle" className="fill-zinc-950 text-3xl font-black dark:fill-white">{rings[active].value}%</text>
+      <text x="110" y="128" textAnchor="middle" className="fill-zinc-500 text-[10px] font-black uppercase">{rings[active].label}</text>
+    </svg>
+  );
+}`,
+    prompt: ''
+  },
+  {
+    slug: 'animated-area-chart', name: 'Courbe en aire animee', category: 'Charts', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Graphique en aire responsive avec ligne animee et points interactifs.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function AnimatedAreaChart() {
+  const [active, setActive] = useState(3);
+  const points = [
+    { label: 'Lun', x: 34, y: 134 },
+    { label: 'Mar', x: 88, y: 112 },
+    { label: 'Mer', x: 142, y: 124 },
+    { label: 'Jeu', x: 196, y: 72 },
+    { label: 'Ven', x: 250, y: 92 },
+    { label: 'Sam', x: 304, y: 46 },
+  ];
+
+  return (
+    <svg viewBox="0 0 360 220" className="h-72 w-full max-w-md overflow-visible">
+      <style>{'@keyframes areaFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}@keyframes lineDraw{from{stroke-dashoffset:620}to{stroke-dashoffset:0}}'}</style>
+      <defs><linearGradient id="areaFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#14b8a6" stopOpacity=".45" /><stop offset="100%" stopColor="#14b8a6" stopOpacity=".04" /></linearGradient></defs>
+      <path d="M34 28V178H330" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-300 dark:text-zinc-700" />
+      <path d="M34 58H330M34 98H330M34 138H330" stroke="currentColor" className="text-zinc-200 dark:text-zinc-800" />
+      <path d="M34 134 C64 120 70 114 88 112 C112 110 122 130 142 124 C170 114 176 78 196 72 C220 64 232 101 250 92 C276 80 284 56 304 46 L304 178 L34 178Z" fill="url(#areaFill)" style={{ animation: 'areaFade .8s ease-out both' }} />
+      <path d="M34 134 C64 120 70 114 88 112 C112 110 122 130 142 124 C170 114 176 78 196 72 C220 64 232 101 250 92 C276 80 284 56 304 46" fill="none" stroke="#14b8a6" strokeWidth="5" strokeLinecap="round" strokeDasharray="620" style={{ animation: 'lineDraw 1.1s ease-out both' }} />
+      {points.map((point, index) => (
+        <g key={index} role="button" tabIndex={0} onClick={() => setActive(index)} className="cursor-pointer outline-none">
+          <circle cx={point.x} cy={point.y} r={active === index ? 8 : 5} fill={active === index ? '#facc15' : '#14b8a6'} stroke="#18181b" strokeWidth="2" />
+          <text x={point.x} y="200" textAnchor="middle" className="fill-zinc-500 text-[10px] font-bold">{point.label}</text>
+        </g>
+      ))}
+    </svg>
+  );
+}`,
+    prompt: ''
+  },
+  {
+    slug: 'signal-bars', name: 'Barres de signal', category: 'Charts', style: 'Minimal', recent: true, responsive: true,
+    description: 'Barres verticales pulseees pour visualiser une activite en temps reel.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function SignalBars() {
+  const values = [34, 58, 42, 76, 50, 92, 64, 84, 46, 70, 96, 60];
+
+  return (
+    <div className="flex h-72 w-full max-w-md items-end justify-center gap-2 px-3">
+      <style>{'@keyframes signalRise{0%,100%{transform:scaleY(.72);opacity:.65}50%{transform:scaleY(1);opacity:1}}'}</style>
+      {values.map((height, index) => (
+        <span key={index} className="w-full max-w-6 origin-bottom rounded-t-full bg-zinc-950 shadow-sm dark:bg-white" style={{ height: height + '%', animation: \`signalRise \${900 + index * 35}ms \${index * 80}ms ease-in-out infinite\` }} />
+      ))}
+    </div>
+  );
+}`,
+    prompt: ''
+  },
+  {
+    slug: 'conversion-funnel', name: 'Funnel conversion', category: 'Charts', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Funnel horizontal anime pour comparer les etapes de conversion.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function ConversionFunnel() {
+  const [active, setActive] = useState(0);
+  const steps = [
+    { label: 'Vues', value: 100, color: 'bg-teal-500' },
+    { label: 'Clics', value: 74, color: 'bg-yellow-400' },
+    { label: 'Copies', value: 52, color: 'bg-violet-500' },
+    { label: 'Retours', value: 31, color: 'bg-rose-500' },
+  ];
+
+  return (
+    <div className="grid w-full max-w-md gap-3">
+      <style>{'@keyframes widthIn{from{width:0}to{width:var(--target)}}'}</style>
+      {steps.map((item, index) => (
+        <button key={item.label} onClick={() => setActive(index)} className="group grid grid-cols-[3.25rem_minmax(0,1fr)_2.75rem] items-center gap-2 text-left sm:grid-cols-[4rem_minmax(0,1fr)_3rem] sm:gap-3">
+          <span className="truncate text-[10px] font-black text-zinc-500 sm:text-xs">{item.label}</span>
+          <span className="h-9 rounded-full bg-zinc-100 p-1 dark:bg-zinc-800">
+            <span className={'block h-full rounded-full transition-all group-hover:brightness-105 ' + item.color} style={{ '--target': item.value + '%', width: item.value + '%', animation: 'widthIn .7s ease-out both', opacity: active === index ? 1 : .72 }} />
+          </span>
+          <span className="text-right text-[10px] font-black sm:text-xs">{item.value}%</span>
+        </button>
+      ))}
+    </div>
+  );
+}`,
+    prompt: ''
+  },
+  {
+    slug: 'gradient-metric-card', name: 'Gradient Metric Card', category: 'Cards', style: 'Gradient', featured: true, recent: true, responsive: true,
+    description: 'Carte metrique avec bordure degradee animee et mini bar chart pulse.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function GradientMetricCard() {
+  const bars = [42, 70, 52, 88, 64, 96, 76];
+
+  return (
+    <article className="w-full max-w-sm overflow-hidden rounded-3xl bg-[linear-gradient(135deg,#0f766e,#7c3aed,#f59e0b)] p-px shadow-2xl shadow-teal-900/15" style={{ backgroundSize: '220% 220%', animation: 'gradientFlow 5s ease infinite' }}>
+      <style>{'@keyframes gradientFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}@keyframes barPulse{0%,100%{transform:scaleY(.65)}50%{transform:scaleY(1)}}'}</style>
+      <div className="rounded-[1.45rem] bg-zinc-950 p-5 text-white">
+        <p className="text-xs font-semibold text-teal-100">Croissance</p>
+        <div className="mt-3 flex items-end justify-between gap-3">
+          <strong className="text-4xl tracking-tight">+42%</strong>
+          <span className="rounded-full bg-white/10 px-2.5 py-1 text-xs font-bold text-amber-200">live</span>
+        </div>
+        <div className="mt-7 flex h-20 items-end gap-1.5">
+          {bars.map((height, index) => <span key={index} className="flex-1 origin-bottom rounded-t-lg bg-gradient-to-t from-teal-400 to-amber-300" style={{ height: height + '%', animation: \`barPulse \${1100 + index * 80}ms \${index * 90}ms ease-in-out infinite\` }} />)}
+        </div>
+      </div>
+    </article>
+  );
+}`,
+    prompt: ''
+  },
+  {
+    slug: 'gradient-segmented-tabs', name: 'Gradient Segmented Tabs', category: 'Buttons', style: 'Gradient', recent: true, responsive: true,
+    description: 'Controle segmente avec onglet actif en degrade et contenu qui change au clic.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function GradientSegmentedTabs() {
+  const [active, setActive] = useState('Design');
+  const copy = {
+    Design: 'Ajuste la direction visuelle.',
+    Code: 'Prepare un composant propre.',
+    Ship: 'Passe au build plus vite.',
+  };
+
+  return (
+    <div className="w-full max-w-md rounded-3xl border bg-white p-3 shadow-sm dark:bg-zinc-950" data-gradient-tabs>
+      <div className="grid grid-cols-3 gap-2 rounded-2xl bg-zinc-100 p-1.5 dark:bg-zinc-900">
+        {['Design', 'Code', 'Ship'].map((item) => (
+          <button key={item} data-gradient-tab={item} onClick={() => setActive(item)} className={active === item ? 'rounded-xl bg-gradient-to-r from-teal-500 via-sky-500 to-violet-500 px-3 py-2.5 text-xs font-black text-white shadow-lg shadow-sky-900/15' : 'rounded-xl px-3 py-2.5 text-xs font-black text-zinc-500 transition hover:text-zinc-950 dark:hover:text-white'}>
+            {item}
+          </button>
+        ))}
+      </div>
+      <div className="mt-3 rounded-2xl bg-gradient-to-br from-teal-500/15 via-sky-500/10 to-violet-500/15 p-5">
+        <p className="text-xs font-semibold text-zinc-500">Mode actif</p>
+        <p data-gradient-title className="mt-2 text-3xl font-black tracking-tight">{active}</p>
+        <p data-gradient-desc className="mt-2 text-sm text-zinc-500">{copy[active]}</p>
+      </div>
+    </div>
+  );
+}`,
+    prompt: ''
+  },
+  {
+    slug: 'gradient-progress-slider', name: 'Gradient Progress Slider', category: 'Forms', style: 'Gradient', featured: true, recent: true, responsive: true,
+    description: 'Barre de progression degradee avec slider pour voir le changement en direct.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function GradientProgressSlider() {
+  const [progress, setProgress] = useState(68);
+
+  return (
+    <div className="grid w-full max-w-md gap-5 rounded-3xl border bg-white p-6 shadow-sm dark:bg-zinc-950" data-gradient-progress>
+      <div className="flex items-end justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase text-zinc-500">Progression</p>
+          <p data-progress-value className="mt-1 text-3xl font-black">{progress}%</p>
+        </div>
+        <span className="rounded-full bg-gradient-to-r from-emerald-400 to-sky-500 px-3 py-1 text-xs font-black text-white">sync</span>
+      </div>
+      <div className="h-5 rounded-full bg-zinc-100 p-1 dark:bg-zinc-800">
+        <div data-progress-fill className="h-full rounded-full bg-gradient-to-r from-emerald-400 via-sky-500 to-violet-500 transition-all duration-300" style={{ width: progress + '%' }} />
+      </div>
+      <input aria-label="Ajuster la progression" type="range" min="10" max="100" value={progress} onChange={(event) => setProgress(Number(event.target.value))} className="w-full accent-sky-500" />
     </div>
   );
 }`,
