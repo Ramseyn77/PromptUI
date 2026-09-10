@@ -646,8 +646,8 @@ export function ConversionFunnel() {
           <strong className="text-4xl tracking-tight">+42%</strong>
           <span className="rounded-full bg-white/10 px-2.5 py-1 text-xs font-bold text-amber-200">live</span>
         </div>
-        <div className="mt-7 flex h-20 items-end gap-1.5">
-          {bars.map((height, index) => <span key={index} className="flex-1 origin-bottom rounded-t-lg bg-gradient-to-t from-teal-400 to-amber-300" style={{ height: height + '%', animation: \`barPulse \${1100 + index * 80}ms \${index * 90}ms ease-in-out infinite\` }} />)}
+        <div className="mt-7 flex h-24 items-end gap-1.5 rounded-2xl bg-white/[.03] p-2">
+          {bars.map((height, index) => <span key={index} className="block flex-1 origin-bottom rounded-t-lg shadow-[0_0_18px_rgba(20,184,166,.28)]" style={{ height: height + '%', minHeight: 18, background: 'linear-gradient(180deg,#fde047 0%,#2dd4bf 100%)', animation: \`barPulse \${1100 + index * 80}ms \${index * 90}ms ease-in-out infinite\` }} />)}
         </div>
       </div>
     </article>
