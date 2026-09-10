@@ -23,6 +23,14 @@ function iconButtonClass(active: boolean) {
   }`;
 }
 
+function modeButtonClass(active: boolean) {
+  return `flex h-8 shrink-0 items-center gap-1.5 rounded-lg border px-2.5 text-xs font-semibold transition ${
+    active
+      ? 'border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]'
+      : 'border-transparent text-[var(--muted)] hover:border-[var(--line)] hover:text-[var(--foreground)]'
+  }`;
+}
+
 export function PlaygroundToolbar({
   mode,
   onModeChange,
@@ -73,18 +81,18 @@ export function PlaygroundToolbar({
   return (
     <div
       ref={toolbarRef}
-      className="absolute bottom-4 left-1/2 z-10 flex w-fit max-w-[calc(100%-1rem)] -translate-x-1/2 flex-nowrap items-center gap-0.5 overflow-x-auto rounded-2xl border border-[var(--line)] bg-[var(--surface)]/95 p-1 shadow-lg backdrop-blur [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      className="absolute bottom-4 left-1/2 z-50 flex w-fit max-w-[calc(100%-1rem)] -translate-x-1/2 flex-wrap items-center justify-center gap-0.5 overflow-visible rounded-2xl border border-[var(--line)] bg-[var(--surface)]/95 p-1 shadow-lg backdrop-blur"
     >
-      <button title="Original" aria-label="Original" onClick={() => onModeChange('original')} className={iconButtonClass(mode === 'original')}><Eye size={15}/></button>
-      <button title="Edition visuelle" aria-label="Edition visuelle" onClick={() => onModeChange('visual')} className={iconButtonClass(mode === 'visual')}><MousePointerClick size={15}/></button>
-      <button title="Code live" aria-label="Code live" onClick={() => onModeChange('code')} className={iconButtonClass(mode === 'code')}><Code2 size={15}/></button>
+      <button type="button" title="Original" aria-label="Original" onClick={() => onModeChange('original')} className={modeButtonClass(mode === 'original')}><Eye size={15}/></button>
+      <button type="button" title="Edition visuelle" aria-label="Edition visuelle" onClick={() => onModeChange('visual')} className={modeButtonClass(mode === 'visual')}><MousePointerClick size={15}/></button>
+      <button type="button" title="Code live" aria-label="Code live" onClick={() => onModeChange('code')} className={modeButtonClass(mode === 'code')}><Code2 size={15}/></button>
 
       <span className="mx-0.5 h-6 w-px shrink-0 bg-[var(--line)]"/>
 
       {sizeOptions.map((item) => {
         const Icon = item.icon;
         return (
-          <button key={item.key} title={item.label} aria-label={item.label} onClick={() => onSizeChange(item.key)} className={iconButtonClass(size === item.key)}>
+          <button type="button" key={item.key} title={item.label} aria-label={item.label} onClick={() => onSizeChange(item.key)} className={iconButtonClass(size === item.key)}>
             <Icon size={15}/>
           </button>
         );
@@ -93,16 +101,11 @@ export function PlaygroundToolbar({
       <span className="mx-0.5 h-6 w-px shrink-0 bg-[var(--line)]"/>
 
       <div className="relative">
-        <button
-          title="Zoom et marge"
-          aria-label="Zoom et marge"
-          onClick={() => setOpenPanel((current) => (current === 'adjust' ? null : 'adjust'))}
-          className={iconButtonClass(openPanel === 'adjust')}
-        >
+        <button type="button" title="Zoom et marge" aria-label="Zoom et marge" onClick={() => setOpenPanel((current) => (current === 'adjust' ? null : 'adjust'))} className={iconButtonClass(openPanel === 'adjust')}>
           <SlidersHorizontal size={15}/>
         </button>
         {openPanel === 'adjust' && (
-          <div className="absolute bottom-full left-1/2 mb-2 w-56 -translate-x-1/2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4 shadow-xl">
+          <div className="absolute bottom-full left-1/2 z-50 mb-2 w-56 -translate-x-1/2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4 shadow-xl">
             <label className="block">
               <span className="text-xs font-semibold uppercase text-[var(--muted)]">Zoom: {zoom}%</span>
               <input type="range" min="70" max="115" value={zoom} onChange={(event) => onZoomChange(Number(event.target.value))} className="mt-2 w-full accent-teal-700"/>
@@ -116,24 +119,13 @@ export function PlaygroundToolbar({
       </div>
 
       <div className="relative">
-        <button
-          title="Fond"
-          aria-label="Fond"
-          onClick={() => setOpenPanel((current) => (current === 'background' ? null : 'background'))}
-          className={iconButtonClass(openPanel === 'background')}
-        >
+        <button type="button" title="Fond" aria-label="Fond" onClick={() => setOpenPanel((current) => (current === 'background' ? null : 'background'))} className={iconButtonClass(openPanel === 'background')}>
           <Palette size={15}/>
         </button>
         {openPanel === 'background' && (
-          <div className="absolute bottom-full left-1/2 mb-2 flex w-44 -translate-x-1/2 gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-3 shadow-xl">
+          <div className="absolute bottom-full left-1/2 z-50 mb-2 flex w-44 -translate-x-1/2 gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-3 shadow-xl">
             {(Object.entries(backgroundSwatches) as Array<[keyof typeof backgroundSwatches, typeof backgroundSwatches[keyof typeof backgroundSwatches]]>).map(([key, item]) => (
-              <button
-                key={key}
-                title={item.label}
-                aria-label={item.label}
-                onClick={() => { onBackgroundChange(key); setOpenPanel(null); }}
-                className={`flex-1 rounded-xl border p-1.5 transition ${background === key ? 'border-[var(--accent)]' : 'border-[var(--line)]'}`}
-              >
+              <button type="button" key={key} title={item.label} aria-label={item.label} onClick={() => { onBackgroundChange(key); setOpenPanel(null); }} className={`flex-1 rounded-xl border p-1.5 transition ${background === key ? 'border-[var(--accent)]' : 'border-[var(--line)]'}`}>
                 <span className={`block h-8 w-full rounded-lg ${item.swatch}`}/>
               </button>
             ))}
@@ -144,17 +136,17 @@ export function PlaygroundToolbar({
       <span className="mx-0.5 h-6 w-px shrink-0 bg-[var(--line)]"/>
 
       {(Object.entries(themeIcons) as Array<[keyof typeof themeIcons, LucideIcon]>).map(([key, Icon]) => (
-        <button key={key} title={`Theme ${key}`} aria-label={`Theme ${key}`} onClick={() => onThemeChange(key)} className={iconButtonClass(theme === key)}>
+        <button type="button" key={key} title={`Theme ${key}`} aria-label={`Theme ${key}`} onClick={() => onThemeChange(key)} className={iconButtonClass(theme === key)}>
           <Icon size={15}/>
         </button>
       ))}
 
       <span className="mx-0.5 h-6 w-px shrink-0 bg-[var(--line)]"/>
 
-      <button title="Voir les contours" aria-label="Voir les contours" onClick={onToggleBounds} className={iconButtonClass(showBounds)}>
+      <button type="button" title="Voir les contours" aria-label="Voir les contours" onClick={onToggleBounds} className={iconButtonClass(showBounds)}>
         {showBounds ? <EyeOff size={15}/> : <Eye size={15}/>}
       </button>
-      <button title="Reinitialiser" aria-label="Reinitialiser" onClick={onReset} className={iconButtonClass(false)}>
+      <button type="button" title="Reinitialiser" aria-label="Reinitialiser" onClick={onReset} className={iconButtonClass(false)}>
         <RotateCcw size={15}/>
       </button>
     </div>

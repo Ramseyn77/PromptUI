@@ -428,6 +428,91 @@ export function WorkspaceSidebar() {
   );
 }`,
     prompt: ''
+  },
+  {
+    slug: 'course-histogram', name: 'Histogramme des courses', category: 'Charts', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Histogramme mobile-first avec barres cliquables et changement detat visuel.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function CourseHistogram() {
+  const [active, setActive] = useState('Total');
+  const items = [
+    { key: 'Aujourd hui', label: 'J', value: 18, color: 'bg-yellow-400' },
+    { key: '7 jours', label: '7j', value: 22, color: 'bg-yellow-400' },
+    { key: '30 jours', label: '30j', value: 44, color: 'bg-yellow-400' },
+    { key: 'Total', label: 'All', value: 100, color: 'bg-emerald-500' },
+  ];
+
+  return (
+    <div className="grid h-64 w-full max-w-md grid-cols-4 gap-3 rounded-3xl bg-[#1c1815] p-5">
+      <style>{'@keyframes barGrow{from{transform:scaleY(.08)}to{transform:scaleY(1)}}'}</style>
+      {items.map((item) => (
+        <button key={item.key} aria-label={item.key} onClick={() => setActive(item.key)} className={\`flex items-end justify-center rounded-2xl transition \${active === item.key ? 'bg-white/10' : 'bg-white/[.06] hover:bg-white/10'}\`}>
+          <span className={\`w-12 origin-bottom rounded-full \${item.color} transition-all\`} style={{ height: \`\${Math.max(item.value, 18)}%\`, animation: 'barGrow .65s cubic-bezier(.2,.8,.2,1) both' }} />
+        </button>
+      ))}
+    </div>
+  );
+}`,
+    prompt: ''
+  },
+  {
+    slug: 'gains-curve', name: 'Courbe des gains', category: 'Charts', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Courbe SVG responsive avec points cliquables et focus dynamique.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function GainsCurve() {
+  const [active, setActive] = useState('Total');
+  const points = [
+    { key: 'Aujourd hui', label: 'J', value: 0, y: 138 },
+    { key: '7 jours', label: '7j', value: 0, y: 138 },
+    { key: '30 jours', label: '30j', value: 4, y: 92 },
+    { key: 'Total', label: 'All', value: 13, y: 34 },
+  ];
+
+  return (
+    <svg viewBox="0 0 390 210" className="h-72 w-full max-w-md overflow-visible">
+      <style>{'@keyframes lineDraw{from{stroke-dashoffset:720}to{stroke-dashoffset:0}}@keyframes pointPop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}'}</style>
+      <path d="M42 24V166H372" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-300 dark:text-zinc-700" />
+      <path d="M42 45H372M42 95H372M42 145H372" stroke="currentColor" className="text-zinc-200 dark:text-zinc-800" />
+      {['13k','4k','0'].map((label, index) => <text key={label} x="4" y={[42,100,154][index]} className="fill-zinc-500 text-xs font-bold">{label}</text>)}
+      <path d="M66 145 H166 M174 184 C220 158 260 151 288 132 M292 196 C334 148 366 118 384 92" fill="none" stroke="#facc15" strokeWidth="6" strokeLinecap="round" strokeDasharray="720" style={{ animation: 'lineDraw 1.1s ease-out both' }} />
+      {points.map((point, index) => (
+        <g key={point.key} role="button" tabIndex={0} onClick={() => setActive(point.key)} className="origin-center cursor-pointer outline-none transition-all" style={{ animation: 'pointPop .35s ease-out both' }}>
+          <circle cx={66 + index * 104} cy={point.y + 7} r={active === point.key ? 10 : 8} fill="#facc15" stroke="#18181b" strokeWidth="3" />
+          <text x={56 + index * 104} y="190" className="fill-zinc-500 text-xs font-bold">{point.label}</text>
+        </g>
+      ))}
+    </svg>
+  );
+}`,
+    prompt: ''
+  },
+  {
+    slug: 'acceptance-donut', name: 'Diagramme acceptees / refusees', category: 'Charts', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Donut segmente avec taux ajustable par slider.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function AcceptanceDonut() {
+  const [rate, setRate] = useState(56);
+  const acceptedTicks = Math.round((rate / 100) * 56);
+
+  return (
+    <div className="grid w-full max-w-md place-items-center gap-5" data-acceptance-donut>
+      <style>{'@keyframes tickIn{from{opacity:0;scale:1 .1}to{opacity:1;scale:1 1}}'}</style>
+      <div className="relative size-56">
+        {Array.from({ length: 56 }).map((_, index) => (
+          <span key={index} data-acceptance-tick={index} className={\`absolute left-1/2 top-1/2 h-10 w-2 origin-[50%_120px] rounded-full \${index < acceptedTicks ? 'bg-yellow-400' : 'bg-red-600'}\`} style={{ transform: \`translate(-50%,-120px) rotate(\${index * 6.43}deg)\`, animation: 'tickIn .32s ease-out both' }} />
+        ))}
+        <div className="absolute inset-12 grid place-items-center rounded-full border bg-[var(--background)] text-center">
+          <p data-rate-text className="text-4xl font-black">{rate}%</p>
+        </div>
+      </div>
+      <input aria-label="Ajuster le taux" type="range" min="20" max="90" value={rate} onChange={(event) => setRate(Number(event.target.value))} className="w-56 accent-yellow-400" />
+    </div>
+  );
+}`,
+    prompt: ''
   }
 ].map((item) => ({
   ...item,

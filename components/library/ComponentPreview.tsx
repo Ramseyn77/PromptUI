@@ -1,6 +1,6 @@
 'use client';
-import { useState } from 'react';
-import { Activity, ArrowUpRight, Bell, BarChart3, Bike, Check, ChevronDown, ChevronsUpDown, Code2, Copy, FolderKanban, Hash, Heart, Home, Inbox, LayoutDashboard, LayoutGrid, LogOut, Menu, MessageSquare, MoreHorizontal, Package, Plus, Search, Settings, Share2, Store, TriangleAlert, Users, X } from 'lucide-react';
+import { type CSSProperties, useState } from 'react';
+import { Activity, ArrowUpRight, Bell, BarChart3, Bike, Check, ChevronDown, ChevronsUpDown, Code2, Copy, FolderKanban, Hash, Heart, Home, Inbox, LayoutDashboard, LayoutGrid, LogOut, Menu, MessageSquare, MoreHorizontal, Package, PieChart, Plus, Search, Settings, Share2, Store, TriangleAlert, Users, X } from 'lucide-react';
 
 const radialMenuItems = [
   { icon: LayoutGrid, label: 'Dashboard', active: true },
@@ -22,7 +22,22 @@ export function ComponentPreview({ slug, compact = false }: { slug: string; comp
   const [railActive, setRailActive] = useState('home');
   const [projectsOpen, setProjectsOpen] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [courseRange, setCourseRange] = useState('Total');
+  const [gainFocus, setGainFocus] = useState('Total');
+  const [acceptanceRate, setAcceptanceRate] = useState(56);
   const wrap = `w-full ${compact ? 'scale-[.82] origin-center' : ''}`;
+  const courseStats = [
+    { key: 'Aujourd hui', label: 'J', value: 18, color: 'bg-yellow-400' },
+    { key: '7 jours', label: '7j', value: 22, color: 'bg-yellow-400' },
+    { key: '30 jours', label: '30j', value: 44, color: 'bg-yellow-400' },
+    { key: 'Total', label: 'All', value: 100, color: 'bg-emerald-500' },
+  ];
+  const gainStats = [
+    { key: 'Aujourd hui', label: 'J', value: 0, y: 138 },
+    { key: '7 jours', label: '7j', value: 0, y: 138 },
+    { key: '30 jours', label: '30j', value: 4, y: 92 },
+    { key: 'Total', label: 'All', value: 13, y: 34 },
+  ];
   switch (slug) {
     case 'aurora-hero': return <div className={wrap}><section className="relative overflow-hidden rounded-3xl border bg-zinc-950 px-5 py-12 text-center text-white"><div className="absolute inset-x-14 top-0 h-32 rounded-full bg-violet-500/20 blur-3xl"/><div className="relative mx-auto max-w-xl"><span className="rounded-full border border-white/15 px-3 py-1 text-[10px] text-zinc-300">Ship interfaces faster</span><h3 className="mt-5 text-3xl font-semibold tracking-tight">Build beautiful products without starting from zero.</h3><p className="mx-auto mt-3 max-w-md text-sm text-zinc-400">Copy polished UI, adapt the source, or use the AI prompt.</p><div className="mt-6 flex justify-center gap-2"><button className="rounded-lg bg-white px-4 py-2 text-xs font-medium text-zinc-950">Browse components</button><button className="rounded-lg border border-white/15 px-4 py-2 text-xs">GitHub</button></div></div></section></div>;
     case 'command-navbar': return <div className={`${wrap} relative`}><nav className="flex items-center justify-between rounded-2xl border bg-white p-3 shadow-sm dark:bg-zinc-950"><div className="flex items-center gap-5"><strong>PromptUI</strong><div className="hidden gap-4 text-xs text-zinc-500 sm:flex"><span>Library</span><span>Docs</span><span>Changelog</span></div></div><div className="flex items-center gap-2"><button className="hidden items-center gap-2 rounded-lg border px-3 py-2 text-xs text-zinc-500 md:flex"><Search size={14}/> Search</button><button className="rounded-lg bg-zinc-950 px-3 py-2 text-xs text-white dark:bg-white dark:text-zinc-950">Browse</button><button type="button" aria-label="Ouvrir le menu" aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen(value => !value)} className="grid size-9 place-items-center rounded-lg border sm:hidden">{mobileMenuOpen ? <X size={16}/> : <Menu size={16}/>}</button></div></nav>{mobileMenuOpen && <div className="absolute inset-x-0 top-[calc(100%+.5rem)] z-20 grid gap-1 rounded-2xl border bg-white p-2 text-xs shadow-xl sm:hidden dark:bg-zinc-950">{['Library','Docs','Changelog'].map(item => <button key={item} className="rounded-xl px-3 py-2 text-left hover:bg-zinc-100 dark:hover:bg-zinc-900">{item}</button>)}</div>}</div>;
@@ -134,6 +149,9 @@ export function ComponentPreview({ slug, compact = false }: { slug: string; comp
         <div className="min-w-0 flex-1"><p className="truncate text-xs font-medium">Amina Mensah</p><p className="truncate text-[10px] text-zinc-500">Founder</p></div>
       </div>
     </aside></div>;
+    case 'course-histogram': return <div className={`${wrap} mx-auto max-w-md`}><style>{`@keyframes barGrow{from{transform:scaleY(.08)}to{transform:scaleY(1)}}`}</style><div className="grid h-64 grid-cols-4 gap-3 rounded-3xl bg-[#1c1815] p-5">{courseStats.map((item,index)=><button key={item.key} aria-label={item.key} onClick={()=>setCourseRange(item.key)} className={`flex items-end justify-center rounded-2xl transition ${courseRange===item.key?'bg-white/10':'bg-white/[.06] hover:bg-white/10'}`}><span className={`w-12 origin-bottom rounded-full ${item.color} transition-all`} style={{height: `${Math.max(item.value, 18)}%`, animation: `barGrow .65s ${index * 80}ms cubic-bezier(.2,.8,.2,1) both`}}/></button>)}</div></div>;
+    case 'gains-curve': return <div className={`${wrap} mx-auto max-w-md`}><style>{`@keyframes lineDraw{from{stroke-dashoffset:720}to{stroke-dashoffset:0}}@keyframes pointPop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}`}</style><svg viewBox="0 0 390 210" className="h-72 w-full overflow-visible"><path d="M42 24V166H372" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-300 dark:text-zinc-700"/><path d="M42 45H372M42 95H372M42 145H372" stroke="currentColor" className="text-zinc-200 dark:text-zinc-800"/>{[['13k',38],['4k',96],['0',150]].map(([label,y])=><text key={label} x="4" y={Number(y)+4} className="fill-zinc-500 text-xs font-bold">{label}</text>)}<path d="M66 145 H166 M174 184 C220 158 260 151 288 132 M292 196 C334 148 366 118 384 92" fill="none" stroke="#facc15" strokeWidth="6" strokeLinecap="round" strokeDasharray="720" style={{animation:'lineDraw 1.1s ease-out both'}}/>{gainStats.map((item, index)=><g key={item.key} role="button" tabIndex={0} onClick={()=>setGainFocus(item.key)} className="origin-center cursor-pointer outline-none transition-all" style={{animation:`pointPop .35s ${350 + index * 90}ms ease-out both`}}><circle cx={66 + index * 104} cy={item.y + 7} r={gainFocus===item.key?10:8} fill="#facc15" stroke="#18181b" strokeWidth="3"/><text x={56 + index * 104} y="190" className="fill-zinc-500 text-xs font-bold">{item.label}</text></g>)}</svg></div>;
+    case 'acceptance-donut': return <div className={`${wrap} mx-auto grid max-w-md place-items-center gap-5`} data-acceptance-donut><style>{`@keyframes tickIn{from{opacity:0;transform:translate(-50%,-120px) rotate(var(--angle)) scaleY(.1)}to{opacity:1;transform:translate(-50%,-120px) rotate(var(--angle)) scaleY(1)}}`}</style><div className="relative size-56">{Array.from({length: 56}).map((_, index)=>{const acceptedTicks=Math.round((acceptanceRate/100)*56);return <span key={index} data-acceptance-tick={index} className={`absolute left-1/2 top-1/2 h-10 w-2 origin-[50%_120px] rounded-full ${index<acceptedTicks?'bg-yellow-400':'bg-red-600'}`} style={{'--angle': `${index*6.43}deg`, transform:`translate(-50%,-120px) rotate(${index*6.43}deg)`, animation:`tickIn .32s ${index * 10}ms ease-out both`} as CSSProperties}/>} )}<div className="absolute inset-12 grid place-items-center rounded-full border bg-[var(--background)] text-center"><p data-rate-text className="text-4xl font-black transition-all">{acceptanceRate}%</p></div></div><input aria-label="Ajuster le taux" type="range" min="20" max="90" value={acceptanceRate} onChange={(event)=>setAcceptanceRate(Number(event.target.value))} className="w-56 accent-yellow-400"/></div>;
     default: return <div className="grid h-44 place-items-center text-sm text-zinc-500">Preview unavailable</div>;
   }
 }

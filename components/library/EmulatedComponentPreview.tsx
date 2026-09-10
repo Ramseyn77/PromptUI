@@ -1,7 +1,6 @@
 'use client';
 
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { ComponentPreview } from './ComponentPreview';
 
 export type EmulatedComponentPreviewHandle = {
@@ -38,6 +37,7 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
   const hasBuiltRef = useRef(false);
   const onSelectRef = useRef(onSelectElement);
   onSelectRef.current = onSelectElement;
+  const isHtmlPreview = editableHtml !== undefined;
 
   useImperativeHandle(ref, () => ({
     getHtml: () => {
@@ -52,6 +52,12 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
   }), [mountNode]);
 
   useEffect(() => {
+    if (!isHtmlPreview) {
+      setMountNode(null);
+      hasBuiltRef.current = false;
+      return;
+    }
+
     const iframe = iframeRef.current;
     if (!iframe) return;
 
@@ -109,13 +115,13 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
       iframe.removeEventListener('load', prepareFrame);
       themeObserver.disconnect();
     };
-  }, [device, theme]);
+  }, [device, theme, isHtmlPreview]);
 
   useEffect(() => {
     const frameDocument = iframeRef.current?.contentDocument;
     if (!frameDocument) return;
     frameDocument.documentElement.className = theme === 'auto' ? document.documentElement.className : theme;
-  }, [theme]);
+  }, [theme, isHtmlPreview]);
 
   useEffect(() => {
     if (!mountNode) return;
@@ -188,14 +194,90 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
     };
   }, [mountNode, interactive]);
 
-  const viewport = (
-    <iframe
-      ref={iframeRef}
-      title={`Apercu responsive de ${slug}`}
-      className="block border-0 bg-transparent"
-      style={{ width, height }}
-    />
-  );
+  useEffect(() => {
+    if (!mountNode || slug !== 'acceptance-donut') return;
+
+    const input = mountNode.querySelector<HTMLInputElement>('input[type="range"][aria-label="Ajuster le taux"]');
+    const ticks = [...mountNode.querySelectorAll<HTMLElement>('[data-acceptance-tick]')];
+    const rateText = mountNode.querySelector<HTMLElement>('[data-rate-text]');
+    if (!input || !ticks.length) return;
+
+    const updateDonut = () => {
+      const rate = Number(input.value);
+      const acceptedTicks = Math.round((rate / 100) * ticks.length);
+      ticks.forEach((tick, index) => {
+        tick.classList.toggle('bg-yellow-400', index < acceptedTicks);
+        tick.classList.toggle('bg-red-600', index >= acceptedTicks);
+      });
+      if (rateText) rateText.textContent = `${rate}%`;
+    };
+
+    updateDonut();
+    input.addEventListener('input', updateDonut);
+
+    return () => {
+      input.removeEventListener('input', updateDonut);
+    };
+  }, [mountNode, slug, editableHtml]);
+
+  useEffect(() => {
+    if (!mountNode || slug !== 'course-histogram') return;
+
+    const buttons = [...mountNode.querySelectorAll<HTMLButtonElement>('button')];
+    if (!buttons.length) return;
+
+    const selectButton = (activeButton: HTMLButtonElement) => {
+      buttons.forEach((button) => {
+        button.classList.toggle('bg-white/10', button === activeButton);
+        button.classList.toggle('bg-white/[.06]', button !== activeButton);
+      });
+    };
+
+    const cleanups = buttons.map((button) => {
+      const handler = () => selectButton(button);
+      button.addEventListener('click', handler);
+      return () => button.removeEventListener('click', handler);
+    });
+
+    selectButton(buttons[buttons.length - 1]);
+    return () => cleanups.forEach((cleanup) => cleanup());
+  }, [mountNode, slug, editableHtml]);
+
+  useEffect(() => {
+    if (!mountNode || slug !== 'gains-curve') return;
+
+    const circles = [...mountNode.querySelectorAll<SVGCircleElement>('circle')];
+    if (!circles.length) return;
+
+    const selectCircle = (activeCircle: SVGCircleElement) => {
+      circles.forEach((circle) => circle.setAttribute('r', circle === activeCircle ? '10' : '8'));
+    };
+
+    const cleanups = circles.map((circle) => {
+      const handler = () => selectCircle(circle);
+      circle.addEventListener('click', handler);
+      return () => circle.removeEventListener('click', handler);
+    });
+
+    selectCircle(circles[circles.length - 1]);
+    return () => cleanups.forEach((cleanup) => cleanup());
+  }, [mountNode, slug, editableHtml]);
+
+  const viewport = isHtmlPreview ? (
+      <iframe
+        ref={iframeRef}
+        title={`Apercu responsive de ${slug}`}
+        className="block border-0 bg-transparent"
+        style={{ width, height }}
+      />
+    ) : (
+      <div
+        className={`grid min-h-full place-items-center overflow-hidden bg-transparent ${showBounds ? 'show-preview-bounds' : ''}`}
+        style={{ width, height, padding }}
+      >
+        <ComponentPreview slug={slug}/>
+      </div>
+    );
 
   return (
     <div
@@ -226,13 +308,6 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
           </div>
           {viewport}
         </div>
-      )}
-
-      {mountNode && editableHtml === undefined && createPortal(
-        <div className={`w-full ${showBounds ? 'show-preview-bounds' : ''}`} style={{ padding }}>
-          <ComponentPreview slug={slug}/>
-        </div>,
-        mountNode,
       )}
     </div>
   );
