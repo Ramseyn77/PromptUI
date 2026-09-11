@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -5,6 +6,18 @@ import { getComponentBySlug } from '@/data/components';
 import { InteractivePlayground } from '@/components/library/InteractivePlayground';
 import { CopyButton } from '@/components/ui/CopyButton';
 import { ComponentViewTracker } from '@/components/analytics/ComponentViewTracker';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const item = getComponentBySlug(slug);
+  if (!item) return {};
+  return {
+    title: `Tester ${item.name}`,
+    description: `Testez ${item.name} en mobile, tablette et desktop. Copiez le code React ou le prompt IA.`,
+    alternates: { canonical: `/playground/${item.slug}` },
+    robots: { index: false, follow: true },
+  };
+}
 
 export default async function PlaygroundPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

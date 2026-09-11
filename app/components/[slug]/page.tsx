@@ -15,7 +15,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const item = getComponentBySlug(slug);
   if (!item) return {};
-  return { title: item.name, description: item.description };
+  return {
+    title: `${item.name} - composant ${item.category}`,
+    description: `${item.description} Code React, TypeScript et Tailwind gratuit avec prompt IA et apercu responsive.`,
+    alternates: { canonical: `/components/${item.slug}` },
+    openGraph: {
+      title: `${item.name} - composant ${item.category}`,
+      description: item.description,
+      type: 'article',
+      url: `/components/${item.slug}`,
+    },
+  };
 }
 
 export default async function ComponentDetail({ params }: { params: Promise<{ slug: string }> }) {
