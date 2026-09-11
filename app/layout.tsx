@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   description: 'Bibliotheque gratuite de composants React, TypeScript et Tailwind avec code source, apercu responsive et prompts IA.',
   applicationName: 'PromptUI',
+  verification: {
+    google: 'P7gelZitlDAhkwWzkgYJbC9fxcgnBS5NP3mkH4XcBV0',
+  },
   keywords: ['composants React', 'bibliotheque UI', 'Tailwind CSS', 'prompts IA', 'TypeScript'],
   alternates: { canonical: '/' },
   openGraph: {
