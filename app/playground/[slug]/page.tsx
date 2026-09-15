@@ -6,6 +6,7 @@ import { getComponentBySlug } from '@/data/components';
 import { InteractivePlayground } from '@/components/library/InteractivePlayground';
 import { CopyButton } from '@/components/ui/CopyButton';
 import { ComponentViewTracker } from '@/components/analytics/ComponentViewTracker';
+import { getComponentPrompt } from '@/utils/componentPrompt';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -34,7 +35,8 @@ export default async function PlaygroundPage({ params }: { params: Promise<{ slu
         </div>
         <div className="flex flex-wrap gap-2">
           <CopyButton value={item.code} label="Copier le code" analyticsType="code_copied" componentSlug={item.slug} componentName={item.name}/>
-          <CopyButton value={item.prompt} label="Copier le prompt" analyticsType="prompt_copied" componentSlug={item.slug} componentName={item.name}/>
+          <CopyButton value={getComponentPrompt(item, 'fr')} label="Prompt FR" analyticsType="prompt_copied" componentSlug={item.slug} componentName={item.name}/>
+          <CopyButton value={getComponentPrompt(item, 'en')} label="Prompt EN" analyticsType="prompt_copied" componentSlug={item.slug} componentName={item.name}/>
         </div>
       </div>
       <div className="mt-6 grid min-w-0 grid-cols-[minmax(0,1fr)] gap-5">

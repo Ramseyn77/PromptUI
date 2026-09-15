@@ -1,7 +1,7 @@
 import type { LibraryComponent } from '@/types/component';
 
 const makePrompt = (name: string, category: string, style: string, description: string) =>
-  `Create a production-ready ${category.toLowerCase()} component named "${name}" using React, TypeScript and Tailwind CSS. Visual direction: ${style.toLowerCase()}, modern developer-tool aesthetic. ${description} Make it responsive from mobile to desktop, accessible with semantic HTML, keyboard-friendly interactions, visible focus states, strong contrast, no external images required, and no unnecessary dependencies. Keep the component self-contained and easy to customize through props.`;
+  `Create a responsive ${category.toLowerCase()} component named "${name}" with React, TypeScript and Tailwind CSS. Style: ${style.toLowerCase()}. ${description} Keep it accessible, copy-ready and easy to customize.`;
 
 export const components = [
   {

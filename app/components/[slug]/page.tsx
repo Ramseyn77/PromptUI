@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, MonitorSmartphone, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CheckCircle2, MonitorSmartphone, ShieldCheck } from 'lucide-react';
 import { components, getComponentBySlug } from '@/data/components';
 import { ComponentPreview } from '@/components/library/ComponentPreview';
 import { CodeBlock } from '@/components/ui/CodeBlock';
-import { CopyButton } from '@/components/ui/CopyButton';
 import { ComponentViewTracker } from '@/components/analytics/ComponentViewTracker';
 import { ShareButton } from '@/components/analytics/ShareButton';
+import { PromptPanel } from '@/components/library/PromptPanel';
 
 export function generateStaticParams() { return components.map((item) => ({ slug: item.slug })); }
 
@@ -76,11 +76,7 @@ export default async function ComponentDetail({ params }: { params: Promise<{ sl
             <p className="text-sm font-semibold text-[var(--accent)]">Prompt IA</p>
             <h2 className="mt-1 text-2xl font-semibold">Recreer ou modifier</h2>
           </div>
-          <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5 shadow-sm">
-            <div className="flex items-center gap-2 text-sm font-semibold"><Sparkles size={16} className="text-[var(--accent)]"/>Prompt pour ton outil IA</div>
-            <p className="mt-4 whitespace-pre-wrap text-sm leading-7 text-[var(--muted)]">{item.prompt}</p>
-            <div className="mt-5"><CopyButton value={item.prompt} label="Copier le prompt" analyticsType="prompt_copied" componentSlug={item.slug} componentName={item.name}/></div>
-          </div>
+          <PromptPanel item={item}/>
           <div className="mt-4 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5">
             <div className="flex items-center gap-2 text-sm font-semibold"><MonitorSmartphone size={16}/>Note d implementation</div>
             <p className="mt-2 text-sm leading-6 text-[var(--muted)]">La demo utilise seulement React et du style local. Pas de backend, compte ou dependance payante.</p>
