@@ -712,6 +712,314 @@ export function GradientProgressSlider() {
   );
 }`,
     prompt: ''
+  },
+  {
+    slug: 'pulse-loader', name: 'Pulse Loader', category: 'Loader', style: 'Minimal', recent: true, responsive: true,
+    description: 'Loader compact avec trois points animes et libelle court.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function PulseLoader(){return <div className="flex w-fit items-center gap-3 rounded-full border bg-white px-5 py-4 shadow-sm dark:bg-zinc-950"><style>{'@keyframes pulseDot{0%,80%,100%{transform:scale(.65);opacity:.45}40%{transform:scale(1);opacity:1}}'}</style>{[0,1,2].map(index=><span key={index} className="size-4 rounded-full bg-teal-500" style={{animation:\`pulseDot 1.1s \${index*160}ms ease-in-out infinite\`}}/>)}<span className="ml-2 text-sm font-semibold text-zinc-500">Chargement</span></div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'orbit-loader', name: 'Orbit Loader', category: 'Loader', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Loader orbital avec anneau rotatif, point lumineux et etat sync.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function OrbitLoader(){return <div className="relative size-32 rounded-full border border-zinc-200 dark:border-zinc-800"><style>{'@keyframes orbitSpin{to{transform:rotate(360deg)}}@keyframes orbitGlow{0%,100%{opacity:.45}50%{opacity:1}}'}</style><span className="absolute inset-3 rounded-full border border-dashed border-teal-500/40" style={{animation:'orbitSpin 2.2s linear infinite'}}/><span className="absolute left-1/2 top-0 size-5 -translate-x-1/2 rounded-full bg-teal-400 shadow-[0_0_24px_rgba(45,212,191,.8)]" style={{animation:'orbitGlow 1.2s ease-in-out infinite'}}/><span className="absolute inset-0 grid place-items-center text-xs font-black uppercase text-zinc-500">sync</span></div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'dock-menu', name: 'Dock Menu', category: 'Menu', style: 'Minimal', recent: true, responsive: true,
+    description: 'Menu dock horizontal avec onglet actif et interactions simples.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function DockMenu(){const [active,setActive]=useState('Build');return <div className="flex flex-wrap items-center justify-center gap-2 rounded-3xl border bg-white p-3 shadow-sm dark:bg-zinc-950">{['Plan','Build','Review','Ship'].map(item=><button key={item} onClick={()=>setActive(item)} className={active===item?'rounded-2xl bg-zinc-950 px-4 py-3 text-sm font-bold text-white shadow-lg dark:bg-white dark:text-zinc-950':'rounded-2xl px-4 py-3 text-sm font-bold text-zinc-500 transition hover:bg-zinc-100 dark:hover:bg-zinc-900'}>{item}</button>)}</div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'spotlight-button', name: 'Spotlight Button', category: 'Buttons', style: 'Dark', recent: true, responsive: true,
+    description: 'Bouton sombre avec balayage lumineux au survol.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `import { ArrowUpRight } from 'lucide-react';
+
+export function SpotlightButton(){return <button className="group relative overflow-hidden rounded-2xl bg-zinc-950 px-7 py-4 text-sm font-black text-white shadow-2xl shadow-black/15"><span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition duration-700 group-hover:translate-x-full"/><span className="relative inline-flex items-center gap-2">Generer <ArrowUpRight size={16}/></span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'studio-hero', name: 'Studio Hero', category: 'Hero', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Hero produit sobre avec panneau de blocs UI et CTA principal.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function StudioHero(){return <section className="overflow-hidden rounded-3xl border bg-white p-6 shadow-sm dark:bg-zinc-950"><div className="grid gap-6 md:grid-cols-[1fr_.8fr] md:items-center"><div><span className="text-xs font-black uppercase text-teal-600">PromptUI Studio</span><h1 className="mt-3 text-3xl font-semibold tracking-tight">Compose des interfaces plus vite.</h1><p className="mt-3 text-sm leading-6 text-zinc-500">Choisis un bloc, teste le rendu responsive puis copie le code propre.</p><button className="mt-5 rounded-xl bg-zinc-950 px-4 py-3 text-xs font-bold text-white dark:bg-white dark:text-zinc-950">Explorer</button></div><div className="rounded-3xl bg-gradient-to-br from-teal-400/20 via-sky-400/15 to-violet-500/20 p-4"><div className="grid gap-3">{['Hero','Board','Loader'].map(label=><div key={label} className="rounded-2xl border bg-white/80 p-4 text-sm font-bold shadow-sm dark:bg-zinc-900/80">{label}</div>)}</div></div></div></section>}`,
+    prompt: ''
+  },
+  {
+    slug: 'sprint-board', name: 'Sprint Board', category: 'Boards', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Board de sprint avec colonnes cliquables et focus visuel.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function SprintBoard(){const [active,setActive]=useState('Review');return <div className="grid gap-3 rounded-3xl border bg-zinc-50 p-4 dark:bg-zinc-950 md:grid-cols-3">{['Todo','Review','Done'].map((column,index)=><section key={column} onClick={()=>setActive(column)} className={(active===column?'ring-2 ring-teal-500 ':'')+'rounded-2xl border bg-white p-3 transition dark:bg-zinc-900'}><div className="flex items-center justify-between"><h3 className="text-xs font-black uppercase text-zinc-500">{column}</h3><span className="rounded-full bg-zinc-100 px-2 py-1 text-[10px] dark:bg-zinc-800">{index+2}</span></div><div className="mt-3 space-y-2">{['UI pass','Copy update','QA'].slice(0,index+1).map(card=><div key={card} className="rounded-xl border bg-white p-3 text-xs font-semibold shadow-sm dark:bg-zinc-950">{card}</div>)}</div></section>)}</div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'neon-toggle', name: 'Neon Toggle', category: 'Toggle', style: 'Dark', featured: true, recent: true, responsive: true,
+    description: 'Switch neon avec glow cyan et animation de knob.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function NeonToggle(){const [on,setOn]=useState(true);return <button onClick={()=>setOn(!on)} className={(on?'border-cyan-300 bg-cyan-400/20 shadow-[0_0_28px_rgba(34,211,238,.55)]':'border-zinc-700 bg-zinc-950')+' relative h-12 w-24 rounded-full border p-1 transition'}><span className={(on?'translate-x-12 bg-cyan-300 shadow-[0_0_22px_rgba(103,232,249,.9)]':'bg-zinc-600')+' block size-10 rounded-full transition'}/></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'glass-toggle', name: 'Glass Toggle', category: 'Toggle', style: 'Glass', recent: true, responsive: true,
+    description: 'Toggle glassmorphism avec capsule translucide et etat textuel.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function GlassToggle(){const [on,setOn]=useState(false);return <button onClick={()=>setOn(!on)} className={(on?'justify-end':'justify-start')+' flex h-14 w-28 items-center rounded-2xl border border-white/25 bg-white/20 p-1.5 shadow-xl backdrop-blur transition dark:bg-white/10'}><span className={(on?'bg-white text-teal-700':'bg-zinc-900 text-white')+' grid size-11 place-items-center rounded-xl text-xs font-black transition'}>{on?'ON':'OFF'}</span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'soft-toggle', name: 'Soft Toggle', category: 'Toggle', style: 'Minimal', recent: true, responsive: true,
+    description: 'Switch doux avec effet neumorphism leger et libelle yes/no.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function SoftToggle(){const [on,setOn]=useState(true);return <button onClick={()=>setOn(!on)} className="relative h-14 w-28 rounded-full bg-zinc-100 p-1 shadow-inner dark:bg-zinc-800"><span className={(on?'left-14':'left-1')+' absolute top-1 size-12 rounded-full bg-white shadow-lg transition dark:bg-zinc-950'}/><span className={(on?'left-0 text-teal-600':'left-14 text-zinc-400')+' absolute inset-y-0 grid w-14 place-items-center text-xs font-black transition'}>{on?'YES':'NO'}</span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'power-toggle', name: 'Power Toggle', category: 'Toggle', style: 'Dark', featured: true, recent: true, responsive: true,
+    description: 'Bouton power circulaire avec glow vert quand il est actif.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function PowerToggle(){const [on,setOn]=useState(false);return <button onClick={()=>setOn(!on)} className={(on?'border-emerald-300 bg-emerald-400 text-zinc-950 shadow-[0_0_28px_rgba(52,211,153,.65)]':'border-zinc-700 bg-zinc-950 text-zinc-500')+' grid size-20 place-items-center rounded-full border text-sm font-black transition'}>Power</button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'privacy-toggle', name: 'Privacy Toggle', category: 'Toggle', style: 'SaaS', recent: true, responsive: true,
+    description: 'Switch privacy public/private avec icone et libelle clair.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function PrivacyToggle(){const [on,setOn]=useState(true);return <button onClick={()=>setOn(!on)} className={(on?'bg-zinc-950 text-white':'bg-white dark:bg-zinc-950')+' flex w-44 items-center justify-between rounded-2xl border p-2 transition'}><span className="pl-2 text-xs font-black">{on?'Private':'Public'}</span><span className={(on?'bg-teal-400 text-zinc-950':'bg-zinc-100 text-zinc-500 dark:bg-zinc-800')+' grid size-10 place-items-center rounded-xl text-xs font-black'}>{on?'Lock':'Web'}</span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'sound-toggle', name: 'Sound Toggle', category: 'Toggle', style: 'Minimal', recent: true, responsive: true,
+    description: 'Toggle audio avec pastille coloree et texte dynamique.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function SoundToggle(){const [on,setOn]=useState(false);return <button onClick={()=>setOn(!on)} className="flex items-center gap-3 rounded-full border bg-white px-4 py-3 shadow-sm dark:bg-zinc-950"><span className={(on?'bg-violet-500 text-white':'bg-zinc-100 text-zinc-500 dark:bg-zinc-800')+' grid size-10 place-items-center rounded-full'}>{on?'♪':'x'}</span><span className="text-sm font-black">{on?'Sound on':'Muted'}</span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'battery-toggle', name: 'Battery Toggle', category: 'Toggle', style: 'SaaS', recent: true, responsive: true,
+    description: 'Toggle batterie avec niveau visuel full/low.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function BatteryToggle(){const [on,setOn]=useState(true);return <button onClick={()=>setOn(!on)} className="flex items-center gap-2 rounded-2xl border bg-white p-3 shadow-sm dark:bg-zinc-950"><span className="relative h-8 w-16 rounded-lg border-2 border-zinc-800 p-1 dark:border-white"><span className={(on?'w-full bg-emerald-400':'w-1/3 bg-rose-500')+' block h-full rounded'}/></span><span className="h-4 w-1 rounded-r bg-zinc-800 dark:bg-white"/><span className="ml-2 text-xs font-black">{on?'Full':'Low'}</span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'rocket-toggle', name: 'Rocket Toggle', category: 'Toggle', style: 'Gradient', featured: true, recent: true, responsive: true,
+    description: 'Switch boost en degrade avec knob fleche anime.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function RocketToggle(){const [on,setOn]=useState(false);return <button onClick={()=>setOn(!on)} className={(on?'bg-gradient-to-r from-orange-400 to-fuchsia-500':'bg-zinc-950')+' relative h-16 w-36 overflow-hidden rounded-full border transition'}><span className={(on?'left-20 rotate-45':'left-2')+' absolute top-2 grid size-12 place-items-center rounded-full bg-white text-lg transition'}>↗</span><span className="absolute inset-y-0 left-5 flex items-center text-xs font-black text-white">{on?'BOOST':''}</span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'check-toggle', name: 'Check Toggle', category: 'Toggle', style: 'Minimal', recent: true, responsive: true,
+    description: 'Toggle simple avec check et croix, ideal pour reglages rapides.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function CheckToggle(){const [on,setOn]=useState(true);return <button onClick={()=>setOn(!on)} className={(on?'bg-emerald-500':'bg-zinc-200 dark:bg-zinc-800')+' flex h-12 w-24 items-center rounded-xl border p-1 transition'}><span className={(on?'translate-x-12 text-emerald-600':'text-zinc-500')+' grid size-10 place-items-center rounded-lg bg-white text-sm font-black transition'}>{on?'✓':'x'}</span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'theme-toggle-card', name: 'Theme Toggle Card', category: 'Toggle', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Carte toggle pour basculer entre light et dark avec indicateur.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function ThemeToggleCard(){const [dark,setDark]=useState(false);return <button onClick={()=>setDark(!dark)} className={(dark?'bg-zinc-950 text-white':'bg-white dark:bg-zinc-950')+' w-full max-w-xs rounded-3xl border p-5 text-left transition'}><div className="flex items-center justify-between"><span className="text-sm font-black">{dark?'Dark mode':'Light mode'}</span><span className="text-2xl">{dark?'☾':'☀'}</span></div><div className="mt-5 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800"><div className={(dark?'w-full bg-violet-400':'w-1/2 bg-amber-400')+' h-full rounded-full transition'}/></div></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'segmented-toggle', name: 'Segmented Toggle', category: 'Toggle', style: 'SaaS', recent: true, responsive: true,
+    description: 'Toggle segmente Basic/Pro pour pricing ou modes produit.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function SegmentedToggle(){const [pro,setPro]=useState(true);return <div className="grid max-w-sm grid-cols-2 rounded-2xl border bg-zinc-100 p-1 dark:bg-zinc-900"><button onClick={()=>setPro(false)} className={!pro?'rounded-xl bg-white px-5 py-3 text-sm font-black shadow-sm dark:bg-zinc-950':'rounded-xl px-5 py-3 text-sm font-black text-zinc-500'}>Basic</button><button onClick={()=>setPro(true)} className={pro?'rounded-xl bg-zinc-950 px-5 py-3 text-sm font-black text-white shadow-sm dark:bg-white dark:text-zinc-950':'rounded-xl px-5 py-3 text-sm font-black text-zinc-500'}>Pro</button></div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'pixel-toggle', name: 'Pixel Toggle', category: 'Toggle', style: 'Editorial', recent: true, responsive: true,
+    description: 'Switch pixel art avec bord dur et ombre marquee.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function PixelToggle(){const [on,setOn]=useState(false);return <button onClick={()=>setOn(!on)} className={(on?'':'opacity-80')+' relative h-14 w-28 border-4 border-zinc-950 bg-white p-1 shadow-[6px_6px_0_#18181b] dark:border-white dark:bg-zinc-950'}><span className={(on?'translate-x-12':'')+' block h-full w-12 bg-zinc-950 transition dark:bg-white'}/></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'holographic-card', name: 'Holographic Card', category: 'Cards', style: 'Gradient', featured: true, recent: true, responsive: true,
+    description: 'Carte premium avec fond holographique anime et identite forte.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function HolographicCard(){return <article className="relative max-w-sm overflow-hidden rounded-3xl border bg-zinc-950 p-5 text-white shadow-2xl"><style>{'@keyframes holoShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}'}</style><div className="absolute inset-0 opacity-60" style={{background:'linear-gradient(120deg,rgba(20,184,166,.45),rgba(124,58,237,.35),rgba(250,204,21,.35))',backgroundSize:'220% 220%',animation:'holoShift 4s ease infinite'}}/><div className="relative"><span className="rounded-full bg-white/15 px-3 py-1 text-[10px] font-black uppercase">Holo</span><h3 className="mt-16 text-2xl font-black">Aurora Pass</h3><p className="mt-2 text-xs text-white/70">Premium component access</p><div className="mt-7 flex items-end justify-between"><span className="font-mono text-xs">PX-2048</span><span className="text-3xl font-black">P</span></div></div></article>}`,
+    prompt: ''
+  },
+  {
+    slug: 'neumorphic-profile-card', name: 'Neumorphic Profile Card', category: 'Cards', style: 'Minimal', recent: true, responsive: true,
+    description: 'Carte profil douce avec relief neumorphism et statistiques compactes.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function NeumorphicProfileCard(){return <article className="max-w-sm rounded-[2rem] bg-[#eef0f4] p-6 text-zinc-800 shadow-[12px_12px_28px_#c9ccd3,-12px_-12px_28px_#ffffff]"><div className="mx-auto grid size-20 place-items-center rounded-full bg-[#eef0f4] text-2xl font-black shadow-[inset_6px_6px_12px_#c9ccd3,inset_-6px_-6px_12px_#ffffff]">AM</div><h3 className="mt-5 text-center text-xl font-black">Amina Studio</h3><p className="mt-1 text-center text-xs font-semibold text-zinc-500">Interface designer</p><div className="mt-5 grid grid-cols-3 gap-2 text-center text-xs"><span className="rounded-2xl bg-[#eef0f4] p-3 shadow-[6px_6px_12px_#c9ccd3,-6px_-6px_12px_#ffffff]">42 UI</span><span className="rounded-2xl bg-[#eef0f4] p-3 shadow-[6px_6px_12px_#c9ccd3,-6px_-6px_12px_#ffffff]">18k</span><span className="rounded-2xl bg-[#eef0f4] p-3 shadow-[6px_6px_12px_#c9ccd3,-6px_-6px_12px_#ffffff]">Pro</span></div></article>}`,
+    prompt: ''
+  },
+  {
+    slug: 'cyber-stats-card', name: 'Cyber Stats Card', category: 'Cards', style: 'Dark', featured: true, recent: true, responsive: true,
+    description: 'Carte stats sombre avec glow cyber et jauges de performance.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function CyberStatsCard(){return <article className="max-w-sm rounded-3xl border border-teal-400/40 bg-[#071311] p-5 text-teal-100 shadow-[0_0_32px_rgba(20,184,166,.18)]"><div className="flex items-center justify-between"><span className="font-mono text-xs uppercase text-teal-300">node status</span><span className="size-3 rounded-full bg-teal-300 shadow-[0_0_16px_rgba(94,234,212,.9)]"/></div><p className="mt-6 font-mono text-5xl font-black">98.7%</p><div className="mt-6 grid gap-2">{[74,86,52].map((value,index)=><div key={index} className="h-2 rounded-full bg-teal-950"><div className="h-full rounded-full bg-teal-300" style={{width:value+'%'}}/></div>)}</div><p className="mt-5 text-xs text-teal-500">Realtime edge health monitor.</p></article>}`,
+    prompt: ''
+  },
+  {
+    slug: 'glass-product-card', name: 'Glass Product Card', category: 'Cards', style: 'Glass', recent: true, responsive: true,
+    description: 'Carte produit glassmorphism avec visuel degrade et prix compact.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function GlassProductCard(){return <article className="max-w-sm rounded-3xl border border-white/30 bg-white/35 p-5 shadow-2xl backdrop-blur dark:bg-white/10"><div className="aspect-square rounded-3xl bg-gradient-to-br from-teal-300 via-sky-300 to-violet-400 p-4"><div className="grid h-full place-items-center rounded-2xl bg-white/30 text-5xl font-black text-white">P</div></div><div className="mt-5 flex items-start justify-between gap-3"><div><h3 className="font-black">PromptUI Kit</h3><p className="mt-1 text-xs text-zinc-500">Glass component pack</p></div><span className="rounded-full bg-zinc-950 px-3 py-1 text-xs font-black text-white">$29</span></div></article>}`,
+    prompt: ''
+  },
+  {
+    slug: 'flip-info-card', name: 'Flip Info Card', category: 'Cards', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Carte cliquable qui bascule entre overview et details.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function FlipInfoCard(){const [open,setOpen]=useState(false);return <button onClick={()=>setOpen(!open)} className={(open?'bg-zinc-950 text-white rotate-1':'bg-white dark:bg-zinc-950')+' h-56 w-80 max-w-full rounded-3xl border p-6 text-left shadow-sm transition duration-500'}><span className="text-xs font-black uppercase text-teal-500">{open?'Details':'Overview'}</span><h3 className="mt-8 text-3xl font-black">{open?'Copy ready':'Design card'}</h3><p className="mt-3 text-sm text-zinc-500">{open?'Includes responsive states, hover polish and accessible labels.':'Click the card to reveal the secondary side.'}</p></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'stacked-layers-card', name: 'Stacked Layers Card', category: 'Cards', style: 'Editorial', recent: true, responsive: true,
+    description: 'Carte a couches decalees pour une presentation visuelle plus marquee.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function StackedLayersCard(){return <div className="relative h-56 w-80 max-w-full"><div className="absolute inset-0 rotate-6 rounded-3xl bg-violet-400/40"/><div className="absolute inset-0 -rotate-3 rounded-3xl bg-teal-400/50"/><article className="absolute inset-0 rounded-3xl border bg-white p-6 shadow-xl dark:bg-zinc-950"><span className="text-xs font-black uppercase text-teal-600">Layers</span><h3 className="mt-16 text-3xl font-black">Stacked UI</h3><p className="mt-2 text-sm text-zinc-500">Depth effect without heavy decoration.</p></article></div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'terminal-card', name: 'Terminal Card', category: 'Cards', style: 'Dark', recent: true, responsive: true,
+    description: 'Carte style terminal pour presenter du code ou un etat technique.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function TerminalCard(){return <article className="max-w-md overflow-hidden rounded-3xl border bg-[#10100e] text-zinc-100 shadow-2xl"><div className="flex h-9 items-center gap-1.5 border-b border-white/10 px-4"><span className="size-2.5 rounded-full bg-red-400"/><span className="size-2.5 rounded-full bg-amber-400"/><span className="size-2.5 rounded-full bg-emerald-400"/><span className="ml-3 text-xs text-zinc-500">promptui/card.tsx</span></div><div className="p-5 font-mono text-xs leading-6"><p><span className="text-teal-300">const</span> card = <span className="text-amber-300">"ready"</span></p><p className="text-zinc-500">// copy, adapt, ship</p><p><span className="text-violet-300">render</span>(card)</p></div></article>}`,
+    prompt: ''
+  },
+  {
+    slug: 'noise-gradient-card', name: 'Noise Gradient Card', category: 'Cards', style: 'Gradient', recent: true, responsive: true,
+    description: 'Carte degradee avec texture subtile pour mise en avant.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function NoiseGradientCard(){return <article className="relative max-w-sm overflow-hidden rounded-3xl bg-gradient-to-br from-rose-500 via-violet-600 to-sky-500 p-6 text-white shadow-2xl"><div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,.25)_1px,transparent_0)] bg-size-[18px_18px] opacity-30"/><div className="relative"><span className="rounded-full bg-white/20 px-3 py-1 text-xs font-black">New</span><h3 className="mt-20 text-3xl font-black">Gradient Core</h3><p className="mt-2 text-sm text-white/75">A vibrant card for featured content.</p></div></article>}`,
+    prompt: ''
+  },
+  {
+    slug: 'gradient-checkbox', name: 'Gradient Checkbox', category: 'Checkboxes', style: 'Gradient', featured: true, recent: true, responsive: true,
+    description: 'Checkbox coloree avec coche visible et etat actif lisible.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function GradientCheckbox(){const [checked,setChecked]=useState(true);return <button type="button" onClick={()=>setChecked(!checked)} className="flex items-center gap-4 rounded-3xl border bg-white p-4 shadow-sm dark:bg-zinc-950"><span className={(checked?'border-transparent bg-gradient-to-br from-teal-400 via-sky-500 to-violet-500 text-white shadow-lg shadow-sky-500/25':'border-zinc-300 bg-transparent text-transparent dark:border-zinc-700')+' grid size-10 place-items-center rounded-2xl border transition'}>✓</span><span className="text-left"><span className="block text-sm font-black">Gradient accept</span><span className="text-xs text-zinc-500">{checked?'Selection active':'Click to select'}</span></span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'neumorphic-checkbox', name: 'Neumorphic Checkbox', category: 'Checkboxes', style: 'Minimal', recent: true, responsive: true,
+    description: 'Checkbox doux avec relief neumorphism et pression visuelle.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function NeumorphicCheckbox(){const [checked,setChecked]=useState(false);return <button type="button" onClick={()=>setChecked(!checked)} className="flex items-center gap-4 rounded-[2rem] bg-[#eef0f4] p-5 text-zinc-800 shadow-[10px_10px_24px_#c9ccd3,-10px_-10px_24px_#ffffff]"><span className={(checked?'text-teal-600 shadow-[inset_6px_6px_12px_#c9ccd3,inset_-6px_-6px_12px_#ffffff]':'text-transparent shadow-[6px_6px_12px_#c9ccd3,-6px_-6px_12px_#ffffff]')+' grid size-12 place-items-center rounded-2xl bg-[#eef0f4] transition'}>✓</span><span className="text-sm font-black">{checked?'Done':'Soft check'}</span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'cyber-checkbox', name: 'Cyber Checkbox', category: 'Checkboxes', style: 'Dark', featured: true, recent: true, responsive: true,
+    description: 'Checkbox sombre avec glow cyber et etat security.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function CyberCheckbox(){const [checked,setChecked]=useState(true);return <button type="button" onClick={()=>setChecked(!checked)} className={(checked?'border-teal-300 text-teal-200 shadow-[0_0_30px_rgba(45,212,191,.25)]':'border-zinc-800 text-zinc-500')+' flex items-center gap-4 rounded-2xl border bg-[#071311] p-4 font-mono text-xs uppercase transition'}><span className={(checked?'border-teal-300 bg-teal-300/15':'border-zinc-700')+' relative grid size-8 place-items-center border'}><span className={(checked?'bg-teal-300 shadow-[0_0_18px_rgba(94,234,212,.9)]':'bg-transparent')+' size-3 transition'}/></span>Security enabled</button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'task-list-checkbox', name: 'Task List Checkbox', category: 'Checkboxes', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Checklist dynamique avec compteur et lignes cochees.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function TaskListCheckbox(){const [items,setItems]=useState({brief:true,design:true,ship:false});const entries=[['brief','Brief produit'],['design','Design system'],['ship','Mise en ligne']] as const;const done=entries.filter(([key])=>items[key]).length;return <div className="max-w-sm rounded-3xl border bg-white p-4 shadow-sm dark:bg-zinc-950"><div className="mb-3 flex items-center justify-between"><h3 className="text-sm font-black">Launch checklist</h3><span className="text-xs text-zinc-500">{done}/3</span></div>{entries.map(([key,label])=><button key={key} type="button" onClick={()=>setItems({...items,[key]:!items[key]})} className="flex w-full items-center gap-3 rounded-2xl px-2 py-2 text-left hover:bg-zinc-50 dark:hover:bg-zinc-900"><span className={(items[key]?'border-teal-500 bg-teal-500 text-white':'border-zinc-300 bg-transparent text-transparent dark:border-zinc-700')+' grid size-6 place-items-center rounded-lg border'}>✓</span><span className={(items[key]?'text-zinc-400 line-through':'text-zinc-900 dark:text-zinc-100')+' text-sm font-semibold'}>{label}</span></button>)}</div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'pill-checkbox', name: 'Pill Checkbox', category: 'Checkboxes', style: 'SaaS', recent: true, responsive: true,
+    description: 'Checkbox sous forme de pill pour filtres et plans.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function PillCheckbox(){const [checked,setChecked]=useState(false);return <button type="button" onClick={()=>setChecked(!checked)} className={(checked?'border-violet-500 bg-violet-500 text-white shadow-lg shadow-violet-500/25':'bg-white text-zinc-500 dark:bg-zinc-950')+' rounded-full border px-5 py-3 text-sm font-black transition'}>{checked?'Selected':'Select plan'}</button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'card-checkbox', name: 'Card Checkbox', category: 'Checkboxes', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Carte selectionnable avec checkbox integree et barre de progression.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function CardCheckbox(){const [checked,setChecked]=useState(true);return <button type="button" onClick={()=>setChecked(!checked)} className={(checked?'border-teal-500 bg-teal-500/10 ring-4 ring-teal-500/10':'bg-white dark:bg-zinc-950')+' w-80 max-w-full rounded-3xl border p-5 text-left transition'}><div className="flex items-start justify-between"><div><p className="text-sm font-black">Team workspace</p><p className="mt-1 text-xs text-zinc-500">Invite, review and ship components.</p></div><span className={(checked?'border-teal-500 bg-teal-500 text-white':'border-zinc-300 text-transparent')+' grid size-7 place-items-center rounded-full border'}>✓</span></div><div className="mt-5 h-2 rounded-full bg-zinc-100 dark:bg-zinc-800"><div className={(checked?'w-4/5':'w-1/3')+' h-full rounded-full bg-teal-500 transition-all'}/></div></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'ripple-checkbox', name: 'Ripple Checkbox', category: 'Checkboxes', style: 'Minimal', recent: true, responsive: true,
+    description: 'Checkbox circulaire avec effet ripple concentrique.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function RippleCheckbox(){const [checked,setChecked]=useState(false);return <button type="button" onClick={()=>setChecked(!checked)} className="group relative grid size-24 place-items-center rounded-full"><span className={(checked?'scale-100 bg-sky-500/15':'scale-50 bg-zinc-200/60 dark:bg-zinc-800')+' absolute inset-0 rounded-full transition'}/><span className={(checked?'scale-100 bg-sky-500/20':'scale-75 bg-zinc-100 dark:bg-zinc-900')+' absolute inset-3 rounded-full transition'}/><span className={(checked?'border-sky-500 bg-sky-500 text-white':'border-zinc-300 bg-white text-transparent dark:bg-zinc-950 dark:border-zinc-700')+' relative grid size-11 place-items-center rounded-full border transition'}>✓</span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'consent-checkbox', name: 'Consent Checkbox', category: 'Checkboxes', style: 'Minimal', recent: true, responsive: true,
+    description: 'Checkbox de consentement clair pour formulaires et onboarding.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function ConsentCheckbox(){const [checked,setChecked]=useState(false);return <button type="button" onClick={()=>setChecked(!checked)} className="flex w-full max-w-md items-start gap-3 rounded-3xl border bg-white p-5 text-left shadow-sm dark:bg-zinc-950"><span className={(checked?'border-zinc-950 bg-zinc-950 text-white dark:border-white dark:bg-white dark:text-zinc-950':'border-zinc-300 text-transparent dark:border-zinc-700')+' mt-0.5 grid size-7 shrink-0 place-items-center rounded-xl border'}>✓</span><span><span className="block text-sm font-black">J accepte les conditions</span><span className="mt-1 block text-xs leading-5 text-zinc-500">{checked?'Merci, preference enregistree.':'Selection requise avant de continuer.'}</span></span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'tilt-pricing-card', name: 'Tilt Pricing Card', category: 'Cards', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Carte pricing interactive avec switch mensuel annuel et effet tilt au hover.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function TiltPricingCard(){const [yearly,setYearly]=useState(false);return <button type="button" onClick={()=>setYearly(!yearly)} className={(yearly?'bg-zinc-950 text-white':'bg-white dark:bg-zinc-950')+' group w-80 max-w-full rounded-3xl border p-6 text-left shadow-xl transition duration-500 hover:-translate-y-2 hover:rotate-1'}><span className="rounded-full bg-teal-500/15 px-3 py-1 text-xs font-black text-teal-500">{yearly?'Yearly':'Monthly'}</span><h3 className="mt-8 text-4xl font-black">{yearly?'$190':'$19'}</h3><p className="mt-2 text-sm text-zinc-500">Click to switch billing mode.</p><div className="mt-6 h-2 rounded-full bg-zinc-100 dark:bg-zinc-800"><div className={(yearly?'w-full':'w-2/3')+' h-full rounded-full bg-teal-500 transition-all'}/></div></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'credit-wallet-card', name: 'Credit Wallet Card', category: 'Cards', style: 'Dark', featured: true, recent: true, responsive: true,
+    description: 'Carte bancaire sombre avec halo radial et reflet anime.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function CreditWalletCard(){return <article className="relative h-52 w-80 max-w-full overflow-hidden rounded-3xl bg-zinc-950 p-6 text-white shadow-2xl"><style>{'@keyframes cardShine{0%{transform:translateX(-120%) rotate(18deg)}100%{transform:translateX(220%) rotate(18deg)}}'}</style><div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(45,212,191,.45),transparent_32%),radial-gradient(circle_at_90%_80%,rgba(168,85,247,.38),transparent_34%)]"/><span className="absolute inset-y-0 left-0 w-16 bg-white/15 blur-xl" style={{animation:'cardShine 3.2s ease-in-out infinite'}}/><div className="relative flex h-full flex-col justify-between"><div className="flex items-center justify-between"><span className="text-xs font-black uppercase text-white/70">Prompt Bank</span><span className="grid size-10 place-items-center rounded-full bg-white text-sm font-black text-zinc-950">P</span></div><p className="font-mono text-lg tracking-widest">4820 1184 2048</p><div className="flex justify-between text-xs text-white/60"><span>A. Mensah</span><span>09/29</span></div></div></article>}`,
+    prompt: ''
+  },
+  {
+    slug: 'spotlight-profile-card', name: 'Spotlight Profile Card', category: 'Cards', style: 'Minimal', recent: true, responsive: true,
+    description: 'Carte profil avec halo au hover et stats compactes.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function SpotlightProfileCard(){return <article className="group relative max-w-sm overflow-hidden rounded-3xl border bg-white p-6 shadow-sm dark:bg-zinc-950"><div className="absolute -right-12 -top-12 size-36 rounded-full bg-teal-400/20 blur-2xl transition group-hover:scale-150"/><div className="relative"><div className="grid size-16 place-items-center rounded-2xl bg-zinc-950 text-xl font-black text-white dark:bg-white dark:text-zinc-950">JL</div><h3 className="mt-6 text-2xl font-black">Jordan Lee</h3><p className="mt-1 text-sm text-zinc-500">Frontend engineer</p><div className="mt-6 grid grid-cols-3 gap-2 text-center text-xs"><span className="rounded-2xl bg-zinc-100 p-3 dark:bg-zinc-900">128</span><span className="rounded-2xl bg-zinc-100 p-3 dark:bg-zinc-900">42k</span><span className="rounded-2xl bg-zinc-100 p-3 dark:bg-zinc-900">Pro</span></div></div></article>}`,
+    prompt: ''
+  },
+  {
+    slug: 'notification-stack-card', name: 'Notification Stack Card', category: 'Cards', style: 'Glass', featured: true, recent: true, responsive: true,
+    description: 'Carte empilee cliquable qui change la tension visuelle des alertes.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function NotificationStackCard(){const [active,setActive]=useState(true);return <button type="button" onClick={()=>setActive(!active)} className="relative h-60 w-80 max-w-full text-left"><div className={(active?'rotate-6':'rotate-2')+' absolute inset-x-8 top-0 h-40 rounded-3xl bg-violet-300/40 transition'}/><div className={(active?'-rotate-3':'rotate-3')+' absolute inset-x-4 top-6 h-40 rounded-3xl bg-teal-300/50 transition'}/><article className="absolute inset-x-0 bottom-0 rounded-3xl border bg-white p-5 shadow-xl dark:bg-zinc-950"><span className="text-xs font-black uppercase text-teal-600">{active?'3 alerts':'All clear'}</span><h3 className="mt-4 text-2xl font-black">Notifications</h3><p className="mt-2 text-sm text-zinc-500">{active?'Click to calm the stack.':'Inbox is clean now.'}</p></article></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'expandable-feature-card', name: 'Expandable Feature Card', category: 'Cards', style: 'SaaS', recent: true, responsive: true,
+    description: 'Carte feature qui se deploie au clic sans quitter le contexte.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function ExpandableFeatureCard(){const [open,setOpen]=useState(false);return <button type="button" onClick={()=>setOpen(!open)} className="w-full max-w-md overflow-hidden rounded-3xl border bg-white p-5 text-left shadow-sm transition dark:bg-zinc-950"><div className="flex items-center justify-between"><div><p className="text-xs font-black uppercase text-teal-600">Feature</p><h3 className="mt-1 text-xl font-black">Smart preview</h3></div><span className="grid size-10 place-items-center rounded-full bg-zinc-100 text-lg dark:bg-zinc-900">{open?'-':'+'}</span></div><div className={(open?'mt-5 grid-rows-[1fr] opacity-100':'grid-rows-[0fr] opacity-0')+' grid transition-all duration-300'}><p className="overflow-hidden text-sm leading-6 text-zinc-500">Responsive states, live controls and copy-ready code stay in the same component card.</p></div></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'folder-card', name: 'Folder Card', category: 'Cards', style: 'Editorial', recent: true, responsive: true,
+    description: 'Carte dossier avec onglet et mouvement subtil au hover.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function FolderCard(){return <article className="group relative w-80 max-w-full pt-8"><div className="absolute left-5 top-0 h-12 w-32 rounded-t-2xl bg-amber-300 transition group-hover:-translate-y-1"/><div className="relative rounded-3xl border bg-amber-200 p-5 shadow-xl transition group-hover:-translate-y-1"><div className="rounded-2xl bg-white/65 p-4"><p className="text-xs font-black uppercase text-amber-700">Assets</p><h3 className="mt-8 text-2xl font-black text-zinc-950">UI Files</h3><p className="mt-2 text-sm text-zinc-600">24 components saved</p></div></div></article>}`,
+    prompt: ''
+  },
+  {
+    slug: 'social-reaction-card', name: 'Social Reaction Card', category: 'Cards', style: 'Minimal', recent: true, responsive: true,
+    description: 'Carte post sociale avec bouton like interactif.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function SocialReactionCard(){const [liked,setLiked]=useState(false);return <article className="max-w-sm rounded-3xl border bg-white p-5 shadow-sm dark:bg-zinc-950"><div className="flex items-center gap-3"><div className="grid size-11 place-items-center rounded-full bg-gradient-to-br from-teal-400 to-violet-500 text-sm font-black text-white">P</div><div><p className="text-sm font-black">PromptUI</p><p className="text-xs text-zinc-500">2 min ago</p></div></div><p className="mt-5 text-sm leading-6 text-zinc-600 dark:text-zinc-300">New animated card component added to the library.</p><button type="button" onClick={()=>setLiked(!liked)} className={(liked?'border-rose-500 bg-rose-500 text-white':'text-zinc-500')+' mt-5 rounded-full border px-4 py-2 text-sm font-black transition'}>{liked?'Liked':'Like'}</button></article>}`,
+    prompt: ''
+  },
+  {
+    slug: 'timeline-card', name: 'Timeline Card', category: 'Cards', style: 'SaaS', recent: true, responsive: true,
+    description: 'Carte timeline verticale pour etapes de livraison.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function TimelineCard(){return <article className="max-w-sm rounded-3xl border bg-white p-5 shadow-sm dark:bg-zinc-950"><p className="text-xs font-black uppercase text-teal-600">Release flow</p><div className="mt-5 space-y-4">{[['Design','Done'],['Code','Review'],['Ship','Next']].map(([title,status],index)=><div key={title} className="flex gap-3"><span className="mt-1 grid size-7 place-items-center rounded-full bg-zinc-950 text-xs font-black text-white dark:bg-white dark:text-zinc-950">{index+1}</span><div><p className="text-sm font-black">{title}</p><p className="text-xs text-zinc-500">{status}</p></div></div>)}</div></article>}`,
+    prompt: ''
   }
 ].map((item) => ({
   ...item,
@@ -720,7 +1028,7 @@ export function GradientProgressSlider() {
   prompt: item.prompt || makePrompt(item.name, item.category, item.style, item.description),
 })) as LibraryComponent[];
 
-export const categories = ['All','Hero','Navbar','Cards','Buttons','Forms','Pricing','Testimonials','Dashboard','Tables','Boards','Charts','Footer','CTA','Menu','Sidebar'] as const;
+export const categories = ['All','Hero','Navbar','Cards','Buttons','Checkboxes','Forms','Pricing','Testimonials','Dashboard','Tables','Boards','Charts','Footer','CTA','Loader','Menu','Toggle','Sidebar'] as const;
 export const styles = ['All','Minimal','Gradient','Glass','Dark','Editorial','SaaS'] as const;
 
 export function getComponentBySlug(slug: string) {

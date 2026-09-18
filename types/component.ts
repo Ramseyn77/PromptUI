@@ -3,6 +3,7 @@ export type ComponentCategory =
   | 'Navbar'
   | 'Cards'
   | 'Buttons'
+  | 'Checkboxes'
   | 'Forms'
   | 'Pricing'
   | 'Testimonials'
@@ -12,7 +13,9 @@ export type ComponentCategory =
   | 'Charts'
   | 'Footer'
   | 'CTA'
+  | 'Loader'
   | 'Menu'
+  | 'Toggle'
   | 'Sidebar';
 
 export type ComponentStyle = 'Minimal' | 'Gradient' | 'Glass' | 'Dark' | 'Editorial' | 'SaaS';
