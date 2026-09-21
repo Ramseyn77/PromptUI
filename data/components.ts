@@ -1003,8 +1003,8 @@ export function ExpandableFeatureCard(){const [open,setOpen]=useState(false);ret
   },
   {
     slug: 'folder-card', name: 'Folder Card', category: 'Cards', style: 'Editorial', recent: true, responsive: true,
-    description: 'Carte dossier avec onglet et mouvement subtil au hover.', technologies: ['React','TypeScript','Tailwind'],
-    code: `export function FolderCard(){return <article className="group relative w-80 max-w-full pt-8"><div className="absolute left-5 top-0 h-12 w-32 rounded-t-2xl bg-amber-300 transition group-hover:-translate-y-1"/><div className="relative rounded-3xl border bg-amber-200 p-5 shadow-xl transition group-hover:-translate-y-1"><div className="rounded-2xl bg-white/65 p-4"><p className="text-xs font-black uppercase text-amber-700">Assets</p><h3 className="mt-8 text-2xl font-black text-zinc-950">UI Files</h3><p className="mt-2 text-sm text-zinc-600">24 components saved</p></div></div></article>}`,
+    description: 'Carte dossier avec couches empilees qui se deploient au hover.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function FolderCard(){return <article className="group relative h-60 w-80 max-w-full"><div className="absolute inset-x-8 top-1 h-40 rounded-3xl bg-violet-300/40 transition duration-300 group-hover:-translate-y-2 group-hover:rotate-6"/><div className="absolute inset-x-4 top-7 h-40 rounded-3xl bg-teal-300/50 transition duration-300 group-hover:translate-y-1 group-hover:-rotate-3"/><div className="absolute left-5 top-5 h-12 w-32 rounded-t-2xl bg-amber-300 transition duration-300 group-hover:-translate-y-3 group-hover:rotate-2"/><div className="absolute inset-x-0 bottom-0 rounded-3xl border bg-amber-200 p-5 shadow-xl transition duration-300 group-hover:-translate-y-1"><div className="rounded-2xl bg-white/65 p-4"><p className="text-xs font-black uppercase text-amber-700">Assets</p><h3 className="mt-8 text-2xl font-black text-zinc-950">UI Files</h3><p className="mt-2 text-sm text-zinc-600">24 components saved</p></div></div></article>}`,
     prompt: ''
   },
   {
@@ -1020,6 +1020,58 @@ export function SocialReactionCard(){const [liked,setLiked]=useState(false);retu
     description: 'Carte timeline verticale pour etapes de livraison.', technologies: ['React','TypeScript','Tailwind'],
     code: `export function TimelineCard(){return <article className="max-w-sm rounded-3xl border bg-white p-5 shadow-sm dark:bg-zinc-950"><p className="text-xs font-black uppercase text-teal-600">Release flow</p><div className="mt-5 space-y-4">{[['Design','Done'],['Code','Review'],['Ship','Next']].map(([title,status],index)=><div key={title} className="flex gap-3"><span className="mt-1 grid size-7 place-items-center rounded-full bg-zinc-950 text-xs font-black text-white dark:bg-white dark:text-zinc-950">{index+1}</span><div><p className="text-sm font-black">{title}</p><p className="text-xs text-zinc-500">{status}</p></div></div>)}</div></article>}`,
     prompt: ''
+  },
+  {
+    slug: 'top-arrow-tooltip', name: 'Top Arrow Tooltip', category: 'Tooltips', style: 'Minimal', featured: true, recent: true, responsive: true,
+    description: 'Tooltip classique au-dessus avec fleche et apparition douce.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function TopArrowTooltip(){return <button className="group relative rounded-2xl bg-zinc-950 px-5 py-3 text-sm font-black text-white outline-none dark:bg-white dark:text-zinc-950">Hover me<span role="tooltip" className="pointer-events-none absolute bottom-[calc(100%+.75rem)] left-1/2 w-max -translate-x-1/2 translate-y-2 rounded-xl bg-zinc-950 px-3 py-2 text-xs font-semibold text-white opacity-0 shadow-xl transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 dark:bg-white dark:text-zinc-950">Tooltip on top<span className="absolute left-1/2 top-full size-2 -translate-x-1/2 -translate-y-1 rotate-45 bg-zinc-950 dark:bg-white"/></span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'gradient-glow-tooltip', name: 'Gradient Glow Tooltip', category: 'Tooltips', style: 'Gradient', featured: true, recent: true, responsive: true,
+    description: 'Tooltip encadre par un degrade lumineux pour actions importantes.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function GradientGlowTooltip(){return <button className="group relative rounded-full border bg-white px-6 py-3 text-sm font-black shadow-sm outline-none dark:bg-zinc-950">Gradient hint<span role="tooltip" className="pointer-events-none absolute left-1/2 top-[calc(100%+.85rem)] w-56 -translate-x-1/2 -translate-y-2 rounded-2xl bg-gradient-to-r from-teal-500 via-sky-500 to-violet-500 p-px opacity-0 shadow-2xl shadow-sky-500/20 transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"><span className="block rounded-[0.9rem] bg-white px-4 py-3 text-left text-xs font-semibold text-zinc-700 dark:bg-zinc-950 dark:text-zinc-200">Live preview updates before you copy.</span></span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'keyboard-tooltip', name: 'Keyboard Tooltip', category: 'Tooltips', style: 'SaaS', recent: true, responsive: true,
+    description: 'Tooltip compact qui affiche un raccourci clavier.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `import { Copy } from 'lucide-react';
+
+export function KeyboardTooltip(){return <button className="group relative inline-flex items-center gap-2 rounded-2xl border bg-white px-4 py-3 text-sm font-black shadow-sm outline-none dark:bg-zinc-950"><Copy size={16}/> Copier<span role="tooltip" className="pointer-events-none absolute left-1/2 top-[calc(100%+.75rem)] flex -translate-x-1/2 -translate-y-1 items-center gap-1 rounded-xl border bg-white px-3 py-2 text-xs font-bold opacity-0 shadow-xl transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 dark:bg-zinc-950"><kbd className="rounded-md bg-zinc-100 px-1.5 py-0.5 text-[10px] dark:bg-zinc-800">Ctrl</kbd><kbd className="rounded-md bg-zinc-100 px-1.5 py-0.5 text-[10px] dark:bg-zinc-800">C</kbd></span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'glass-tooltip', name: 'Glass Tooltip', category: 'Tooltips', style: 'Glass', featured: true, recent: true, responsive: true,
+    description: 'Tooltip glassmorphism pour onboarding et aides contextuelles.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function GlassTooltip(){return <div className="grid min-h-52 place-items-center bg-gradient-to-br from-teal-500/10 to-violet-500/10"><button className="group relative rounded-full border border-white/30 bg-white/40 px-6 py-3 text-sm font-black shadow-xl backdrop-blur outline-none dark:bg-white/10">Glass info<span role="tooltip" className="pointer-events-none absolute bottom-[calc(100%+.85rem)] left-1/2 w-64 -translate-x-1/2 translate-y-2 rounded-3xl border border-white/30 bg-white/55 p-4 text-left text-xs font-semibold text-zinc-700 opacity-0 shadow-2xl backdrop-blur-xl transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 dark:bg-zinc-950/55 dark:text-zinc-200">Soft glass tooltip for product tours and onboarding hints.</span></button></div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'side-status-tooltip', name: 'Side Status Tooltip', category: 'Tooltips', style: 'SaaS', recent: true, responsive: true,
+    description: 'Tooltip lateral pour expliquer un statut en temps reel.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function SideStatusTooltip(){return <button className="group relative inline-flex items-center gap-3 rounded-2xl border bg-white px-4 py-3 text-sm font-black shadow-sm outline-none dark:bg-zinc-950"><span className="size-3 rounded-full bg-emerald-500 shadow-[0_0_18px_rgba(16,185,129,.75)]"/> API online<span role="tooltip" className="pointer-events-none absolute left-[calc(100%+.85rem)] top-1/2 w-44 -translate-x-2 -translate-y-1/2 rounded-2xl bg-emerald-500 px-4 py-3 text-left text-xs font-bold text-white opacity-0 shadow-xl transition group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100">Latency stable at 42ms.</span></button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'error-tooltip', name: 'Error Tooltip', category: 'Tooltips', style: 'Minimal', recent: true, responsive: true,
+    description: 'Tooltip de validation visible sur champ invalide.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function ErrorTooltip(){return <label className="group relative block w-72 text-sm font-bold">Email<input defaultValue="hello@" className="mt-2 w-full rounded-2xl border border-rose-300 bg-white px-4 py-3 outline-none ring-4 ring-rose-500/10 dark:bg-zinc-950"/><span role="tooltip" className="pointer-events-none absolute -right-2 top-full mt-2 rounded-2xl bg-rose-500 px-4 py-2 text-xs font-bold text-white opacity-100 shadow-xl">Adresse incomplete</span></label>}`,
+    prompt: ''
+  },
+  {
+    slug: 'radial-tooltip', name: 'Radial Tooltip', category: 'Tooltips', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Tooltips multiples disposes autour dun bouton daction.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `import { Plus } from 'lucide-react';
+
+export function RadialTooltip(){return <button className="group relative grid size-16 place-items-center rounded-full bg-zinc-950 text-white shadow-xl outline-none dark:bg-white dark:text-zinc-950"><Plus size={22}/>{['Code','Prompt','Preview'].map((label,index)=><span key={label} role="tooltip" className={'pointer-events-none absolute rounded-full bg-teal-500 px-3 py-1.5 text-xs font-black text-white opacity-0 shadow-lg transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 '+(index===0?'bottom-full mb-3 group-hover:-translate-y-1':index===1?'right-full mr-3 group-hover:-translate-x-1':'left-full ml-3 group-hover:translate-x-1')}>{label}</span>)}</button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'neumorphic-tooltip', name: 'Neumorphic Tooltip', category: 'Tooltips', style: 'Minimal', recent: true, responsive: true,
+    description: 'Tooltip doux avec relief neumorphism.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function NeumorphicTooltip(){return <div className="grid min-h-52 place-items-center bg-[#eef0f4]"><button className="group relative rounded-[2rem] bg-[#eef0f4] px-6 py-4 text-sm font-black text-zinc-800 shadow-[10px_10px_24px_#c9ccd3,-10px_-10px_24px_#ffffff] outline-none">Soft hover<span role="tooltip" className="pointer-events-none absolute bottom-[calc(100%+.85rem)] left-1/2 w-52 -translate-x-1/2 translate-y-2 rounded-[1.35rem] bg-[#eef0f4] px-4 py-3 text-xs font-bold text-zinc-600 opacity-0 shadow-[8px_8px_18px_#c9ccd3,-8px_-8px_18px_#ffffff] transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">Neumorphic helper text.</span></button></div>}`,
+    prompt: ''
   }
 ].map((item) => ({
   ...item,
@@ -1028,7 +1080,7 @@ export function SocialReactionCard(){const [liked,setLiked]=useState(false);retu
   prompt: item.prompt || makePrompt(item.name, item.category, item.style, item.description),
 })) as LibraryComponent[];
 
-export const categories = ['All','Hero','Navbar','Cards','Buttons','Checkboxes','Forms','Pricing','Testimonials','Dashboard','Tables','Boards','Charts','Footer','CTA','Loader','Menu','Toggle','Sidebar'] as const;
+export const categories = ['All','Hero','Navbar','Cards','Buttons','Checkboxes','Forms','Pricing','Testimonials','Dashboard','Tables','Boards','Charts','Footer','CTA','Loader','Menu','Toggle','Tooltips','Sidebar'] as const;
 export const styles = ['All','Minimal','Gradient','Glass','Dark','Editorial','SaaS'] as const;
 
 export function getComponentBySlug(slug: string) {

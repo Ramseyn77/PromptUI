@@ -16,6 +16,7 @@ export type ComponentCategory =
   | 'Loader'
   | 'Menu'
   | 'Toggle'
+  | 'Tooltips'
   | 'Sidebar';
 
 export type ComponentStyle = 'Minimal' | 'Gradient' | 'Glass' | 'Dark' | 'Editorial' | 'SaaS';
