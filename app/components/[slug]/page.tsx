@@ -52,7 +52,7 @@ export default async function ComponentDetail({ params }: { params: Promise<{ sl
         </div>
       </div>
 
-      <section className="preview-grid mt-8 flex min-h-[430px] items-center overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[#f1eee5] p-5 md:p-10 dark:bg-black/20">
+      <section className="preview-grid mt-8 flex min-h-[430px] items-center overflow-hidden rounded-[1.75rem] border border-[var(--line-soft)] bg-[var(--surface-2)] p-5 md:p-10">
         <ComponentPreview slug={item.slug}/>
       </section>
 

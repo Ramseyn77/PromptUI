@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { fontVariables } from './fonts';
 import { SiteLayout } from '@/layouts/SiteLayout';
 import { AnalyticsTracker } from '@/components/analytics/AnalyticsTracker';
 import { FeedbackWidget } from '@/components/analytics/FeedbackWidget';
+
+// Runs before first paint so a saved (or system) dark theme never flashes light.
+const themeScript = `(function(){try{var t=localStorage.getItem('promptui-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}})()`;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://prompt-ui-steel.vercel.app';
 
@@ -33,5 +37,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="fr" suppressHydrationWarning><body><AnalyticsTracker/><SiteLayout>{children}</SiteLayout><FeedbackWidget/></body></html>;
+  return <html lang="fr" data-theme="light" className={fontVariables} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: themeScript }}/></head><body><AnalyticsTracker/><SiteLayout>{children}</SiteLayout><FeedbackWidget/></body></html>;
 }

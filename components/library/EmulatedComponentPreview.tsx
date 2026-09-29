@@ -91,7 +91,7 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
         .viz-selected { outline: 2px solid #0d9488 !important; outline-offset: 1px; }
       `;
       frameDocument.head.appendChild(reset);
-      frameDocument.documentElement.className = theme === 'auto' ? document.documentElement.className : theme;
+      frameDocument.documentElement.className = theme === 'dark' ? 'dark' : '';
 
       let root = frameDocument.getElementById('component-preview-root');
       if (!root) {
@@ -105,22 +105,15 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
     prepareFrame();
     iframe.addEventListener('load', prepareFrame);
 
-    const themeObserver = new MutationObserver(() => {
-      const frameDocument = iframe.contentDocument;
-      if (frameDocument && theme === 'auto') frameDocument.documentElement.className = document.documentElement.className;
-    });
-    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-
     return () => {
       iframe.removeEventListener('load', prepareFrame);
-      themeObserver.disconnect();
     };
   }, [device, theme, isHtmlPreview]);
 
   useEffect(() => {
     const frameDocument = iframeRef.current?.contentDocument;
     if (!frameDocument) return;
-    frameDocument.documentElement.className = theme === 'auto' ? document.documentElement.className : theme;
+    frameDocument.documentElement.className = theme === 'dark' ? 'dark' : '';
   }, [theme, isHtmlPreview]);
 
   useEffect(() => {
@@ -327,7 +320,7 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
       />
     ) : (
       <div
-        className={`grid min-h-full place-items-center overflow-hidden bg-transparent ${showBounds ? 'show-preview-bounds' : ''}`}
+        className={`grid min-h-full place-items-center overflow-hidden bg-transparent ${theme === 'dark' ? 'dark' : ''} ${showBounds ? 'show-preview-bounds' : ''}`}
         style={{ width, height, padding }}
       >
         <ComponentPreview slug={slug}/>

@@ -4,6 +4,7 @@ export type ComponentCategory =
   | 'Cards'
   | 'Buttons'
   | 'Checkboxes'
+  | 'AI Chat'
   | 'Forms'
   | 'Pricing'
   | 'Testimonials'
@@ -11,12 +12,14 @@ export type ComponentCategory =
   | 'Tables'
   | 'Boards'
   | 'Charts'
+  | 'Shaders'
   | 'Footer'
   | 'CTA'
   | 'Loader'
   | 'Menu'
   | 'Toggle'
   | 'Tooltips'
+  | 'Text'
   | 'Sidebar';
 
 export type ComponentStyle = 'Minimal' | 'Gradient' | 'Glass' | 'Dark' | 'Editorial' | 'SaaS';

@@ -1,27 +1,63 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme inline {
+  --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-chillax), var(--font-satoshi), sans-serif;
+  --font-accent: var(--font-telma), var(--font-chillax), serif;
+  --font-ui: var(--font-poppins), var(--font-satoshi), sans-serif;
+  --font-numeric: var(--font-sora), var(--font-satoshi), sans-serif;
+  --font-pill: var(--font-pally), var(--font-satoshi), sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-hand: var(--font-kalam), cursive;
+}
+
+/*
+ * Site palette. Components in the library keep their own colors; these tokens only
+ * style the PromptUI interface. Text pairs meet WCAG AA on --background and --surface.
+ */
 :root {
   color-scheme: light;
-  --background: #f7f5f0;
-  --foreground: #151512;
-  --surface: #fffdf7;
-  --muted: #6f6a5f;
-  --line: rgba(21, 21, 18, .12);
+  --background: #f7f6f3;
+  --surface: #ffffff;
+  --surface-2: #efeee9;
+  --foreground: #18181b;
+  --muted: #5f5e58;
+  --line: rgba(24, 24, 27, .10);
+  --line-soft: rgba(24, 24, 27, .05);
+  --hover: rgba(24, 24, 27, .045);
   --accent: #0f766e;
   --accent-strong: #115e59;
+  --accent-soft: rgba(15, 118, 110, .10);
+  --on-accent: #ffffff;
+  /* Inverted blocks (final CTA): dark in light mode, light in dark mode. */
+  --inverse: #18181b;
+  --on-inverse: #fafaf9;
+  --inverse-muted: #a1a1aa;
+  --inverse-accent: #5eead4;
+  --glow: rgba(15, 118, 110, .10);
   --gold: #d59f0f;
 }
 
-.dark {
+:root[data-theme="dark"] {
   color-scheme: dark;
-  --background: #080a09;
-  --foreground: #fffaf0;
-  --surface: #141815;
-  --muted: #c9c2b4;
-  --line: rgba(255, 250, 240, .2);
+  --background: #0b0b0c;
+  --surface: #141416;
+  --surface-2: #1b1b1e;
+  --foreground: #f4f4f2;
+  --muted: #a3a29c;
+  --line: rgba(255, 255, 255, .10);
+  --line-soft: rgba(255, 255, 255, .055);
+  --hover: rgba(255, 255, 255, .06);
   --accent: #2dd4bf;
   --accent-strong: #5eead4;
+  --accent-soft: rgba(45, 212, 191, .12);
+  --on-accent: #042f2e;
+  --inverse: #f4f4f2;
+  --on-inverse: #0b0b0c;
+  --inverse-muted: #52525b;
+  --inverse-accent: #0f766e;
+  --glow: rgba(45, 212, 191, .07);
   --gold: #f4c430;
 }
 
@@ -36,33 +72,92 @@ html {
 body {
   margin: 0;
   overflow-x: hidden;
-  background:
-    linear-gradient(180deg, rgba(255, 253, 247, .84), rgba(247, 245, 240, 0) 340px),
-    radial-gradient(circle at 12% 0%, rgba(15, 118, 110, .14), transparent 32rem),
-    var(--background);
+  background: radial-gradient(ellipse 60rem 28rem at 50% -8rem, var(--glow), transparent 70%), var(--background);
   color: var(--foreground);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-.dark body {
-  background:
-    linear-gradient(180deg, rgba(20, 24, 21, .92), rgba(8, 10, 9, 0) 340px),
-    radial-gradient(circle at 12% 0%, rgba(45, 212, 191, .18), transparent 32rem),
-    var(--background);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
 button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
-::selection { background: rgba(15, 118, 110, .24); }
+code, kbd, pre, samp { font-family: var(--font-mono); }
+::selection { background: var(--accent-soft); color: var(--foreground); }
+:focus-visible { outline-color: var(--accent); }
 
 .preview-grid {
   background-image:
-    linear-gradient(to right, rgba(21, 21, 18, .06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(21, 21, 18, .06) 1px, transparent 1px);
+    linear-gradient(to right, var(--line-soft) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line-soft) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
-.dark .preview-grid {
-  background-image:
-    linear-gradient(to right, rgba(247, 242, 232, .07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(247, 242, 232, .07) 1px, transparent 1px);
+/* Lenis drives the easing itself; native smooth scrolling would fight it. */
+html.lenis.lenis-smooth { scroll-behavior: auto; }
+
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(48px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Opacity only: a transform here would re-anchor fixed descendants (sidebars, modals). */
+@keyframes page-in {
+  from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-enter { animation: page-in .45s cubic-bezier(.22, 1, .36, 1); }
+}
+
+@keyframes hero-out {
+  to { opacity: .15; transform: translateY(-60px) scale(.96); filter: blur(4px); }
+}
+
+/* Scroll-driven, no JS: browsers without support simply show the content. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+
+    .hero-scroll-out {
+      animation: hero-out linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 70vh;
+    }
+  }
+}
+
+/* FitPreview: tall components show their top with a fade, then pan down while their card is hovered. */
+.fit-preview-tall {
+  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent);
+  mask-image: linear-gradient(to bottom, #000 80%, transparent);
+}
+
+.fit-preview-pan {
+  transition: transform var(--fit-pan-duration, 2.5s) cubic-bezier(.45, 0, .55, 1);
+}
+
+[data-fit-host]:hover .fit-preview-tall,
+[data-fit-host]:focus-within .fit-preview-tall {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+[data-fit-host]:hover .fit-preview-pan,
+[data-fit-host]:focus-within .fit-preview-pan {
+  transform: translateY(var(--fit-pan));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fit-preview-pan { transition: none; }
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

@@ -1,163 +1,222 @@
 import Link from 'next/link';
-import { ArrowRight, Bot, Braces, Code2, Layers3, MousePointer2, Search, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, BarChart3, Bot, Code2, Copy, LayoutTemplate, MousePointer2, Search, Sparkles, Wand2 } from 'lucide-react';
 import { categories, components, styles } from '@/data/components';
-import { ComponentCard } from '@/components/library/ComponentCard';
 import { ComponentPreview } from '@/components/library/ComponentPreview';
+import { RecentComponentSlider } from '@/components/home/RecentComponentSlider';
+import { ComponentCard, ComponentGrid } from '@/components/library/ComponentCard';
+import type { LibraryComponent } from '@/types/component';
+
+const pickComponents = (slugs: string[]) =>
+  slugs
+    .map((slug) => components.find((item) => item.slug === slug))
+    .filter((item): item is LibraryComponent => Boolean(item));
+
+const categoryCount = (category: string) => components.filter((item) => item.category === category).length;
+const categoryHref = (category: string) => `/library?category=${encodeURIComponent(category)}`;
+
+const launcherGroups = [
+  { title: 'Marketing blocks', tags: ['Hero', 'CTA', 'Shaders', 'Footer', 'Text', 'Navbar', 'Pricing', 'Testimonials'] },
+  { title: 'UI components', tags: ['Buttons', 'Cards', 'AI Chat', 'Boards', 'Charts', 'Menu', 'Toggle', 'Tooltips', 'Checkboxes', 'Forms'] },
+];
+
+const buildingGroups = [
+  { icon: LayoutTemplate, title: 'Une landing page', text: 'Heroes, CTA, footers et navigations pour lancer vite.', tags: ['Hero', 'CTA', 'Navbar', 'Footer', 'Pricing', 'Testimonials'] },
+  { icon: BarChart3, title: 'Un dashboard', text: 'Graphes, tableaux, boards et sidebars lisibles.', tags: ['Dashboard', 'Charts', 'Tables', 'Boards', 'Sidebar'] },
+  { icon: MousePointer2, title: 'Des micro-interactions', text: 'Boutons, toggles, menus et tooltips qui réagissent.', tags: ['Buttons', 'Toggle', 'Checkboxes', 'Menu', 'Tooltips'] },
+  { icon: Bot, title: 'Une app IA', text: 'Chats, formulaires, loaders et effets de texte.', tags: ['AI Chat', 'Forms', 'Loader', 'Text', 'Cards', 'Shaders'] },
+];
 
 export default function HomePage() {
-  const featured = components.filter((x) => x.featured).slice(0, 6);
   const categoryList = categories.filter((x) => x !== 'All');
   const styleList = styles.filter((x) => x !== 'All');
+  const recentComponents = pickComponents([
+    'liquid-metal-upgrade-cta',
+    'responsive-banner-cta',
+    'image-fan-cta',
+    'team-dashboard',
+    'dithered-shader-cta',
+    'floating-gallery-cta',
+  ]);
+  const promptReadyComponents = pickComponents([
+    'macos-dock',
+    'magnetic-dock',
+    'expanding-search-dock',
+    'holographic-card',
+    'pipeline-sankey-chart',
+    'gradient-glow-tooltip',
+  ]);
   const stats = [
-    [String(components.length), 'composants'],
-    [String(categoryList.length), 'categories'],
-    [String(styleList.length), 'types'],
-    ['0', 'compte requis'],
+    [components.length.toLocaleString('fr-FR'), 'composants'],
+    [categoryList.length.toLocaleString('fr-FR'), 'categories'],
+    [styleList.length.toLocaleString('fr-FR'), 'styles'],
+    ['100%', 'copiable'],
   ];
 
   return (
-    <main>
-      <section className="relative overflow-hidden border-b border-[var(--line)]">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(460px,.82fr)] lg:items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)]/80 px-3 py-1.5 text-xs font-medium text-[var(--muted)] shadow-sm backdrop-blur">
-              <Sparkles size={13} className="text-[var(--accent)]"/>
-              Source, apercu et prompt IA au meme endroit
-            </div>
-            <h1 className="mt-7 max-w-4xl text-5xl font-semibold leading-[.95] tracking-tight sm:text-6xl md:text-7xl">
-              Des composants UI qui donnent deja envie de les copier.
-            </h1>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-[var(--muted)] md:text-lg">
-              PromptUI rassemble des patterns React propres. Choisis un composant, teste son rendu responsive, copie le code ou recupere le prompt IA pour le modifier.
-            </p>
-            <form action="/library" className="mt-8 flex max-w-2xl items-center gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-2 shadow-xl shadow-black/[.04]">
-              <Search size={19} className="ml-2 text-[var(--muted)]"/>
-              <input name="q" placeholder="Chercher hero, navbar, pricing..." className="h-11 min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-[var(--muted)]"/>
-              <button className="rounded-xl bg-[var(--foreground)] px-4 py-3 text-sm font-semibold text-[var(--background)] transition hover:-translate-y-0.5">Chercher</button>
-            </form>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="/library" className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-teal-800/15 transition hover:-translate-y-0.5 dark:text-zinc-950">
-                Voir la bibliotheque <ArrowRight size={16}/>
-              </Link>
-              <Link href="/components/aurora-hero" className="inline-flex items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface)] px-5 py-3 text-sm font-semibold shadow-sm transition hover:-translate-y-0.5">
-                Voir un composant
-              </Link>
-            </div>
-            <div className="mt-10 grid max-w-xl grid-cols-2 gap-y-5 border-y border-[var(--line)] py-5 sm:grid-cols-4">
-              {stats.map(([value, label]) => (
-                <div key={label}>
-                  <p className="text-3xl font-semibold tracking-tight">{value}</p>
-                  <p className="mt-1 text-xs uppercase text-[var(--muted)]">{label}</p>
-                </div>
-              ))}
-            </div>
+    <main className="overflow-hidden">
+      <section className="relative border-b border-[var(--line-soft)]">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,var(--accent-soft),transparent_34rem)]"/>
+        <div className="hero-scroll-out mx-auto max-w-7xl px-4 pb-16 pt-12 text-center sm:px-6 md:pb-24 md:pt-20">
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)]/80 px-3 py-1.5 font-pill text-xs font-bold text-[var(--muted)] shadow-sm backdrop-blur">
+            <Sparkles size={13} className="text-[var(--accent)]"/>
+            Registry UI avec prompts IA
           </div>
-          <div className="relative">
-            <div className="absolute -left-5 -top-5 hidden rounded-full bg-[var(--gold)] px-4 py-2 text-xs font-semibold text-zinc-950 shadow-xl shadow-black/10 lg:block">
-              MVP library
-            </div>
-            <div className="overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-3 shadow-2xl shadow-black/[.08]">
-              <div className="flex items-center justify-between border-b border-[var(--line)] px-2 pb-3">
-                <div className="flex gap-1.5">
-                  <span className="size-2.5 rounded-full bg-red-400"/>
-                  <span className="size-2.5 rounded-full bg-amber-400"/>
-                  <span className="size-2.5 rounded-full bg-emerald-400"/>
-                </div>
-                <span className="text-xs text-[var(--muted)]">components/aurora-hero.tsx</span>
-              </div>
-              <div className="preview-grid mt-3 rounded-2xl bg-[#f1eee5] p-5 dark:bg-black/20">
-                <ComponentPreview slug="activity-dashboard" compact/>
-              </div>
-              <div className="grid gap-3 pt-3 sm:grid-cols-3">
-                {[
-                  [Braces, 'TypeScript'],
-                  [Layers3, 'Composable'],
-                  [Zap, 'Copie rapide'],
-                ].map(([Icon, label]: any) => (
-                  <div key={label} className="rounded-xl border border-[var(--line)] bg-[var(--background)] px-3 py-3 text-xs font-medium text-[var(--muted)]">
-                    <Icon size={15} className="mb-2 text-[var(--accent)]"/>
-                    {label}
-                  </div>
-                ))}
-              </div>
-            </div>
+
+          <h1 className="mx-auto mt-7 max-w-5xl font-display text-5xl font-semibold leading-[.95] tracking-[-0.03em] sm:text-7xl md:text-8xl">
+            The living library <span className="mt-1 block font-accent font-bold tracking-normal text-[var(--accent)]">for PromptUI.</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-[var(--muted)] md:text-lg">
+            Parcours des composants React, teste leur rendu, copie le code ou colle le prompt dans ton agent IA. Chaque composant garde son propre style, clair ou sombre.
+          </p>
+
+          <form action="/library" className="mx-auto mt-8 flex max-w-2xl items-center gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-2 text-left shadow-2xl shadow-black/[.06]">
+            <Search size={19} className="ml-2 shrink-0 text-[var(--muted)]"/>
+            <input name="q" placeholder="Chercher dock, chart, tooltip, CTA..." className="h-11 min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-[var(--muted)]"/>
+            <button className="rounded-xl bg-[var(--foreground)] px-4 py-3 font-ui text-sm font-semibold text-[var(--background)] transition hover:-translate-y-0.5">Search</button>
+          </form>
+
+          <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link href="/library" className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-3 font-ui text-sm font-semibold text-[var(--background)] shadow-lg shadow-black/10 transition hover:-translate-y-0.5">
+              Browse components <ArrowRight size={16}/>
+            </Link>
+            <Link href="/components/liquid-metal-upgrade-cta" className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-5 py-3 font-ui text-sm font-semibold shadow-sm transition hover:-translate-y-0.5">
+              Voir un composant <MousePointer2 size={16}/>
+            </Link>
           </div>
-        </div>
-      </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            [Code2, 'Copier du code pret a l emploi', 'Des composants TypeScript et Tailwind propres, pensés pour de vrais projets.'],
-            [Bot, 'Garder l intention design', 'Chaque composant inclut un prompt pour recreer ou modifier le meme pattern avec IA.'],
-            [Zap, 'Passer vite de l idee au build', 'Apercus rapides, filtres utiles et copie en un clic gardent le flux leger.'],
-          ].map(([Icon, title, desc]: any) => (
-            <div key={title} className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 shadow-sm">
-              <div className="grid size-10 place-items-center rounded-lg bg-[var(--accent)]/10 text-[var(--accent)]"><Icon size={19}/></div>
-              <h2 className="mt-5 font-semibold">{title}</h2>
-              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-        <div className="rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-6 shadow-sm md:p-8">
-          <div className="flex items-center gap-2 text-sm font-semibold text-[var(--accent)]"><MousePointer2 size={16}/>Comment utiliser PromptUI</div>
-          <div className="mt-6 grid gap-4 md:grid-cols-4">
-            {[
-              ['1', 'Parcourir', 'Filtre par categorie : boards, tables, charts, dashboard.'],
-              ['2', 'Tester', 'Verifie mobile, tablette, desktop et theme sombre.'],
-              ['3', 'Copier', 'Recupere le code React/Tailwind ou le prompt IA.'],
-              ['4', 'Adapter', 'Colle dans ton projet puis ajuste le contenu et les props.'],
-            ].map(([step, title, text]) => (
-              <div key={step} className="rounded-2xl border border-[var(--line)] bg-[var(--background)] p-4">
-                <span className="grid size-8 place-items-center rounded-full bg-[var(--foreground)] text-xs font-semibold text-[var(--background)]">{step}</span>
-                <h3 className="mt-4 font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{text}</p>
+          <div className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+            {stats.map(([value, label]) => (
+              <div key={label} className="rounded-2xl border border-[var(--line)] bg-[var(--surface)]/80 p-4 shadow-sm backdrop-blur">
+                <p className="font-numeric text-3xl font-extrabold tracking-tight">{value}</p>
+                <p className="mt-1 font-mono text-[11px] uppercase tracking-wider text-[var(--muted)]">{label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="categories" className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <p className="text-sm font-semibold text-[var(--accent)]">Explorer par categorie</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight">Trouver le bon pattern.</h2>
-          </div>
-          <Link href="/library" className="hidden items-center gap-1 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--foreground)] sm:flex">Tout voir <ArrowRight size={15}/></Link>
-        </div>
-        <div className="mt-7 flex flex-wrap gap-2">
-          {categoryList.map((cat) => (
-            <Link href={`/library?category=${encodeURIComponent(cat)}`} key={cat} className="rounded-full border border-[var(--line)] bg-[var(--surface)] px-4 py-2.5 text-sm font-medium transition hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)]">{cat}</Link>
-          ))}
+      <section id="categories" className="scroll-mt-20 border-b border-[var(--line-soft)] bg-[var(--surface)]/35">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-2">
+          {launcherGroups.map((group) => {
+            const tags = group.tags.filter((tag) => categoryCount(tag) > 0);
+            const total = tags.reduce((sum, tag) => sum + categoryCount(tag), 0);
+            return (
+              <div key={group.title} className="reveal">
+                <div className="flex items-baseline gap-2">
+                  <p className="font-numeric text-3xl font-extrabold tracking-tight">{total}</p>
+                  <p className="font-hand text-lg font-bold text-[var(--accent)]">{group.title}</p>
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {tags.map((tag) => (
+                    <Link key={tag} href={categoryHref(tag)} className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--background)] px-4 py-2 font-pill text-sm font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]">
+                      {tag}
+                      <span className="font-mono text-[10px] opacity-60">{categoryCount(tag)}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <p className="text-sm font-semibold text-[var(--accent)]">Populaires</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight">Bons points de depart.</h2>
+        <div className="reveal grid gap-8 lg:grid-cols-[1.08fr_.92fr] lg:items-center">
+          <div className="preview-grid overflow-hidden rounded-[2rem] border border-[var(--line)] bg-[var(--surface-2)] p-5 shadow-2xl shadow-black/[.08]">
+            <div className="mb-4 flex items-center justify-between rounded-2xl border border-[var(--line)] bg-[var(--surface)]/80 px-4 py-3 backdrop-blur">
+              <span className="font-display text-sm font-semibold text-[var(--foreground)]">Liquid Metal Upgrade CTA</span>
+              <span className="rounded-full bg-[var(--foreground)] px-3 py-1 font-mono text-[11px] text-[var(--background)]">preview</span>
+            </div>
+            <ComponentPreview slug="liquid-metal-upgrade-cta"/>
           </div>
-          <Link href="/library" className="inline-flex items-center gap-1 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--foreground)]">Tout voir <ArrowRight size={15}/></Link>
+
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-3 py-1.5 font-mono text-xs font-medium text-[var(--muted)]">
+              <Copy size={13}/> Prompt + code
+            </div>
+            <h2 className="mt-5 font-display text-4xl font-semibold tracking-tight md:text-5xl">Copy the prompt. Paste it anywhere.</h2>
+            <p className="mt-4 text-sm leading-7 text-[var(--muted)]">
+              Le code sert a shipper maintenant. Le prompt sert a reconstruire le pattern dans Cursor, Codex, Claude, v0 ou Lovable sans perdre l’intention visuelle.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {[
+                [Code2, 'Code', 'React + Tailwind pret a adapter.'],
+                [Bot, 'Prompt', 'Instructions IA propres et reutilisables.'],
+                [Wand2, 'Preview', 'Teste avant de copier.'],
+              ].map(([Icon, title, text]: any) => (
+                <div key={title} className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4">
+                  <div className="grid size-9 place-items-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]"><Icon size={17}/></div>
+                  <h3 className="mt-4 font-display text-lg font-semibold">{title}</h3>
+                  <p className="mt-2 text-xs leading-5 text-[var(--muted)]">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="mt-7 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {featured.map((item) => <ComponentCard key={item.slug} item={item}/>)}
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+        <div className="reveal flex items-end justify-between gap-4">
+          <div>
+            <p className="font-hand text-lg font-bold text-[var(--accent)]">Nouveaux</p>
+            <h2 className="mt-1 font-display text-4xl font-semibold tracking-tight">Des blocs prets a copier.</h2>
+          </div>
+          <Link href="/library" className="hidden items-center gap-1 font-ui text-sm font-semibold text-[var(--muted)] transition hover:text-[var(--foreground)] sm:flex">Tout voir <ArrowRight size={15}/></Link>
+        </div>
+        <div className="reveal mt-7">
+          <RecentComponentSlider items={recentComponents}/>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <div className="reveal">
+          <p className="font-hand text-lg font-bold text-[var(--accent)]">Par usage</p>
+          <h2 className="mt-1 font-display text-4xl font-semibold tracking-tight">Que construis-tu ?</h2>
+        </div>
+        <div className="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {buildingGroups.map(({ icon: Icon, title, text, tags }) => (
+            <div key={title} className="reveal flex flex-col rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-6 transition hover:border-[var(--accent)]/40">
+              <div className="grid size-10 place-items-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]"><Icon size={18}/></div>
+              <h3 className="mt-5 font-display text-xl font-semibold">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{text}</p>
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {tags.filter((tag) => categoryCount(tag) > 0).map((tag) => (
+                  <Link key={tag} href={categoryHref(tag)} className="rounded-full border border-[var(--line)] px-3 py-1 font-pill text-xs font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]">
+                    {tag}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+        <div className="reveal flex items-end justify-between gap-4">
+          <div>
+            <p className="font-hand text-lg font-bold text-[var(--accent)]">Prompt-ready</p>
+            <h2 className="mt-1 font-display text-4xl font-semibold tracking-tight">Des interactions qui donnent envie de tester.</h2>
+          </div>
+          <Link href="/library" className="hidden items-center gap-1 font-ui text-sm font-semibold text-[var(--muted)] transition hover:text-[var(--foreground)] sm:flex">Tout voir <ArrowRight size={15}/></Link>
+        </div>
+        <div className="mt-7">
+          <ComponentGrid className="reveal grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+            {promptReadyComponents.map((item) => <ComponentCard key={item.slug} item={item}/>)}
+          </ComponentGrid>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6">
-        <div className="overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[#151512] px-6 py-12 text-white shadow-2xl shadow-black/10 md:px-12 md:py-16">
+        <div className="reveal overflow-hidden rounded-[2rem] border border-[var(--line)] bg-[var(--inverse)] p-8 text-[var(--on-inverse)] shadow-2xl shadow-black/10 md:p-12">
           <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
             <div>
-              <p className="text-sm text-teal-200">{components.length} composants inclus dans le MVP</p>
-              <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">Previsualiser. Copier. Prompter. Livrer.</h2>
-              <p className="mt-4 max-w-xl text-sm leading-6 text-zinc-400">Pas de compte, pas de paiement, pas de labyrinthe de configuration. PromptUI reste simple pour valider l idee avec des developpeurs.</p>
+              <p className="font-hand text-lg font-bold text-[var(--inverse-accent)]">Built by humans. Ready for agents.</p>
+              <h2 className="mt-2 max-w-2xl font-display text-4xl font-semibold tracking-tight">Une bibliotheque, plusieurs styles, zero dependance visuelle imposee.</h2>
+              <p className="mt-4 max-w-xl text-sm leading-6 text-[var(--inverse-muted)]">PromptUI est un registry : tu copies le composant dans ton projet, tu le possedes, tu l’adaptes.</p>
             </div>
-            <Link href="/library" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:-translate-y-0.5">Explorer PromptUI <ArrowRight size={16}/></Link>
+            <Link href="/library" className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--on-inverse)] px-5 py-3 font-ui text-sm font-semibold text-[var(--inverse)] transition hover:-translate-y-0.5">
+              Browse components <ArrowRight size={16}/>
+            </Link>
           </div>
         </div>
       </section>

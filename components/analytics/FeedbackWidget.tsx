@@ -21,7 +21,7 @@ export function FeedbackWidget() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-[60]">
+    <div className="fixed bottom-20 right-4 z-[60]">
       {open && (
         <div className="mb-3 w-[min(360px,calc(100vw-2rem))] rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4 shadow-2xl shadow-black/15">
           {sent ? (

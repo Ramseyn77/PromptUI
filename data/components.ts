@@ -1,4 +1,5 @@
 import type { LibraryComponent } from '@/types/component';
+import { registryEntries } from './registry-entries';
 
 const makePrompt = (name: string, category: string, style: string, description: string) =>
   `Create a responsive ${category.toLowerCase()} component named "${name}" with React, TypeScript and Tailwind CSS. Style: ${style.toLowerCase()}. ${description} Keep it accessible, copy-ready and easy to customize.`;
@@ -1072,7 +1073,201 @@ export function RadialTooltip(){return <button className="group relative grid si
     description: 'Tooltip doux avec relief neumorphism.', technologies: ['React','TypeScript','Tailwind'],
     code: `export function NeumorphicTooltip(){return <div className="grid min-h-52 place-items-center bg-[#eef0f4]"><button className="group relative rounded-[2rem] bg-[#eef0f4] px-6 py-4 text-sm font-black text-zinc-800 shadow-[10px_10px_24px_#c9ccd3,-10px_-10px_24px_#ffffff] outline-none">Soft hover<span role="tooltip" className="pointer-events-none absolute bottom-[calc(100%+.85rem)] left-1/2 w-52 -translate-x-1/2 translate-y-2 rounded-[1.35rem] bg-[#eef0f4] px-4 py-3 text-xs font-bold text-zinc-600 opacity-0 shadow-[8px_8px_18px_#c9ccd3,-8px_-8px_18px_#ffffff] transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">Neumorphic helper text.</span></button></div>}`,
     prompt: ''
-  }
+  },
+  {
+    slug: 'community-line-chart', name: 'Community Line Chart', category: 'Charts', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Line chart anime inspire des composants data viz de 21st.', technologies: ['React','TypeScript','Tailwind','SVG'],
+    code: `export function CommunityLineChart(){return <svg viewBox="0 0 360 210" className="h-64 w-full overflow-visible rounded-3xl border bg-white p-4 shadow-sm dark:bg-zinc-950"><style>{'@keyframes drawLine21{from{stroke-dashoffset:480}to{stroke-dashoffset:0}}'}</style><path d="M38 28V168H326" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-800"/><path d="M38 128 C86 96 112 144 154 92 C198 38 230 120 326 54" fill="none" stroke="#14b8a6" strokeWidth="6" strokeLinecap="round" strokeDasharray="480" style={{animation:'drawLine21 1.2s ease-out both'}}/><path d="M38 128 C86 96 112 144 154 92 C198 38 230 120 326 54 L326 168 L38 168Z" fill="rgba(20,184,166,.12)"/></svg>}`,
+    prompt: ''
+  },
+  {
+    slug: 'blog-grid-section', name: 'Blog Grid Section', category: 'Cards', style: 'Editorial', recent: true, responsive: true,
+    description: 'Grille de cartes editorial responsive inspiree des sections blog.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function BlogGridSection(){return <div className="grid gap-3 md:grid-cols-3">{['Launch notes','Design ops','Growth loop'].map((title,index)=><article key={title} className={(index===0?'md:col-span-2 ':'')+'rounded-3xl border bg-white p-4 shadow-sm dark:bg-zinc-950'}><div className="h-28 rounded-2xl bg-gradient-to-br from-teal-200 via-sky-200 to-violet-200"/><p className="mt-4 text-xs font-black uppercase text-teal-600">Article</p><h3 className="mt-2 text-xl font-black">{title}</h3><p className="mt-2 text-xs leading-5 text-zinc-500">A polished editorial card for component-driven content.</p></article>)}</div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'pixel-highlight', name: 'Pixel Highlight', category: 'Text', style: 'Editorial', recent: true, responsive: true,
+    description: 'Texte hero avec surlignage pixel net et ombre dure.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function PixelHighlight(){return <h3 className="max-w-xl text-center text-4xl font-black leading-tight">Build <span className="box-decoration-clone bg-yellow-300 px-2 text-zinc-950 shadow-[6px_6px_0_#18181b]">pixel sharp</span> interfaces faster.</h3>}`,
+    prompt: ''
+  },
+  {
+    slug: 'animated-wave-footer', name: 'Animated Wave Footer', category: 'Footer', style: 'Dark', featured: true, recent: true, responsive: true,
+    description: 'Footer sombre avec vague animee en arriere-plan.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function AnimatedWaveFooter(){return <footer className="relative overflow-hidden rounded-3xl bg-zinc-950 p-7 text-white"><style>{'@keyframes waveMove{to{transform:translateX(-50%)}}'}</style><div className="relative z-10"><strong>PromptUI</strong><p className="mt-2 max-w-sm text-xs text-zinc-400">Components, prompts and previews.</p></div><div className="absolute bottom-0 left-0 h-20 w-[200%] bg-[radial-gradient(60px_35px_at_60px_0px,rgba(20,184,166,.55),transparent_70%)] bg-size-[120px_70px]" style={{animation:'waveMove 6s linear infinite'}}/></footer>}`,
+    prompt: ''
+  },
+  {
+    slug: 'pipeline-sankey-chart', name: 'Pipeline Sankey Chart', category: 'Charts', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Sankey compact pour visualiser des flux de pipeline.', technologies: ['React','TypeScript','Tailwind','SVG'],
+    code: `export function PipelineSankeyChart(){return <svg viewBox="0 0 460 220" className="h-64 w-full rounded-3xl border bg-white p-4 shadow-sm dark:bg-zinc-950"><path d="M70 70 C170 70 180 38 290 38 C340 38 360 58 404 58" fill="none" stroke="#14b8a6" strokeWidth="22" strokeLinecap="round" opacity=".8"/><path d="M70 112 C178 112 196 112 296 112 C346 112 358 104 404 94" fill="none" stroke="#38bdf8" strokeWidth="16" strokeLinecap="round" opacity=".75"/><path d="M70 150 C180 150 196 178 296 178 C344 178 360 150 404 136" fill="none" stroke="#8b5cf6" strokeWidth="12" strokeLinecap="round" opacity=".72"/></svg>}`,
+    prompt: ''
+  },
+  {
+    slug: 'ai-chat-attachments', name: 'AI Chat With Attachments', category: 'AI Chat', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Interface de chat IA avec message, reponse et fichier attache.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function AiChatAttachments(){return <section className="max-w-md rounded-3xl border bg-white p-4 shadow-sm dark:bg-zinc-950"><div className="space-y-3"><div className="max-w-[78%] rounded-2xl bg-zinc-100 p-3 text-sm dark:bg-zinc-900">Analyse ce design.</div><div className="ml-auto max-w-[82%] rounded-2xl bg-teal-600 p-3 text-sm text-white">Ajoute aussi les pieces jointes.</div></div><div className="mt-4 flex items-center gap-2 rounded-2xl border p-2"><span className="rounded-xl bg-zinc-100 px-3 py-2 text-xs font-bold dark:bg-zinc-900">brief.pdf</span><input aria-label="Message" placeholder="Ask AI..." className="min-w-0 flex-1 bg-transparent text-sm outline-none"/></div></section>}`,
+    prompt: ''
+  },
+  {
+    slug: 'metal-prompt-bar', name: 'Metal Prompt Bar', category: 'Forms', style: 'Dark', featured: true, recent: true, responsive: true,
+    description: 'Barre de prompt avec effet metal et action rapide.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `import { Code2 } from 'lucide-react';
+
+export function MetalPromptBar(){return <div className="max-w-xl rounded-3xl bg-gradient-to-b from-zinc-200 via-zinc-100 to-zinc-400 p-px shadow-2xl dark:from-zinc-700 dark:via-zinc-900 dark:to-zinc-600"><div className="flex items-center gap-3 rounded-[1.45rem] bg-white/80 p-3 backdrop-blur dark:bg-zinc-950/80"><Code2 size={18}/><input aria-label="Prompt" placeholder="Generate a pricing section..." className="min-w-0 flex-1 bg-transparent text-sm outline-none"/><button className="rounded-2xl bg-zinc-950 px-4 py-2 text-xs font-black text-white dark:bg-white dark:text-zinc-950">Run</button></div></div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'glyph-matrix', name: 'Glyph Matrix', category: 'Shaders', style: 'Dark', featured: true, recent: true, responsive: true,
+    description: 'Matrice de glyphes animes pour fonds shader-like.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function GlyphMatrix(){return <div className="grid max-w-md grid-cols-8 gap-2 rounded-3xl border bg-zinc-950 p-5 text-teal-300 shadow-2xl"><style>{'@keyframes glyphFade{0%,100%{opacity:.28}50%{opacity:1}}'}</style>{Array.from({length:48}).map((_,index)=><span key={index} className="grid aspect-square place-items-center rounded-lg bg-white/5 font-mono text-xs" style={{animation:'glyphFade '+(900+index*20)+'ms '+(index*30)+'ms ease-in-out infinite'}}>{['+','x','/','<>','{ }','01'][index%6]}</span>)}</div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'scroll-media-expansion-hero', name: 'Scroll Media Expansion Hero', category: 'Hero', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Hero avec panneau media expansif inspire des interactions scroll.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function ScrollMediaExpansionHero(){return <section className="overflow-hidden rounded-3xl border bg-white p-5 dark:bg-zinc-950"><div className="grid gap-5 md:grid-cols-[.8fr_1.2fr] md:items-center"><div><p className="text-xs font-black uppercase text-teal-600">Scroll media</p><h3 className="mt-2 text-3xl font-black">Expand the story as users move.</h3></div><div className="group h-56 rounded-3xl bg-gradient-to-br from-zinc-950 to-teal-700 p-4 transition duration-500 hover:scale-[1.03]"><div className="h-full rounded-2xl border border-white/20 bg-white/10 shadow-2xl backdrop-blur"/></div></div></section>}`,
+    prompt: ''
+  },
+  {
+    slug: 'container-scroll-animation', name: 'Container Scroll Animation', category: 'Hero', style: 'SaaS', recent: true, responsive: true,
+    description: 'Mockup incline qui se redresse au hover comme une interaction scroll.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function ContainerScrollAnimation(){return <div className="max-w-lg perspective-[900px] rounded-3xl border bg-zinc-50 p-6 dark:bg-zinc-950"><div className="mx-auto max-w-sm origin-bottom rotate-x-12 rounded-3xl border bg-white p-4 shadow-2xl transition hover:rotate-x-0 dark:bg-zinc-900"><div className="h-3 w-24 rounded bg-teal-500"/><div className="mt-5 grid grid-cols-2 gap-3"><span className="h-24 rounded-2xl bg-zinc-100 dark:bg-zinc-800"/><span className="h-24 rounded-2xl bg-violet-200 dark:bg-violet-500/20"/></div></div></div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'liquid-glass-button', name: 'Liquid Glass Button', category: 'Buttons', style: 'Glass', featured: true, recent: true, responsive: true,
+    description: 'Bouton glass avec reflet liquide au hover.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function LiquidGlassButton(){return <button className="relative overflow-hidden rounded-full border border-white/30 bg-white/40 px-7 py-4 text-sm font-black shadow-2xl backdrop-blur transition hover:scale-105 dark:bg-white/10"><span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/50 to-transparent transition duration-700 hover:translate-x-full"/>Liquid Glass</button>}`,
+    prompt: ''
+  },
+  {
+    slug: 'testimonials-columns', name: 'Testimonials Columns', category: 'Testimonials', style: 'Minimal', featured: true, recent: true, responsive: true,
+    description: 'Colonnes de temoignages decalees pour preuve sociale.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function TestimonialsColumns(){return <div className="grid gap-3 md:grid-cols-3">{['Fast to ship','Beautiful defaults','Easy to adapt'].map((quote,index)=><figure key={quote} className={(index===1?'md:translate-y-6 ':'')+'rounded-3xl border bg-white p-5 shadow-sm dark:bg-zinc-950'}><blockquote className="text-sm font-semibold leading-6">{quote}</blockquote><figcaption className="mt-8 text-xs text-zinc-500">Builder #{index+1}</figcaption></figure>)}</div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'shimmer-text', name: 'Shimmer Text', category: 'Text', style: 'Dark', recent: true, responsive: true,
+    description: 'Texte anime avec balayage lumineux continu.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function ShimmerText(){return <div className="grid min-h-44 place-items-center bg-zinc-950"><style>{'@keyframes shimmer21{to{background-position:200% center}}'}</style><h3 className="bg-[linear-gradient(90deg,#71717a,#fff,#71717a)] bg-size-[200%_100%] bg-clip-text text-4xl font-black text-transparent" style={{animation:'shimmer21 2s linear infinite'}}>Shimmer Text</h3></div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'responsive-banner-cta', name: 'Responsive Banner CTA', category: 'CTA', style: 'Dark', featured: true, recent: true, responsive: true,
+    description: 'Banniere CTA responsive avec double action et contraste fort.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function ResponsiveBannerCta(){return <section className="overflow-hidden rounded-3xl border bg-zinc-950 p-6 text-white shadow-2xl"><div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-center"><div><p className="text-xs font-black uppercase text-teal-300">Launch faster</p><h3 className="mt-2 max-w-xl text-3xl font-black">Ship your next landing page with copy-ready blocks.</h3></div><div className="flex flex-wrap gap-2"><button className="rounded-2xl bg-white px-4 py-3 text-sm font-black text-zinc-950">Start now</button><button className="rounded-2xl border border-white/15 px-4 py-3 text-sm font-black">Preview</button></div></div></section>}`,
+    prompt: ''
+  },
+  {
+    slug: 'image-fan-cta', name: 'Image Fan CTA', category: 'CTA', style: 'Editorial', featured: true, recent: true, responsive: true,
+    description: 'CTA avec eventail de cartes visuelles pour hero ou galerie.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function ImageFanCta(){return <section className="grid w-full max-w-3xl gap-6 rounded-3xl border bg-white p-6 shadow-sm dark:bg-zinc-950 md:grid-cols-2 md:items-center"><div><p className="text-xs font-black uppercase text-teal-600">Gallery CTA</p><h3 className="mt-2 text-3xl font-black">Turn visuals into signups.</h3><button className="mt-5 rounded-2xl bg-zinc-950 px-5 py-3 text-sm font-black text-white dark:bg-white dark:text-zinc-950">Open gallery</button></div><div className="relative h-48">{['from-teal-300 to-sky-400','from-violet-300 to-fuchsia-400','from-amber-200 to-rose-300'].map((color,index)=><div key={color} className={'absolute left-1/2 top-6 h-36 w-28 -translate-x-1/2 rounded-3xl bg-gradient-to-br '+color+' shadow-xl transition hover:-translate-y-2'} style={{transform:'translateX(-50%) rotate('+((index-1)*12)+'deg) translateX('+((index-1)*54)+'px)'}}/>)}</div></section>}`,
+    prompt: ''
+  },
+  {
+    slug: 'marquee-strip-cta', name: 'Marquee Strip CTA', category: 'CTA', style: 'Minimal', recent: true, responsive: true,
+    description: 'CTA avec bande marquee animee pour lancement ou annonce.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function MarqueeStripCta(){return <section className="overflow-hidden rounded-3xl border bg-white py-5 shadow-sm dark:bg-zinc-950"><style>{'@keyframes ctaMarquee{to{transform:translateX(-50%)}}'}</style><div className="flex w-[200%] gap-3 whitespace-nowrap" style={{animation:'ctaMarquee 10s linear infinite'}}>{Array.from({length:10}).map((_,index)=><span key={index} className="rounded-full bg-zinc-950 px-5 py-3 text-sm font-black text-white dark:bg-white dark:text-zinc-950">Copy. Adapt. Ship.</span>)}</div><div className="mx-auto mt-6 max-w-xl px-5 text-center"><h3 className="text-3xl font-black">A CTA that keeps moving.</h3><p className="mt-2 text-sm text-zinc-500">Great for announcements, launches and waitlists.</p></div></section>}`,
+    prompt: ''
+  },
+  {
+    slug: 'dithered-shader-cta', name: 'Dithered Shader CTA', category: 'CTA', style: 'Dark', featured: true, recent: true, responsive: true,
+    description: 'CTA sombre avec texture dithered et halo shader.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function DitheredShaderCta(){return <section className="relative overflow-hidden rounded-3xl bg-zinc-950 p-8 text-white shadow-2xl"><div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,.35)_1px,transparent_0)] bg-size-[10px_10px]"/><div className="absolute -right-20 -top-20 size-72 rounded-full bg-teal-400/30 blur-3xl"/><div className="relative max-w-xl"><p className="text-xs font-black uppercase text-teal-200">Shader CTA</p><h3 className="mt-3 text-4xl font-black">Make the background do the selling.</h3><button className="mt-6 rounded-2xl bg-white px-5 py-3 text-sm font-black text-zinc-950">Explore shader</button></div></section>}`,
+    prompt: ''
+  },
+  {
+    slug: 'countdown-cta-card', name: 'Countdown CTA Card', category: 'CTA', style: 'SaaS', recent: true, responsive: true,
+    description: 'Carte CTA avec compte a rebours pour offre limitee.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function CountdownCtaCard(){return <section className="max-w-lg rounded-3xl border bg-white p-6 shadow-sm dark:bg-zinc-950"><div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"><div><p className="text-xs font-black uppercase text-rose-500">Ends soon</p><h3 className="mt-2 text-3xl font-black">Early access closes tonight.</h3></div><div className="grid grid-cols-3 gap-2 text-center">{[['08','hrs'],['24','min'],['16','sec']].map(([value,label])=><span key={label} className="rounded-2xl bg-zinc-100 p-3 dark:bg-zinc-900"><b className="block text-2xl">{value}</b><small className="text-[10px] uppercase text-zinc-500">{label}</small></span>)}</div></div><button className="mt-5 w-full rounded-2xl bg-zinc-950 py-3 text-sm font-black text-white dark:bg-white dark:text-zinc-950">Join waitlist</button></section>}`,
+    prompt: ''
+  },
+  {
+    slug: 'floating-gallery-cta', name: 'Floating Gallery CTA', category: 'CTA', style: 'Editorial', featured: true, recent: true, responsive: true,
+    description: 'Section CTA avec cartes flottantes en arriere-plan.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function FloatingGalleryCta(){return <section className="relative min-h-80 overflow-hidden rounded-3xl border bg-[#faf9f6] p-6 dark:bg-zinc-950"><div className="relative z-10 max-w-md"><p className="text-xs font-black uppercase text-teal-600">Floating gallery</p><h3 className="mt-2 text-4xl font-black">Collect every product moment in one place.</h3><button className="mt-5 rounded-2xl bg-zinc-950 px-5 py-3 text-sm font-black text-white dark:bg-white dark:text-zinc-950">Create board</button></div>{[0,1,2,3].map((item)=><span key={item} className="absolute h-28 w-24 rounded-3xl border bg-white shadow-xl dark:bg-zinc-900" style={{right:(10+item*14)+'%',top:(28+(item%2)*28)+'px',transform:'rotate('+((item-1.5)*8)+'deg)'}}/>)}</section>}`,
+    prompt: ''
+  },
+  {
+    slug: 'newsletter-band-cta', name: 'Newsletter Band CTA', category: 'CTA', style: 'Dark', recent: true, responsive: true,
+    description: 'Bande newsletter compacte avec champ email et CTA clair.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function NewsletterBandCta(){return <section className="rounded-3xl border bg-white p-4 shadow-sm dark:bg-zinc-950"><div className="grid gap-3 rounded-2xl bg-zinc-950 p-5 text-white md:grid-cols-[1fr_auto] md:items-center"><div><h3 className="text-2xl font-black">Get the next component drop.</h3><p className="mt-1 text-sm text-zinc-400">One polished UI pattern every week.</p></div><div className="flex gap-2"><input aria-label="Email" placeholder="you@site.com" className="min-w-0 rounded-xl border border-white/10 bg-white/10 px-3 py-3 text-sm outline-none"/><button className="rounded-xl bg-white px-4 py-3 text-sm font-black text-zinc-950">Join</button></div></div></section>}`,
+    prompt: ''
+  },
+  {
+    slug: 'liquid-metal-upgrade-cta', name: 'Liquid Metal Upgrade CTA', category: 'CTA', style: 'Dark', featured: true, recent: true, responsive: true,
+    description: 'CTA upgrade avec bordure liquid metal animee.', technologies: ['React','TypeScript','Tailwind'],
+    code: `export function LiquidMetalUpgradeCta(){return <section className="w-full max-w-md rounded-3xl bg-[linear-gradient(120deg,#d4d4d8,#18181b,#f4f4f5,#0f766e)] p-px shadow-2xl" style={{backgroundSize:'240% 240%',animation:'metalFlow 4s ease infinite'}}><style>{'@keyframes metalFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}'}</style><div className="rounded-[1.45rem] bg-zinc-950 p-6 text-white"><p className="text-xs font-black uppercase text-teal-200">Upgrade</p><h3 className="mt-2 text-3xl font-black">Unlock liquid metal components.</h3><button className="mt-6 w-full rounded-2xl bg-white py-3 text-sm font-black text-zinc-950">Go Pro</button></div></section>}`,
+    prompt: ''
+  },
+  {
+    slug: 'macos-dock', name: 'macOS Dock', category: 'Menu', style: 'Glass', featured: true, recent: true, responsive: true,
+    description: 'Dock flottant type macOS avec icones qui grossissent au hover.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `import { FolderKanban, Home, MessageSquare, Search, Settings } from 'lucide-react';
+
+export function MacosDock(){const icons=[Home,Search,FolderKanban,MessageSquare,Settings];return <nav aria-label="Dock" className="flex items-end gap-2 rounded-3xl border bg-white/70 p-3 shadow-2xl backdrop-blur dark:bg-zinc-950/70">{icons.map((Icon,index)=><button key={index} aria-label={'App '+(index+1)} className="grid size-12 place-items-center rounded-2xl bg-zinc-950 text-white shadow-lg transition hover:-translate-y-3 hover:scale-125 dark:bg-white dark:text-zinc-950"><Icon size={18}/></button>)}</nav>}`,
+    prompt: ''
+  },
+  {
+    slug: 'magnetic-dock', name: 'Magnetic Dock', category: 'Menu', style: 'Minimal', featured: true, recent: true, responsive: true,
+    description: 'Dock horizontal avec onglet actif et effet magnetique au hover.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function MagneticDock(){const [active,setActive]=useState('Build');return <nav className="flex gap-2 rounded-full border bg-white p-2 shadow-sm dark:bg-zinc-950">{['Plan','Build','Ship','Stats'].map(item=><button key={item} onClick={()=>setActive(item)} className={active===item?'rounded-full bg-teal-500 px-4 py-3 text-sm font-black text-white shadow-lg shadow-teal-500/25':'rounded-full px-4 py-3 text-sm font-black text-zinc-500 transition hover:-translate-y-1 hover:bg-zinc-100 dark:hover:bg-zinc-900'}>{item}</button>)}</nav>}`,
+    prompt: ''
+  },
+  {
+    slug: 'dock-tabs', name: 'Dock Tabs', category: 'Menu', style: 'SaaS', recent: true, responsive: true,
+    description: 'Dock segmente pour changer de vue rapidement.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function DockTabs(){const [active,setActive]=useState('Home');return <div className="grid max-w-md grid-cols-4 rounded-3xl border bg-zinc-100 p-1.5 dark:bg-zinc-900">{['Home','Code','AI','Ship'].map(item=><button key={item} onClick={()=>setActive(item)} className={active===item?'rounded-2xl bg-white px-3 py-3 text-xs font-black shadow-sm dark:bg-zinc-950':'rounded-2xl px-3 py-3 text-xs font-black text-zinc-500 transition'}>{item}</button>)}</div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'tilted-dock', name: 'Tilted Dock', category: 'Menu', style: 'Dark', recent: true, responsive: true,
+    description: 'Dock incline avec boutons redresses et hover dynamique.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `import { Bell, Code2, LayoutGrid, Package } from 'lucide-react';
+
+export function TiltedDock(){const icons=[LayoutGrid,Code2,Package,Bell];return <nav className="flex rotate-[-6deg] gap-3 rounded-3xl border bg-zinc-950 p-3 shadow-2xl">{icons.map((Icon,index)=><button key={index} className="grid size-14 rotate-[6deg] place-items-center rounded-2xl bg-white/10 text-white transition hover:-translate-y-2 hover:rotate-0 hover:bg-teal-500"><Icon size={20}/></button>)}</nav>}`,
+    prompt: ''
+  },
+  {
+    slug: 'expanding-search-dock', name: 'Expanding Search Dock', category: 'Menu', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Dock de recherche qui sagrandit au clic.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `import { useState } from 'react';
+import { Plus, Search } from 'lucide-react';
+
+export function ExpandingSearchDock(){const [open,setOpen]=useState(false);return <div className={(open?'w-80':'w-52')+' flex items-center gap-2 rounded-full border bg-white p-2 shadow-xl transition-all dark:bg-zinc-950'}><button onClick={()=>setOpen(!open)} className="grid size-11 place-items-center rounded-full bg-zinc-950 text-white dark:bg-white dark:text-zinc-950"><Search size={18}/></button><input aria-label="Recherche" placeholder="Search components..." className={(open?'opacity-100':'opacity-0')+' min-w-0 flex-1 bg-transparent text-sm outline-none transition'}/><button className="grid size-11 place-items-center rounded-full text-zinc-500"><Plus size={18}/></button></div>}`,
+    prompt: ''
+  },
+  {
+    slug: 'gooey-dock', name: 'Gooey Dock', category: 'Menu', style: 'Dark', recent: true, responsive: true,
+    description: 'Dock sombre avec pastilles arrondies et effet fluide au hover.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `import { Heart, Home, MoreHorizontal, Share2 } from 'lucide-react';
+
+export function GooeyDock(){const icons=[Home,Heart,Share2,MoreHorizontal];return <nav className="flex gap-2 rounded-full bg-white/10 p-2">{icons.map((Icon,index)=><button key={index} className="grid size-13 place-items-center rounded-full bg-teal-400 text-zinc-950 transition duration-300 hover:mx-3 hover:scale-110"><Icon size={18}/></button>)}</nav>}`,
+    prompt: ''
+  },
+  {
+    slug: 'agent-dock', name: 'Agent Dock', category: 'Menu', style: 'SaaS', featured: true, recent: true, responsive: true,
+    description: 'Dock compact pour agent IA avec actions rapides.', technologies: ['React','TypeScript','Tailwind','Lucide'],
+    code: `import { Code2, MessageSquare, Settings } from 'lucide-react';
+
+export function AgentDock(){const icons=[Code2,MessageSquare,Settings];return <nav className="max-w-md rounded-3xl border bg-white p-3 shadow-sm dark:bg-zinc-950"><div className="flex items-center justify-between gap-3"><div className="flex items-center gap-2"><span className="grid size-10 place-items-center rounded-2xl bg-teal-500 text-sm font-black text-white">AI</span><div><p className="text-sm font-black">Agent dock</p><p className="text-xs text-zinc-500">Ready to assist</p></div></div><div className="flex gap-1">{icons.map((Icon,index)=><button key={index} className="grid size-10 place-items-center rounded-xl border transition hover:bg-zinc-100 dark:hover:bg-zinc-900"><Icon size={16}/></button>)}</div></div></nav>}`,
+    prompt: ''
+  },
+  {
+    slug: 'message-dock', name: 'Message Dock', category: 'Menu', style: 'Minimal', recent: true, responsive: true,
+    description: 'Dock de messagerie avec onglet actif et badge dalerte.', technologies: ['React','TypeScript','Tailwind'],
+    code: `import { useState } from 'react';
+
+export function MessageDock(){const [active,setActive]=useState('Inbox');return <nav className="flex max-w-sm items-center gap-2 rounded-3xl border bg-white p-2 shadow-xl dark:bg-zinc-950">{['Inbox','Team','Alerts'].map((item,index)=><button key={item} onClick={()=>setActive(item)} className={(active===item?'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950':'text-zinc-500')+' relative flex-1 rounded-2xl px-3 py-3 text-xs font-black transition'}>{item}{index===2&&<span className="absolute right-2 top-2 size-2 rounded-full bg-rose-500"/>}</button>)}</nav>}`,
+    prompt: ''
+  },
+  ...registryEntries,
 ].map((item) => ({
   ...item,
   responsiveModes: ['Mobile', 'Tablette', 'Desktop'],
@@ -1080,7 +1275,7 @@ export function RadialTooltip(){return <button className="group relative grid si
   prompt: item.prompt || makePrompt(item.name, item.category, item.style, item.description),
 })) as LibraryComponent[];
 
-export const categories = ['All','Hero','Navbar','Cards','Buttons','Checkboxes','Forms','Pricing','Testimonials','Dashboard','Tables','Boards','Charts','Footer','CTA','Loader','Menu','Toggle','Tooltips','Sidebar'] as const;
+export const categories = ['All','Hero','Navbar','Cards','Buttons','Checkboxes','AI Chat','Forms','Pricing','Testimonials','Dashboard','Tables','Boards','Charts','Shaders','Footer','CTA','Loader','Menu','Toggle','Tooltips','Text','Sidebar'] as const;
 export const styles = ['All','Minimal','Gradient','Glass','Dark','Editorial','SaaS'] as const;
 
 export function getComponentBySlug(slug: string) {
