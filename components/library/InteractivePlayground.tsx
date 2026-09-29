@@ -68,6 +68,11 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
     setLiveCode(captureSourceHtml());
   }, [slug]);
 
+  // On a phone, start with the phone frame instead of a heavily shrunk desktop.
+  useEffect(() => {
+    if (window.matchMedia('(max-width: 767px)').matches) setSize('mobile');
+  }, []);
+
   const requestedScale = zoom / 100;
   const availableScale = stageSize.width && stageSize.height
     ? Math.min(stageSize.width / viewport.frameWidth, stageSize.height / viewport.frameHeight)
@@ -102,14 +107,30 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
         <ComponentPreview slug={slug}/>
       </div>
 
-      <div className={`grid min-w-0 max-w-full gap-4 ${mode !== 'original' ? 'lg:grid-cols-[minmax(0,1fr)_320px]' : ''}`}>
-        <div className={`relative grid min-h-[640px] min-w-0 max-w-full grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-[1.75rem] border border-[var(--line)] p-4 ${backgrounds[background]}`}>
-          <div className="flex min-w-0 flex-wrap items-center justify-between gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)]/90 px-4 py-3 text-xs font-medium text-[var(--muted)] shadow-sm">
-            <span className="truncate">{name ?? slug}</span>
-            <span>{mode === 'code' ? 'Code live' : mode === 'visual' ? 'Edition visuelle' : 'Original'} / {viewport.label} / {viewport.width}x{viewport.height} / {themes[theme]} / {Math.round(renderedScale * 100)}%</span>
-          </div>
+      <PlaygroundToolbar
+        mode={mode}
+        onModeChange={handleModeChange}
+        sizeOptions={sizeOptions}
+        size={size}
+        onSizeChange={(key) => setSize(key as keyof typeof sizes)}
+        zoom={zoom}
+        onZoomChange={setZoom}
+        padding={padding}
+        onPaddingChange={setPadding}
+        background={background}
+        onBackgroundChange={handleBackgroundChange}
+        theme={theme}
+        onThemeChange={setTheme}
+        showBounds={showBounds}
+        onToggleBounds={() => setShowBounds((value) => !value)}
+        onReset={reset}
+        status={`${viewport.label} · ${viewport.width}×${viewport.height} · ${Math.round(renderedScale * 100)}%`}
+      />
 
-          <div ref={stageRef} className="flex min-h-0 min-w-0 items-center justify-center overflow-hidden pb-16">
+      {/* The workspace fills the rest of the screen; editing splits it evenly with the editor panel. */}
+      <div className={`mt-3 grid min-w-0 max-w-full gap-3 ${mode !== 'original' ? 'lg:grid-cols-2' : ''}`}>
+        <div className={`relative flex h-[min(72vh,760px)] min-h-[420px] min-w-0 max-w-full overflow-hidden rounded-[1.75rem] border border-[var(--line)] p-3 lg:h-[calc(100dvh-15rem)] ${backgrounds[background]}`}>
+          <div ref={stageRef} className="flex min-h-0 min-w-0 flex-1 items-center justify-center overflow-hidden">
             <EmulatedComponentPreview
               key={`${slug}-${mode}`}
               ref={previewRef}
@@ -126,29 +147,10 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
               onSelectElement={setSelectedElement}
             />
           </div>
-
-          <PlaygroundToolbar
-            mode={mode}
-            onModeChange={handleModeChange}
-            sizeOptions={sizeOptions}
-            size={size}
-            onSizeChange={(key) => setSize(key as keyof typeof sizes)}
-            zoom={zoom}
-            onZoomChange={setZoom}
-            padding={padding}
-            onPaddingChange={setPadding}
-            background={background}
-            onBackgroundChange={handleBackgroundChange}
-            theme={theme}
-            onThemeChange={setTheme}
-            showBounds={showBounds}
-            onToggleBounds={() => setShowBounds((value) => !value)}
-            onReset={reset}
-          />
         </div>
 
         {mode === 'code' && (
-          <div className="flex min-h-[640px] min-w-0 flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-[#10100e] text-zinc-200 shadow-2xl shadow-black/10">
+          <div data-lenis-prevent className="flex h-[min(72vh,760px)] min-h-[420px] min-w-0 flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#111113] text-zinc-200 lg:h-[calc(100dvh-15rem)]">
             <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
               <div className="flex items-center gap-2 text-sm font-semibold"><Code2 size={16}/>Code live HTML</div>
               <button onClick={() => setLiveCode(captureSourceHtml())} className="rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium text-zinc-300 transition hover:bg-white/10">Reset code</button>

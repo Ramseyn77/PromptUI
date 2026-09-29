@@ -1,8 +1,8 @@
 'use client';
 import { useLayoutEffect, useRef, useState, type CSSProperties, type MouseEvent, type ReactNode } from 'react';
 
-// Widest layout we allow (box width / MIN_LAYOUT_SCALE) when reflowing a tall component.
-const MIN_LAYOUT_SCALE = 0.35;
+// Widest layout we allow (box width / MIN_LAYOUT_SCALE), for wide or tall components.
+const MIN_LAYOUT_SCALE = 0.28;
 // Below this the preview becomes unreadable: show the top at this scale and pan on hover instead.
 const MIN_READABLE_SCALE = 0.55;
 
@@ -40,31 +40,37 @@ export function FitPreview({ children }: { children: ReactNode }) {
         return Math.max(content.offsetHeight, content.scrollHeight);
       };
 
-      // Height depends on width, so pick a layout width in a few passes (it can oscillate)...
-      let layoutScale = 1;
-      for (let pass = 0; pass < 4; pass += 1) {
-        const next = Math.max(MIN_LAYOUT_SCALE, Math.min(1, boxHeight / heightAt(boxWidth / layoutScale)));
-        const settled = Math.abs(next - layoutScale) < 0.01;
-        layoutScale = next;
-        if (settled) break;
-      }
-
       // Fixed-width components (docks, toolbars) overflow sideways: give them the room they need.
       const widen = (width: number) => {
         content.style.width = `${width}px`;
         return Math.max(width, content.scrollWidth);
       };
+      const maxWidth = boxWidth / MIN_LAYOUT_SCALE;
 
-      // ...then measure that width once more and scale to fit both dimensions, so nothing is ever cut.
-      let width = widen(boxWidth / layoutScale);
+      // Start from the component's natural (max-content) width so wide layouts such as
+      // navbars are never squeezed into the card: they get the room they were designed for.
+      content.style.width = 'max-content';
+      let width = widen(Math.max(boxWidth, Math.min(content.scrollWidth, maxWidth)));
       let height = heightAt(width);
+
+      // Too tall: widen further so the layout reflows shorter. Width only grows, so this converges.
+      for (let pass = 0; pass < 4; pass += 1) {
+        const fitScale = Math.min(1, boxWidth / width, boxHeight / height);
+        const next = Math.min(maxWidth, Math.max(width, boxWidth / fitScale));
+        if (next - width < 2) break;
+        width = widen(next);
+        height = heightAt(width);
+      }
+
+      // Scale to fit both dimensions, so nothing is ever cut.
       let scale = Math.min(1, boxWidth / width, boxHeight / height);
       let pan = 0;
 
-      if (scale < MIN_READABLE_SCALE) {
-        width = widen(boxWidth / MIN_READABLE_SCALE);
+      // Height-limited and unreadable: show the top at a readable size and pan on hover instead.
+      if (scale < MIN_READABLE_SCALE && boxHeight / height < boxWidth / width) {
+        width = widen(Math.min(maxWidth, Math.max(width, boxWidth / MIN_READABLE_SCALE)));
         height = heightAt(width);
-        scale = Math.min(MIN_READABLE_SCALE, boxWidth / width);
+        scale = Math.min(1, boxWidth / width);
         pan = Math.max(0, height * scale - boxHeight);
       }
 

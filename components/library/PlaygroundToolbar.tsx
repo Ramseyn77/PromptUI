@@ -1,33 +1,48 @@
 'use client';
 
 import { Code2, Eye, EyeOff, LucideIcon, Monitor, Moon, MousePointerClick, Palette, RotateCcw, SlidersHorizontal, Sun } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 
-const themeIcons: Record<'auto' | 'light' | 'dark', LucideIcon> = {
-  auto: Monitor,
-  light: Sun,
-  dark: Moon,
-};
+type Mode = 'original' | 'code' | 'visual';
+type Background = 'warm' | 'clean' | 'dark';
+type Theme = 'auto' | 'light' | 'dark';
 
-const backgroundSwatches: Record<'warm' | 'clean' | 'dark', { label: string; swatch: string }> = {
+const modes: Array<{ key: Mode; label: string; icon: LucideIcon }> = [
+  { key: 'original', label: 'Apercu', icon: Eye },
+  { key: 'visual', label: 'Visuel', icon: MousePointerClick },
+  { key: 'code', label: 'Code', icon: Code2 },
+];
+
+const themeOptions: Array<{ key: Theme; label: string; icon: LucideIcon }> = [
+  { key: 'auto', label: 'Theme auto', icon: Monitor },
+  { key: 'light', label: 'Theme clair', icon: Sun },
+  { key: 'dark', label: 'Theme sombre', icon: Moon },
+];
+
+const backgroundSwatches: Record<Background, { label: string; swatch: string }> = {
   warm: { label: 'Chaud', swatch: 'bg-[#f1eee5]' },
   clean: { label: 'Neutre', swatch: 'border border-zinc-300 bg-white' },
   dark: { label: 'Sombre', swatch: 'bg-[#151512]' },
 };
 
-function iconButtonClass(active: boolean) {
-  return `flex size-8 shrink-0 items-center justify-center rounded-lg border transition ${
-    active
-      ? 'border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]'
-      : 'border-transparent text-[var(--muted)] hover:border-[var(--line)] hover:text-[var(--foreground)]'
+/** Segmented control: one rounded track, the active item gets a raised surface. */
+function Segment({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div role="group" aria-label={label} className="flex shrink-0 items-center gap-0.5 rounded-xl bg-[var(--hover)] p-0.5">
+      {children}
+    </div>
+  );
+}
+
+function segmentButton(active: boolean, withLabel = false) {
+  return `flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-[10px] font-ui text-xs font-semibold transition ${withLabel ? 'px-3' : 'w-8'} ${
+    active ? 'bg-[var(--surface)] text-[var(--foreground)] shadow-sm' : 'text-[var(--muted)] hover:text-[var(--foreground)]'
   }`;
 }
 
-function modeButtonClass(active: boolean) {
-  return `flex h-8 shrink-0 items-center gap-1.5 rounded-lg border px-2.5 text-xs font-semibold transition ${
-    active
-      ? 'border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]'
-      : 'border-transparent text-[var(--muted)] hover:border-[var(--line)] hover:text-[var(--foreground)]'
+function toolButton(active: boolean) {
+  return `grid size-9 shrink-0 place-items-center rounded-xl transition ${
+    active ? 'bg-[var(--accent-soft)] text-[var(--accent)]' : 'text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--foreground)]'
   }`;
 }
 
@@ -48,9 +63,10 @@ export function PlaygroundToolbar({
   showBounds,
   onToggleBounds,
   onReset,
+  status,
 }: {
-  mode: 'original' | 'code' | 'visual';
-  onModeChange: (mode: 'original' | 'code' | 'visual') => void;
+  mode: Mode;
+  onModeChange: (mode: Mode) => void;
   sizeOptions: Array<{ key: string; label: string; icon: LucideIcon }>;
   size: string;
   onSizeChange: (size: string) => void;
@@ -58,97 +74,108 @@ export function PlaygroundToolbar({
   onZoomChange: (zoom: number) => void;
   padding: number;
   onPaddingChange: (padding: number) => void;
-  background: 'warm' | 'clean' | 'dark';
-  onBackgroundChange: (background: 'warm' | 'clean' | 'dark') => void;
-  theme: 'auto' | 'light' | 'dark';
-  onThemeChange: (theme: 'auto' | 'light' | 'dark') => void;
+  background: Background;
+  onBackgroundChange: (background: Background) => void;
+  theme: Theme;
+  onThemeChange: (theme: Theme) => void;
   showBounds: boolean;
   onToggleBounds: () => void;
   onReset: () => void;
+  status?: string;
 }) {
   const [openPanel, setOpenPanel] = useState<'adjust' | 'background' | null>(null);
   const toolbarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!openPanel) return;
-    const handleClick = (event: MouseEvent) => {
+    const close = (event: MouseEvent) => {
       if (toolbarRef.current && !toolbarRef.current.contains(event.target as Node)) setOpenPanel(null);
     };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
+    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setOpenPanel(null); };
+    document.addEventListener('mousedown', close);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', close);
+      document.removeEventListener('keydown', onKey);
+    };
   }, [openPanel]);
+
+  const togglePanel = (panel: 'adjust' | 'background') => setOpenPanel((current) => (current === panel ? null : panel));
 
   return (
     <div
       ref={toolbarRef}
-      className="absolute bottom-4 left-1/2 z-50 flex w-fit max-w-[calc(100%-1rem)] -translate-x-1/2 flex-wrap items-center justify-center gap-0.5 overflow-visible rounded-2xl border border-[var(--line)] bg-[var(--surface)]/95 p-1 shadow-lg backdrop-blur"
+      role="toolbar"
+      aria-label="Outils du playground"
+      className="relative z-40 flex min-w-0 flex-wrap items-center gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-1.5 shadow-sm"
     >
-      <button type="button" title="Original" aria-label="Original" onClick={() => onModeChange('original')} className={modeButtonClass(mode === 'original')}><Eye size={15}/></button>
-      <button type="button" title="Edition visuelle" aria-label="Edition visuelle" onClick={() => onModeChange('visual')} className={modeButtonClass(mode === 'visual')}><MousePointerClick size={15}/></button>
-      <button type="button" title="Code live" aria-label="Code live" onClick={() => onModeChange('code')} className={modeButtonClass(mode === 'code')}><Code2 size={15}/></button>
+      <Segment label="Mode">
+        {modes.map(({ key, label, icon: Icon }) => (
+          <button key={key} type="button" aria-pressed={mode === key} onClick={() => onModeChange(key)} className={segmentButton(mode === key, true)}>
+            <Icon size={15}/><span className="hidden sm:inline">{label}</span>
+          </button>
+        ))}
+      </Segment>
 
-      <span className="mx-0.5 h-6 w-px shrink-0 bg-[var(--line)]"/>
-
-      {sizeOptions.map((item) => {
-        const Icon = item.icon;
-        return (
-          <button type="button" key={item.key} title={item.label} aria-label={item.label} onClick={() => onSizeChange(item.key)} className={iconButtonClass(size === item.key)}>
+      <Segment label="Appareil">
+        {sizeOptions.map(({ key, label, icon: Icon }) => (
+          <button key={key} type="button" title={label} aria-label={label} aria-pressed={size === key} onClick={() => onSizeChange(key)} className={segmentButton(size === key)}>
             <Icon size={15}/>
           </button>
-        );
-      })}
+        ))}
+      </Segment>
 
-      <span className="mx-0.5 h-6 w-px shrink-0 bg-[var(--line)]"/>
+      <Segment label="Theme du composant">
+        {themeOptions.map(({ key, label, icon: Icon }) => (
+          <button key={key} type="button" title={label} aria-label={label} aria-pressed={theme === key} onClick={() => onThemeChange(key)} className={segmentButton(theme === key)}>
+            <Icon size={15}/>
+          </button>
+        ))}
+      </Segment>
 
-      <div className="relative">
-        <button type="button" title="Zoom et marge" aria-label="Zoom et marge" onClick={() => setOpenPanel((current) => (current === 'adjust' ? null : 'adjust'))} className={iconButtonClass(openPanel === 'adjust')}>
-          <SlidersHorizontal size={15}/>
+      <div className="flex items-center gap-0.5">
+        <div className="relative">
+          <button type="button" title="Zoom et marge" aria-label="Zoom et marge" aria-expanded={openPanel === 'adjust'} onClick={() => togglePanel('adjust')} className={toolButton(openPanel === 'adjust')}>
+            <SlidersHorizontal size={16}/>
+          </button>
+          {openPanel === 'adjust' && (
+            <div className="absolute left-0 top-full z-50 mt-2 w-60 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4 shadow-xl">
+              <label className="block">
+                <span className="flex justify-between font-mono text-[11px] uppercase text-[var(--muted)]"><span>Zoom</span><span>{zoom}%</span></span>
+                <input type="range" min="70" max="115" value={zoom} onChange={(event) => onZoomChange(Number(event.target.value))} className="mt-2 w-full accent-[var(--accent)]"/>
+              </label>
+              <label className="mt-4 block">
+                <span className="flex justify-between font-mono text-[11px] uppercase text-[var(--muted)]"><span>Marge</span><span>{padding}px</span></span>
+                <input type="range" min="12" max="56" value={padding} onChange={(event) => onPaddingChange(Number(event.target.value))} className="mt-2 w-full accent-[var(--accent)]"/>
+              </label>
+            </div>
+          )}
+        </div>
+
+        <div className="relative">
+          <button type="button" title="Fond" aria-label="Fond" aria-expanded={openPanel === 'background'} onClick={() => togglePanel('background')} className={toolButton(openPanel === 'background')}>
+            <Palette size={16}/>
+          </button>
+          {openPanel === 'background' && (
+            <div className="absolute left-0 top-full z-50 mt-2 flex w-48 gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-3 shadow-xl">
+              {(Object.entries(backgroundSwatches) as Array<[Background, { label: string; swatch: string }]>).map(([key, item]) => (
+                <button type="button" key={key} title={item.label} aria-label={item.label} aria-pressed={background === key} onClick={() => { onBackgroundChange(key); setOpenPanel(null); }} className={`flex-1 rounded-xl border p-1.5 transition ${background === key ? 'border-[var(--accent)]' : 'border-[var(--line)]'}`}>
+                  <span className={`block h-8 w-full rounded-lg ${item.swatch}`}/>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <button type="button" title="Voir les contours" aria-label="Voir les contours" aria-pressed={showBounds} onClick={onToggleBounds} className={toolButton(showBounds)}>
+          {showBounds ? <EyeOff size={16}/> : <Eye size={16}/>}
         </button>
-        {openPanel === 'adjust' && (
-          <div className="absolute bottom-full left-1/2 z-50 mb-2 w-56 -translate-x-1/2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4 shadow-xl">
-            <label className="block">
-              <span className="text-xs font-semibold uppercase text-[var(--muted)]">Zoom: {zoom}%</span>
-              <input type="range" min="70" max="115" value={zoom} onChange={(event) => onZoomChange(Number(event.target.value))} className="mt-2 w-full accent-teal-700"/>
-            </label>
-            <label className="mt-4 block">
-              <span className="text-xs font-semibold uppercase text-[var(--muted)]">Marge: {padding}px</span>
-              <input type="range" min="12" max="56" value={padding} onChange={(event) => onPaddingChange(Number(event.target.value))} className="mt-2 w-full accent-teal-700"/>
-            </label>
-          </div>
-        )}
+        <button type="button" title="Reinitialiser" aria-label="Reinitialiser" onClick={onReset} className={toolButton(false)}>
+          <RotateCcw size={16}/>
+        </button>
       </div>
 
-      <div className="relative">
-        <button type="button" title="Fond" aria-label="Fond" onClick={() => setOpenPanel((current) => (current === 'background' ? null : 'background'))} className={iconButtonClass(openPanel === 'background')}>
-          <Palette size={15}/>
-        </button>
-        {openPanel === 'background' && (
-          <div className="absolute bottom-full left-1/2 z-50 mb-2 flex w-44 -translate-x-1/2 gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-3 shadow-xl">
-            {(Object.entries(backgroundSwatches) as Array<[keyof typeof backgroundSwatches, typeof backgroundSwatches[keyof typeof backgroundSwatches]]>).map(([key, item]) => (
-              <button type="button" key={key} title={item.label} aria-label={item.label} onClick={() => { onBackgroundChange(key); setOpenPanel(null); }} className={`flex-1 rounded-xl border p-1.5 transition ${background === key ? 'border-[var(--accent)]' : 'border-[var(--line)]'}`}>
-                <span className={`block h-8 w-full rounded-lg ${item.swatch}`}/>
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-
-      <span className="mx-0.5 h-6 w-px shrink-0 bg-[var(--line)]"/>
-
-      {(Object.entries(themeIcons) as Array<[keyof typeof themeIcons, LucideIcon]>).map(([key, Icon]) => (
-        <button type="button" key={key} title={`Theme ${key}`} aria-label={`Theme ${key}`} onClick={() => onThemeChange(key)} className={iconButtonClass(theme === key)}>
-          <Icon size={15}/>
-        </button>
-      ))}
-
-      <span className="mx-0.5 h-6 w-px shrink-0 bg-[var(--line)]"/>
-
-      <button type="button" title="Voir les contours" aria-label="Voir les contours" onClick={onToggleBounds} className={iconButtonClass(showBounds)}>
-        {showBounds ? <EyeOff size={15}/> : <Eye size={15}/>}
-      </button>
-      <button type="button" title="Reinitialiser" aria-label="Reinitialiser" onClick={onReset} className={iconButtonClass(false)}>
-        <RotateCcw size={15}/>
-      </button>
+      {status && <span className="ml-auto hidden pr-2 font-mono text-[11px] text-[var(--muted)] md:inline">{status}</span>}
     </div>
   );
 }

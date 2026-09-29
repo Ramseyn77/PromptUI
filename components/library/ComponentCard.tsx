@@ -5,15 +5,9 @@ import { useState, type ReactNode } from 'react';
 import type { LibraryComponent } from '@/types/component';
 import { ComponentPreview } from './ComponentPreview';
 import { FitPreview } from './FitPreview';
+import { slugHue } from '@/utils/viewCount';
 
 type CardItem = Pick<LibraryComponent, 'slug' | 'name' | 'category' | 'style' | 'prompt'>;
-
-const slugScore = (slug: string) => slug.split('').reduce((total, char) => total + char.charCodeAt(0), 0);
-
-export function viewCount(slug: string) {
-  const score = slugScore(slug);
-  return `${(score % 8) + 2}.${score % 9}k vues`;
-}
 
 // Hover reveal: at rest the preview sits slightly low and the footer hides under the cell edge.
 // Touch screens (below md) always show the footer.
@@ -30,7 +24,7 @@ export function ComponentGrid({ children, className = '' }: { children: ReactNod
 
 export function ComponentCard({ item, className = '' }: { item: CardItem; className?: string }) {
   const [copied, setCopied] = useState(false);
-  const hue = slugScore(item.slug) % 360;
+  const hue = slugHue(item.slug);
 
   async function copyPrompt() {
     await navigator.clipboard.writeText(item.prompt);

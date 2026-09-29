@@ -1,6 +1,6 @@
 import { CopyButton } from './CopyButton';
 
-function tokenize(code: string) {
+export function tokenize(code: string) {
   const escaped = code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   return escaped
     .replace(/("[^"\n]*"|'[^'\n]*')/g, '<span class="text-emerald-300">$1</span>')

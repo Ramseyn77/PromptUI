@@ -26,12 +26,12 @@ export default async function PlaygroundPage({ params }: { params: Promise<{ slu
   if (!item) notFound();
 
   return (
-    <main className="mx-auto w-full min-w-0 max-w-7xl overflow-x-hidden px-4 py-8 sm:px-6">
+    <main className="mx-auto w-full min-w-0 max-w-7xl overflow-x-hidden px-4 py-5 sm:px-6">
       <ComponentViewTracker slug={item.slug} name={item.name}/>
-      <div className="flex min-w-0 flex-col justify-between gap-4 border-b border-[var(--line)] pb-6 sm:flex-row sm:items-center">
+      <div className="flex min-w-0 flex-col justify-between gap-3 pb-4 sm:flex-row sm:items-center">
         <div className="min-w-0">
           <Link href={`/components/${item.slug}`} className="inline-flex items-center gap-2 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--foreground)]"><ArrowLeft size={15}/>Fiche composant</Link>
-          <h1 className="mt-2 truncate text-2xl font-semibold tracking-tight">Tester {item.name}</h1>
+          <h1 className="mt-1 truncate font-display text-2xl font-semibold tracking-tight">Tester {item.name}</h1>
         </div>
         <div className="flex flex-wrap gap-2">
           <CopyButton value={item.code} label="Copier le code" analyticsType="code_copied" componentSlug={item.slug} componentName={item.name}/>
@@ -39,7 +39,7 @@ export default async function PlaygroundPage({ params }: { params: Promise<{ slu
           <CopyButton value={getComponentPrompt(item, 'en')} label="Prompt EN" analyticsType="prompt_copied" componentSlug={item.slug} componentName={item.name}/>
         </div>
       </div>
-      <div className="mt-6 grid min-w-0 grid-cols-[minmax(0,1fr)] gap-5">
+      <div className="grid min-w-0 grid-cols-[minmax(0,1fr)]">
         <InteractivePlayground slug={item.slug} name={item.name}/>
       </div>
     </main>

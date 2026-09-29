@@ -1,5 +1,5 @@
 import type { LibraryComponent } from '@/types/component';
-import { registryEntries } from './registry-entries';
+import { registryEntries } from './registry-generated';
 
 const makePrompt = (name: string, category: string, style: string, description: string) =>
   `Create a responsive ${category.toLowerCase()} component named "${name}" with React, TypeScript and Tailwind CSS. Style: ${style.toLowerCase()}. ${description} Keep it accessible, copy-ready and easy to customize.`;

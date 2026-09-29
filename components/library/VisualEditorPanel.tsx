@@ -89,7 +89,7 @@ function ButtonGroup({
 export function VisualEditorPanel({ element, onChange }: { element: HTMLElement | null; onChange: () => void }) {
   if (!element) {
     return (
-      <div className="flex min-h-[640px] min-w-0 flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--surface)] shadow-sm">
+      <div data-lenis-prevent className="flex h-[min(72vh,760px)] min-h-[420px] min-w-0 flex-col overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] shadow-sm lg:h-[calc(100dvh-15rem)]">
         <div className="border-b border-[var(--line)] px-4 py-3">
           <div className="flex items-center gap-2 text-sm font-semibold"><MousePointerClick size={16}/>Edition visuelle</div>
         </div>
@@ -104,7 +104,7 @@ export function VisualEditorPanel({ element, onChange }: { element: HTMLElement 
   const apply = (fn: () => void) => { fn(); onChange(); };
 
   return (
-    <div className="flex min-h-[640px] min-w-0 flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--surface)] shadow-sm">
+    <div data-lenis-prevent className="flex h-[min(72vh,760px)] min-h-[420px] min-w-0 flex-col overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] shadow-sm lg:h-[calc(100dvh-15rem)]">
       <div className="border-b border-[var(--line)] px-4 py-3">
         <div className="flex items-center gap-2 text-sm font-semibold"><MousePointerClick size={16}/>Edition visuelle</div>
         <p className="mt-1 truncate text-xs text-[var(--muted)]">Element selectionne: <span className="font-mono text-[var(--accent)]">&lt;{element.tagName.toLowerCase()}&gt;</span></p>
