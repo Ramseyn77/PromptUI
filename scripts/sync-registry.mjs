@@ -52,7 +52,13 @@ const entries = walk(registryDir).sort().map((path) => {
   seen.set(slug, file);
 
   const tags = (meta.tags ?? '').split(',').map((tag) => tag.trim());
-  const technologies = ['React', 'TypeScript', 'Tailwind', ...(code.includes("from 'lucide-react'") ? ['Lucide'] : [])];
+  const technologies = [
+    'React',
+    'TypeScript',
+    'Tailwind',
+    ...(code.includes("from 'lucide-react'") ? ['Lucide'] : []),
+    ...(code.includes("from 'animejs'") ? ['Anime.js'] : []),
+  ];
   return { file, exportName, slug, code, technologies, featured: tags.includes('featured'), recent: tags.includes('recent'), ...meta };
 }).filter(Boolean);
 

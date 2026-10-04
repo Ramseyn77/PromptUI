@@ -4,8 +4,8 @@
  * category: Navbar
  * style: SaaS
  * tags: recent
- * description: Barre d application avec panneau de notifications, marquage comme lu et compteur.
- * prompt: Create an app navbar with a bell button (aria-expanded, unread count badge) opening a notifications panel: list items with avatar, text, time and unread dot, plus "Mark all as read" that clears the badge. Uses a defaultOpen prop for previews. Light and dark mode.
+ * description: Barre d application avec panneau de notifications et badge numerique clignotant en continu.
+ * prompt: Create an app navbar with a bell button and an infinitely pulsing numeric unread badge, opening a notifications panel with avatar, text, time and unread dots, plus "Mark all as read" that clears the badge. Respect reduced-motion preferences. Uses a defaultOpen prop for previews. Light and dark mode.
  */
 'use client';
 import { Bell } from 'lucide-react';
@@ -28,7 +28,12 @@ export function NotificationNavbar({ defaultOpen = true }: { defaultOpen?: boole
         <span className="font-semibold text-zinc-900 dark:text-white">Pulse</span>
         <button type="button" aria-label={`Notifications, ${unread} unread`} aria-expanded={open} onClick={() => setOpen((value) => !value)} className="relative grid size-9 place-items-center rounded-lg text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900">
           <Bell className="size-5" />
-          {unread > 0 && <span className="absolute -right-0.5 -top-0.5 grid min-w-5 place-items-center rounded-full bg-rose-500 px-1 text-[10px] font-bold leading-5 text-white">{unread}</span>}
+          {unread > 0 && (
+            <span className="absolute -right-1 -top-1 grid min-w-5 place-items-center rounded-full bg-rose-500 px-1 text-[10px] font-bold leading-5 text-white shadow-[0_0_0_2px_white] motion-safe:animate-pulse dark:shadow-[0_0_0_2px_#09090b]">
+              <span aria-hidden="true" className="absolute inset-0 -z-10 rounded-full bg-rose-500 motion-safe:animate-ping" />
+              {unread}
+            </span>
+          )}
         </button>
       </nav>
       {open && (

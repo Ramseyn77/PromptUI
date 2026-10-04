@@ -1,0 +1,12 @@
+/**
+ * @registry
+ * name: Job Opportunity Card
+ * category: Cards
+ * style: SaaS
+ * tags: recent
+ * description: Carte d'offre d'emploi avec salaire, competences, sauvegarde et candidature.
+ * prompt: Create a responsive job opportunity card with company identity, verified badge, location, contract type, salary range, skill tags, posted date, save toggle and apply button.
+ */
+'use client';
+import { BadgeCheck, Bookmark, BriefcaseBusiness, MapPin } from 'lucide-react';import { useState } from 'react';
+export function JobOpportunityCard(){const[saved,setSaved]=useState(false);return <article className="w-full max-w-lg rounded-3xl border border-zinc-200 bg-white p-5 shadow-xl shadow-blue-500/10 dark:border-zinc-800 dark:bg-zinc-950 sm:p-6"><div className="flex items-start gap-4"><div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-blue-600 font-black text-white">N</div><div className="min-w-0 flex-1"><div className="flex items-center gap-1"><p className="text-sm font-semibold text-zinc-900 dark:text-white">Northstar Labs</p><BadgeCheck size={15} className="fill-blue-500 text-white dark:text-zinc-950"/></div><p className="mt-0.5 text-xs text-zinc-500">Posted 2 hours ago</p></div><button onClick={()=>setSaved(!saved)} aria-pressed={saved} aria-label="Save job" className={`grid size-10 place-items-center rounded-xl border ${saved?'border-blue-500 bg-blue-50 text-blue-600 dark:bg-blue-500/10':'border-zinc-200 text-zinc-500 dark:border-zinc-800'}`}><Bookmark size={18} fill={saved?'currentColor':'none'}/></button></div><h2 className="mt-5 text-xl font-bold text-zinc-950 dark:text-white">Senior Product Designer</h2><div className="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-sm text-zinc-500"><span className="flex items-center gap-1"><MapPin size={14}/>Remote · Africa/Europe</span><span className="flex items-center gap-1"><BriefcaseBusiness size={14}/>Full time</span></div><div className="mt-4 flex flex-wrap gap-2">{['Figma','Design systems','Research'].map(tag=><span key={tag} className="rounded-full bg-zinc-100 px-3 py-1 text-xs text-zinc-600 dark:bg-zinc-900 dark:text-zinc-300">{tag}</span>)}</div><div className="mt-5 flex flex-col gap-3 border-t border-zinc-200 pt-5 dark:border-zinc-800 sm:flex-row sm:items-center"><div className="mr-auto"><p className="font-bold text-zinc-950 dark:text-white">$65k–$82k</p><p className="text-xs text-zinc-500">Annual salary</p></div><button className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-blue-500">Apply now</button></div></article>}

@@ -1,4 +1,3 @@
-import { JetBrains_Mono, Kalam, Poppins, Sora } from 'next/font/google';
 import localFont from 'next/font/local';
 
 // Fontshare fonts (ITF Free Font License), self-hosted from app/fonts.
@@ -42,11 +41,6 @@ const pally = localFont({
   ],
 });
 
-const poppins = Poppins({ subsets: ['latin'], weight: ['500', '600', '700'], variable: '--font-poppins', display: 'swap' });
-const sora = Sora({ subsets: ['latin'], weight: ['600', '700', '800'], variable: '--font-sora', display: 'swap' });
-const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-jetbrains', display: 'swap' });
-const kalam = Kalam({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-kalam', display: 'swap' });
-
-export const fontVariables = [satoshi, chillax, telma, pally, poppins, sora, jetbrainsMono, kalam]
+export const fontVariables = [satoshi, chillax, telma, pally]
   .map((font) => font.variable)
   .join(' ');

@@ -83,8 +83,9 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
       const reset = frameDocument.createElement('style');
       reset.textContent = `
         html, body { width: 100%; min-height: 100%; margin: 0; background: transparent !important; }
-        body { overflow: hidden; color: var(--foreground); }
-        #component-preview-root { display: grid; width: 100%; min-height: 100vh; place-items: center; box-sizing: border-box; }
+        html { overflow: hidden; }
+        body { min-width: 100%; min-height: 100vh; overflow: auto; overscroll-behavior: contain; color: var(--foreground); }
+        #component-preview-root { display: grid; width: 100%; min-height: 100vh; place-items: safe center; box-sizing: border-box; }
         #component-preview-root > * { width: 100%; box-sizing: border-box; }
         .show-preview-bounds * { outline: 1px solid rgba(20, 184, 166, .28); outline-offset: -1px; }
         .viz-hover { outline: 1.5px dashed rgba(13, 148, 136, .7); outline-offset: 1px; cursor: pointer; }
@@ -314,14 +315,18 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
   const viewport = isHtmlPreview ? (
       <iframe
         ref={iframeRef}
+        data-preview-scroll
+        data-lenis-prevent
         title={`Apercu responsive de ${slug}`}
         className="block border-0 bg-transparent"
         style={{ width, height }}
       />
     ) : (
       <div
-        className={`grid min-h-full place-items-center overflow-hidden bg-transparent ${theme === 'dark' ? 'dark' : ''} ${showBounds ? 'show-preview-bounds' : ''}`}
-        style={{ width, height, padding }}
+        data-preview-scroll
+        data-lenis-prevent
+        className={`grid min-h-full overflow-auto overscroll-contain bg-transparent ${theme === 'dark' ? 'dark' : ''} ${showBounds ? 'show-preview-bounds' : ''}`}
+        style={{ width, height, padding, placeItems: 'safe center' }}
       >
         <ComponentPreview slug={slug}/>
       </div>

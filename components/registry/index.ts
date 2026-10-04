@@ -36,10 +36,12 @@ import { SalesPipeline } from './boards/SalesPipeline';
 import { StickyNotesWall } from './boards/StickyNotesWall';
 import { SwimlaneBoard } from './boards/SwimlaneBoard';
 import { WipLimitBoard } from './boards/WipLimitBoard';
+import { BarrelRollNavigation } from './buttons/BarrelRollNavigation';
 import { BorderBeamButton } from './buttons/BorderBeamButton';
 import { ButtonVariants } from './buttons/ButtonVariants';
 import { CopyLinkButton } from './buttons/CopyLinkButton';
 import { DownloadProgressButton } from './buttons/DownloadProgressButton';
+import { ElasticSendButton } from './buttons/ElasticSendButton';
 import { ExpandIconButton } from './buttons/ExpandIconButton';
 import { HoldToConfirmButton } from './buttons/HoldToConfirmButton';
 import { LikeBurstButton } from './buttons/LikeBurstButton';
@@ -52,6 +54,13 @@ import { ShimmerButton } from './buttons/ShimmerButton';
 import { SlideArrowButton } from './buttons/SlideArrowButton';
 import { SplitButton } from './buttons/SplitButton';
 import { BentoFeatures } from './cards/BentoFeatures';
+import { FocusTimerCard } from './cards/FocusTimerCard';
+import { HolographicEventPass } from './cards/HolographicEventPass';
+import { InteractiveProductInspector } from './cards/InteractiveProductInspector';
+import { JobOpportunityCard } from './cards/JobOpportunityCard';
+import { LayeredProjectCard } from './cards/LayeredProjectCard';
+import { SellerTrustCard } from './cards/SellerTrustCard';
+import { SpecialistPicker } from './cards/SpecialistPicker';
 import { SpotlightCard } from './cards/SpotlightCard';
 import { StatCard } from './cards/StatCard';
 import { BulletChart } from './charts/BulletChart';
@@ -78,21 +87,26 @@ import { TermsConsentForm } from './checkboxes/TermsConsentForm';
 import { WeekdayPicker } from './checkboxes/WeekdayPicker';
 import { BookDemoCta } from './cta/BookDemoCta';
 import { CommunityJoinCta } from './cta/CommunityJoinCta';
+import { DecisionPathCta } from './cta/DecisionPathCta';
 import { GradientShapesCta } from './cta/GradientShapesCta';
 import { InlineBannerCta } from './cta/InlineBannerCta';
 import { InlineNewsletterCta } from './cta/InlineNewsletterCta';
+import { OrderSuccessCard } from './cta/OrderSuccessCard';
 import { SplitImageCta } from './cta/SplitImageCta';
 import { SpotlightCta } from './cta/SpotlightCta';
 import { StatsCta } from './cta/StatsCta';
 import { TestimonialCta } from './cta/TestimonialCta';
 import { TrialChecklistCta } from './cta/TrialChecklistCta';
 import { ActivityFeed } from './dashboard/ActivityFeed';
+import { ApplicationTracker } from './dashboard/ApplicationTracker';
+import { AppointmentManager } from './dashboard/AppointmentManager';
 import { BillingSummary } from './dashboard/BillingSummary';
 import { ContributionHeatmap } from './dashboard/ContributionHeatmap';
 import { ConversionBreakdown } from './dashboard/ConversionBreakdown';
 import { DarkMetricPanel } from './dashboard/DarkMetricPanel';
 import { GoalGauge } from './dashboard/GoalGauge';
 import { KpiGrid } from './dashboard/KpiGrid';
+import { MatchdayScoreboard } from './dashboard/MatchdayScoreboard';
 import { ProjectProgressList } from './dashboard/ProjectProgressList';
 import { RealtimeVisitors } from './dashboard/RealtimeVisitors';
 import { RecentSales } from './dashboard/RecentSales';
@@ -121,7 +135,9 @@ import { PreferencesFooter } from './footer/PreferencesFooter';
 import { StatusFooter } from './footer/StatusFooter';
 import { WaveFooter } from './footer/WaveFooter';
 import { WordmarkFooter } from './footer/WordmarkFooter';
+import { AuctionBidPanel } from './forms/AuctionBidPanel';
 import { AutocompleteInput } from './forms/AutocompleteInput';
+import { AvailabilitySlotPicker } from './forms/AvailabilitySlotPicker';
 import { DualRangeSlider } from './forms/DualRangeSlider';
 import { FeedbackForm } from './forms/FeedbackForm';
 import { FileDropzone } from './forms/FileDropzone';
@@ -132,10 +148,15 @@ import { MultiSelectCombobox } from './forms/MultiSelectCombobox';
 import { OtpInput } from './forms/OtpInput';
 import { PasswordStrength } from './forms/PasswordStrength';
 import { PhoneInput } from './forms/PhoneInput';
+import { ProductVariantPicker } from './forms/ProductVariantPicker';
+import { QuickApplyForm } from './forms/QuickApplyForm';
+import { ShippingMethodSelector } from './forms/ShippingMethodSelector';
 import { SignInForm } from './forms/SignInForm';
+import { SignaturePad } from './forms/SignaturePad';
 import { StarRatingInput } from './forms/StarRatingInput';
 import { TagInput } from './forms/TagInput';
 import { ValidatedContactForm } from './forms/ValidatedContactForm';
+import { VoiceNoteComposer } from './forms/VoiceNoteComposer';
 import { WizardForm } from './forms/WizardForm';
 import { AuroraBlobHero } from './hero/AuroraBlobHero';
 import { BeamSpotlightHero } from './hero/BeamSpotlightHero';
@@ -146,6 +167,7 @@ import { GridGlowHero } from './hero/GridGlowHero';
 import { LogoCloudHero } from './hero/LogoCloudHero';
 import { MetricsHero } from './hero/MetricsHero';
 import { PhoneMockupHero } from './hero/PhoneMockupHero';
+import { ScanlineLaunchHero } from './hero/ScanlineLaunchHero';
 import { SearchHero } from './hero/SearchHero';
 import { SplitMockupHero } from './hero/SplitMockupHero';
 import { TerminalHero } from './hero/TerminalHero';
@@ -167,6 +189,7 @@ import { LoadingButton } from './loader/LoadingButton';
 import { OrbitDotsLoader } from './loader/OrbitDotsLoader';
 import { PulseRings } from './loader/PulseRings';
 import { SegmentSpinner } from './loader/SegmentSpinner';
+import { SignalConstellationLoader } from './loader/SignalConstellationLoader';
 import { SkeletonCard } from './loader/SkeletonCard';
 import { SkeletonList } from './loader/SkeletonList';
 import { StepsLoader } from './loader/StepsLoader';
@@ -174,6 +197,7 @@ import { ActionSheet } from './menu/ActionSheet';
 import { BreadcrumbOverflowMenu } from './menu/BreadcrumbOverflowMenu';
 import { CommandPalette } from './menu/CommandPalette';
 import { ContextMenu } from './menu/ContextMenu';
+import { ExpandableSearchDock } from './menu/ExpandableSearchDock';
 import { IconSelectMenu } from './menu/IconSelectMenu';
 import { ReactionPickerMenu } from './menu/ReactionPickerMenu';
 import { RowActionsMenu } from './menu/RowActionsMenu';
@@ -198,6 +222,7 @@ import { ShopNavbar } from './navbar/ShopNavbar';
 import { SplitLogoNavbar } from './navbar/SplitLogoNavbar';
 import { UnderlineTabsNavbar } from './navbar/UnderlineTabsNavbar';
 import { UserMenuNavbar } from './navbar/UserMenuNavbar';
+import { BookingCheckoutSummary } from './pricing/BookingCheckoutSummary';
 import { CouponCheckout } from './pricing/CouponCheckout';
 import { CreditPacks } from './pricing/CreditPacks';
 import { CurrencyPricing } from './pricing/CurrencyPricing';
@@ -213,6 +238,7 @@ import { SeatStepper } from './pricing/SeatStepper';
 import { SinglePlanCard } from './pricing/SinglePlanCard';
 import { SquishyPricing } from './pricing/SquishyPricing';
 import { ThreeTierPricing } from './pricing/ThreeTierPricing';
+import { TicketTierSelector } from './pricing/TicketTierSelector';
 import { TrialTimeline } from './pricing/TrialTimeline';
 import { UpgradePrompt } from './pricing/UpgradePrompt';
 import { UsageCalculator } from './pricing/UsageCalculator';
@@ -231,6 +257,7 @@ import { MeshGradient } from './shaders/MeshGradient';
 import { NetworkParticles } from './shaders/NetworkParticles';
 import { NoiseGrain } from './shaders/NoiseGrain';
 import { OrbitRings } from './shaders/OrbitRings';
+import { PrismSweep } from './shaders/PrismSweep';
 import { SiriWave } from './shaders/SiriWave';
 import { SpotlightGrid } from './shaders/SpotlightGrid';
 import { Starfield } from './shaders/Starfield';
@@ -243,6 +270,7 @@ import { FilterSidebar } from './sidebar/FilterSidebar';
 import { FolderTreeSidebar } from './sidebar/FolderTreeSidebar';
 import { GlassDockSidebar } from './sidebar/GlassDockSidebar';
 import { InboxSidebar } from './sidebar/InboxSidebar';
+import { MiniCartDrawer } from './sidebar/MiniCartDrawer';
 import { MobileDrawerSidebar } from './sidebar/MobileDrawerSidebar';
 import { MusicLibrarySidebar } from './sidebar/MusicLibrarySidebar';
 import { NestedTreeSidebar } from './sidebar/NestedTreeSidebar';
@@ -271,6 +299,7 @@ import { SpecsTable } from './tables/SpecsTable';
 import { StickyHeaderTable } from './tables/StickyHeaderTable';
 import { TeamStatusTable } from './tables/TeamStatusTable';
 import { TransactionsTable } from './tables/TransactionsTable';
+import { AudioQuoteTestimonial } from './testimonials/AudioQuoteTestimonial';
 import { AvatarPickerTestimonial } from './testimonials/AvatarPickerTestimonial';
 import { CaseStudyCard } from './testimonials/CaseStudyCard';
 import { CompactTestimonialList } from './testimonials/CompactTestimonialList';
@@ -298,6 +327,7 @@ import { GradientText } from './text/GradientText';
 import { HandwritingSignature } from './text/HandwritingSignature';
 import { HighlighterText } from './text/HighlighterText';
 import { KbdShortcuts } from './text/KbdShortcuts';
+import { KineticLetterWave } from './text/KineticLetterWave';
 import { KineticMarquee } from './text/KineticMarquee';
 import { NumberTicker } from './text/NumberTicker';
 import { OutlineFillText } from './text/OutlineFillText';
@@ -307,6 +337,7 @@ import { StrikeReplaceText } from './text/StrikeReplaceText';
 import { TextRotate } from './text/TextRotate';
 import { WordReveal } from './text/WordReveal';
 import { IconKnobSwitch } from './toggle/IconKnobSwitch';
+import { LiquidFillSwitch } from './toggle/LiquidFillSwitch';
 import { MorphCheckSwitch } from './toggle/MorphCheckSwitch';
 import { NeumorphicSwitch } from './toggle/NeumorphicSwitch';
 import { OnOffLabelSwitch } from './toggle/OnOffLabelSwitch';
@@ -365,10 +396,12 @@ export const registryComponents: Record<string, ComponentType> = {
   "sticky-notes-wall": StickyNotesWall,
   "swimlane-board": SwimlaneBoard,
   "wip-limit-board": WipLimitBoard,
+  "barrel-roll-navigation": BarrelRollNavigation,
   "border-beam-button": BorderBeamButton,
   "button-variants": ButtonVariants,
   "copy-link-button": CopyLinkButton,
   "download-progress-button": DownloadProgressButton,
+  "elastic-send-button": ElasticSendButton,
   "expand-icon-button": ExpandIconButton,
   "hold-to-confirm-button": HoldToConfirmButton,
   "like-burst-button": LikeBurstButton,
@@ -381,6 +414,13 @@ export const registryComponents: Record<string, ComponentType> = {
   "slide-arrow-button": SlideArrowButton,
   "split-button": SplitButton,
   "bento-features": BentoFeatures,
+  "focus-timer-card": FocusTimerCard,
+  "holographic-event-pass": HolographicEventPass,
+  "interactive-product-inspector": InteractiveProductInspector,
+  "job-opportunity-card": JobOpportunityCard,
+  "layered-project-card": LayeredProjectCard,
+  "seller-trust-card": SellerTrustCard,
+  "specialist-picker": SpecialistPicker,
   "spotlight-card": SpotlightCard,
   "stat-card": StatCard,
   "bullet-chart": BulletChart,
@@ -407,21 +447,26 @@ export const registryComponents: Record<string, ComponentType> = {
   "weekday-picker": WeekdayPicker,
   "book-demo-cta": BookDemoCta,
   "community-join-cta": CommunityJoinCta,
+  "decision-path-cta": DecisionPathCta,
   "gradient-shapes-cta": GradientShapesCta,
   "inline-banner-cta": InlineBannerCta,
   "inline-newsletter-cta": InlineNewsletterCta,
+  "order-success-card": OrderSuccessCard,
   "split-image-cta": SplitImageCta,
   "spotlight-cta": SpotlightCta,
   "stats-cta": StatsCta,
   "testimonial-cta": TestimonialCta,
   "trial-checklist-cta": TrialChecklistCta,
   "activity-feed": ActivityFeed,
+  "application-tracker": ApplicationTracker,
+  "appointment-manager": AppointmentManager,
   "billing-summary": BillingSummary,
   "contribution-heatmap": ContributionHeatmap,
   "conversion-breakdown": ConversionBreakdown,
   "dark-metric-panel": DarkMetricPanel,
   "goal-gauge": GoalGauge,
   "kpi-grid": KpiGrid,
+  "matchday-scoreboard": MatchdayScoreboard,
   "project-progress-list": ProjectProgressList,
   "realtime-visitors": RealtimeVisitors,
   "recent-sales": RecentSales,
@@ -450,7 +495,9 @@ export const registryComponents: Record<string, ComponentType> = {
   "status-footer": StatusFooter,
   "wave-footer": WaveFooter,
   "wordmark-footer": WordmarkFooter,
+  "auction-bid-panel": AuctionBidPanel,
   "autocomplete-input": AutocompleteInput,
+  "availability-slot-picker": AvailabilitySlotPicker,
   "dual-range-slider": DualRangeSlider,
   "feedback-form": FeedbackForm,
   "file-dropzone": FileDropzone,
@@ -461,10 +508,15 @@ export const registryComponents: Record<string, ComponentType> = {
   "otp-input": OtpInput,
   "password-strength": PasswordStrength,
   "phone-input": PhoneInput,
+  "product-variant-picker": ProductVariantPicker,
+  "quick-apply-form": QuickApplyForm,
+  "shipping-method-selector": ShippingMethodSelector,
   "sign-in-form": SignInForm,
+  "signature-pad": SignaturePad,
   "star-rating-input": StarRatingInput,
   "tag-input": TagInput,
   "validated-contact-form": ValidatedContactForm,
+  "voice-note-composer": VoiceNoteComposer,
   "wizard-form": WizardForm,
   "aurora-blob-hero": AuroraBlobHero,
   "beam-spotlight-hero": BeamSpotlightHero,
@@ -475,6 +527,7 @@ export const registryComponents: Record<string, ComponentType> = {
   "logo-cloud-hero": LogoCloudHero,
   "metrics-hero": MetricsHero,
   "phone-mockup-hero": PhoneMockupHero,
+  "scanline-launch-hero": ScanlineLaunchHero,
   "search-hero": SearchHero,
   "split-mockup-hero": SplitMockupHero,
   "terminal-hero": TerminalHero,
@@ -496,6 +549,7 @@ export const registryComponents: Record<string, ComponentType> = {
   "orbit-dots-loader": OrbitDotsLoader,
   "pulse-rings": PulseRings,
   "segment-spinner": SegmentSpinner,
+  "signal-constellation-loader": SignalConstellationLoader,
   "skeleton-card": SkeletonCard,
   "skeleton-list": SkeletonList,
   "steps-loader": StepsLoader,
@@ -503,6 +557,7 @@ export const registryComponents: Record<string, ComponentType> = {
   "breadcrumb-overflow-menu": BreadcrumbOverflowMenu,
   "command-palette": CommandPalette,
   "context-menu": ContextMenu,
+  "expandable-search-dock": ExpandableSearchDock,
   "icon-select-menu": IconSelectMenu,
   "reaction-picker-menu": ReactionPickerMenu,
   "row-actions-menu": RowActionsMenu,
@@ -527,6 +582,7 @@ export const registryComponents: Record<string, ComponentType> = {
   "split-logo-navbar": SplitLogoNavbar,
   "underline-tabs-navbar": UnderlineTabsNavbar,
   "user-menu-navbar": UserMenuNavbar,
+  "booking-checkout-summary": BookingCheckoutSummary,
   "coupon-checkout": CouponCheckout,
   "credit-packs": CreditPacks,
   "currency-pricing": CurrencyPricing,
@@ -542,6 +598,7 @@ export const registryComponents: Record<string, ComponentType> = {
   "single-plan-card": SinglePlanCard,
   "squishy-pricing": SquishyPricing,
   "three-tier-pricing": ThreeTierPricing,
+  "ticket-tier-selector": TicketTierSelector,
   "trial-timeline": TrialTimeline,
   "upgrade-prompt": UpgradePrompt,
   "usage-calculator": UsageCalculator,
@@ -560,6 +617,7 @@ export const registryComponents: Record<string, ComponentType> = {
   "network-particles": NetworkParticles,
   "noise-grain": NoiseGrain,
   "orbit-rings": OrbitRings,
+  "prism-sweep": PrismSweep,
   "siri-wave": SiriWave,
   "spotlight-grid": SpotlightGrid,
   "starfield": Starfield,
@@ -572,6 +630,7 @@ export const registryComponents: Record<string, ComponentType> = {
   "folder-tree-sidebar": FolderTreeSidebar,
   "glass-dock-sidebar": GlassDockSidebar,
   "inbox-sidebar": InboxSidebar,
+  "mini-cart-drawer": MiniCartDrawer,
   "mobile-drawer-sidebar": MobileDrawerSidebar,
   "music-library-sidebar": MusicLibrarySidebar,
   "nested-tree-sidebar": NestedTreeSidebar,
@@ -600,6 +659,7 @@ export const registryComponents: Record<string, ComponentType> = {
   "sticky-header-table": StickyHeaderTable,
   "team-status-table": TeamStatusTable,
   "transactions-table": TransactionsTable,
+  "audio-quote-testimonial": AudioQuoteTestimonial,
   "avatar-picker-testimonial": AvatarPickerTestimonial,
   "case-study-card": CaseStudyCard,
   "compact-testimonial-list": CompactTestimonialList,
@@ -627,6 +687,7 @@ export const registryComponents: Record<string, ComponentType> = {
   "handwriting-signature": HandwritingSignature,
   "highlighter-text": HighlighterText,
   "kbd-shortcuts": KbdShortcuts,
+  "kinetic-letter-wave": KineticLetterWave,
   "kinetic-marquee": KineticMarquee,
   "number-ticker": NumberTicker,
   "outline-fill-text": OutlineFillText,
@@ -636,6 +697,7 @@ export const registryComponents: Record<string, ComponentType> = {
   "text-rotate": TextRotate,
   "word-reveal": WordReveal,
   "icon-knob-switch": IconKnobSwitch,
+  "liquid-fill-switch": LiquidFillSwitch,
   "morph-check-switch": MorphCheckSwitch,
   "neumorphic-switch": NeumorphicSwitch,
   "on-off-label-switch": OnOffLabelSwitch,

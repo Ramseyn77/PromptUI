@@ -5,11 +5,11 @@
   --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-chillax), var(--font-satoshi), sans-serif;
   --font-accent: var(--font-telma), var(--font-chillax), serif;
-  --font-ui: var(--font-poppins), var(--font-satoshi), sans-serif;
-  --font-numeric: var(--font-sora), var(--font-satoshi), sans-serif;
+  --font-ui: var(--font-pally), var(--font-satoshi), sans-serif;
+  --font-numeric: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
   --font-pill: var(--font-pally), var(--font-satoshi), sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
-  --font-hand: var(--font-kalam), cursive;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  --font-hand: var(--font-telma), var(--font-chillax), cursive;
 }
 
 /*

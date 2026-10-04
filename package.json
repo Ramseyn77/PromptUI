@@ -9,9 +9,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "registry:sync": "node scripts/sync-registry.mjs"
+    "registry:sync": "node scripts/sync-registry.mjs",
+    "audit:local-responsive": "node scripts/audit-local-responsive.mjs"
   },
   "dependencies": {
+    "animejs": "^4.5.0",
     "lenis": "^1.3.26",
     "lucide-react": "^1.33.0",
     "next": "latest",
@@ -23,6 +25,7 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "playwright-core": "^1.63.0",
     "tailwindcss": "latest",
     "typescript": "latest"
   }
