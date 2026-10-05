@@ -8,7 +8,7 @@
  * prompt: Create a keyboard-shortcuts cheat sheet: rows with an action and key combos rendered as 3D <kbd> caps (bottom border shadow); pressing the matching physical key (listen to keydown/keyup on window) visually presses that cap. Platform-neutral symbols, light and dark mode.
  */
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const shortcuts = [
   { action: 'Search', keys: ['⌘', 'K'] },
@@ -20,19 +20,23 @@ const keyName = (key: string) => (key === 'Meta' || key === 'Control' ? '⌘' : 
 
 export function KbdShortcuts() {
   const [down, setDown] = useState<string[]>([]);
+  const root = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    // Listen on the document that renders the component: it may live in an iframe (previews, embeds).
+    const doc = root.current?.ownerDocument ?? document;
+    const win = doc.defaultView ?? window;
     const press = (event: KeyboardEvent) => setDown((current) => [...new Set([...current, keyName(event.key)])]);
     const release = (event: KeyboardEvent) => setDown((current) => current.filter((key) => key !== keyName(event.key)));
     const reset = () => setDown([]);
-    window.addEventListener('keydown', press);
-    window.addEventListener('keyup', release);
-    window.addEventListener('blur', reset);
-    return () => { window.removeEventListener('keydown', press); window.removeEventListener('keyup', release); window.removeEventListener('blur', reset); };
+    win.addEventListener('keydown', press);
+    win.addEventListener('keyup', release);
+    win.addEventListener('blur', reset);
+    return () => { win.removeEventListener('keydown', press); win.removeEventListener('keyup', release); win.removeEventListener('blur', reset); };
   }, []);
 
   return (
-    <section className="w-full max-w-sm rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-950">
+    <section ref={root} className="w-full max-w-sm rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-950">
       <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">Keyboard shortcuts</h3>
       <p className="text-xs text-zinc-500 dark:text-zinc-400">Try pressing the keys.</p>
       <dl className="mt-4 space-y-3">

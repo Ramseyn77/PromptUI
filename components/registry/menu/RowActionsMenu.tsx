@@ -18,12 +18,14 @@ export function RowActionsMenu() {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Listen on the document that renders the component: it may live in an iframe (previews, embeds).
+    const doc = ref.current?.ownerDocument ?? document;
     if (!open) return;
     const close = (event: MouseEvent) => { if (!ref.current?.contains(event.target as Node)) { setOpen(false); setConfirm(false); } };
     const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') { setOpen(false); setConfirm(false); } };
-    document.addEventListener('mousedown', close);
-    document.addEventListener('keydown', onKey);
-    return () => { document.removeEventListener('mousedown', close); document.removeEventListener('keydown', onKey); };
+    doc.addEventListener('mousedown', close);
+    doc.addEventListener('keydown', onKey);
+    return () => { doc.removeEventListener('mousedown', close); doc.removeEventListener('keydown', onKey); };
   }, [open]);
 
   if (deleted) return <button type="button" onClick={() => { setDeleted(false); setConfirm(false); }} className="text-sm text-teal-700 underline dark:text-teal-400">Project deleted · Undo</button>;

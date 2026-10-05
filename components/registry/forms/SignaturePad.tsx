@@ -19,6 +19,9 @@ export function SignaturePad() {
   const [confirmed, setConfirmed] = useState(false);
 
   useEffect(() => {
+    // Listen on the document that renders the component: it may live in an iframe (previews, embeds).
+    const doc = canvasRef.current?.ownerDocument ?? document;
+    const win = doc.defaultView ?? window;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const resize = () => {
@@ -32,7 +35,7 @@ export function SignaturePad() {
       context.lineCap = 'round'; context.lineJoin = 'round'; context.lineWidth = 2.4; context.strokeStyle = '#8b5cf6';
       if (image && hasInk) { const saved = new Image(); saved.onload = () => context.drawImage(saved, 0, 0, canvas.clientWidth, canvas.clientHeight); saved.src = image; }
     };
-    resize(); window.addEventListener('resize', resize); return () => window.removeEventListener('resize', resize);
+    resize(); win.addEventListener('resize', resize); return () => win.removeEventListener('resize', resize);
   }, [hasInk]);
 
   const point = (event: PointerEvent<HTMLCanvasElement>) => { const box = event.currentTarget.getBoundingClientRect(); return [event.clientX - box.left, event.clientY - box.top] as const; };

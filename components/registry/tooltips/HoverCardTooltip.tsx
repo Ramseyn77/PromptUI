@@ -14,18 +14,21 @@ import { useEffect, useRef, useState } from 'react';
 export function HoverCardTooltip({ defaultOpen = true }: { defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
   const [following, setFollowing] = useState(false);
+  const root = useRef<HTMLParagraphElement>(null);
   const timer = useRef<number | undefined>(undefined);
   const openLater = (delay: number) => { window.clearTimeout(timer.current); timer.current = window.setTimeout(() => setOpen(true), delay); };
   const closeLater = () => { window.clearTimeout(timer.current); timer.current = window.setTimeout(() => setOpen(false), 150); };
 
   useEffect(() => {
+    // Listen on the document that renders the component: it may live in an iframe (previews, embeds).
+    const doc = root.current?.ownerDocument ?? document;
     const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setOpen(false); };
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    doc.addEventListener('keydown', onKey);
+    return () => doc.removeEventListener('keydown', onKey);
   }, []);
 
   return (
-    <p className="max-w-sm text-sm leading-7 text-zinc-700 dark:text-zinc-300">
+    <p ref={root} className="max-w-sm text-sm leading-7 text-zinc-700 dark:text-zinc-300">
       Huge thanks to{' '}
       <span className="relative inline-block" onPointerEnter={() => openLater(300)} onPointerLeave={closeLater} onFocus={() => openLater(0)} onBlur={closeLater}>
         <a href="#" aria-describedby="hovercard-lea" className="font-semibold text-teal-700 hover:underline dark:text-teal-400">@leamoreau</a>

@@ -21,15 +21,18 @@ export function BarrelRollNavigation({ previousHref, nextHref }: BarrelRollNavig
   const [page, setPage] = useState(2);
   const [rolling, setRolling] = useState<'previous' | 'next' | null>(null);
   const busy = useRef(false);
+  const section = useRef<HTMLElement>(null);
 
   const navigate = async (direction: 'previous' | 'next', href?: string) => {
     if (busy.current) return;
     busy.current = true;
     setRolling(direction);
 
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Roll the document that hosts the component (the page, or the iframe it is embedded in).
+    const doc = section.current?.ownerDocument ?? document;
+    const reducedMotion = (doc.defaultView ?? window).matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reducedMotion) {
-      const root = document.documentElement;
+      const root = doc.documentElement;
       const previousOverflow = root.style.overflow;
       root.style.overflow = 'hidden';
       const degrees = direction === 'next' ? 360 : -360;
@@ -54,7 +57,7 @@ export function BarrelRollNavigation({ previousHref, nextHref }: BarrelRollNavig
   };
 
   return (
-    <section className="w-full max-w-xl overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-950 p-5 text-white shadow-2xl sm:p-7">
+    <section ref={section} className="w-full max-w-xl overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-950 p-5 text-white shadow-2xl sm:p-7">
       <div className="rounded-2xl bg-gradient-to-br from-violet-500/20 via-zinc-900 to-cyan-500/20 px-5 py-8 text-center sm:px-8 sm:py-10">
         <RotateCw aria-hidden className={`mx-auto size-7 text-violet-300 ${rolling ? 'motion-safe:animate-spin' : ''}`} />
         <p className="mt-4 text-xs font-bold uppercase tracking-[.25em] text-zinc-500">Active page</p>

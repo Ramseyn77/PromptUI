@@ -17,12 +17,14 @@ export function Toggletip() {
   const button = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    // Listen on the document that renders the component: it may live in an iframe (previews, embeds).
+    const doc = wrapper.current?.ownerDocument ?? document;
     if (!open) return;
     const outside = (event: MouseEvent) => { if (!wrapper.current?.contains(event.target as Node)) setOpen(false); };
     const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') { setOpen(false); button.current?.focus(); } };
-    document.addEventListener('mousedown', outside);
-    document.addEventListener('keydown', onKey);
-    return () => { document.removeEventListener('mousedown', outside); document.removeEventListener('keydown', onKey); };
+    doc.addEventListener('mousedown', outside);
+    doc.addEventListener('keydown', onKey);
+    return () => { doc.removeEventListener('mousedown', outside); doc.removeEventListener('keydown', onKey); };
   }, [open]);
 
   return (

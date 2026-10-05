@@ -9,18 +9,21 @@
  */
 'use client';
 import { Calendar, Home, Menu, MessageSquare, Settings, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const links = [[Home, 'Home'], [Calendar, 'Calendar'], [MessageSquare, 'Messages'], [Settings, 'Settings']] as const;
 
 export function MobileDrawerSidebar() {
   const [open, setOpen] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Listen on the document that renders the component: it may live in an iframe (previews, embeds).
+    const doc = root.current?.ownerDocument ?? document;
     if (!open) return;
     const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setOpen(false); };
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    doc.addEventListener('keydown', onKey);
+    return () => doc.removeEventListener('keydown', onKey);
   }, [open]);
 
   const nav = (
@@ -30,7 +33,7 @@ export function MobileDrawerSidebar() {
   );
 
   return (
-    <div className="relative flex h-80 w-full max-w-2xl overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
+    <div ref={root} className="relative flex h-80 w-full max-w-2xl overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
       <aside className="hidden w-56 shrink-0 border-r border-zinc-200 bg-white p-3 lg:block dark:border-zinc-800 dark:bg-zinc-950">{nav}</aside>
       <div className="flex-1">
         <header className="flex h-12 items-center gap-3 border-b border-zinc-200 bg-white px-3 lg:hidden dark:border-zinc-800 dark:bg-zinc-950">

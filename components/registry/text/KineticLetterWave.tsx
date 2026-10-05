@@ -26,12 +26,15 @@ export function KineticLetterWave() {
       root,
       mediaQueries: { reduceMotion: '(prefers-reduced-motion: reduce)' },
     }).add((self) => {
+      // Element array rather than a selector: anime.js detects NodeLists with instanceof,
+      // which fails when the component renders inside another document (iframe preview).
+      const letters = Array.from(root.current?.querySelectorAll<HTMLElement>('.pui-kinetic-letter') ?? []);
       if (self?.matches.reduceMotion) {
-        utils.set('.pui-kinetic-letter', { opacity: 1, y: 0, rotate: 0, filter: 'blur(0px)' });
+        utils.set(letters, { opacity: 1, y: 0, rotate: 0, filter: 'blur(0px)' });
         return;
       }
 
-      animate('.pui-kinetic-letter', {
+      animate(letters, {
         opacity: [0, 1],
         y: ['1.1em', 0],
         rotate: [() => `${Math.random() * 18 - 9}deg`, '0deg'],
@@ -46,9 +49,9 @@ export function KineticLetterWave() {
   }, [run]);
 
   return (
-    <section ref={root} className="w-full max-w-full overflow-hidden rounded-[2rem] border border-zinc-200 bg-white px-3 py-8 text-center shadow-sm sm:max-w-3xl sm:px-10 sm:py-14 dark:border-zinc-800 dark:bg-zinc-950">
+    <section ref={root} className="w-full max-w-3xl rounded-[2rem] border border-zinc-200 bg-white px-5 py-10 text-center shadow-sm sm:px-10 sm:py-14 dark:border-zinc-800 dark:bg-zinc-950">
       <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-teal-600 dark:text-teal-400">Motion study 01</p>
-      <h2 aria-label={label} className="flex max-w-full flex-wrap justify-center gap-x-[0.18em] overflow-hidden text-3xl font-black leading-none tracking-tight text-zinc-950 sm:text-6xl dark:text-white">
+      <h2 aria-label={label} className="flex flex-wrap justify-center gap-x-[0.18em] gap-y-1 text-4xl font-black sm:text-6xl leading-none tracking-tight text-zinc-950 dark:text-white">
         {words.map((word) => (
           <span key={word} aria-hidden className="whitespace-nowrap">
             {[...word].map((letter, index) => (

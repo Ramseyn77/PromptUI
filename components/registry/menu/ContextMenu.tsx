@@ -33,16 +33,18 @@ export function ContextMenu() {
   }
 
   useEffect(() => {
+    // Listen on the document that renders the component: it may live in an iframe (previews, embeds).
+    const doc = area.current?.ownerDocument ?? document;
     if (!menu) return;
     menuRef.current?.querySelector<HTMLElement>('[role="menuitem"]')?.focus();
     const close = (event: globalThis.MouseEvent) => { if (!menuRef.current?.contains(event.target as Node)) setMenu(null); };
-    document.addEventListener('mousedown', close);
-    return () => document.removeEventListener('mousedown', close);
+    doc.addEventListener('mousedown', close);
+    return () => doc.removeEventListener('mousedown', close);
   }, [menu]);
 
   function onMenuKey(event: KeyboardEvent<HTMLDivElement>) {
     const all = [...(menuRef.current?.querySelectorAll<HTMLElement>('[role="menuitem"]') ?? [])];
-    const index = all.indexOf(document.activeElement as HTMLElement);
+    const index = all.indexOf((area.current?.ownerDocument ?? document).activeElement as HTMLElement);
     if (event.key === 'ArrowDown') { event.preventDefault(); all[(index + 1) % all.length]?.focus(); }
     if (event.key === 'ArrowUp') { event.preventDefault(); all[(index - 1 + all.length) % all.length]?.focus(); }
     if (event.key === 'Escape') { setMenu(null); area.current?.focus(); }

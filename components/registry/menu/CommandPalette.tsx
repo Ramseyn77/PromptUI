@@ -25,12 +25,16 @@ export function CommandPalette({ defaultOpen = true }: { defaultOpen?: boolean }
   const [active, setActive] = useState(0);
   const [ran, setRan] = useState('');
   const listRef = useRef<HTMLUListElement>(null);
+  const root = useRef<HTMLDivElement>(null);
   const results = useMemo(() => commands.filter((command) => command.label.toLowerCase().includes(query.toLowerCase())), [query]);
 
   useEffect(() => {
+    // Listen on the document that renders the component: it may live in an iframe (previews, embeds).
+    const doc = root.current?.ownerDocument ?? document;
+    const win = doc.defaultView ?? window;
     const onKey = (event: globalThis.KeyboardEvent) => { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); setOpen(true); } };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    win.addEventListener('keydown', onKey);
+    return () => win.removeEventListener('keydown', onKey);
   }, []);
 
   // Keep the active option visible by scrolling the list only (scrollIntoView would move the page).
@@ -53,7 +57,7 @@ export function CommandPalette({ defaultOpen = true }: { defaultOpen?: boolean }
   if (!open) return <button type="button" onClick={() => setOpen(true)} className="rounded-xl border border-zinc-300 px-4 py-2 text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-200">Open command menu <kbd className="ml-2 font-mono text-xs">⌘K</kbd></button>;
 
   return (
-    <div className="w-full max-w-md overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-950">
+    <div ref={root} className="w-full max-w-md overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-950">
       <label className="flex items-center gap-3 border-b border-zinc-200 px-4 dark:border-zinc-800">
         <Search aria-hidden className="size-4 text-zinc-400" />
         <input role="combobox" aria-expanded aria-controls="command-list" aria-activedescendant={results[active] ? `command-${active}` : undefined} aria-label="Search commands" value={query} onChange={(event) => { setQuery(event.target.value); setActive(0); }} onKeyDown={onKey} placeholder="Type a command or search…" className="h-12 flex-1 bg-transparent text-sm text-zinc-900 outline-none placeholder:text-zinc-400 dark:text-white" />

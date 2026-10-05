@@ -18,10 +18,12 @@ export function SpeedDialMenu({ defaultOpen = true }: { defaultOpen?: boolean })
   const fab = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    // Listen on the document that renders the component: it may live in an iframe (previews, embeds).
+    const doc = fab.current?.ownerDocument ?? document;
     if (!open) return;
     const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') { setOpen(false); fab.current?.focus(); } };
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    doc.addEventListener('keydown', onKey);
+    return () => doc.removeEventListener('keydown', onKey);
   }, [open]);
 
   return (

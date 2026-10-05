@@ -32,13 +32,17 @@ export function SignalConstellationLoader() {
       root,
       mediaQueries: { reduceMotion: '(prefers-reduced-motion: reduce)' },
     }).add((self) => {
+      // Element arrays rather than selectors: anime.js detects NodeLists with instanceof,
+      // which fails when the component renders inside another document (iframe preview).
+      const nodes = Array.from(root.current?.querySelectorAll<HTMLElement>('.pui-signal-node') ?? []);
+      const halo = Array.from(root.current?.querySelectorAll<HTMLElement>('.pui-signal-halo') ?? []);
       if (self?.matches.reduceMotion) {
-        utils.set('.pui-signal-node', { opacity: 1, scale: 1 });
-        utils.set('.pui-signal-halo', { opacity: 0.35, scale: 1 });
+        utils.set(nodes, { opacity: 1, scale: 1 });
+        utils.set(halo, { opacity: 0.35, scale: 1 });
         return;
       }
 
-      animate('.pui-signal-node', {
+      animate(nodes, {
         opacity: [0.3, 1],
         scale: [0.7, 1.45],
         delay: stagger(125),
@@ -48,7 +52,7 @@ export function SignalConstellationLoader() {
         ease: 'inOut(3)',
       });
 
-      animate('.pui-signal-halo', {
+      animate(halo, {
         opacity: [0.12, 0.5],
         scale: [0.72, 1.25],
         duration: 1300,

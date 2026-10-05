@@ -20,6 +20,7 @@ import { ThinkingAccordion } from './ai-chat/ThinkingAccordion';
 import { TypingIndicator } from './ai-chat/TypingIndicator';
 import { VoiceOrb } from './ai-chat/VoiceOrb';
 import { BugTriageBoard } from './boards/BugTriageBoard';
+import { CandidatePipelineBoard } from './boards/CandidatePipelineBoard';
 import { ContentCalendar } from './boards/ContentCalendar';
 import { DragDropKanban } from './boards/DragDropKanban';
 import { GanttTimeline } from './boards/GanttTimeline';
@@ -380,6 +381,7 @@ export const registryComponents: Record<string, ComponentType> = {
   "typing-indicator": TypingIndicator,
   "voice-orb": VoiceOrb,
   "bug-triage-board": BugTriageBoard,
+  "candidate-pipeline-board": CandidatePipelineBoard,
   "content-calendar": ContentCalendar,
   "drag-drop-kanban": DragDropKanban,
   "gantt-timeline": GanttTimeline,

@@ -5,7 +5,7 @@
  * style: Minimal
  * tags: recent
  * description: Minuteur de concentration compact avec progression circulaire, pause et remise a zero.
- * prompt: Create a responsive focus timer card with a circular countdown, start/pause and reset controls, plus selectable 25, 15 and 5 minute presets. Include reduced-motion support and accessible timer semantics.
+ * prompt: Create a responsive focus timer card with a circular countdown, a seconds marker that orbits the dial once per minute while running, start/pause and reset controls, plus selectable 25, 15 and 5 minute presets. Include reduced-motion support and accessible timer semantics.
  */
 'use client';
 
@@ -33,6 +33,7 @@ export function FocusTimerCard() {
     setRemaining(minutes * 60);
   };
   const progress = 1 - remaining / duration;
+  const elapsed = duration - remaining;
   const time = `${String(Math.floor(remaining / 60)).padStart(2, '0')}:${String(remaining % 60).padStart(2, '0')}`;
 
   return (
@@ -45,6 +46,11 @@ export function FocusTimerCard() {
         <svg className="absolute inset-0 size-full -rotate-90" viewBox="0 0 100 100" aria-hidden="true">
           <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" strokeWidth="5" className="text-zinc-100 dark:text-zinc-800" />
           <circle cx="50" cy="50" r="44" fill="none" stroke="url(#focus-gradient)" strokeWidth="5" strokeLinecap="round" pathLength="1" strokeDasharray="1" strokeDashoffset={1 - progress} className="transition-[stroke-dashoffset] duration-500 motion-reduce:transition-none" />
+          {/* Seconds marker: one full turn per minute, so a running session visibly moves even when the main ring barely does. */}
+          <circle cx="50" cy="50" r="37" fill="none" stroke="currentColor" strokeWidth="0.6" strokeDasharray="0.6 3.27" className="text-zinc-200 dark:text-zinc-800" />
+          <g style={{ transform: `rotate(${elapsed * 6}deg)`, transformOrigin: '50px 50px' }} className={running ? 'transition-transform duration-1000 ease-linear motion-reduce:transition-none' : ''}>
+            <circle cx="87" cy="50" r="2.2" className={running ? 'fill-violet-500' : 'fill-zinc-300 dark:fill-zinc-700'} />
+          </g>
           <defs><linearGradient id="focus-gradient"><stop stopColor="#8b5cf6" /><stop offset="1" stopColor="#ec4899" /></linearGradient></defs>
         </svg>
         <div className="text-center"><p role="timer" aria-live="off" className="font-mono text-4xl font-semibold tabular-nums text-zinc-950 dark:text-white sm:text-5xl">{time}</p><p className="mt-2 text-sm text-zinc-500">{running ? 'Stay in the flow' : remaining === 0 ? 'Session complete' : 'Ready when you are'}</p></div>
