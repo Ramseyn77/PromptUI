@@ -1,7 +1,9 @@
 'use client';
 
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { ComponentPreview } from './ComponentPreview';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export type EmulatedComponentPreviewHandle = {
   getHtml: () => string;
@@ -38,6 +40,9 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
   const onSelectRef = useRef(onSelectElement);
   onSelectRef.current = onSelectElement;
   const isHtmlPreview = editableHtml !== undefined;
+  const { t } = useLocale();
+  // Horizontal overflow of the rendered component, in CSS pixels (0 when it fits the device width).
+  const [overflowX, setOverflowX] = useState(0);
 
   useImperativeHandle(ref, () => ({
     getHtml: () => {
@@ -51,15 +56,13 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
     },
   }), [mountNode]);
 
+  // Every preview renders inside an iframe: its media queries then follow the emulated device width,
+  // not the browser window, so Mobile/Tablette/Desktop trigger the real Tailwind breakpoints.
   useEffect(() => {
-    if (!isHtmlPreview) {
-      setMountNode(null);
-      hasBuiltRef.current = false;
-      return;
-    }
-
+    hasBuiltRef.current = false;
     const iframe = iframeRef.current;
     if (!iframe) return;
+    let headObserver: MutationObserver | null = null;
 
     const prepareFrame = () => {
       const frameDocument = iframe.contentDocument;
@@ -69,6 +72,16 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
       document.querySelectorAll('link[rel="stylesheet"], style').forEach((node) => {
         frameDocument.head.appendChild(node.cloneNode(true));
       });
+      // Stylesheets injected later (dev hot reload, lazily loaded chunks) must reach the frame too.
+      headObserver?.disconnect();
+      headObserver = new MutationObserver((records) => {
+        records.forEach((record) => record.addedNodes.forEach((node) => {
+          if (node instanceof HTMLStyleElement || (node instanceof HTMLLinkElement && node.rel === 'stylesheet')) {
+            frameDocument.head.insertBefore(node.cloneNode(true), frameDocument.getElementById('preview-reset'));
+          }
+        }));
+      });
+      headObserver.observe(document.head, { childList: true });
 
       if (editableHtml !== undefined) {
         const cdnScript = frameDocument.createElement('script');
@@ -81,11 +94,13 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
       }
 
       const reset = frameDocument.createElement('style');
+      reset.id = 'preview-reset';
+      // Like a real device: the page may scroll vertically, never horizontally.
       reset.textContent = `
-        html, body { width: 100%; min-height: 100%; margin: 0; background: transparent !important; }
+        html, body { width: 100%; height: 100%; margin: 0; background: transparent !important; scroll-behavior: auto; }
         html { overflow: hidden; }
-        body { min-width: 100%; min-height: 100vh; overflow: auto; overscroll-behavior: contain; color: var(--foreground); }
-        #component-preview-root { display: grid; width: 100%; min-height: 100vh; place-items: safe center; box-sizing: border-box; }
+        body { overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; color: var(--foreground); }
+        #component-preview-root { display: grid; width: 100%; min-height: 100%; place-items: safe center; box-sizing: border-box; }
         #component-preview-root > * { width: 100%; box-sizing: border-box; }
         .show-preview-bounds * { outline: 1px solid rgba(20, 184, 166, .28); outline-offset: -1px; }
         .viz-hover { outline: 1.5px dashed rgba(13, 148, 136, .7); outline-offset: 1px; cursor: pointer; }
@@ -93,6 +108,8 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
       `;
       frameDocument.head.appendChild(reset);
       frameDocument.documentElement.className = theme === 'dark' ? 'dark' : '';
+      // Site tokens (--surface-2, --foreground...) depend on data-theme.
+      if (document.documentElement.dataset.theme) frameDocument.documentElement.dataset.theme = document.documentElement.dataset.theme;
 
       let root = frameDocument.getElementById('component-preview-root');
       if (!root) {
@@ -108,8 +125,23 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
 
     return () => {
       iframe.removeEventListener('load', prepareFrame);
+      headObserver?.disconnect();
     };
   }, [device, theme, isHtmlPreview]);
+
+  // Report horizontal overflow instead of letting it hide behind a scrollbar.
+  useEffect(() => {
+    const frameDocument = iframeRef.current?.contentDocument;
+    if (!mountNode || !frameDocument) return;
+    const measure = () => setOverflowX(Math.max(0, frameDocument.body.scrollWidth - frameDocument.body.clientWidth));
+    const observer = new ResizeObserver(measure);
+    observer.observe(mountNode);
+    observer.observe(frameDocument.body);
+    const mutations = new MutationObserver(measure);
+    mutations.observe(mountNode, { childList: true, subtree: true, attributes: true });
+    measure();
+    return () => { observer.disconnect(); mutations.disconnect(); };
+  }, [mountNode]);
 
   useEffect(() => {
     const frameDocument = iframeRef.current?.contentDocument;
@@ -120,8 +152,8 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
   useEffect(() => {
     if (!mountNode) return;
     const isEditable = editableHtml !== undefined;
-    mountNode.className = isEditable && showBounds ? 'show-preview-bounds' : '';
-    mountNode.style.padding = isEditable ? `${padding}px` : '';
+    mountNode.className = showBounds ? 'show-preview-bounds' : '';
+    mountNode.style.padding = `${padding}px`;
 
     if (!isEditable) {
       hasBuiltRef.current = false;
@@ -312,31 +344,34 @@ export const EmulatedComponentPreview = forwardRef<EmulatedComponentPreviewHandl
     return () => input.removeEventListener('input', updateProgress);
   }, [mountNode, slug, editableHtml]);
 
-  const viewport = isHtmlPreview ? (
+  const viewport = (
+    <>
       <iframe
         ref={iframeRef}
-        data-preview-scroll
-        data-lenis-prevent
-        title={`Apercu responsive de ${slug}`}
+        title={t.playground.frameTitle(slug)}
         className="block border-0 bg-transparent"
         style={{ width, height }}
       />
-    ) : (
-      <div
-        data-preview-scroll
-        data-lenis-prevent
-        className={`grid min-h-full overflow-auto overscroll-contain bg-transparent ${theme === 'dark' ? 'dark' : ''} ${showBounds ? 'show-preview-bounds' : ''}`}
-        style={{ width, height, padding, placeItems: 'safe center' }}
-      >
-        <ComponentPreview slug={slug}/>
-      </div>
-    );
+      {/* Library components are React: they render into the frame through a portal and keep their state and events. */}
+      {!isHtmlPreview && mountNode && createPortal(<ComponentPreview slug={slug}/>, mountNode)}
+    </>
+  );
 
   return (
     <div
       className="relative shrink-0 transition-transform duration-300"
       style={{ transform: `scale(${scale})` }}
     >
+      {overflowX > 0 && (
+        <p
+          role="status"
+          className="pointer-events-none absolute right-3 top-3 z-10 origin-top-right rounded-full bg-rose-600 px-3 py-1 text-xs font-semibold text-white shadow-lg"
+          // Counter the frame scale so the warning stays readable at any zoom.
+          style={{ transform: `scale(${1 / scale})` }}
+        >
+          {t.playground.overflow(overflowX)}
+        </p>
+      )}
       {device === 'mobile' && (
         <div className="relative overflow-hidden rounded-[2.4rem] border-[8px] border-zinc-950 bg-zinc-900 shadow-2xl dark:border-zinc-800">
           {viewport}

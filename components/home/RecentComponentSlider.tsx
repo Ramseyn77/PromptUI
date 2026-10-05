@@ -7,6 +7,7 @@ import { createPortal } from 'react-dom';
 import type { LibraryComponent } from '@/types/component';
 import { ComponentPreview } from '@/components/library/ComponentPreview';
 import { FitPreview } from '@/components/library/FitPreview';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 type SliderItem = Pick<LibraryComponent, 'slug' | 'name' | 'category' | 'style' | 'description' | 'code' | 'prompt'>;
 
@@ -17,6 +18,7 @@ export function RecentComponentSlider({ items }: { items: SliderItem[] }) {
   const [paused, setPaused] = useState(false);
   const activeIndex = useMemo(() => active ? items.findIndex((item) => item.slug === active.slug) : -1, [active, items]);
   const loopItems = useMemo(() => [...items, ...items], [items]);
+  const { t, href } = useLocale();
 
   useEffect(() => {
     if (!active) return;
@@ -48,7 +50,7 @@ export function RecentComponentSlider({ items }: { items: SliderItem[] }) {
 
   function viewCount(slug: string) {
     const score = slug.split('').reduce((total, char) => total + char.charCodeAt(0), 0);
-    return `${(score % 8) + 2}.${score % 9}k vues`;
+    return t.slider.views(`${(score % 8) + 2}.${score % 9}k`);
   }
 
   return (
@@ -103,15 +105,15 @@ export function RecentComponentSlider({ items }: { items: SliderItem[] }) {
               <p className="truncate text-sm font-black">{active.name}</p>
               <p className="text-[10px] uppercase text-white/45">{active.category} / {active.style}</p>
             </div>
-            <button onClick={() => setActive(null)} aria-label="Fermer" className="grid size-10 place-items-center rounded-full transition hover:bg-white/10">
+            <button onClick={() => setActive(null)} aria-label={t.slider.close} className="grid size-10 place-items-center rounded-full transition hover:bg-white/10">
               <X size={19}/>
             </button>
           </div>
 
-          <button onClick={() => openSibling('prev')} aria-label="Composant precedent" className="absolute left-4 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-full bg-white/10 transition hover:bg-white/20 md:grid">
+          <button onClick={() => openSibling('prev')} aria-label={t.slider.previous} className="absolute left-4 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-full bg-white/10 transition hover:bg-white/20 md:grid">
             <ArrowLeft size={19}/>
           </button>
-          <button onClick={() => openSibling('next')} aria-label="Composant suivant" className="absolute right-4 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-full bg-white/10 transition hover:bg-white/20 md:grid">
+          <button onClick={() => openSibling('next')} aria-label={t.slider.next} className="absolute right-4 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-full bg-white/10 transition hover:bg-white/20 md:grid">
             <ArrowRight size={19}/>
           </button>
 
@@ -119,7 +121,7 @@ export function RecentComponentSlider({ items }: { items: SliderItem[] }) {
             <div className="preview-grid max-h-full w-full overflow-auto rounded-[1.75rem] border border-white/10 bg-[#080808] p-5 shadow-2xl shadow-black">
               <div className="mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[.04] px-4 py-3">
                 <span className="text-sm font-semibold">{active.name}</span>
-                <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/65">expanded preview</span>
+                <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/65">{t.slider.expanded}</span>
               </div>
               <div className="grid min-h-[520px] place-items-center rounded-2xl bg-white/[.02] p-6">
                 <ComponentPreview slug={active.slug}/>
@@ -129,25 +131,25 @@ export function RecentComponentSlider({ items }: { items: SliderItem[] }) {
 
           <div className="absolute inset-x-0 bottom-5 flex justify-center px-4">
             <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/70 p-2 shadow-2xl backdrop-blur">
-              <Link href={`/components/${active.slug}`} className="rounded-full px-4 py-3 text-sm font-semibold text-white/85 transition hover:bg-white/10">
-                Open
+              <Link href={href(`/components/${active.slug}`)} className="rounded-full px-4 py-3 text-sm font-semibold text-white/85 transition hover:bg-white/10">
+                {t.slider.open}
               </Link>
               <button onClick={() => copy(active.prompt, 'prompt')} className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-3 font-ui text-sm font-semibold text-[var(--on-accent)] transition hover:bg-[var(--accent-strong)]">
                 {copied === 'prompt' ? <Check size={16}/> : <Copy size={16}/>}
-                {copied === 'prompt' ? 'Prompt copié' : 'Copy prompt'}
+                {copied === 'prompt' ? t.slider.promptCopied : t.slider.copyPrompt}
               </button>
               <div className="relative">
-                <button onClick={() => setMenuOpen((value) => !value)} aria-label="Plus d'actions" className="grid size-11 place-items-center rounded-full bg-[var(--accent)] text-[var(--on-accent)] transition hover:bg-[var(--accent-strong)]">
+                <button onClick={() => setMenuOpen((value) => !value)} aria-label={t.slider.moreActions} className="grid size-11 place-items-center rounded-full bg-[var(--accent)] text-[var(--on-accent)] transition hover:bg-[var(--accent-strong)]">
                   <ChevronDown size={17} className={`transition ${menuOpen ? 'rotate-180' : ''}`}/>
                 </button>
                 {menuOpen && (
                   <div className="absolute bottom-[calc(100%+.65rem)] right-0 w-48 overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 p-1 shadow-2xl">
                     <button onClick={() => copy(active.code, 'code')} className="flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left text-sm font-semibold text-white transition hover:bg-white/10">
                       {copied === 'code' ? <Check size={15}/> : <Code2 size={15}/>}
-                      {copied === 'code' ? 'Code copié' : 'Copy code'}
+                      {copied === 'code' ? t.slider.codeCopied : t.slider.copyCode}
                     </button>
-                    <Link href={`/components/${active.slug}`} className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10">
-                      <ExternalLink size={15}/> Fiche composant
+                    <Link href={href(`/components/${active.slug}`)} className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10">
+                      <ExternalLink size={15}/> {t.slider.componentPage}
                     </Link>
                   </div>
                 )}

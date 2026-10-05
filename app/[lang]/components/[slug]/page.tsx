@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, ArrowUpRight, CheckCircle2, Eye, MonitorSmartphone, ShieldCheck } from 'lucide-react';
-import { components, getComponentBySlug } from '@/data/components';
+import { components, getComponentBySlug, localizedDescription } from '@/data/components';
+import { isLocale, languageAlternates, locales, localizePath } from '@/i18n/config';
+import { dictionaries } from '@/i18n/dictionaries';
 import { ComponentViewTracker } from '@/components/analytics/ComponentViewTracker';
 import { ShareButton } from '@/components/analytics/ShareButton';
 import { ComponentShowcase } from '@/components/library/ComponentShowcase';
@@ -10,21 +12,26 @@ import { ComponentCard, ComponentGrid } from '@/components/library/ComponentCard
 import { viewCount } from '@/utils/viewCount';
 import type { LibraryComponent } from '@/types/component';
 
-export function generateStaticParams() { return components.map((item) => ({ slug: item.slug })); }
+type DetailProps = { params: Promise<{ lang: string; slug: string }> };
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
+export function generateStaticParams() { return locales.flatMap((lang) => components.map((item) => ({ lang, slug: item.slug }))); }
+
+export async function generateMetadata({ params }: DetailProps): Promise<Metadata> {
+  const { lang, slug } = await params;
   const item = getComponentBySlug(slug);
-  if (!item) return {};
+  if (!item || !isLocale(lang)) return {};
+  const t = dictionaries[lang].meta;
+  const description = localizedDescription(item, lang);
+  const path = `/components/${item.slug}`;
   return {
-    title: `${item.name} - composant ${item.category}`,
-    description: `${item.description} Code React, TypeScript et Tailwind gratuit avec prompt IA et apercu responsive.`,
-    alternates: { canonical: `/components/${item.slug}` },
+    title: t.componentTitle(item.name, item.category),
+    description: t.componentDescription(description),
+    alternates: { canonical: localizePath(lang, path), ...languageAlternates(path) },
     openGraph: {
-      title: `${item.name} - composant ${item.category}`,
-      description: item.description,
+      title: t.componentTitle(item.name, item.category),
+      description,
       type: 'article',
-      url: `/components/${item.slug}`,
+      url: localizePath(lang, path),
     },
   };
 }
@@ -37,10 +44,13 @@ function similarTo(item: LibraryComponent, count = 4) {
   return [...sameCategory, ...sameStyle].slice(0, count);
 }
 
-export default async function ComponentDetail({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function ComponentDetail({ params }: DetailProps) {
+  const { lang, slug } = await params;
   const item = getComponentBySlug(slug);
-  if (!item) notFound();
+  if (!item || !isLocale(lang)) notFound();
+  const t = dictionaries[lang].component;
+  const href = (path: string) => localizePath(lang, path);
+  const categoryLink = href(`/library?category=${encodeURIComponent(item.category)}`);
   const similar = similarTo(item);
 
   return (
@@ -50,13 +60,13 @@ export default async function ComponentDetail({ params }: { params: Promise<{ sl
       {/* Compact header: everything above the fold goes to the component itself. */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex min-w-0 items-center gap-3">
-          <Link href="/library" aria-label="Retour a la bibliotheque" className="grid size-10 shrink-0 place-items-center rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--muted)] transition hover:text-[var(--foreground)]">
+          <Link href={href('/library')} aria-label={t.back} className="grid size-10 shrink-0 place-items-center rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--muted)] transition hover:text-[var(--foreground)]">
             <ArrowLeft size={17}/>
           </Link>
           <div className="min-w-0">
             <h1 className="truncate font-display text-2xl font-semibold tracking-tight md:text-3xl">{item.name}</h1>
             <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
-              <Link href={`/library?category=${encodeURIComponent(item.category)}`} className="rounded-full bg-[var(--accent-soft)] px-2.5 py-0.5 font-pill font-medium text-[var(--accent)] transition hover:opacity-80">{item.category}</Link>
+              <Link href={categoryLink} className="rounded-full bg-[var(--accent-soft)] px-2.5 py-0.5 font-pill font-medium text-[var(--accent)] transition hover:opacity-80">{item.category}</Link>
               <span className="rounded-full border border-[var(--line)] px-2.5 py-0.5 font-pill">{item.style}</span>
               <span className="inline-flex items-center gap-1 font-mono"><Eye size={13}/>{viewCount(item.slug)}</span>
             </div>
@@ -64,13 +74,13 @@ export default async function ComponentDetail({ params }: { params: Promise<{ sl
         </div>
         <div className="flex flex-wrap gap-2">
           <ShareButton slug={item.slug} name={item.name}/>
-          <Link href={`/playground/${item.slug}`} className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-2.5 font-ui text-sm font-semibold text-[var(--background)] shadow-sm transition hover:-translate-y-0.5">
-            Tester le composant <ArrowUpRight size={16}/>
+          <Link href={href(`/playground/${item.slug}`)} className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-2.5 font-ui text-sm font-semibold text-[var(--background)] shadow-sm transition hover:-translate-y-0.5">
+            {t.test} <ArrowUpRight size={16}/>
           </Link>
         </div>
       </div>
 
-      <p className="mt-4 max-w-3xl text-sm leading-6 text-[var(--muted)]">{item.description}</p>
+      <p className="mt-4 max-w-3xl text-sm leading-6 text-[var(--muted)]">{localizedDescription(item, lang)}</p>
 
       <div className="mt-5">
         <ComponentShowcase item={item}/>
@@ -78,10 +88,10 @@ export default async function ComponentDetail({ params }: { params: Promise<{ sl
 
       <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          ['Technologies', item.technologies.join(' / '), null],
-          ['Responsive', item.responsiveModes.join(' / '), MonitorSmartphone],
-          ['Verifie', item.safetyNotes.slice(0, 2).join(' / '), ShieldCheck],
-          ['Dependances', 'Aucune dependance payante', CheckCircle2],
+          [t.technologies, item.technologies.join(' / '), null],
+          [t.responsive, t.responsiveModes, MonitorSmartphone],
+          [t.checked, t.checkedValue, ShieldCheck],
+          [t.dependencies, t.noPaidDependency, CheckCircle2],
         ].map(([label, value, Icon]) => {
           const IconComponent = Icon as typeof ShieldCheck | null;
           return (
@@ -92,17 +102,17 @@ export default async function ComponentDetail({ params }: { params: Promise<{ sl
           );
         })}
       </dl>
-      <p className="mt-3 text-xs leading-5 text-[var(--muted)]">Ce n&apos;est pas un audit securite complet : teste toujours le composant dans ton contexte produit.</p>
+      <p className="mt-3 text-xs leading-5 text-[var(--muted)]">{t.disclaimer}</p>
 
       {similar.length > 0 && (
         <section className="mt-14">
           <div className="mb-5 flex items-end justify-between gap-4">
             <div>
-              <p className="font-hand text-lg font-bold text-[var(--accent)]">Dans le meme esprit</p>
-              <h2 className="font-display text-2xl font-semibold tracking-tight md:text-3xl">Composants similaires</h2>
+              <p className="font-hand text-lg font-bold text-[var(--accent)]">{t.similarKicker}</p>
+              <h2 className="font-display text-2xl font-semibold tracking-tight md:text-3xl">{t.similarTitle}</h2>
             </div>
-            <Link href={`/library?category=${encodeURIComponent(item.category)}`} className="inline-flex shrink-0 items-center gap-1 font-ui text-sm font-semibold text-[var(--muted)] transition hover:text-[var(--foreground)]">
-              Tout voir <ArrowRight size={15}/>
+            <Link href={categoryLink} className="inline-flex shrink-0 items-center gap-1 font-ui text-sm font-semibold text-[var(--muted)] transition hover:text-[var(--foreground)]">
+              {dictionaries[lang].common.viewAll} <ArrowRight size={15}/>
             </Link>
           </div>
           <ComponentGrid className="grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">

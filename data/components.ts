@@ -1,5 +1,8 @@
 import type { LibraryComponent } from '@/types/component';
 import { registryEntries } from './registry-generated';
+import { englishDescriptions } from './descriptionTranslations.en';
+import { frenchDescriptions } from './descriptionTranslations.fr';
+import type { Locale } from '@/i18n/config';
 
 const makePrompt = (name: string, category: string, style: string, description: string) =>
   `Create a responsive ${category.toLowerCase()} component named "${name}" with React, TypeScript and Tailwind CSS. Style: ${style.toLowerCase()}. ${description} Keep it accessible, copy-ready and easy to customize.`;
@@ -1272,11 +1275,20 @@ export function MessageDock(){const [active,setActive]=useState('Inbox');return 
   ...item,
   responsiveModes: ['Mobile', 'Tablette', 'Desktop'],
   safetyNotes: ['HTML semantique', 'Focus visible', 'Sans dependance externe', 'Responsive verifie'],
-  prompt: item.prompt || makePrompt(item.name, item.category, item.style, item.description),
+  // The generated prompt is English: build it from the English description.
+  prompt: item.prompt || makePrompt(item.name, item.category, item.style, englishDescriptions[item.slug] ?? item.description),
 })) as LibraryComponent[];
 
 export const categories = ['All','Hero','Navbar','Cards','Buttons','Checkboxes','AI Chat','Forms','Pricing','Testimonials','Dashboard','Tables','Boards','Charts','Shaders','Footer','CTA','Loader','Menu','Toggle','Tooltips','Text','Sidebar'] as const;
 export const styles = ['All','Minimal','Gradient','Glass','Dark','Editorial','SaaS'] as const;
+
+const descriptions: Record<Locale, Record<string, string>> = { en: englishDescriptions, fr: frenchDescriptions };
+
+/** Description in `locale`. Source descriptions mix French and English: each table holds the texts
+ *  of its language that differ from the source, and the source text is the fallback. */
+export function localizedDescription(item: Pick<LibraryComponent, 'slug' | 'description'>, locale: Locale) {
+  return descriptions[locale][item.slug] ?? item.description;
+}
 
 export function getComponentBySlug(slug: string) {
   return components.find((item) => item.slug === slug);

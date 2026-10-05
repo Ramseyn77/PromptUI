@@ -21,11 +21,13 @@ import {
   X,
 } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { categories, components, styles } from '@/data/components';
+import { categories, components, localizedDescription, styles } from '@/data/components';
+import { LanguageSwitcher } from '@/i18n/LanguageSwitcher';
 import type { LibraryComponent } from '@/types/component';
 import { Logo } from '@/components/ui/Logo';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { ComponentCard, ComponentGrid } from './ComponentCard';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 type Collection = 'all' | 'newest' | 'popular';
 
@@ -59,31 +61,16 @@ const recentFirst = (items: LibraryComponent[]) => {
   return [...recent, ...rest];
 };
 
-const sectionDefinitions: Array<{ title: string; type?: 'newest' | 'popular'; category?: LibraryComponent['category'] }> = [
-  { title: 'Nouveaux', type: 'newest' },
-  { title: 'Populaires', type: 'popular' },
+// Section titles come from the dictionary at render time (newest, popular, category titles).
+const sectionDefinitions: Array<{ type?: 'newest' | 'popular'; category?: LibraryComponent['category'] }> = [
+  { type: 'newest' },
+  { type: 'popular' },
 ];
 
 const sidebarCategories = categories.filter((item) => item !== 'All');
-const categoryTitles: Partial<Record<LibraryComponent['category'], string>> = {
-  Buttons: 'Boutons',
-  Cards: 'Cartes',
-  Charts: 'Graphes',
-  CTA: 'Calls to Action',
-  Footer: 'Footers',
-  Hero: 'Heroes',
-  Menu: 'Menus',
-  Navbar: 'Navigations',
-  Tables: 'Tableaux',
-  Toggle: 'Toggles',
-  Tooltips: 'Tooltips',
-};
-const librarySections: Array<{ title: string; type?: 'newest' | 'popular'; category?: LibraryComponent['category'] }> = [
+const librarySections: Array<{ type?: 'newest' | 'popular'; category?: LibraryComponent['category'] }> = [
   ...sectionDefinitions,
-  ...sidebarCategories.map((category) => ({
-    title: categoryTitles[category] ?? category,
-    category,
-  })),
+  ...sidebarCategories.map((category) => ({ category })),
 ];
 const categoryIcons: Partial<Record<LibraryComponent['category'], typeof Layers3>> = {
   Hero: PanelTop,
@@ -119,6 +106,7 @@ function ComponentRow({
   items: LibraryComponent[];
   onViewAll: () => void;
 }) {
+  const { t } = useLocale();
   if (!items.length) return null;
 
   return (
@@ -128,7 +116,7 @@ function ComponentRow({
           <h2 className="font-display text-xl font-semibold tracking-tight md:text-2xl">{title}</h2>
         </div>
         <button type="button" onClick={onViewAll} className="inline-flex items-center gap-1 font-ui text-sm font-medium text-[var(--muted)] transition hover:text-[var(--accent)]">
-          Tout voir <ChevronRight size={16}/>
+          {t.common.viewAll} <ChevronRight size={16}/>
         </button>
       </div>
       <div className="no-scrollbar flex snap-x overflow-x-auto border-y-[0.5px] border-[var(--line-soft)]">
@@ -147,28 +135,35 @@ export function LibraryExplorer({ initialQuery = '', initialCategory = 'All' }: 
   const [collection, setCollection] = useState<Collection>('all');
   const [mobileCatsOpen, setMobileCatsOpen] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
+  const { t, locale } = useLocale();
+  // Search the description in the language the visitor reads.
+  const searchText = (item: LibraryComponent) => `${item.name} ${localizedDescription(item, locale)} ${item.category} ${item.style} ${item.technologies.join(' ')}`.toLowerCase();
+  const sectionTitle = (section: (typeof librarySections)[number]) =>
+    section.type === 'newest' ? t.library.newest
+      : section.type === 'popular' ? t.library.popular
+      : (section.category && t.library.categoryTitles[section.category]) || section.category || '';
 
   const counts = useMemo(() => new Map(sidebarCategories.map((cat) => [cat, components.filter((item) => item.category === cat).length])), []);
   const filtered = useMemo(() => components.filter((item) => {
-    const text = `${item.name} ${item.description} ${item.category} ${item.style} ${item.technologies.join(' ')}`.toLowerCase();
+    const text = searchText(item);
     const matchesCollection = collection === 'all' || (collection === 'newest' && item.recent) || (collection === 'popular' && item.featured);
     return text.includes(query.toLowerCase()) && (category === 'All' || item.category === category) && (style === 'All' || item.style === style) && matchesCollection;
-  }), [query, category, style, collection]);
+  }), [query, category, style, collection, locale]);
   const mixed = useMemo(() => recentFirst(filtered), [filtered]);
   const browsing = !query && category === 'All' && style === 'All' && collection === 'all';
 
   const browseSource = useMemo(() => recentFirst(components.filter((item) => {
-    const text = `${item.name} ${item.description} ${item.category} ${item.style} ${item.technologies.join(' ')}`.toLowerCase();
+    const text = searchText(item);
     return text.includes(query.toLowerCase()) && (style === 'All' || item.style === style);
-  })), [query, style]);
+  })), [query, style, locale]);
 
   const sections = useMemo(() => librarySections.map((section) => {
-    if (section.type === 'newest') return { title: section.title, items: browseSource.filter((item) => item.recent), onViewAll: () => { setCollection('newest'); setCategory('All'); } };
-    if (section.type === 'popular') return { title: section.title, items: browseSource.filter((item) => item.featured), onViewAll: () => { setCollection('popular'); setCategory('All'); } };
-    return { title: section.title, items: browseSource.filter((item) => item.category === section.category), onViewAll: () => { setCollection('all'); setCategory(section.category ?? 'All'); } };
-  }).filter((section) => section.items.length), [browseSource]);
+    if (section.type === 'newest') return { title: sectionTitle(section), items: browseSource.filter((item) => item.recent), onViewAll: () => { setCollection('newest'); setCategory('All'); } };
+    if (section.type === 'popular') return { title: sectionTitle(section), items: browseSource.filter((item) => item.featured), onViewAll: () => { setCollection('popular'); setCategory('All'); } };
+    return { title: sectionTitle(section), items: browseSource.filter((item) => item.category === section.category), onViewAll: () => { setCollection('all'); setCategory(section.category ?? 'All'); } };
+  }).filter((section) => section.items.length), [browseSource, t]);
 
-  const heading = collection === 'newest' ? 'Nouveaux' : collection === 'popular' ? 'Populaires' : category === 'All' ? 'Bibliothèque' : category;
+  const heading = collection === 'newest' ? t.library.newest : collection === 'popular' ? t.library.popular : category === 'All' ? t.library.library : category;
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -214,11 +209,11 @@ export function LibraryExplorer({ initialQuery = '', initialCategory = 'All' }: 
               ref={searchRef}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Chercher un composant"
+              placeholder={t.library.searchPlaceholder}
               className="min-w-0 flex-1 bg-transparent text-sm text-[var(--foreground)] outline-none placeholder:text-[var(--muted)]"
             />
             {query ? (
-              <button type="button" onClick={() => setQuery('')} aria-label="Effacer la recherche"><X size={14}/></button>
+              <button type="button" onClick={() => setQuery('')} aria-label={t.library.clearSearch}><X size={14}/></button>
             ) : (
               <kbd className="rounded-md border border-[var(--line)] px-1.5 py-0.5 text-[10px] font-semibold">/</kbd>
             )}
@@ -226,21 +221,21 @@ export function LibraryExplorer({ initialQuery = '', initialCategory = 'All' }: 
 
           <nav className="mt-4 space-y-0.5">
             <button type="button" onClick={resetFilters} className={navButton(browsing)}>
-              <Sparkles size={16}/> Tous
+              <Sparkles size={16}/> {t.common.all}
             </button>
             <button type="button" onClick={() => { setCollection('newest'); setCategory('All'); }} className={navButton(collection === 'newest')}>
-              <Clock3 size={16}/> Nouveaux
+              <Clock3 size={16}/> {t.library.newest}
             </button>
             <button type="button" onClick={() => { setCollection('popular'); setCategory('All'); }} className={navButton(collection === 'popular')}>
-              <Star size={16}/> Populaires
+              <Star size={16}/> {t.library.popular}
             </button>
           </nav>
 
           <div className="mt-6">
             <div className="flex items-center justify-between px-3">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">Catégories</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">{t.library.categories}</p>
               <button type="button" onClick={() => setMobileCatsOpen((value) => !value)} aria-expanded={mobileCatsOpen} aria-controls="library-categories" className="text-xs font-semibold text-[var(--accent)] lg:hidden">
-                {mobileCatsOpen ? 'Réduire' : 'Voir'}
+                {mobileCatsOpen ? t.library.hide : t.library.show}
               </button>
             </div>
             <div id="library-categories" className={`mt-2 space-y-0.5 ${mobileCatsOpen ? 'block' : 'hidden lg:block'}`}>
@@ -265,7 +260,7 @@ export function LibraryExplorer({ initialQuery = '', initialCategory = 'All' }: 
           </div>
 
           <div className="mt-6 px-1">
-            <p className="px-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">Style</p>
+            <p className="px-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">{t.library.style}</p>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {styles.map((item) => (
                 <button
@@ -278,13 +273,13 @@ export function LibraryExplorer({ initialQuery = '', initialCategory = 'All' }: 
                       : 'border border-[var(--line)] text-[var(--muted)] hover:text-[var(--foreground)]'
                   }`}
                 >
-                  {item === 'All' ? 'Tous' : item}
+                  {item === 'All' ? t.common.all : item}
                 </button>
               ))}
             </div>
             {(query || category !== 'All' || style !== 'All' || collection !== 'all') && (
               <button type="button" onClick={resetFilters} className="mt-3 px-2 text-xs font-semibold text-[var(--accent)]">
-                Réinitialiser
+                {t.common.reset}
               </button>
             )}
           </div>
@@ -294,10 +289,13 @@ export function LibraryExplorer({ initialQuery = '', initialCategory = 'All' }: 
       <section className="min-w-0">
         <header className="sticky top-0 z-20 flex h-14 items-center justify-between gap-4 border-b border-[var(--line)] bg-[var(--background)]/88 px-4 backdrop-blur md:px-8">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--accent)]">Explorer</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--accent)]">{t.library.explorer}</p>
             <h1 className="font-display text-base font-semibold tracking-tight">{heading}</h1>
           </div>
-          <p className="text-sm text-[var(--muted)]">{filtered.length} composant{filtered.length !== 1 ? 's' : ''}</p>
+          <div className="flex items-center gap-3">
+            <p className="text-sm text-[var(--muted)]">{t.library.count(filtered.length)}</p>
+            <LanguageSwitcher />
+          </div>
         </header>
 
         {filtered.length ? (
@@ -311,11 +309,11 @@ export function LibraryExplorer({ initialQuery = '', initialCategory = 'All' }: 
             <section className="p-4 md:p-8">
               <div className="mb-5 flex items-end justify-between gap-4">
                 <div>
-                  <h2 className="font-display text-lg font-semibold tracking-tight">Résultats</h2>
-                  <p className="mt-1 text-sm text-[var(--muted)]">{filtered.length} composant{filtered.length !== 1 ? 's' : ''} trouvé{filtered.length !== 1 ? 's' : ''}</p>
+                  <h2 className="font-display text-lg font-semibold tracking-tight">{t.library.results}</h2>
+                  <p className="mt-1 text-sm text-[var(--muted)]">{t.library.found(filtered.length)}</p>
                 </div>
                 <button type="button" onClick={resetFilters} className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs font-semibold text-[var(--muted)] transition hover:text-[var(--foreground)]">
-                  Effacer
+                  {t.common.clear}
                 </button>
               </div>
               <ComponentGrid className="grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
@@ -327,10 +325,10 @@ export function LibraryExplorer({ initialQuery = '', initialCategory = 'All' }: 
           <div className="grid min-h-[60vh] place-items-center p-6 text-center">
             <div>
               <Star className="mx-auto text-[var(--muted)]" size={32}/>
-              <p className="mt-4 font-black">Aucun composant trouvé</p>
-              <p className="mt-2 text-sm text-[var(--muted)]">Essaie une recherche plus large ou retire un filtre.</p>
+              <p className="mt-4 font-black">{t.library.emptyTitle}</p>
+              <p className="mt-2 text-sm text-[var(--muted)]">{t.library.emptyText}</p>
               <button type="button" onClick={resetFilters} className="mt-5 rounded-full bg-[var(--foreground)] px-4 py-2 text-sm font-semibold text-[var(--background)]">
-                Réinitialiser
+                {t.common.reset}
               </button>
             </div>
           </div>

@@ -6,6 +6,7 @@ import type { LibraryComponent } from '@/types/component';
 import { ComponentPreview } from './ComponentPreview';
 import { FitPreview } from './FitPreview';
 import { slugHue } from '@/utils/viewCount';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 type CardItem = Pick<LibraryComponent, 'slug' | 'name' | 'category' | 'style' | 'prompt'>;
 
@@ -24,6 +25,7 @@ export function ComponentGrid({ children, className = '' }: { children: ReactNod
 
 export function ComponentCard({ item, className = '' }: { item: CardItem; className?: string }) {
   const [copied, setCopied] = useState(false);
+  const { t, href } = useLocale();
   const hue = slugHue(item.slug);
 
   async function copyPrompt() {
@@ -50,21 +52,21 @@ export function ComponentCard({ item, className = '' }: { item: CardItem; classN
             className="size-[18px] shrink-0 rounded-full shadow-sm ring-1 ring-[var(--line)]"
             style={{ background: `radial-gradient(circle at 50% 78%, hsl(${hue} 70% 82%), hsl(${(hue + 40) % 360} 55% 62%))` }}
           />
-          <Link href={`/components/${item.slug}`} className="min-w-0 truncate rounded text-[13px] font-medium leading-[18px] text-[var(--foreground)]/80 outline-none hover:text-[var(--foreground)] focus-visible:ring-2 focus-visible:ring-[var(--accent)]">
+          <Link href={href(`/components/${item.slug}`)} className="min-w-0 truncate rounded text-[13px] font-medium leading-[18px] text-[var(--foreground)]/80 outline-none hover:text-[var(--foreground)] focus-visible:ring-2 focus-visible:ring-[var(--accent)]">
             {item.name}
           </Link>
           <button
             type="button"
             onClick={copyPrompt}
-            aria-label={`Copier le prompt de ${item.name}`}
+            aria-label={t.card.copyPrompt(item.name)}
             className="ml-auto flex shrink-0 items-center gap-1 rounded-md px-1 py-0.5 font-mono text-[11px] text-[var(--muted)] transition-[color,background-color,scale] hover:bg-[var(--hover)] hover:text-[var(--foreground)] active:scale-[0.97]"
           >
             {copied ? <Check size={14}/> : <Copy size={14}/>}
-            {copied ? 'copié' : 'prompt'}
+            {copied ? t.card.copied : t.card.prompt}
           </button>
           <Link
-            href={`/components/${item.slug}`}
-            aria-label={`Ouvrir ${item.name}`}
+            href={href(`/components/${item.slug}`)}
+            aria-label={t.card.open(item.name)}
             className="grid size-6 shrink-0 place-items-center rounded-md text-[var(--muted)] transition-[color,background-color,scale] hover:bg-[var(--hover)] hover:text-[var(--foreground)] active:scale-[0.97]"
           >
             <ArrowUpRight size={14}/>

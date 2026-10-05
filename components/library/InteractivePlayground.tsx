@@ -9,20 +9,16 @@ import { PlaygroundToolbar } from './PlaygroundToolbar';
 import { VisualEditorPanel } from './VisualEditorPanel';
 import { formatHtml } from '@/utils/formatHtml';
 import { previewDevices, validatePreviewDevices } from '@/utils/previewDevices';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 validatePreviewDevices();
 
+// gutter: default side margin around the component, close to what a real page uses on that device.
 const sizes = {
-  mobile: { label: 'Mobile', ...previewDevices.mobile, icon: Smartphone },
-  tablet: { label: 'Tablette', ...previewDevices.tablet, icon: Tablet },
-  desktop: { label: 'Desktop', ...previewDevices.desktop, icon: Monitor },
+  mobile: { ...previewDevices.mobile, gutter: 16, icon: Smartphone },
+  tablet: { ...previewDevices.tablet, gutter: 24, icon: Tablet },
+  desktop: { ...previewDevices.desktop, gutter: 32, icon: Monitor },
 } as const;
-
-const sizeOptions = (Object.entries(sizes) as Array<[keyof typeof sizes, typeof sizes[keyof typeof sizes]]>).map(([key, item]) => ({
-  key,
-  label: item.label,
-  icon: item.icon,
-}));
 
 const backgrounds = {
   warm: 'bg-[#f1eee5] dark:bg-black/20',
@@ -30,18 +26,14 @@ const backgrounds = {
   dark: 'bg-[#151512]',
 } as const;
 
-const themes = {
-  auto: 'Auto',
-  light: 'Clair',
-  dark: 'Sombre',
-} as const;
+const themes = ['auto', 'light', 'dark'] as const;
 
 export function InteractivePlayground({ slug, name }: { slug: string; name?: string }) {
   const [size, setSize] = useState<keyof typeof sizes>('desktop');
   const [zoom, setZoom] = useState(90);
-  const [padding, setPadding] = useState(32);
+  const [padding, setPadding] = useState<number>(sizes.desktop.gutter);
   const [background, setBackground] = useState<keyof typeof backgrounds>('warm');
-  const [theme, setTheme] = useState<keyof typeof themes>('auto');
+  const [theme, setTheme] = useState<(typeof themes)[number]>('auto');
   const [showBounds, setShowBounds] = useState(false);
   const [mode, setMode] = useState<'original' | 'code' | 'visual'>('original');
   const [liveCode, setLiveCode] = useState('');
@@ -51,7 +43,13 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
   const previewRef = useRef<EmulatedComponentPreviewHandle>(null);
   const [stageSize, setStageSize] = useState({ width: 0, height: 0 });
   const viewport = sizes[size];
+  const { t } = useLocale();
+  const sizeOptions = (Object.keys(sizes) as Array<keyof typeof sizes>).map((key) => ({ key, label: t.playground.devices[key], icon: sizes[key].icon }));
   const captureSourceHtml = () => formatHtml(captureRef.current?.innerHTML ?? '');
+  const changeSize = (next: keyof typeof sizes) => {
+    setSize(next);
+    setPadding(sizes[next].gutter);
+  };
   const syncCodeFromPreview = () => setLiveCode(formatHtml(previewRef.current?.getHtml() ?? liveCode));
 
   useEffect(() => {
@@ -70,7 +68,7 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
 
   // On a phone, start with the phone frame instead of a heavily shrunk desktop.
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) setSize('mobile');
+    if (window.matchMedia('(max-width: 767px)').matches) changeSize('mobile');
   }, []);
 
   const requestedScale = zoom / 100;
@@ -79,9 +77,8 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
     : 1;
   const renderedScale = Math.min(requestedScale, availableScale);
   const reset = () => {
-    setSize('desktop');
+    changeSize('desktop');
     setZoom(90);
-    setPadding(32);
     setBackground('warm');
     setTheme('auto');
     setShowBounds(false);
@@ -112,7 +109,7 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
         onModeChange={handleModeChange}
         sizeOptions={sizeOptions}
         size={size}
-        onSizeChange={(key) => setSize(key as keyof typeof sizes)}
+        onSizeChange={(key) => changeSize(key as keyof typeof sizes)}
         zoom={zoom}
         onZoomChange={setZoom}
         padding={padding}
@@ -124,7 +121,7 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
         showBounds={showBounds}
         onToggleBounds={() => setShowBounds((value) => !value)}
         onReset={reset}
-        status={`${viewport.label} · ${viewport.width}×${viewport.height} · ${Math.round(renderedScale * 100)}%`}
+        status={`${t.playground.devices[size]} · ${viewport.width}×${viewport.height} · ${Math.round(renderedScale * 100)}%`}
       />
 
       {/* The workspace fills the rest of the screen; editing splits it evenly with the editor panel. */}
@@ -152,11 +149,11 @@ export function InteractivePlayground({ slug, name }: { slug: string; name?: str
         {mode === 'code' && (
           <div data-lenis-prevent className="flex h-[min(72vh,760px)] min-h-[420px] min-w-0 flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#111113] text-zinc-200 lg:h-[calc(100dvh-15rem)]">
             <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-              <div className="flex items-center gap-2 text-sm font-semibold"><Code2 size={16}/>Code live HTML</div>
-              <button onClick={() => setLiveCode(captureSourceHtml())} className="rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium text-zinc-300 transition hover:bg-white/10">Reset code</button>
+              <div className="flex items-center gap-2 text-sm font-semibold"><Code2 size={16}/>{t.playground.liveCode}</div>
+              <button onClick={() => setLiveCode(captureSourceHtml())} className="rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium text-zinc-300 transition hover:bg-white/10">{t.playground.resetCode}</button>
             </div>
             <CodeEditorPane value={liveCode} onChange={setLiveCode}/>
-            <p className="border-t border-white/10 px-4 py-3 text-xs text-zinc-500">HTML/Tailwind du composant reel, pret a copier ou modifier. La preview applique tes changements en direct.</p>
+            <p className="border-t border-white/10 px-4 py-3 text-xs text-zinc-500">{t.playground.liveCodeHint}</p>
           </div>
         )}
 

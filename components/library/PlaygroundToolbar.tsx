@@ -2,27 +2,29 @@
 
 import { Code2, Eye, EyeOff, LucideIcon, Monitor, Moon, MousePointerClick, Palette, RotateCcw, SlidersHorizontal, Sun } from 'lucide-react';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 type Mode = 'original' | 'code' | 'visual';
 type Background = 'warm' | 'clean' | 'dark';
 type Theme = 'auto' | 'light' | 'dark';
 
-const modes: Array<{ key: Mode; label: string; icon: LucideIcon }> = [
-  { key: 'original', label: 'Apercu', icon: Eye },
-  { key: 'visual', label: 'Visuel', icon: MousePointerClick },
-  { key: 'code', label: 'Code', icon: Code2 },
+// Labels come from the dictionary (playground.modes / themes / backgrounds).
+const modes: Array<{ key: Mode; icon: LucideIcon }> = [
+  { key: 'original', icon: Eye },
+  { key: 'visual', icon: MousePointerClick },
+  { key: 'code', icon: Code2 },
 ];
 
-const themeOptions: Array<{ key: Theme; label: string; icon: LucideIcon }> = [
-  { key: 'auto', label: 'Theme auto', icon: Monitor },
-  { key: 'light', label: 'Theme clair', icon: Sun },
-  { key: 'dark', label: 'Theme sombre', icon: Moon },
+const themeOptions: Array<{ key: Theme; icon: LucideIcon }> = [
+  { key: 'auto', icon: Monitor },
+  { key: 'light', icon: Sun },
+  { key: 'dark', icon: Moon },
 ];
 
-const backgroundSwatches: Record<Background, { label: string; swatch: string }> = {
-  warm: { label: 'Chaud', swatch: 'bg-[#f1eee5]' },
-  clean: { label: 'Neutre', swatch: 'border border-zinc-300 bg-white' },
-  dark: { label: 'Sombre', swatch: 'bg-[#151512]' },
+const backgroundSwatches: Record<Background, { swatch: string }> = {
+  warm: { swatch: 'bg-[#f1eee5]' },
+  clean: { swatch: 'border border-zinc-300 bg-white' },
+  dark: { swatch: 'bg-[#151512]' },
 };
 
 /** Segmented control: one rounded track, the active item gets a raised surface. */
@@ -85,6 +87,8 @@ export function PlaygroundToolbar({
 }) {
   const [openPanel, setOpenPanel] = useState<'adjust' | 'background' | null>(null);
   const toolbarRef = useRef<HTMLDivElement>(null);
+  const { t } = useLocale();
+  const tp = t.playground;
 
   useEffect(() => {
     if (!openPanel) return;
@@ -106,18 +110,18 @@ export function PlaygroundToolbar({
     <div
       ref={toolbarRef}
       role="toolbar"
-      aria-label="Outils du playground"
+      aria-label={tp.toolbar}
       className="relative z-40 flex min-w-0 flex-wrap items-center gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-1.5 shadow-sm"
     >
-      <Segment label="Mode">
-        {modes.map(({ key, label, icon: Icon }) => (
+      <Segment label={tp.mode}>
+        {modes.map(({ key, icon: Icon }) => (
           <button key={key} type="button" aria-pressed={mode === key} onClick={() => onModeChange(key)} className={segmentButton(mode === key, true)}>
-            <Icon size={15}/><span className="hidden sm:inline">{label}</span>
+            <Icon size={15}/><span className="hidden sm:inline">{tp.modes[key]}</span>
           </button>
         ))}
       </Segment>
 
-      <Segment label="Appareil">
+      <Segment label={tp.device}>
         {sizeOptions.map(({ key, label, icon: Icon }) => (
           <button key={key} type="button" title={label} aria-label={label} aria-pressed={size === key} onClick={() => onSizeChange(key)} className={segmentButton(size === key)}>
             <Icon size={15}/>
@@ -125,9 +129,9 @@ export function PlaygroundToolbar({
         ))}
       </Segment>
 
-      <Segment label="Theme du composant">
-        {themeOptions.map(({ key, label, icon: Icon }) => (
-          <button key={key} type="button" title={label} aria-label={label} aria-pressed={theme === key} onClick={() => onThemeChange(key)} className={segmentButton(theme === key)}>
+      <Segment label={tp.componentTheme}>
+        {themeOptions.map(({ key, icon: Icon }) => (
+          <button key={key} type="button" title={tp.themes[key]} aria-label={tp.themes[key]} aria-pressed={theme === key} onClick={() => onThemeChange(key)} className={segmentButton(theme === key)}>
             <Icon size={15}/>
           </button>
         ))}
@@ -135,17 +139,17 @@ export function PlaygroundToolbar({
 
       <div className="flex items-center gap-0.5">
         <div className="relative">
-          <button type="button" title="Zoom et marge" aria-label="Zoom et marge" aria-expanded={openPanel === 'adjust'} onClick={() => togglePanel('adjust')} className={toolButton(openPanel === 'adjust')}>
+          <button type="button" title={tp.zoomAndMargin} aria-label={tp.zoomAndMargin} aria-expanded={openPanel === 'adjust'} onClick={() => togglePanel('adjust')} className={toolButton(openPanel === 'adjust')}>
             <SlidersHorizontal size={16}/>
           </button>
           {openPanel === 'adjust' && (
             <div className="absolute left-0 top-full z-50 mt-2 w-60 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4 shadow-xl">
               <label className="block">
-                <span className="flex justify-between font-mono text-[11px] uppercase text-[var(--muted)]"><span>Zoom</span><span>{zoom}%</span></span>
+                <span className="flex justify-between font-mono text-[11px] uppercase text-[var(--muted)]"><span>{tp.zoom}</span><span>{zoom}%</span></span>
                 <input type="range" min="70" max="115" value={zoom} onChange={(event) => onZoomChange(Number(event.target.value))} className="mt-2 w-full accent-[var(--accent)]"/>
               </label>
               <label className="mt-4 block">
-                <span className="flex justify-between font-mono text-[11px] uppercase text-[var(--muted)]"><span>Marge</span><span>{padding}px</span></span>
+                <span className="flex justify-between font-mono text-[11px] uppercase text-[var(--muted)]"><span>{tp.margin}</span><span>{padding}px</span></span>
                 <input type="range" min="12" max="56" value={padding} onChange={(event) => onPaddingChange(Number(event.target.value))} className="mt-2 w-full accent-[var(--accent)]"/>
               </label>
             </div>
@@ -153,13 +157,13 @@ export function PlaygroundToolbar({
         </div>
 
         <div className="relative">
-          <button type="button" title="Fond" aria-label="Fond" aria-expanded={openPanel === 'background'} onClick={() => togglePanel('background')} className={toolButton(openPanel === 'background')}>
+          <button type="button" title={tp.background} aria-label={tp.background} aria-expanded={openPanel === 'background'} onClick={() => togglePanel('background')} className={toolButton(openPanel === 'background')}>
             <Palette size={16}/>
           </button>
           {openPanel === 'background' && (
             <div className="absolute left-0 top-full z-50 mt-2 flex w-48 gap-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-3 shadow-xl">
-              {(Object.entries(backgroundSwatches) as Array<[Background, { label: string; swatch: string }]>).map(([key, item]) => (
-                <button type="button" key={key} title={item.label} aria-label={item.label} aria-pressed={background === key} onClick={() => { onBackgroundChange(key); setOpenPanel(null); }} className={`flex-1 rounded-xl border p-1.5 transition ${background === key ? 'border-[var(--accent)]' : 'border-[var(--line)]'}`}>
+              {(Object.entries(backgroundSwatches) as Array<[Background, { swatch: string }]>).map(([key, item]) => (
+                <button type="button" key={key} title={tp.backgrounds[key]} aria-label={tp.backgrounds[key]} aria-pressed={background === key} onClick={() => { onBackgroundChange(key); setOpenPanel(null); }} className={`flex-1 rounded-xl border p-1.5 transition ${background === key ? 'border-[var(--accent)]' : 'border-[var(--line)]'}`}>
                   <span className={`block h-8 w-full rounded-lg ${item.swatch}`}/>
                 </button>
               ))}
@@ -167,10 +171,10 @@ export function PlaygroundToolbar({
           )}
         </div>
 
-        <button type="button" title="Voir les contours" aria-label="Voir les contours" aria-pressed={showBounds} onClick={onToggleBounds} className={toolButton(showBounds)}>
+        <button type="button" title={tp.showBounds} aria-label={tp.showBounds} aria-pressed={showBounds} onClick={onToggleBounds} className={toolButton(showBounds)}>
           {showBounds ? <EyeOff size={16}/> : <Eye size={16}/>}
         </button>
-        <button type="button" title="Reinitialiser" aria-label="Reinitialiser" onClick={onReset} className={toolButton(false)}>
+        <button type="button" title={tp.reset} aria-label={tp.reset} onClick={onReset} className={toolButton(false)}>
           <RotateCcw size={16}/>
         </button>
       </div>

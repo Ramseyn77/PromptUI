@@ -22,3 +22,11 @@ Checklist obligatoire avant de considérer un composant comme terminé :
 - Ajouter ou mettre à jour les captures de régression visuelle automatisées pour les trois profils dès que cette infrastructure est disponible.
 
 Pourquoi : les media queries se déclenchent selon la largeur interne réelle du viewport, pas selon la taille visuelle de l’aperçu. Modifier artificiellement cette largeur peut activer le mauvais breakpoint et masquer des défauts comme un Kanban empilé sur Desktop, une sidebar inaccessible sur Mobile ou un composant tronqué sur Tablette.
+
+## Langues du site (EN par défaut, FR)
+
+- Les routes vivent sous `app/[lang]`. L’anglais est servi sans préfixe (`/library`), le français sous `/fr` (`/fr/library`) ; `proxy.ts` fait la réécriture et redirige `/en/...` vers l’URL sans préfixe.
+- Aucun texte d’interface en dur : ajouter la clé dans `i18n/dictionaries.ts` (EN et FR), puis `useLocale().t` côté client ou `dictionaries[lang]` côté serveur.
+- Tout lien interne passe par `href(path)` (client) ou `localizePath(lang, path)` (serveur), sinon il renvoie vers l’anglais.
+- Description d’un composant : `localizedDescription(item, lang)`. Les traductions sont dans `data/descriptionTranslations.en.ts` et `.fr.ts` ; un nouveau composant du registry doit y recevoir sa description anglaise.
+- Le contenu de démonstration des composants du registry reste en anglais.

@@ -6,10 +6,14 @@ import { useEffect, useState } from 'react';
 import { Logo } from '@/components/ui/Logo';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { SmoothScroll } from '@/components/ui/SmoothScroll';
+import { splitLocale } from '@/i18n/config';
+import { LanguageSwitcher } from '@/i18n/LanguageSwitcher';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export function SiteLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isLibrary = pathname === '/library';
+  const { t, href } = useLocale();
+  const isLibrary = splitLocale(pathname).path === '/library';
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => setMenuOpen(false), [pathname]);
@@ -20,27 +24,28 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
           <Logo />
           <nav className="hidden items-center gap-1 rounded-full border border-[var(--line)] bg-[var(--surface)]/72 p-1 text-sm text-[var(--muted)] shadow-sm md:flex font-ui">
-            <Link href="/library" className="rounded-full px-4 py-2 transition hover:bg-[var(--hover)] hover:text-[var(--foreground)]">
-              Bibliotheque
+            <Link href={href('/library')} className="rounded-full px-4 py-2 transition hover:bg-[var(--hover)] hover:text-[var(--foreground)]">
+              {t.nav.library}
             </Link>
-            <a href="/#categories" className="rounded-full px-4 py-2 transition hover:bg-[var(--hover)] hover:text-[var(--foreground)]">
-              Categories
-            </a>
+            <Link href={`${href('/')}#categories`} className="rounded-full px-4 py-2 transition hover:bg-[var(--hover)] hover:text-[var(--foreground)]">
+              {t.nav.categories}
+            </Link>
           </nav>
           <div className="flex items-center gap-2">
             <Link
-              href="/library"
+              href={href('/library')}
               className="hidden items-center gap-2 rounded-full bg-[var(--foreground)] px-4 py-2 font-ui text-sm font-semibold text-[var(--background)] shadow-sm transition hover:-translate-y-0.5 sm:inline-flex"
             >
-              Explorer
+              {t.nav.explore}
             </Link>
+            <LanguageSwitcher />
             <ThemeToggle />
             <button
               type="button"
               onClick={() => setMenuOpen((value) => !value)}
               aria-expanded={menuOpen}
               aria-controls="mobile-nav"
-              aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+              aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
               className="grid size-10 place-items-center rounded-full border border-[var(--line)] bg-[var(--surface)] md:hidden"
             >
               {menuOpen ? <X size={18}/> : <Menu size={18}/>}
@@ -49,8 +54,8 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
         </div>
         {menuOpen && (
           <nav id="mobile-nav" className="border-t border-[var(--line)] px-4 py-3 font-ui md:hidden">
-            <Link href="/library" onClick={() => setMenuOpen(false)} className="block rounded-xl px-3 py-2.5 text-sm font-semibold transition hover:bg-[var(--hover)]">Bibliotheque</Link>
-            <a href="/#categories" onClick={() => setMenuOpen(false)} className="block rounded-xl px-3 py-2.5 text-sm font-semibold transition hover:bg-[var(--hover)]">Categories</a>
+            <Link href={href('/library')} onClick={() => setMenuOpen(false)} className="block rounded-xl px-3 py-2.5 text-sm font-semibold transition hover:bg-[var(--hover)]">{t.nav.library}</Link>
+            <Link href={`${href('/')}#categories`} onClick={() => setMenuOpen(false)} className="block rounded-xl px-3 py-2.5 text-sm font-semibold transition hover:bg-[var(--hover)]">{t.nav.categories}</Link>
           </nav>
         )}
       </header>}

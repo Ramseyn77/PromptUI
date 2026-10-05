@@ -4,7 +4,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://prompt-ui-steel.ver
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [{ userAgent: '*', allow: '/', disallow: ['/analytics', '/playground/'] }],
+    rules: [{ userAgent: '*', allow: '/', disallow: ['/analytics', '/playground/', '/fr/analytics', '/fr/playground/'] }],
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

@@ -26,38 +26,38 @@ export function setTextAlign(el: Element, className: string) { replaceClass(el, 
 export function setFontWeight(el: Element, className: string) { replaceClass(el, fontWeightPattern, className); }
 
 export const backgroundSwatches = [
-  { label: 'Blanc', className: 'bg-white' },
-  { label: 'Zinc clair', className: 'bg-zinc-100' },
-  { label: 'Zinc fonce', className: 'bg-zinc-950' },
+  { label: 'White', className: 'bg-white' },
+  { label: 'Light zinc', className: 'bg-zinc-100' },
+  { label: 'Dark zinc', className: 'bg-zinc-950' },
   { label: 'Teal', className: 'bg-teal-600' },
-  { label: 'Emeraude', className: 'bg-emerald-500' },
+  { label: 'Emerald', className: 'bg-emerald-500' },
   { label: 'Violet', className: 'bg-violet-600' },
   { label: 'Rose', className: 'bg-rose-500' },
-  { label: 'Ambre', className: 'bg-amber-500' },
+  { label: 'Amber', className: 'bg-amber-500' },
   { label: 'Transparent', className: 'bg-transparent' },
 ];
 
 export const textColorSwatches = [
-  { label: 'Noir', className: 'text-black' },
-  { label: 'Blanc', className: 'text-white' },
+  { label: 'Black', className: 'text-black' },
+  { label: 'White', className: 'text-white' },
   { label: 'Zinc', className: 'text-zinc-500' },
   { label: 'Teal', className: 'text-teal-600' },
-  { label: 'Emeraude', className: 'text-emerald-600' },
+  { label: 'Emerald', className: 'text-emerald-600' },
   { label: 'Violet', className: 'text-violet-600' },
   { label: 'Rose', className: 'text-rose-600' },
-  { label: 'Ambre', className: 'text-amber-600' },
+  { label: 'Amber', className: 'text-amber-600' },
 ];
 
 export const radiusOptions = [
-  { label: 'Aucun', className: 'rounded-none' },
-  { label: 'Petit', className: 'rounded-md' },
-  { label: 'Moyen', className: 'rounded-xl' },
-  { label: 'Grand', className: 'rounded-2xl' },
-  { label: 'Complet', className: 'rounded-full' },
+  { label: 'None', className: 'rounded-none' },
+  { label: 'Small', className: 'rounded-md' },
+  { label: 'Medium', className: 'rounded-xl' },
+  { label: 'Large', className: 'rounded-2xl' },
+  { label: 'Full', className: 'rounded-full' },
 ];
 
 export const paddingOptions = [
-  { label: 'Aucun', className: 'p-0' },
+  { label: 'None', className: 'p-0' },
   { label: 'S', className: 'p-2' },
   { label: 'M', className: 'p-4' },
   { label: 'L', className: 'p-6' },
@@ -74,14 +74,14 @@ export const fontSizeOptions = [
 ];
 
 export const alignOptions = [
-  { label: 'Gauche', className: 'text-left' },
-  { label: 'Centre', className: 'text-center' },
-  { label: 'Droite', className: 'text-right' },
+  { label: 'Left', className: 'text-left' },
+  { label: 'Center', className: 'text-center' },
+  { label: 'Right', className: 'text-right' },
 ];
 
 export const fontWeightOptions = [
   { label: 'Normal', className: 'font-normal' },
   { label: 'Medium', className: 'font-medium' },
   { label: 'Semi', className: 'font-semibold' },
-  { label: 'Gras', className: 'font-bold' },
+  { label: 'Bold', className: 'font-bold' },
 ];
