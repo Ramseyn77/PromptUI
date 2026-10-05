@@ -24,12 +24,12 @@ export function AudioQuoteTestimonial() {
   }, [playing]);
 
   return (
-    <figure className="relative w-full max-w-2xl overflow-hidden rounded-[2rem] bg-[#17150f] p-4 text-stone-100 shadow-2xl sm:p-7 lg:p-9">
+    <figure className="relative w-full max-w-2xl overflow-hidden rounded-[2rem] bg-[#17150f] p-9 text-stone-100 shadow-2xl">
       <div className="absolute -right-16 -top-20 size-56 rounded-full bg-amber-400/15 blur-3xl" aria-hidden="true" />
       <Quote className="text-amber-300" size={30} aria-hidden="true" />
       <blockquote className="relative mt-5 max-w-xl font-serif text-2xl leading-snug sm:text-3xl">“We stopped designing screens and started designing moments people remember.”</blockquote>
       <figcaption className="mt-7 flex items-center gap-3"><div className="grid size-11 place-items-center rounded-full bg-gradient-to-br from-amber-200 to-orange-500 font-semibold text-stone-950">AM</div><div><p className="text-sm font-semibold">Amina Mensah</p><p className="text-xs text-stone-400">Creative director · Studio North</p></div></figcaption>
-      <div className="relative mt-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[.06] p-3 sm:mt-8 sm:gap-4 sm:p-4">
+      <div className="relative mt-8 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[.06] p-4">
         <button type="button" onClick={() => setPlaying((value) => !value)} aria-label={playing ? 'Pause testimonial' : 'Play testimonial'} className="grid size-11 shrink-0 place-items-center rounded-full bg-amber-300 text-stone-950 hover:bg-amber-200">{playing ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}</button>
         <div className="min-w-0 flex-1"><div className="flex h-8 items-center gap-0.5" aria-hidden="true">{waveform.map((height, index) => <span key={index} style={{ height: `${height}%` }} className={`min-w-0 flex-1 rounded-full ${index / waveform.length * 100 <= progress ? 'bg-amber-300' : 'bg-white/20'}`} />)}</div><div className="mt-1 flex justify-between font-mono text-[10px] text-stone-400"><span>0:{String(Math.floor(progress * .37)).padStart(2, '0')}</span><span>0:37</span></div></div>
       </div>

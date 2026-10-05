@@ -9,8 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "registry:sync": "node scripts/sync-registry.mjs",
-    "audit:local-responsive": "node scripts/audit-local-responsive.mjs"
+    "registry:sync": "node scripts/sync-registry.mjs"
   },
   "dependencies": {
     "animejs": "^4.5.0",
@@ -25,7 +24,6 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "playwright-core": "^1.63.0",
     "tailwindcss": "latest",
     "typescript": "latest"
   }
