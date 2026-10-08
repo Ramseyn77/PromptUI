@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: SaaS
  * tags: featured, recent
- * description: Fil de conversation avec bulles utilisateur et assistant, horodatage et envoi qui simule une reponse.
+ * description: Fil de conversation avec bulles utilisateur et assistant, horodatage et envoi qui simule une réponse.
  * prompt: Create a chat thread card: header with assistant name and online dot, a scrollable message list (role="log", aria-live polite) with right-aligned user bubbles and left assistant bubbles, and a composer; sending appends the message and a delayed canned reply. Light and dark mode.
  */
 'use client';

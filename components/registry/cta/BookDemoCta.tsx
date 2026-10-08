@@ -4,7 +4,7 @@
  * category: CTA
  * style: Minimal
  * tags: featured, recent
- * description: Appel a reserver une demo avec choix rapide d un creneau horaire et confirmation.
+ * description: Appel à réserver une démo avec choix rapide d'un créneau horaire et confirmation.
  * prompt: Create a "Book a demo" CTA card: presenter avatar + name, a day selector (next three days as segmented buttons) and time-slot chips (radio behavior, aria-pressed), and a confirm button that shows the chosen slot and becomes a success message. Light and dark mode.
  */
 'use client';

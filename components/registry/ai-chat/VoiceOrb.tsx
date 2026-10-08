@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: Gradient
  * tags: featured, recent
- * description: Orbe vocale animee qui pulse et ondule quand l assistant ecoute.
+ * description: Orbe vocale animée qui pulse et ondule quand l'assistant écoute.
  * prompt: Create a voice assistant orb: a gradient sphere with a slow morphing border-radius blob animation; tapping toggles listening, which adds expanding rings and a live waveform of animated bars. Button with aria-pressed and a status label. Light and dark mode, reduced-motion safe.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Checkboxes
  * style: SaaS
  * tags: recent
- * description: Matrice roles × permissions avec cases a cocher, colonne Owner verrouillee et en-tetes accessibles.
+ * description: Matrice rôles × permissions avec cases à cocher, colonne Owner verrouillée et en-têtes accessibles.
  * prompt: Create a roles × permissions matrix table: rows are permissions, columns are roles (Owner, Admin, Member, Guest); each cell is a checkbox labeled "<permission> for <role>" (visually hidden label), Owner column checked and disabled; horizontal scroll on small screens with sticky first column. Light and dark mode.
  */
 'use client';

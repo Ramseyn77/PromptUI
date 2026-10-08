@@ -4,7 +4,7 @@
  * category: CTA
  * style: SaaS
  * tags: recent
- * description: Appel a l action en deux colonnes avec visuel de produit incline, arguments et double bouton.
+ * description: Appel à l'action en deux colonnes avec visuel de produit incliné, arguments et double bouton.
  * prompt: Create a split CTA section: left side with eyebrow, headline, three checkmark benefits and two buttons; right side a tilted product mock (gradient window with UI bars) that straightens on hover. Stacks on mobile, 2 columns from md. Light and dark mode.
  */
 import { Check } from 'lucide-react';

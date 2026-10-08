@@ -4,7 +4,7 @@
  * category: Menu
  * style: Glass
  * tags: recent
- * description: Feuille d actions mobile qui glisse du bas avec poignee, options, action destructive et Annuler.
+ * description: Feuille d'actions mobile qui glisse du bas avec poignée, options, action destructive et Annuler.
  * prompt: Create a mobile action sheet inside a phone-sized frame: a trigger opens a bottom sheet (role="dialog", aria-modal) sliding up over a dimmed backdrop, with drag handle, title, grouped glass options, a destructive option and a separate Cancel button; closes on backdrop/Escape/Cancel. defaultOpen prop for previews. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Loader
  * style: SaaS
  * tags: recent
- * description: Barres de progression indeterminees : glissement, rayures animees et barre fine de page.
+ * description: Barres de progression indéterminées : glissement, rayures animées et barre fine de page.
  * prompt: Create three indeterminate progress bars: a segment sliding across a track, an animated diagonal-stripes bar, and a thin top-of-page bar that grows then fades; each role="progressbar" without aria-valuenow and with an aria-label. Light and dark mode, reduced-motion safe.
  */
 export function IndeterminateBar() {

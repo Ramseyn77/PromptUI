@@ -4,7 +4,7 @@
  * category: Buttons
  * style: Gradient
  * tags: featured, recent
- * description: Bouton d envoi qui se comprime, propulse son icone puis confirme la reussite.
+ * description: Bouton d'envoi qui se comprime, propulse son icône puis confirme la réussite.
  * prompt: Create an elastic Send button with three clear states: idle, sending and sent. On click, compress the pill, launch a paper-plane icon diagonally, show a short progress shimmer, then morph into a green confirmation with a check. Prevent repeated clicks while running, expose state through aria-live, keep focus visible, support light/dark mode and disable decorative motion with prefers-reduced-motion.
  */
 'use client';

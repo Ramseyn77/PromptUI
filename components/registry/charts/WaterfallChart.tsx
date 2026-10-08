@@ -4,7 +4,7 @@
  * category: Charts
  * style: Editorial
  * tags: recent
- * description: Cascade de revenus du debut a la fin de periode, hausses et baisses flottantes avec connecteurs.
+ * description: Cascade de revenus du début à la fin de période, hausses et baisses flottantes avec connecteurs.
  * prompt: Create an SVG waterfall chart for MRR movement: starting total bar, floating green bars for new/expansion, rose bars for contraction/churn, and an ending total bar; thin dashed connectors between bars, value labels above each bar, category labels below, and an sr-only list. Light and dark mode.
  */
 const steps = [

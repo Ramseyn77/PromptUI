@@ -4,7 +4,7 @@
  * category: Cards
  * style: Glass
  * tags: featured, recent
- * description: Pile de cartes projet que l utilisateur fait avancer avec une transition en profondeur.
+ * description: Pile de cartes projet que l'utilisateur fait avancer avec une transition en profondeur.
  * prompt: Create an interactive stack of three project cards. The front card is fully readable while the next cards sit behind it with smaller scale, vertical offset and lower opacity. A Next project button rotates the data order with a smooth depth transition. Include project name, category, progress, team avatars and accessible status text. Keep the stack inside its container on mobile and support light/dark mode.
  */
 'use client';

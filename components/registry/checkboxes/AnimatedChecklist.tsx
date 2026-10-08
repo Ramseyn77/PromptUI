@@ -4,7 +4,7 @@
  * category: Checkboxes
  * style: Minimal
  * tags: recent
- * description: Liste de taches ou la coche se dessine et le texte se barre.
+ * description: Liste de tâches où la coche se dessine et le texte se barre.
  * prompt: Create a task checklist with native sr-only checkboxes and custom boxes: the SVG check is drawn by animating stroke-dashoffset, the label strikes through with a growing line, and a counter shows done/total. Keyboard focus visible, dark mode.
  */
 'use client';

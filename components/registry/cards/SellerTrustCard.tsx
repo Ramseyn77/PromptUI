@@ -4,7 +4,7 @@
  * category: Cards
  * style: SaaS
  * tags: recent
- * description: Carte vendeur marketplace avec verification, reputation, delai de reponse et actions.
+ * description: Carte vendeur marketplace avec vérification, réputation, délai de réponse et actions.
  * prompt: Create a responsive marketplace seller trust card with verified status, rating, completed sales, response time, location, follow toggle and contact button. Include light and dark mode.
  */
 'use client';

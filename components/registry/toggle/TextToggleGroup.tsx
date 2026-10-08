@@ -4,7 +4,7 @@
  * category: Toggle
  * style: SaaS
  * tags: recent
- * description: Barre d outils de mise en forme : groupes de boutons bascule exclusifs et cumulables.
+ * description: Barre d'outils de mise en forme : groupes de boutons bascule exclusifs et cumulables.
  * prompt: Create a rich-text toolbar with toggle groups: Bold/Italic/Underline as independent toggle buttons (aria-pressed) and Left/Center/Right alignment as an exclusive group (role="radiogroup" of role="radio" buttons); a preview paragraph reflects the state. Light and dark mode.
  */
 'use client';

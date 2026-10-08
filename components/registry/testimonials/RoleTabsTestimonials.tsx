@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: SaaS
  * tags: recent
- * description: Temoignages classes par metier dans des onglets : designers, developpeurs, fondateurs.
+ * description: Témoignages classés par métier dans des onglets : designers, développeurs, fondateurs.
  * prompt: Create testimonials grouped by audience with an accessible tablist (Designers, Developers, Founders; arrow keys move focus/selection), each panel showing two quote cards with avatar, name and company. Light and dark mode.
  */
 'use client';

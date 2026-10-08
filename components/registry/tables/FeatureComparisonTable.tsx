@@ -4,7 +4,7 @@
  * category: Tables
  * style: SaaS
  * tags: featured, recent
- * description: Tableau comparatif des offres avec coches, valeurs et colonne recommandee mise en avant.
+ * description: Tableau comparatif des offres avec coches, valeurs et colonne recommandée mise en avant.
  * prompt: Create a plan comparison table: plans as columns (Free, Pro highlighted with a "Popular" badge and tinted column, Team), features as rows with check icons, dashes or values; sr-only text for icons, sticky first column and horizontal scroll on mobile. Light and dark mode.
  */
 import { Check, Minus } from 'lucide-react';

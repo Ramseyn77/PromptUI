@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: SaaS
  * tags: featured, recent
- * description: Zone de saisie IA auto-redimensionnable avec piece jointe, choix du modele et envoi.
+ * description: Zone de saisie IA auto-redimensionnable avec pièce jointe, choix du modèle et envoi.
  * prompt: Create an AI prompt composer: auto-growing textarea (max 6 lines), attach button, model pill, character hint, and a send button enabled only when there is text; Enter sends, Shift+Enter adds a line, and the sent prompt appears above. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Dark
  * tags: recent
- * description: Grille de points revelee uniquement autour du curseur par un masque radial.
+ * description: Grille de points révélée uniquement autour du curseur par un masque radial.
  * prompt: Create a hidden dot-grid revealed by the pointer: a faint base grid plus a bright duplicate grid masked with a radial-gradient positioned at CSS variables updated on pointermove (no re-render), fading out on leave. Adapts to light and dark mode.
  */
 'use client';

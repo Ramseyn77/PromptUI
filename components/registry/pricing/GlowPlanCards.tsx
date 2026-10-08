@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Dark
  * tags: featured, recent
- * description: Cartes d offres sombres, l offre phare entouree d une bordure lumineuse en degrade anime.
+ * description: Cartes d'offres sombres, l'offre phare entourée d'une bordure lumineuse en dégradé animé.
  * prompt: Create dark pricing cards where the featured plan has an animated gradient border (rotating conic gradient behind a 1px inset) and a soft outer glow; other plans have subtle borders. Two columns from sm. Inverts to light surfaces in light mode while keeping the glow.
  */
 import { Check } from 'lucide-react';

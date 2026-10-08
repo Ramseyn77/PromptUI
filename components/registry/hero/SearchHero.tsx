@@ -4,7 +4,7 @@
  * category: Hero
  * style: Minimal
  * tags: recent
- * description: Hero de centre d aide avec grande recherche et suggestions populaires cliquables.
+ * description: Hero de centre d'aide avec grande recherche et suggestions populaires cliquables.
  * prompt: Create a help-center hero: headline, a large search input with a search icon and keyboard hint, and clickable "Popular" suggestion chips that fill the input. Accessible label, focus ring, light and dark mode.
  */
 'use client';

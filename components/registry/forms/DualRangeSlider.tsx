@@ -4,7 +4,7 @@
  * category: Forms
  * style: Minimal
  * tags: recent
- * description: Curseur de fourchette de prix a deux poignees avec zone active coloree et champs numeriques lies.
+ * description: Curseur de fourchette de prix à deux poignées avec zone active colorée et champs numériques liés.
  * prompt: Create a dual-thumb price range slider from two overlaid native range inputs (pointer-events only on thumbs), a colored active track between them, min gap enforcement, and two linked number inputs that stay in sync; labels "Minimum price"/"Maximum price" for screen readers. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Minimal
  * tags: recent
- * description: Choix d offre sous forme de liste de radios riches avec prix a droite et resume du choix.
+ * description: Choix d'offre sous forme de liste de radios riches avec prix à droite et résumé du choix.
  * prompt: Create a plan picker as a radiogroup of full-width rich options (native radio visually replaced by a custom ring): name, description, price on the right, selected option gets a teal border and tint; a summary line and Continue button reflect the choice. Keyboard arrows work natively. Light and dark mode.
  */
 'use client';

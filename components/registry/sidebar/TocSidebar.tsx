@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: Editorial
  * tags: recent
- * description: Table des matieres d article qui surligne la section lue pendant le defilement.
+ * description: Table des matières d'article qui surligne la section lue pendant le défilement.
  * prompt: Create an article layout with a "On this page" table-of-contents sidebar: headings in a scrollable article are observed with IntersectionObserver (root = the scroll container) and the matching TOC link gets an active indicator; clicking a link scrolls that section into view. TOC hidden below sm. Light and dark mode.
  */
 'use client';

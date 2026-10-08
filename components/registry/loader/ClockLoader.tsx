@@ -4,7 +4,7 @@
  * category: Loader
  * style: Minimal
  * tags: recent
- * description: Horloge dont les aiguilles tournent rapidement pendant l attente, avec cadran minimal.
+ * description: Horloge dont les aiguilles tournent rapidement pendant l'attente, avec cadran minimal.
  * prompt: Create a clock loader: circular dial with 12 tick marks, a minute hand spinning fast and an hour hand spinning slower (rotate keyframes around the center), center dot, and "Scheduling…" caption. role="status", currentColor dial for light/dark, reduced-motion safe.
  */
 export function ClockLoader() {

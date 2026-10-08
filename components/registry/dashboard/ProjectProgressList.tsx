@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Minimal
  * tags: recent
- * description: Liste de projets avec barre de progression, echeance, statut en retard et pile d avatars.
+ * description: Liste de projets avec barre de progression, échéance, statut en retard et pile d'avatars.
  * prompt: Create a projects widget: each row shows project name and due date (rose "Overdue" when late), a labeled progress bar (role="progressbar"), and overlapping member avatars with a "+N" overflow chip. Light and dark mode.
  */
 const projects = [

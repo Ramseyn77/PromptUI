@@ -4,7 +4,7 @@
  * category: Buttons
  * style: Dark
  * tags: featured, recent
- * description: Bouton CTA avec un reflet lumineux qui balaie la surface a intervalle regulier.
+ * description: Bouton CTA avec un reflet lumineux qui balaie la surface à intervalle régulier.
  * prompt: Create a pill CTA button in React + Tailwind: solid zinc-950 (white in dark mode), a skewed translucent highlight that sweeps across every ~3s via a CSS keyframe, an arrow icon that nudges right on hover, press scale .97, visible focus ring, animation disabled with prefers-reduced-motion.
  */
 import { ArrowRight } from 'lucide-react';

@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: SaaS
  * tags: recent
- * description: Widget de support flottant avec bulle d ouverture, equipe en ligne et reponses rapides.
+ * description: Widget de support flottant avec bulle d'ouverture, équipe en ligne et réponses rapides.
  * prompt: Create a floating support chat widget: a round launcher button (aria-expanded) that toggles a panel with gradient header, team avatars and "Typically replies in 2 min", a bot greeting and quick-reply chips. Panel opens with a scale/fade transition from the corner; defaultOpen prop. Light and dark mode.
  */
 'use client';

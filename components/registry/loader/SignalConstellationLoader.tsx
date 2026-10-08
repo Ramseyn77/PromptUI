@@ -4,7 +4,7 @@
  * category: Loader
  * style: Dark
  * tags: recent
- * description: Loader en forme de constellation dont les noeuds propagent un signal lumineux Anime.js.
+ * description: Loader en forme de constellation dont les nœuds propagent un signal lumineux anime.js.
  * prompt: Create an original constellation loader with seven connected nodes. Use Anime.js to pulse each node in a traveling sequence while the center halo breathes. Keep the animation scoped and reverted on unmount, show a static constellation with prefers-reduced-motion, expose role="status" with a readable loading message, and keep the composition responsive in light and dark mode.
  */
 'use client';

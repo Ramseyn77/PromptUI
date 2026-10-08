@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: SaaS
  * tags: recent
- * description: Mini panier lateral avec quantites, suppression, total et seuil de livraison offerte.
+ * description: Mini panier latéral avec quantités, suppression, total et seuil de livraison offerte.
  * prompt: Create a responsive mini cart drawer with two products, quantity controls, remove actions, dynamic subtotal, free-shipping progress and checkout button. Include an empty state.
  */
 'use client';

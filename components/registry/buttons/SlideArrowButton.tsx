@@ -4,7 +4,7 @@
  * category: Buttons
  * style: Editorial
  * tags: recent
- * description: Bouton dont le texte glisse vers le haut et est remplace par une copie pendant qu une fleche entre.
+ * description: Bouton dont le texte glisse vers le haut et est remplacé par une copie pendant qu'une flèche entre.
  * prompt: Create a CTA whose label rolls up on hover/focus (two stacked copies in an overflow-hidden line, translateY -100%) while an arrow slides in from the left into a circle that grows; springy easing. Dark in light mode, light in dark mode.
  */
 import { ArrowRight } from 'lucide-react';

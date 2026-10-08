@@ -4,7 +4,7 @@
  * category: Tables
  * style: SaaS
  * tags: recent
- * description: Suivi de livraisons avec mini barre d etapes par commande et date estimee.
+ * description: Suivi de livraisons avec mini barre d'étapes par commande et date estimée.
  * prompt: Create a shipments table where each row shows order id, carrier, a 4-segment progress track (Ordered, Packed, Shipped, Delivered) filled up to the current stage with an sr-only stage label, and ETA. Light and dark mode.
  */
 const stages = ['Ordered', 'Packed', 'Shipped', 'Delivered'];

@@ -4,7 +4,7 @@
  * category: Footer
  * style: Gradient
  * tags: recent
- * description: Pied de page surmonte de vagues SVG superposees qui ondulent doucement.
+ * description: Pied de page surmonté de vagues SVG superposées qui ondulent doucement.
  * prompt: Create a footer topped by two layered SVG waves (different opacity) that slowly drift horizontally via a translateX keyframe on a double-width path, then a teal gradient body with centered logo, links and copyright. Reduced-motion safe; readable in light and dark mode.
  */
 export function WaveFooter() {

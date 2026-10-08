@@ -4,7 +4,7 @@
  * category: Tooltips
  * style: SaaS
  * tags: recent
- * description: Info-bulle accessible avec delai d ouverture, fermeture a Echap et survol de la bulle autorise.
+ * description: Info-bulle accessible avec délai d'ouverture, fermeture à Échap et survol de la bulle autorisé.
  * prompt: Build an accessible tooltip component: opens after a 400ms hover delay or immediately on keyboard focus, closes on blur, pointer leave (with a 100ms grace period so the pointer can move onto the bubble) and Escape; role="tooltip" + aria-describedby. Show it on three icon buttons of a toolbar. Light and dark mode.
  */
 'use client';

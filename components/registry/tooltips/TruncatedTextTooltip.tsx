@@ -4,7 +4,7 @@
  * category: Tooltips
  * style: SaaS
  * tags: recent
- * description: Info-bulle qui n apparait que si le texte est reellement tronque, pour afficher le nom complet.
+ * description: Info-bulle qui n'apparaît que si le texte est réellement tronqué, pour afficher le nom complet.
  * prompt: Create a list of file names in a narrow column where each name is truncated with an ellipsis; a tooltip with the full name appears on hover/focus only when the element is actually overflowing (measure scrollWidth > clientWidth on pointer enter/focus). Light and dark mode.
  */
 'use client';

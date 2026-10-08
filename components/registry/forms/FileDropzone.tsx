@@ -4,7 +4,7 @@
  * category: Forms
  * style: SaaS
  * tags: featured, recent
- * description: Zone de depot de fichiers avec glisser-deposer, parcourir, liste avec progression et suppression.
+ * description: Zone de dépôt de fichiers avec glisser-déposer, parcourir, liste avec progression et suppression.
  * prompt: Create a file uploader: dashed dropzone that highlights on dragover, a visually hidden file input triggered by a "browse" button (keyboard accessible), accepted types/size hint, and an uploaded-files list with icon, name, size, simulated progress bar, done check and remove button. Light and dark mode.
  */
 'use client';

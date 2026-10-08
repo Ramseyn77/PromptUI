@@ -4,7 +4,7 @@
  * category: Forms
  * style: Minimal
  * tags: recent
- * description: Formulaire de contact valide a l envoi avec erreurs par champ, compteur de caracteres et succes.
+ * description: Formulaire de contact validé à l'envoi avec erreurs par champ, compteur de caractères et succès.
  * prompt: Create a contact form: name, email, topic <select>, and message textarea with a live character counter (max 500); on submit validate required fields and email format, show per-field errors (aria-invalid, aria-describedby) and focus the first invalid field; on success replace the form with a thank-you panel. 2-column name/email from sm. Light and dark mode.
  */
 'use client';

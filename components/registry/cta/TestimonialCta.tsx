@@ -4,7 +4,7 @@
  * category: CTA
  * style: Editorial
  * tags: recent
- * description: Appel a l action qui s appuie sur une citation client, signature et bouton d essai.
+ * description: Appel à l'action qui s'appuie sur une citation client, signature et bouton d'essai.
  * prompt: Create a CTA that leads with social proof: a short customer quote in large serif, avatar + name + company, then a divider and the CTA line with a primary button; two-column on md (quote left, CTA right). Warm paper in light mode, charcoal in dark mode.
  */
 export function TestimonialCta() {

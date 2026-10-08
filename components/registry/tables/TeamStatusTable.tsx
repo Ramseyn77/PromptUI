@@ -4,7 +4,7 @@
  * category: Tables
  * style: SaaS
  * tags: recent
- * description: Tableau d equipe avec avatars, badges de statut colores et derniere activite.
+ * description: Tableau d'équipe avec avatars, badges de statut colorés et dernière activité.
  * prompt: Create a team members table: avatar (initials on hashed color) + name + email, role, a status badge with dot (Active green, Invited amber, Suspended rose), last active time and a "…" actions button with aria-label. Scrolls horizontally on mobile. Light and dark mode.
  */
 import { MoreHorizontal } from 'lucide-react';

@@ -4,7 +4,7 @@
  * category: Text
  * style: Minimal
  * tags: featured, recent
- * description: Paragraphe dont les mots sortent du flou un par un quand il entre dans l ecran.
+ * description: Paragraphe dont les mots sortent du flou un par un quand il entre dans l'écran.
  * prompt: Create a word-by-word reveal paragraph: each word is a span that goes from blurred/transparent/translated to sharp with a staggered delay, triggered once by IntersectionObserver; the plain paragraph is readable by screen readers and fully visible with reduced motion. A "Replay" button restarts it. Light and dark mode.
  */
 'use client';

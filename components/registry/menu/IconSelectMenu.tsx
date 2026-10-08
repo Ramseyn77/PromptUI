@@ -4,7 +4,7 @@
  * category: Menu
  * style: Minimal
  * tags: recent
- * description: Liste deroulante personnalisee avec icones et descriptions, navigation clavier et selection.
+ * description: Liste déroulante personnalisée avec icônes et descriptions, navigation clavier et sélection.
  * prompt: Create a custom select (button with aria-haspopup="listbox" + listbox) for issue status: options with colored status icons and descriptions, the trigger shows the selected icon/label, ArrowUp/Down move the active option, Enter/Space select, Escape closes, Home/End jump. defaultOpen prop for previews. Light and dark mode.
  */
 'use client';

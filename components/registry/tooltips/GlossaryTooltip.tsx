@@ -4,7 +4,7 @@
  * category: Tooltips
  * style: Editorial
  * tags: recent
- * description: Termes techniques soulignes en pointilles dans un texte, definition en bulle au survol et au focus.
+ * description: Termes techniques soulignés en pointillés dans un texte, définition en bulle au survol et au focus.
  * prompt: Create a paragraph with glossary terms: each term is a focusable <dfn>-styled button with a dotted underline that shows a definition tooltip (title + one sentence) on hover/focus; role="tooltip" + aria-describedby; tooltips don't overflow the paragraph edge (anchored left). Serif editorial text, light and dark mode.
  */
 const terms = {

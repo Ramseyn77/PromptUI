@@ -4,7 +4,7 @@
  * category: Pricing
  * style: SaaS
  * tags: featured, recent
- * description: Tarifs avec bascule mensuel ou annuel et prix qui s anime au changement.
+ * description: Tarifs avec bascule mensuel ou annuel et prix qui s'anime au changement.
  * prompt: Create a pricing section with a Monthly/Yearly segmented radiogroup (yearly shows a -20% badge) and two plan cards; the price re-animates on change. The highlighted plan is inverted and flips in dark mode. Stack on mobile, 2 columns from sm.
  */
 'use client';

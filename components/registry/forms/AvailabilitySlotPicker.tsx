@@ -4,7 +4,7 @@
  * category: Forms
  * style: SaaS
  * tags: recent
- * description: Selecteur de creneaux avec dates, disponibilites, fuseau horaire et confirmation.
+ * description: Sélecteur de créneaux avec dates, disponibilités, fuseau horaire et confirmation.
  * prompt: Create a responsive appointment availability picker with a horizontal day selector, morning and afternoon time slots, disabled unavailable slots, timezone label and selection summary. Use accessible pressed and disabled states.
  */
 'use client';

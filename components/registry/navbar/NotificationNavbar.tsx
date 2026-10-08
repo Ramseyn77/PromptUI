@@ -4,7 +4,7 @@
  * category: Navbar
  * style: SaaS
  * tags: recent
- * description: Barre d application avec panneau de notifications et badge numerique clignotant en continu.
+ * description: Barre d'application avec panneau de notifications et badge numérique clignotant en continu.
  * prompt: Create an app navbar with a bell button and an infinitely pulsing numeric unread badge, opening a notifications panel with avatar, text, time and unread dots, plus "Mark all as read" that clears the badge. Respect reduced-motion preferences. Uses a defaultOpen prop for previews. Light and dark mode.
  */
 'use client';

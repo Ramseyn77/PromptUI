@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Gradient
  * tags: recent
- * description: Bandeau de parite de pouvoir d achat avec pays detecte, remise et code a copier.
+ * description: Bandeau de parité de pouvoir d'achat avec pays détecté, remise et code à copier.
  * prompt: Create a purchasing-power-parity banner: "Hey! It looks like you're in Côte d'Ivoire", explanation of a 60% regional discount, a copyable coupon code button (shows "Copied"), original vs discounted price, and a dismiss button. Gradient border; light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Menu
  * style: Glass
  * tags: recent
- * description: Barre de reactions emoji qui apparait au-dessus d un message, emojis qui grossissent au survol.
+ * description: Barre de réactions emoji qui apparaît au-dessus d'un message, emojis qui grossissent au survol.
  * prompt: Create a message with a reactions picker: hovering/focusing the message (or clicking the smiley button with aria-expanded) shows a glass pill of 6 emoji buttons that magnify on hover; picking one adds/toggles a reaction chip with count under the message (aria-pressed). Light and dark mode.
  */
 'use client';

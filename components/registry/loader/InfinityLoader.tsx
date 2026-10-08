@@ -4,7 +4,7 @@
  * category: Loader
  * style: Gradient
  * tags: recent
- * description: Symbole infini trace en SVG avec un segment lumineux qui le parcourt sans fin.
+ * description: Symbole infini tracé en SVG avec un segment lumineux qui le parcourt sans fin.
  * prompt: Create an infinity-symbol loader: a faint SVG lemniscate path as a track and the same path with a short gradient dash (stroke-dasharray) whose dashoffset animates so a comet travels around it. role="status". Light and dark mode, reduced-motion safe.
  */
 export function InfinityLoader() {

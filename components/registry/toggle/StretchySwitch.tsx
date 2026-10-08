@@ -4,7 +4,7 @@
  * category: Toggle
  * style: Gradient
  * tags: featured, recent
- * description: Interrupteur elastique dont le bouton s etire pendant l appui avant de glisser, facon iOS.
+ * description: Interrupteur élastique dont le bouton s'étire pendant l'appui avant de glisser, façon iOS.
  * prompt: Create an iOS-style stretchy switch: while pressed (pointer down or Space held) the knob widens toward the direction of travel, then on release it slides and the track fills with a teal-to-violet gradient; springy easing, role="switch", aria-checked, keyboard support. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: CTA
  * style: Minimal
  * tags: recent
- * description: Appel a l essai gratuit avec liste de garanties cochees en grille et bouton principal.
+ * description: Appel à l'essai gratuit avec liste de garanties cochées en grille et bouton principal.
  * prompt: Create a free-trial CTA: headline and subtitle, a 2-column (1 on mobile) checklist of reassurances (No credit card, Cancel anytime, Free migrations, 24/7 support) with check-circle icons, and a centered primary button with a small note below. Light and dark mode.
  */
 import { CheckCircle2 } from 'lucide-react';

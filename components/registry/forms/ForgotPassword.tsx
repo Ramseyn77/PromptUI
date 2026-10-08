@@ -4,7 +4,7 @@
  * category: Forms
  * style: Minimal
  * tags: recent
- * description: Recuperation de mot de passe en deux etats : saisie de l email puis confirmation avec renvoi temporise.
+ * description: Récupération de mot de passe en deux états : saisie de l'email puis confirmation avec renvoi temporisé.
  * prompt: Create a forgot-password card: key icon, title and email field; after submit it switches to a "Check your email" state showing the address, an "Open email app" button and a "Resend" link disabled with a 30s countdown; "Back to log in" link at the bottom. Light and dark mode.
  */
 'use client';

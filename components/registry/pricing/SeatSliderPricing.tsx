@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Minimal
  * tags: featured, recent
- * description: Calcul du prix selon le nombre de places choisi au curseur, avec paliers degressifs.
+ * description: Calcul du prix selon le nombre de places choisi au curseur, avec paliers dégressifs.
  * prompt: Create a seat-based pricing calculator: a range slider (1–100 seats) with a styled track fill, live price per seat with volume tiers (1–10 $12, 11–50 $10, 51+ $8), total per month, the active tier highlighted in a tier list, and a CTA. aria-valuetext on the slider. Light and dark mode.
  */
 'use client';

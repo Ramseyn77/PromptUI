@@ -4,7 +4,7 @@
  * category: Footer
  * style: Gradient
  * tags: recent
- * description: Pied de page communautaire avec compteur de membres, avatars et invitations a rejoindre.
+ * description: Pied de page communautaire avec compteur de membres, avatars et invitations à rejoindre.
  * prompt: Create a community footer: gradient headline "Join 24,000 builders", overlapping avatar stack with "+24k", three join cards (Chat, Newsletter, Events) with icons and short descriptions, then copyright. Cards in 3 columns from sm. Light and dark mode.
  */
 import { CalendarDays, Mail, MessagesSquare } from 'lucide-react';

@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Dark
  * tags: featured, recent
- * description: Grille en perspective qui defile a l infini vers l horizon, style retro synthwave.
+ * description: Grille en perspective qui défile à l'infini vers l'horizon, style rétro synthwave.
  * prompt: Create an infinite perspective grid: a large plane of CSS grid lines rotated with rotateX in a perspective container, background-position animated so lines scroll toward a glowing horizon, faded with a mask. Colors adapt to light and dark, reduced-motion safe.
  */
 export function InfiniteGrid() {

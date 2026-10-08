@@ -4,7 +4,7 @@
  * category: Text
  * style: Minimal
  * tags: recent
- * description: Texte dispose en cercle via SVG textPath qui tourne lentement autour d une icone centrale.
+ * description: Texte disposé en cercle via SVG textPath qui tourne lentement autour d'une icône centrale.
  * prompt: Create a rotating circular text badge: SVG circle path with <textPath> repeating "SCROLL TO EXPLORE • MADE WITH CARE •" in uppercase tracking, rotating slowly (CSS keyframe on the SVG), with a centered arrow icon; text uses currentColor for light/dark. Accessible label on the wrapper, reduced-motion safe.
  */
 import { ArrowDown } from 'lucide-react';

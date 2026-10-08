@@ -4,7 +4,7 @@
  * category: Footer
  * style: Dark
  * tags: recent
- * description: Pied de page d agence internationale avec bureaux, heures locales et contacts.
+ * description: Pied de page d'agence internationale avec bureaux, heures locales et contacts.
  * prompt: Create an agency footer listing offices (Paris, Abidjan, Montréal) with city, address, and each office's live local time (Intl.DateTimeFormat with timeZone, rendered after mount to avoid hydration mismatch, updating every minute), plus contact email and copyright. Always dark; responsive grid.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Minimal
  * tags: recent
- * description: Mini calendrier de la semaine avec jour selectionnable et liste des evenements du jour.
+ * description: Mini calendrier de la semaine avec jour sélectionnable et liste des événements du jour.
  * prompt: Create an upcoming-events widget: a 7-day strip (weekday + date) where days with events show a dot and the selected day is filled (aria-pressed); below, the selected day's events with colored left border, time range and meeting type; empty days show "Nothing planned". Light and dark mode.
  */
 'use client';

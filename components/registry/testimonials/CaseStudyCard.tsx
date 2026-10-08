@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Dark
  * tags: featured, recent
- * description: Etude de cas client avec logo, citation, trois resultats chiffres et lien vers l histoire complete.
+ * description: Étude de cas client avec logo, citation, trois résultats chiffrés et lien vers l'histoire complète.
  * prompt: Create a customer case-study card: company wordmark, headline result, short quote with author, three metric tiles (e.g. -42% support tickets, 3× faster, +18% conversion) with big numbers, and a "Read the story →" link. Inverted surface (dark in light mode, light in dark mode); stacks on mobile.
  */
 import { ArrowRight } from 'lucide-react';

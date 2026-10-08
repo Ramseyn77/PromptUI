@@ -4,7 +4,7 @@
  * category: Hero
  * style: Dark
  * tags: recent
- * description: Hero pour outil developpeur avec commande d installation copiable et sortie de terminal.
+ * description: Hero pour outil développeur avec commande d'installation copiable et sortie de terminal.
  * prompt: Create a developer-tool hero: headline, subtitle, a copyable install command pill (copies to clipboard, shows a check), and a terminal window with prompt lines and green success output. Dark terminal in both themes, page surface adapts to light and dark.
  */
 'use client';

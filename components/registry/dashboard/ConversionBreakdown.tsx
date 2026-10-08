@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Gradient
  * tags: recent
- * description: Anneau de repartition du trafic par canal avec legende interactive qui isole un segment.
+ * description: Anneau de répartition du trafic par canal avec légende interactive qui isole un segment.
  * prompt: Create a traffic-source donut: SVG circles with stroke-dasharray segments (Organic, Paid, Social, Referral) and gaps, center total; hovering or focusing a legend item highlights its segment and dims the others, center text switches to that channel. Light and dark mode.
  */
 'use client';

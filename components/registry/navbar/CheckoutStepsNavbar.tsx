@@ -4,7 +4,7 @@
  * category: Navbar
  * style: Minimal
  * tags: recent
- * description: En-tete de tunnel d achat avec etapes numerotees, etape courante et paiement securise.
+ * description: En-tête de tunnel d'achat avec étapes numérotées, étape courante et paiement sécurisé.
  * prompt: Create a checkout header: logo, an ordered steps indicator (Cart, Shipping, Payment, Review) with completed steps checked, the current step highlighted (aria-current="step") and connecting lines; labels hidden below sm. "Secure checkout" lock hint on the right. Light and dark mode.
  */
 import { Check, Lock } from 'lucide-react';

@@ -4,7 +4,7 @@
  * category: Tables
  * style: Minimal
  * tags: recent
- * description: Liste de transactions avec icone de categorie, montants credit ou debit colores et statut.
+ * description: Liste de transactions avec icône de catégorie, montants crédit ou débit colorés et statut.
  * prompt: Create a transactions table: merchant with a category icon tile, date, status (Completed / Pending with spinner-free dot), and amount right-aligned, green with "+" for credits and neutral for debits; groups under a date heading row. Light and dark mode.
  */
 import { ArrowDownLeft, Coffee, ShoppingCart, Zap } from 'lucide-react';

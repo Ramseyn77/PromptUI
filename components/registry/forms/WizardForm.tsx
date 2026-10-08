@@ -4,7 +4,7 @@
  * category: Forms
  * style: SaaS
  * tags: featured, recent
- * description: Formulaire en plusieurs etapes avec indicateur de progression, retour et recapitulatif final.
+ * description: Formulaire en plusieurs étapes avec indicateur de progression, retour et récapitulatif final.
  * prompt: Create a 3-step onboarding wizard (Account → Team → Review): a progress header with numbered steps (completed = check), step content with fields that persist in state, Back/Continue buttons (Back disabled on step 1), and a review step summarizing answers with "Edit" links that jump back. Focus moves to the step heading on change. Light and dark mode.
  */
 'use client';

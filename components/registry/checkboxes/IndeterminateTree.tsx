@@ -4,7 +4,7 @@
  * category: Checkboxes
  * style: Minimal
  * tags: recent
- * description: Cases a cocher parent et enfants : le parent devient indetermine quand la selection est partielle.
+ * description: Cases à cocher parent et enfants : le parent devient indéterminé quand la sélection est partielle.
  * prompt: Create nested permission checkboxes: each group has a parent checkbox that checks/unchecks all children and shows the indeterminate state (set via ref) when only some are checked; children are indented with a guide line; a summary shows the total selected. Light and dark mode.
  */
 'use client';

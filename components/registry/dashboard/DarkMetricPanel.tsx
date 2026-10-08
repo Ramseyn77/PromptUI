@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Dark
  * tags: recent
- * description: Panneau de metriques contraste avec grand chiffre, variation et trois sous-indicateurs.
+ * description: Panneau de métriques contrasté avec grand chiffre, variation et trois sous-indicateurs.
  * prompt: Create a high-contrast metric panel (dark in light mode, light in dark mode): eyebrow, huge value with unit, delta pill, a thin gradient divider and three sub-metrics in a row with labels. Compact and punchy.
  */
 export function DarkMetricPanel() {

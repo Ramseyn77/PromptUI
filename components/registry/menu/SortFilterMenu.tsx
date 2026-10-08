@@ -4,7 +4,7 @@
  * category: Menu
  * style: SaaS
  * tags: recent
- * description: Menu de tri et d affichage avec options radio exclusives et cases a cocher dans le meme panneau.
+ * description: Menu de tri et d'affichage avec options radio exclusives et cases à cocher dans le même panneau.
  * prompt: Create a "View" dropdown mixing a radio group (Sort by: Newest, Oldest, Name A–Z as menuitemradio with aria-checked and a dot) and checkbox items (Show archived, Compact rows as menuitemcheckbox with checks), with section labels and a Reset link; the trigger shows the active sort. defaultOpen prop. Light and dark mode.
  */
 'use client';

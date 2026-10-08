@@ -4,7 +4,7 @@
  * category: Boards
  * style: SaaS
  * tags: recent
- * description: Pipeline de recrutement par etape avec candidats, note en etoiles et jours dans l etape.
+ * description: Pipeline de recrutement par étape avec candidats, note en étoiles et jours dans l'étape.
  * prompt: Create a hiring pipeline board: columns Applied, Interview, Offer with candidate cards (avatar initials, name, role, 1–5 star rating with sr-only text, "3d in stage" chip that turns amber after 5 days) and column counts. Mobile-first: columns stack vertically on phones with no horizontal scrolling, and sit side by side from sm. Light and dark mode.
  */
 import { Star } from 'lucide-react';

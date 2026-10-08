@@ -4,7 +4,7 @@
  * category: Cards
  * style: Minimal
  * tags: recent
- * description: Minuteur de concentration compact avec progression circulaire, pause et remise a zero.
+ * description: Minuteur de concentration compact avec progression circulaire, pause et remise à zéro.
  * prompt: Create a responsive focus timer card with a circular countdown, a seconds marker that orbits the dial once per minute while running, start/pause and reset controls, plus selectable 25, 15 and 5 minute presets. Include reduced-motion support and accessible timer semantics.
  */
 'use client';

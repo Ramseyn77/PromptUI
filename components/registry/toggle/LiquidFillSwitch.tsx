@@ -4,7 +4,7 @@
  * category: Toggle
  * style: Gradient
  * tags: recent
- * description: Switch dont la couleur monte comme un liquide lorsque l option est activee.
+ * description: Switch dont la couleur monte comme un liquide lorsque l'option est activée.
  * prompt: Create an accessible liquid-fill toggle. The control is a large rounded switch with a white thumb; when enabled, a teal-to-violet liquid layer rises inside the track with a gently waving top edge and the thumb slides right. Include a visible label and status text, use role="switch" with aria-checked, support keyboard activation, light/dark mode and prefers-reduced-motion.
  */
 'use client';

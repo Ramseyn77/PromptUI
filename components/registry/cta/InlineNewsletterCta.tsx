@@ -4,7 +4,7 @@
  * category: CTA
  * style: Gradient
  * tags: featured, recent
- * description: Bloc d inscription newsletter en degrade avec formulaire en ligne, preuve sociale et confirmation.
+ * description: Bloc d'inscription newsletter en dégradé avec formulaire en ligne, preuve sociale et confirmation.
  * prompt: Create a newsletter CTA section: gradient panel with headline and subtitle on the left, an inline email form on the right (stacked on mobile) with a proper label, a subscriber count line, and a success state after submit. Readable in light and dark mode.
  */
 'use client';

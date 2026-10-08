@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: Dark
  * tags: recent
- * description: Explorateur de fichiers en arbre avec dossiers depliables, icones et fichier selectionne.
+ * description: Explorateur de fichiers en arbre avec dossiers dépliables, icônes et fichier sélectionné.
  * prompt: Create a file-explorer tree sidebar (role="tree"/"treeitem", aria-expanded on folders): recursive folders that open/close with chevrons and folder-open icons, files with type-colored icons, depth-based indentation, and the selected file highlighted (aria-selected). IDE-like, light and dark mode.
  */
 'use client';

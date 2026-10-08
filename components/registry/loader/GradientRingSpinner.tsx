@@ -4,7 +4,7 @@
  * category: Loader
  * style: Gradient
  * tags: featured, recent
- * description: Anneau en degrade conique qui tourne, masque au centre, en trois tailles.
+ * description: Anneau en dégradé conique qui tourne, masque au centre, en trois tailles.
  * prompt: Create a spinner ring using a conic-gradient (transparent to teal to violet) masked into a ring with a radial-gradient mask, rotating infinitely; show small/medium/large sizes. role="status" with sr-only "Loading". Works on light and dark, reduced-motion slows it down.
  */
 export function GradientRingSpinner() {

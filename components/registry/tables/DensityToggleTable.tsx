@@ -4,7 +4,7 @@
  * category: Tables
  * style: Minimal
  * tags: recent
- * description: Tableau avec choix de densite compacte, normale ou aeree et affichage des colonnes.
+ * description: Tableau avec choix de densité compacte, normale ou aérée et affichage des colonnes.
  * prompt: Create a table toolbar with a density segmented control (Compact / Default / Relaxed changing row padding) and a "Columns" checkbox list to show or hide optional columns; the table re-renders accordingly. Light and dark mode.
  */
 'use client';

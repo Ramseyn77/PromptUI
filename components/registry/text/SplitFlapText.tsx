@@ -4,7 +4,7 @@
  * category: Text
  * style: Dark
  * tags: recent
- * description: Afficheur a palettes facon aeroport, chaque case fait defiler les lettres jusqu a la bonne.
+ * description: Afficheur à palettes façon aéroport, chaque case fait défiler les lettres jusqu'à la bonne.
  * prompt: Create a split-flap display: fixed-width tiles for each character of a destination word; on change every tile cycles through the alphabet until it lands on its letter (per-tile interval, staggered stop), with a center hinge line and dark tiles. Cycles through PARIS, DAKAR, TOKYO; sr-only live text. Dark in both themes.
  */
 'use client';

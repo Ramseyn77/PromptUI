@@ -4,7 +4,7 @@
  * category: Charts
  * style: SaaS
  * tags: featured, recent
- * description: Histogramme groupe sur deux series avec legende cliquable, grille et info-bulle au survol.
+ * description: Histogramme groupé sur deux séries avec légende cliquable, grille et info-bulle au survol.
  * prompt: Create an SVG grouped bar chart (this year vs last year per month) with y-axis gridlines and labels, rounded bars, a legend whose items toggle each series (aria-pressed), a hover tooltip showing both values, and an sr-only data table. Responsive via viewBox. Light and dark mode.
  */
 'use client';
@@ -41,7 +41,7 @@ export function GroupedBarChart() {
         </svg>
         {hover !== null && <div className="pointer-events-none absolute top-0 -translate-x-1/2 rounded-lg bg-zinc-900 px-2.5 py-1.5 text-xs text-white shadow-lg dark:bg-white dark:text-zinc-900" style={{ left: `${((58 + hover * 54) / 360) * 100}%` }}><strong>{data[hover][0]}</strong> · 2026: {data[hover][1]} · 2025: {data[hover][2]}</div>}
       </div>
-      <table className="sr-only"><caption>Signups per month</caption><thead><tr><th>Month</th><th>2026</th><th>2025</th></tr></thead><tbody>{data.map(([month, a, b]) => <tr key={month}><td>{month}</td><td>{a}</td><td>{b}</td></tr>)}</tbody></table>
+      <div className="sr-only"><table><caption>Signups per month</caption><thead><tr><th>Month</th><th>2026</th><th>2025</th></tr></thead><tbody>{data.map(([month, a, b]) => <tr key={month}><td>{month}</td><td>{a}</td><td>{b}</td></tr>)}</tbody></table></div>
     </section>
   );
 }

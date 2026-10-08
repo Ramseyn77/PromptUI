@@ -4,7 +4,7 @@
  * category: Buttons
  * style: Dark
  * tags: recent
- * description: Boutons precedent et suivant declenchant une rotation a 360 deg de la page avant la navigation.
+ * description: Boutons précédent et suivant déclenchant une rotation à 360 deg de la page avant la navigation.
  * prompt: Create previous and next navigation buttons that perform a full-page 360-degree barrel-roll transition before navigating. Support optional previousHref and nextHref props, prevent repeated clicks during animation, show a demo page counter when no URLs are supplied, and respect reduced-motion preferences.
  */
 'use client';

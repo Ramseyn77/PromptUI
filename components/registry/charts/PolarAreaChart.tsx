@@ -4,7 +4,7 @@
  * category: Charts
  * style: Gradient
  * tags: recent
- * description: Diagramme en rose des vents : secteurs egaux dont le rayon varie selon la valeur, survol interactif.
+ * description: Diagramme en rose des vents : secteurs égaux dont le rayon varie selon la valeur, survol interactif.
  * prompt: Create an SVG polar area (rose) chart: equal-angle wedges whose radius scales with each value (sqrt for area accuracy), colored palette, hover/focus highlights a wedge and shows its label/value in the center; concentric guide circles; legend list with values. Light and dark mode.
  */
 'use client';

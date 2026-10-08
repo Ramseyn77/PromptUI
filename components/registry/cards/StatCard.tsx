@@ -4,7 +4,7 @@
  * category: Cards
  * style: Minimal
  * tags: recent
- * description: Carte KPI avec tendance, badge de progression et sparkline en degrade.
+ * description: Carte KPI avec tendance, badge de progression et sparkline en dégradé.
  * prompt: Create a KPI card: label, large value, green trend badge, and an SVG sparkline (polyline + gradient area, non-scaling stroke) with an accessible label. Works in light and dark mode.
  */
 import { TrendingUp } from 'lucide-react';

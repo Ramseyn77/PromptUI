@@ -4,7 +4,7 @@
  * category: Navbar
  * style: Dark
  * tags: recent
- * description: Navigation de documentation avec selecteur de version, recherche et etoiles GitHub.
+ * description: Navigation de documentation avec sélecteur de version, recherche et étoiles GitHub.
  * prompt: Create a documentation navbar: logo + "Docs" label, a version <select> (v3.2, v3.1, v2.x), a search trigger with ⌘K hint (full width on mobile as icon), and a GitHub stars pill. Light and dark mode.
  */
 import { GitBranch, Search, Star } from 'lucide-react';

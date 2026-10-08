@@ -4,7 +4,7 @@
  * category: Hero
  * style: Dark
  * tags: featured, recent
- * description: Hero de lancement avec grille technique et faisceau lumineux qui balaie la scene.
+ * description: Hero de lancement avec grille technique et faisceau lumineux qui balaie la scène.
  * prompt: Create a dark product-launch hero with a technical grid background, a slow horizontal scan beam, a compact release badge, a bold responsive headline, supporting copy and two CTA buttons. Add three small floating status chips that remain decorative and hide the least important ones on narrow screens. Keep all text readable without animation, use scoped CSS keyframes and respect prefers-reduced-motion.
  */
 

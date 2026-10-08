@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: Minimal
  * tags: recent
- * description: Bulle de chat avec trois points qui rebondissent pendant que l assistant reflechit.
+ * description: Bulle de chat avec trois points qui rebondissent pendant que l'assistant réfléchit.
  * prompt: Create a chat typing indicator: an assistant avatar and a bubble with three dots bouncing in sequence (staggered keyframe delays), role="status" with sr-only "Assistant is typing". Include a variant row with "Thinking…" shimmer text. Light and dark mode.
  */
 export function TypingIndicator() {

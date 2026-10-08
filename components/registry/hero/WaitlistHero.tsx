@@ -4,7 +4,7 @@
  * category: Hero
  * style: Minimal
  * tags: recent
- * description: Hero de liste d attente avec champ email, validation et pile d avatars.
+ * description: Hero de liste d'attente avec champ email, validation et pile d'avatars.
  * prompt: Create a waitlist hero: headline, subtitle, an inline email form (stacked on mobile) that shows a success message after submit, and a row of overlapping avatar initials with a "2,400+ makers joined" caption. Light and dark mode.
  */
 'use client';

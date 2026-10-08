@@ -4,7 +4,7 @@
  * category: Text
  * style: Editorial
  * tags: featured, recent
- * description: Deux bandeaux de mots geants en sens inverse, alternance plein et contour, qui ralentissent au survol.
+ * description: Deux bandeaux de mots géants en sens inverse, alternance plein et contour, qui ralentissent au survol.
  * prompt: Create a kinetic typography marquee: two rows of huge uppercase words scrolling in opposite directions (duplicated track, translateX -50%), alternating solid and outlined (-webkit-text-stroke) words with separator stars; hover slows it down; aria-hidden with an sr-only sentence. Light and dark mode, reduced-motion stops it.
  */
 const words = ['Design', 'Build', 'Ship', 'Repeat'];

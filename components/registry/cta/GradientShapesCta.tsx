@@ -4,7 +4,7 @@
  * category: CTA
  * style: Gradient
  * tags: featured, recent
- * description: Grande carte d appel a l action en degrade avec formes geometriques flottantes en arriere-plan.
+ * description: Grande carte d'appel à l'action en dégradé avec formes géométriques flottantes en arrière-plan.
  * prompt: Create a bold CTA card with a violet-to-indigo gradient, decorative floating shapes (circle, rounded square, ring) drifting slowly with keyframes behind the content, centered headline, subtitle and two buttons (solid white + ghost). Reduced-motion safe; looks good in both themes.
  */
 export function GradientShapesCta() {

@@ -4,7 +4,7 @@
  * category: Text
  * style: Gradient
  * tags: recent
- * description: Titre entoure d etincelles en etoile qui apparaissent et scintillent a des positions variees.
+ * description: Titre entouré d'étincelles en étoile qui apparaissent et scintillent à des positions variées.
  * prompt: Create a sparkles text effect: a bold headline with 6 four-point star SVGs positioned around it (deterministic positions), each scaling/rotating in and out with staggered delays; stars in amber/violet, aria-hidden. Reduced-motion safe, light and dark mode.
  */
 const stars = [

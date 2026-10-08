@@ -4,7 +4,7 @@
  * category: Toggle
  * style: Minimal
  * tags: recent
- * description: Interrupteur dont l icone du bouton se transforme d une croix en coche en glissant.
+ * description: Interrupteur dont l'icône du bouton se transforme d'une croix en coche en glissant.
  * prompt: Create a switch whose knob icon morphs between an X and a check: two SVG paths animated with stroke-dashoffset (one draws while the other erases) as the knob slides; track turns emerald when on and rose-tinted when off. role="switch", aria-checked, visible label. Light and dark mode.
  */
 'use client';

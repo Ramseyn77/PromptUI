@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Editorial
  * tags: recent
- * description: Liste de prix typographique facon menu de restaurant, points de conduite et descriptions.
+ * description: Liste de prix typographique façon menu de restaurant, points de conduite et descriptions.
  * prompt: Create a typographic price list like a restaurant menu: serif headings, each service with name, dotted leader line and price aligned right, a one-line italic description below, grouped by section. Warm paper background in light mode, deep charcoal in dark mode.
  */
 const sections = [

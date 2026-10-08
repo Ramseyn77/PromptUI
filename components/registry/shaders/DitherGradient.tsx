@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Dark
  * tags: featured, recent
- * description: Degrade anime rendu en tramage ordonne (Bayer 4x4) sur canvas, look pixel retro.
+ * description: Dégradé animé rendu en tramage ordonné (Bayer 4x4) sur canvas, look pixel rétro.
  * prompt: Create a canvas ordered-dither shader: compute a moving radial + wave gradient value per low-res cell, threshold it against a 4x4 Bayer matrix, and draw lit cells as pixels in currentColor on a transparent background (so it adapts to light/dark). ~6px cells, DPR-aware, paused off screen, static with reduced motion.
  */
 'use client';

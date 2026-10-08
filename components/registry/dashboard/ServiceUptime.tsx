@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Dark
  * tags: featured, recent
- * description: Page de statut avec barres de disponibilite sur 45 jours par service et incidents colores.
+ * description: Page de statut avec barres de disponibilité sur 45 jours par service et incidents colorés.
  * prompt: Create a status widget: overall "All systems operational" banner, then per service a row of 45 thin day bars (green ok, amber degraded, rose outage) with title tooltips, uptime %, and "45 days ago / Today" axis. Light and dark mode.
  */
 const services = [

@@ -4,7 +4,7 @@
  * category: Forms
  * style: Minimal
  * tags: featured, recent
- * description: Champ mot de passe avec jauge de robustesse en 4 segments et regles cochees en direct.
+ * description: Champ mot de passe avec jauge de robustesse en 4 segments et règles cochées en direct.
  * prompt: Create a new-password field with a 4-segment strength meter (colors rose → amber → teal → emerald with a text label) and a live checklist of rules (8+ chars, uppercase, number, symbol) that tick as they're met; aria-describedby links the checklist, strength announced politely. Light and dark mode.
  */
 'use client';

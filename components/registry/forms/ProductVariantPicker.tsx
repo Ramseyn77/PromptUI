@@ -4,7 +4,7 @@
  * category: Forms
  * style: Minimal
  * tags: recent
- * description: Selecteur de couleur et taille produit avec stock et combinaison indisponible.
+ * description: Sélecteur de couleur et taille produit avec stock et combinaison indisponible.
  * prompt: Create a responsive product variant picker with accessible color swatches, size options, unavailable combinations, stock message, quantity and add-to-cart action.
  */
 'use client';

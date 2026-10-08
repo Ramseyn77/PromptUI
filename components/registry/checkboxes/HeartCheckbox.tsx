@@ -4,7 +4,7 @@
  * category: Checkboxes
  * style: Minimal
  * tags: recent
- * description: Cases favoris en forme de coeur et d etoile qui se remplissent avec un petit rebond.
+ * description: Cases favoris en forme de cœur et d'étoile qui se remplissent avec un petit rebond.
  * prompt: Create icon checkboxes for favorites: a heart and a star, each a native sr-only checkbox with an icon that fills (rose / amber) and pops (scale keyframe) when checked, with visible focus ring and a label for screen readers; used on a product card. Light and dark mode.
  */
 'use client';

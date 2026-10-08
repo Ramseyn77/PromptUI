@@ -4,7 +4,7 @@
  * category: Boards
  * style: Minimal
  * tags: recent
- * description: Colonnes kanban repliables avec limite de travail en cours et alerte quand elle est depassee.
+ * description: Colonnes kanban repliables avec limite de travail en cours et alerte quand elle est dépassée.
  * prompt: Create kanban columns that each show "count / WIP limit"; a column over its limit turns its header rose with a warning; columns can collapse into a narrow vertical strip (aria-expanded) showing the name rotated. Horizontal scroll on mobile. Light and dark mode.
  */
 'use client';

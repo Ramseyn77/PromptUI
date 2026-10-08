@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Gradient
  * tags: featured, recent
- * description: Banniere d accueil du tableau de bord avec salutation, resume du jour et actions rapides.
+ * description: Bannière d'accueil du tableau de bord avec salutation, résumé du jour et actions rapides.
  * prompt: Create a dashboard welcome banner: gradient panel with "Good morning, Camille", a one-line summary with highlighted numbers, three quick-action buttons with icons, and a decorative blurred circle; stacks on mobile. Dismissible with a close button. Light and dark mode.
  */
 'use client';

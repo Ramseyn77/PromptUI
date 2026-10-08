@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: Minimal
  * tags: recent
- * description: Jauge circulaire de fenetre de contexte avec detail des tokens et alerte quand elle se remplit.
+ * description: Jauge circulaire de fenêtre de contexte avec détail des tokens et alerte quand elle se remplit.
  * prompt: Create an AI context-window meter: a small SVG ring showing percent used (stroke-dasharray), color shifting from teal to amber to rose as it fills, a breakdown list (system, files, conversation) and a slider to simulate usage. role="meter" with aria-valuenow. Light and dark mode.
  */
 'use client';

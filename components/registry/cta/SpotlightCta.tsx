@@ -4,7 +4,7 @@
  * category: CTA
  * style: Dark
  * tags: featured, recent
- * description: Appel a l action sombre eclaire par un halo qui suit la souris, bordure lumineuse et bouton brillant.
+ * description: Appel à l'action sombre éclairé par un halo qui suit la souris, bordure lumineuse et bouton brillant.
  * prompt: Create a dark CTA panel with a radial spotlight that follows the pointer (CSS variables set on pointermove, no re-render), a subtle gradient border, headline, subtitle and a glowing teal button. Always dark (stage-like); the spotlight is hidden with reduced motion.
  */
 'use client';

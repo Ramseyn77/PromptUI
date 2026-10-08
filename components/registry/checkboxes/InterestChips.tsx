@@ -4,7 +4,7 @@
  * category: Checkboxes
  * style: Gradient
  * tags: featured, recent
- * description: Pastilles de centres d interet a cocher avec emoji, limite de 5 et bouton continuer.
+ * description: Pastilles de centres d'intérêt à cocher avec emoji, limite de 5 et bouton continuer.
  * prompt: Create an onboarding interests picker: wrapping chips that are sr-only checkboxes with emoji + label; checked chips get a gradient fill and a check; max 5 selections (others disabled once reached, with a counter), Continue enabled after 3. Light and dark mode.
  */
 'use client';

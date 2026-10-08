@@ -4,7 +4,7 @@
  * category: Pricing
  * style: SaaS
  * tags: featured, recent
- * description: Trois offres cote a cote, l offre du milieu mise en avant avec badge et bouton plein.
+ * description: Trois offres côte à côte, l'offre du milieu mise en avant avec badge et bouton plein.
  * prompt: Create a three-tier pricing section (stacked on mobile, 3 columns from md): Starter, Pro (highlighted: ring, "Most popular" badge, filled CTA, slightly raised on md) and Business; each with price/month, description, CTA and a feature list with checks. Light and dark mode.
  */
 import { Check } from 'lucide-react';

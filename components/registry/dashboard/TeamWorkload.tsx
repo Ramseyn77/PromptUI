@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Minimal
  * tags: recent
- * description: Charge de travail de l equipe en heures avec seuil de capacite et alerte de surcharge.
+ * description: Charge de travail de l'équipe en heures avec seuil de capacité et alerte de surcharge.
  * prompt: Create a team workload widget: each member row has avatar initials, name, a bar of assigned hours vs a 40h capacity marker line; bars over capacity turn rose with an "Over capacity" label, under 50% show "Available". Light and dark mode.
  */
 const members = [

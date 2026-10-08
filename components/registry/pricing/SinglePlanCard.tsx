@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Editorial
  * tags: recent
- * description: Offre unique a prix fixe avec liste d avantages en deux colonnes et garantie de remboursement.
+ * description: Offre unique à prix fixe avec liste d'avantages en deux colonnes et garantie de remboursement.
  * prompt: Create a single-plan pricing card: left side with plan name, one-paragraph pitch and a 2-column feature checklist; right side (stacked on mobile) a tinted panel with the price, "pay once, own it forever", CTA and a 30-day money-back note. Light and dark mode.
  */
 import { Check, ShieldCheck } from 'lucide-react';

@@ -4,7 +4,7 @@
  * category: Hero
  * style: Gradient
  * tags: recent
- * description: Hero de lancement produit avec compte a rebours en direct.
+ * description: Hero de lancement produit avec compte à rebours en direct.
  * prompt: Create a product-launch hero with a live countdown (days, hours, minutes, seconds tiles updating every second, aria-live off to avoid noise, with an sr-only launch date), headline and "Notify me" CTA. Gradient background readable in light and dark mode.
  */
 'use client';

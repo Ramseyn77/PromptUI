@@ -4,7 +4,7 @@
  * category: Footer
  * style: SaaS
  * tags: featured, recent
- * description: Plan du site en colonnes sur desktop et en accordeons repliables sur mobile.
+ * description: Plan du site en colonnes sur desktop et en accordéons repliables sur mobile.
  * prompt: Create a sitemap footer: on md+ four visible link columns; below md each column becomes an accordion (button with aria-expanded toggling its list, chevron rotation) so the mobile footer stays short. Uses the same data for both. Light and dark mode.
  */
 'use client';

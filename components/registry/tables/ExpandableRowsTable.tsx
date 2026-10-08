@@ -4,7 +4,7 @@
  * category: Tables
  * style: Minimal
  * tags: recent
- * description: Tableau de commandes dont chaque ligne se deplie pour afficher le detail des articles.
+ * description: Tableau de commandes dont chaque ligne se déplie pour afficher le détail des articles.
  * prompt: Create an orders table where each row has a chevron toggle (aria-expanded, aria-controls) that reveals a detail row spanning all columns with line items and totals; chevron rotates. Light and dark mode.
  */
 'use client';

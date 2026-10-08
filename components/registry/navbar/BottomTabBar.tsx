@@ -4,7 +4,7 @@
  * category: Navbar
  * style: SaaS
  * tags: featured, recent
- * description: Barre d onglets mobile en bas d ecran avec indicateur actif et bouton central.
+ * description: Barre d'onglets mobile en bas d'écran avec indicateur actif et bouton central.
  * prompt: Create a mobile bottom tab bar: four tabs (icon + label) with the active tab tinted and a raised circular "+" action in the middle; aria-current on the active tab, safe-area padding. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Tables
  * style: Minimal
  * tags: recent
- * description: Tableau dont les cellules s editent sur place au clic, validation avec Entree et annulation avec Echap.
+ * description: Tableau dont les cellules s'éditent sur place au clic, validation avec Entrée et annulation avec Échap.
  * prompt: Create a table with inline-editable cells: clicking (or pressing Enter on) a cell turns it into an input, Enter/blur saves, Escape cancels; edited cells flash briefly. A computed total column updates live. Light and dark mode.
  */
 'use client';

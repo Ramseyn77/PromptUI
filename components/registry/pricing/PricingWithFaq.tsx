@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Editorial
  * tags: recent
- * description: Carte tarifaire accompagnee d une FAQ en accordeon a une seule question ouverte.
+ * description: Carte tarifaire accompagnée d'une FAQ en accordéon à une seule question ouverte.
  * prompt: Create a pricing block with a plan card on one side and an FAQ accordion on the other (stacked on mobile): questions are buttons with aria-expanded/aria-controls, only one open at a time, plus/minus icon, answers revealed with a grid-rows transition. Light and dark mode.
  */
 'use client';

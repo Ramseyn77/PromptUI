@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Minimal
  * tags: recent
- * description: Fil d activite chronologique avec avatars, actions, cibles en gras et horodatage relatif.
+ * description: Fil d'activité chronologique avec avatars, actions, cibles en gras et horodatage relatif.
  * prompt: Create an activity feed card: header with "View all", an ordered list connected by a vertical line, each item with an avatar or colored icon badge, "Name did action on Target", a relative time, and optional quoted comment block. Light and dark mode.
  */
 import { GitMerge, MessageSquare, Rocket, UserPlus } from 'lucide-react';

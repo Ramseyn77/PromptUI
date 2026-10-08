@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Glass
  * tags: recent
- * description: Carte d invitation a passer au plan superieur quand une limite est atteinte, avec comparaison.
+ * description: Carte d'invitation à passer au plan supérieur quand une limite est atteinte, avec comparaison.
  * prompt: Create an in-app upgrade prompt: a usage-limit warning bar at 100%, "You've reached your free limit" title, a mini two-column Free vs Pro comparison of three limits, primary Upgrade and secondary "Maybe later" actions. Glass surface on a soft gradient backdrop; light and dark mode.
  */
 import { Sparkles } from 'lucide-react';

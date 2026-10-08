@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Minimal
  * tags: recent
- * description: Bandeau de confiance horizontal : mention « Excellent », cases etoilees et nombre d avis.
+ * description: Bandeau de confiance horizontal : mention « Excellent », cases étoilées et nombre d'avis.
  * prompt: Create a horizontal trust strip: "Excellent" label, five square star tiles (filled green, the last partially filled via a gradient for 4.7), "4.7 out of 5 based on 2,341 reviews" text, and a platform wordmark; wraps nicely on mobile with an sr-only summary. Light and dark mode.
  */
 import { Star } from 'lucide-react';

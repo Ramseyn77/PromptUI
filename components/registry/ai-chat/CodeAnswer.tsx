@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: Dark
  * tags: recent
- * description: Reponse d assistant contenant un bloc de code avec langage, copie et explication.
+ * description: Réponse d'assistant contenant un bloc de code avec langage, copie et explication.
  * prompt: Create an assistant answer containing a short explanation, a code block with a header (language label, filename, copy button that shows "Copied"), line numbers and simple syntax colors, and a follow-up note. Code block is dark in both themes; surrounding text adapts.
  */
 'use client';

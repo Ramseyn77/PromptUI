@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Minimal
  * tags: recent
- * description: Liste des ventes recentes avec client, email, montant et resume du mois.
+ * description: Liste des ventes récentes avec client, email, montant et résumé du mois.
  * prompt: Create a "Recent sales" widget: subtitle "You made 265 sales this month", then rows with avatar initials, customer name and email (truncated), and a right-aligned "+$1,999.00" amount. Light and dark mode.
  */
 const sales = [

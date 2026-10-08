@@ -4,7 +4,7 @@
  * category: Loader
  * style: Minimal
  * tags: recent
- * description: Point central entoure d anneaux qui s elargissent et s estompent, facon radar.
+ * description: Point central entouré d'anneaux qui s'élargissent et s'estompent, façon radar.
  * prompt: Create a radar-pulse loader: a solid center dot and three rings expanding from it and fading out with staggered delays; label "Searching nearby…" below. role="status". Teal on light and dark backgrounds, reduced-motion safe.
  */
 export function PulseRings() {

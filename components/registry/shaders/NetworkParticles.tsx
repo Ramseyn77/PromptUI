@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Dark
  * tags: featured, recent
- * description: Constellation de particules reliees par des lignes, qui fuient doucement le curseur.
+ * description: Constellation de particules reliées par des lignes, qui fuient doucement le curseur.
  * prompt: Create a canvas network animation: ~60 drifting particles bouncing off edges, lines drawn between particles closer than 100px with opacity by distance, and particles gently pushed away from the pointer. Colors read from the canvas CSS color (currentColor) so it adapts to light/dark; DPR-aware, paused off screen, static with reduced motion.
  */
 'use client';

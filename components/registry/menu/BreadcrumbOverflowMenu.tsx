@@ -4,7 +4,7 @@
  * category: Menu
  * style: Minimal
  * tags: recent
- * description: Fil d Ariane long replie en « … » qui ouvre un menu avec les niveaux intermediaires.
+ * description: Fil d'Ariane long replié en « … » qui ouvre un menu avec les niveaux intermédiaires.
  * prompt: Create a long breadcrumb that collapses middle levels into an ellipsis button (aria-haspopup="menu", aria-expanded, aria-label "Show hidden path") opening a small menu of the hidden levels with folder icons; first and last two levels stay visible, current page has aria-current. defaultOpen prop. Light and dark mode.
  */
 'use client';

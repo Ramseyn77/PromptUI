@@ -4,7 +4,7 @@
  * category: Tables
  * style: Minimal
  * tags: recent
- * description: Tableau pagine avec resume « 1-5 sur 23 », numeros de page et boutons precedent suivant.
+ * description: Tableau paginé avec résumé « 1-5 sur 23 », numéros de page et boutons précédent suivant.
  * prompt: Create a paginated table (5 rows per page from a 23-item dataset): footer with "Showing 1–5 of 23", previous/next buttons disabled at the ends, and numbered page buttons with aria-current on the active page (numbers hidden below sm). Light and dark mode.
  */
 'use client';

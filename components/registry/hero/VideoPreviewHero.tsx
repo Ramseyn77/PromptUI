@@ -4,7 +4,7 @@
  * category: Hero
  * style: Gradient
  * tags: recent
- * description: Hero avec apercu video, bouton lecture pulse et modal de lecture simulee.
+ * description: Hero avec aperçu vidéo, bouton lecture pulsant et modal de lecture simulée.
  * prompt: Create a hero with headline and CTA above a 16:9 video poster (gradient scene) with a pulsing play button; clicking toggles a "Playing" state with a progress bar. Button has aria-label and aria-pressed. Light and dark mode.
  */
 'use client';

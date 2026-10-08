@@ -4,7 +4,7 @@
  * category: Text
  * style: Gradient
  * tags: featured, recent
- * description: Titre cinetique dont les lettres surgissent en vague depuis le centre avec un bouton pour rejouer l animation.
+ * description: Titre cinétique dont les lettres surgissent en vague depuis le centre avec un bouton pour rejouer l'animation.
  * prompt: Create an original kinetic headline reading "Ideas move interfaces". Split the visible heading into individually animated letters that rise, rotate and sharpen in a center-out wave powered by Anime.js. Include an accessible full-text label and a Replay button. Scope and clean up every animation, preserve a fully readable static state with prefers-reduced-motion, and support light, dark, mobile, tablet and desktop layouts.
  */
 'use client';

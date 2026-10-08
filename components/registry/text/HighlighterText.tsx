@@ -4,7 +4,7 @@
  * category: Text
  * style: Editorial
  * tags: recent
- * description: Paragraphe ou certains mots sont surlignes au marqueur, le trait se dessine de gauche a droite.
+ * description: Paragraphe où certains mots sont surlignés au marqueur, le trait se dessine de gauche à droite.
  * prompt: Create a paragraph with <mark> words highlighted by a hand-drawn marker effect: a skewed, slightly rotated background bar that grows from 0 to 100% width (background-size transition) with staggered delays after mount; different marker colors. Readable in light and dark mode.
  */
 'use client';

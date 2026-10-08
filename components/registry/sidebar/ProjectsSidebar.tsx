@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: SaaS
  * tags: recent
- * description: Liste de projets avec pastilles de couleur, favoris epingles et creation rapide en ligne.
+ * description: Liste de projets avec pastilles de couleur, favoris épinglés et création rapide en ligne.
  * prompt: Create a projects sidebar: "Favorites" and "Projects" sections, each project with a colored square dot, name and a star toggle (aria-pressed) that pins it to Favorites; a "+" button reveals an inline input to add a project (Enter to save, Escape to cancel). Light and dark mode.
  */
 'use client';

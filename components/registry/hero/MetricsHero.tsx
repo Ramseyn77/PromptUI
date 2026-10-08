@@ -4,7 +4,7 @@
  * category: Hero
  * style: Editorial
  * tags: recent
- * description: Hero editorial avec grand titre et rangee de chiffres cles separes par des filets.
+ * description: Hero éditorial avec grand titre et rangée de chiffres clés séparés par des filets.
  * prompt: Create an editorial hero: small uppercase eyebrow, oversized headline with one muted phrase, short paragraph, then a 2x2 (mobile) / 4-column (sm+) metrics row separated by hairlines. Light and dark mode.
  */
 export function MetricsHero() {

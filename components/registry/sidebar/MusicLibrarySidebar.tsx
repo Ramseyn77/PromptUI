@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: Dark
  * tags: recent
- * description: Bibliotheque musicale laterale avec playlists en vignettes et mini lecteur en bas.
+ * description: Bibliothèque musicale latérale avec playlists en vignettes et mini lecteur en bas.
  * prompt: Create a music app sidebar: "Your library" header, filter chips (Playlists, Artists), playlist rows with gradient cover thumbnails, title and track count (active one highlighted), and a bottom mini player with cover, song, artist, play/pause toggle (aria-pressed) and a progress bar. Dark-first with a light variant.
  */
 'use client';

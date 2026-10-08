@@ -4,7 +4,7 @@
  * category: Navbar
  * style: Glass
  * tags: featured, recent
- * description: Navigation flottante en pilule de verre avec lien actif surligne.
+ * description: Navigation flottante en pilule de verre avec lien actif surligné.
  * prompt: Create a floating glassmorphism pill navbar over a colorful backdrop: logo, links with an active pill background, CTA; links collapse behind a menu button below sm (aria-expanded). Backdrop blur, light and dark mode.
  */
 'use client';

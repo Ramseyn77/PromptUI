@@ -4,7 +4,7 @@
  * category: Checkboxes
  * style: Minimal
  * tags: recent
- * description: Selection multiple de couleurs par pastilles, coche contrastee automatique et resume textuel.
+ * description: Sélection multiple de couleurs par pastilles, coche contrastée automatique et résumé textuel.
  * prompt: Create a multi-select color filter: round swatches as sr-only checkboxes with visible names on hover (title) and in the accessible label; checked swatches show a ring and a check whose color adapts to the swatch luminance (white on dark, black on light); summary line lists chosen colors. Light and dark mode.
  */
 'use client';

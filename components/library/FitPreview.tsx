@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef, useState, type CSSProperties, type MouseEvent,
 // Widest layout we allow (box width / MIN_LAYOUT_SCALE), for wide or tall components.
 const MIN_LAYOUT_SCALE = 0.28;
 // Below this the preview becomes unreadable: show the top at this scale and pan on hover instead.
-const MIN_READABLE_SCALE = 0.55;
+const MIN_READABLE_SCALE = 0.45;
 
 type Fit = { scale: number; width: number; pan: number };
 
@@ -54,11 +54,19 @@ export function FitPreview({ children }: { children: ReactNode }) {
       let height = heightAt(width);
 
       // Too tall: widen further so the layout reflows shorter. Width only grows, so this converges.
+      // Components capped by a max-width don't get shorter when widened: keep the width that fits best.
+      const scaleAt = (w: number, h: number) => Math.min(1, boxWidth / w, boxHeight / h);
+      let best = { width, height };
       for (let pass = 0; pass < 4; pass += 1) {
-        const fitScale = Math.min(1, boxWidth / width, boxHeight / height);
-        const next = Math.min(maxWidth, Math.max(width, boxWidth / fitScale));
+        const next = Math.min(maxWidth, Math.max(width, boxWidth / scaleAt(width, height)));
         if (next - width < 2) break;
         width = widen(next);
+        height = heightAt(width);
+        if (scaleAt(width, height) <= scaleAt(best.width, best.height) + 0.001) break;
+        best = { width, height };
+      }
+      if (best.width !== width) {
+        width = widen(best.width);
         height = heightAt(width);
       }
 

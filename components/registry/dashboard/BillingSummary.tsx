@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: SaaS
  * tags: recent
- * description: Resume de facturation avec plan actuel, prochaine facture, utilisation et carte enregistree.
+ * description: Résumé de facturation avec plan actuel, prochaine facture, utilisation et carte enregistrée.
  * prompt: Create a billing summary card: current plan with price and "Change plan", next invoice date and amount, two usage meters (seats, API calls) with warning color above 80%, and the saved card (brand badge, •••• 4242, expiry) with "Update". Light and dark mode.
  */
 import { CreditCard } from 'lucide-react';

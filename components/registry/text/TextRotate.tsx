@@ -4,7 +4,7 @@
  * category: Text
  * style: Gradient
  * tags: featured, recent
- * description: Titre dont le mot final change en boucle avec une entree floue.
+ * description: Titre dont le mot final change en boucle avec une entrée floue.
  * prompt: Create a headline "Build beautiful ___" where the last word cycles every 2.2s through a list, each word entering with a rise + blur keyframe and a teal-to-violet gradient. Provide the full sentence as sr-only text and stop cycling with prefers-reduced-motion.
  */
 'use client';

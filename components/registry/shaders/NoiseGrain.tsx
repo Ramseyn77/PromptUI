@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Editorial
  * tags: recent
- * description: Degrade avec grain photographique genere par un filtre SVG feTurbulence qui scintille.
+ * description: Dégradé avec grain photographique généré par un filtre SVG feTurbulence qui scintille.
  * prompt: Create a grainy gradient card: a teal-to-violet gradient overlaid with SVG feTurbulence noise (inline data-URI filter) at low opacity with mix-blend-mode overlay, jittered by a steps() keyframe for a film-grain flicker. Title on top. Light and dark mode.
  */
 const noise = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;

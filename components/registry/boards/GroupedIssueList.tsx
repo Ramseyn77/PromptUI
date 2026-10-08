@@ -4,7 +4,7 @@
  * category: Boards
  * style: Dark
  * tags: featured, recent
- * description: Liste de tickets facon Linear groupee par statut, sections repliables et icones de statut.
+ * description: Liste de tickets façon Linear groupée par statut, sections repliables et icônes de statut.
  * prompt: Create a Linear-style issue list: collapsible groups (In progress, Todo, Backlog) with status icons (half-filled circle, empty circle, dashed circle), counts, and rows with issue ID, title, priority bars icon, label and assignee initials; rows highlight on hover. Light and dark mode.
  */
 'use client';

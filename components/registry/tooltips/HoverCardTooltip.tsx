@@ -4,7 +4,7 @@
  * category: Tooltips
  * style: SaaS
  * tags: featured, recent
- * description: Carte d apercu de profil qui apparait au survol d un @mention, avec avatar, bio et bouton suivre.
+ * description: Carte d'aperçu de profil qui apparaît au survol d'un @mention, avec avatar, bio et bouton suivre.
  * prompt: Create a hover card for an @mention link: on hover (300ms delay) or focus, a rich card appears below with gradient banner, avatar, name, handle, short bio, follower counts and a Follow button (aria-pressed toggle); the card stays open while hovered and closes on leave/Escape. defaultOpen prop for previews. Light and dark mode.
  */
 'use client';

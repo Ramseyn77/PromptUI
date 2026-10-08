@@ -4,7 +4,7 @@
  * category: Checkboxes
  * style: Gradient
  * tags: recent
- * description: Case a cocher gelatineuse qui se deforme et rebondit a la selection, coche dessinee.
+ * description: Case à cocher gélatineuse qui se déforme et rebondit à la sélection, coche dessinée.
  * prompt: Create a jelly checkbox: native sr-only input with a custom box that plays a squash-and-stretch keyframe (scaleX/scaleY wobble) when checked, fills with a violet-to-pink gradient and draws an SVG check via stroke-dashoffset. Three example options, focus ring, reduced-motion safe. Light and dark mode.
  */
 'use client';

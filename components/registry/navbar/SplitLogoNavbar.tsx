@@ -4,7 +4,7 @@
  * category: Navbar
  * style: Editorial
  * tags: recent
- * description: Navigation symetrique avec logo au centre et liens de part et d autre.
+ * description: Navigation symétrique avec logo au centre et liens de part et d'autre.
  * prompt: Create a symmetrical editorial navbar: links on the left and right with the wordmark centered in a serif font (3-column grid), collapsing to logo + menu button below md. Hairline bottom border, light and dark mode.
  */
 'use client';

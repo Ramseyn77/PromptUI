@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Minimal
  * tags: recent
- * description: Rangee d avatars cliquables, l avatar choisi s agrandit et affiche sa citation.
+ * description: Rangée d'avatars cliquables, l'avatar choisi s'agrandit et affiche sa citation.
  * prompt: Create a testimonial selector: a row of circular avatar buttons (aria-pressed) where the selected one scales up with a ring and the others dim; below, the selected person's quote, name and role fade in. Arrow keys move selection. Light and dark mode.
  */
 'use client';

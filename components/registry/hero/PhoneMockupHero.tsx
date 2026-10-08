@@ -4,7 +4,7 @@
  * category: Hero
  * style: SaaS
  * tags: recent
- * description: Hero d application mobile avec maquette de telephone et badges de stores.
+ * description: Hero d'application mobile avec maquette de téléphone et badges de stores.
  * prompt: Create a mobile-app hero: headline, subtitle, App Store / Google Play styled buttons, and a CSS phone mockup (rounded frame, notch, app screen with balance card and transaction list). Stacks on mobile, side by side from md. Light and dark mode.
  */
 import { Apple, Play } from 'lucide-react';

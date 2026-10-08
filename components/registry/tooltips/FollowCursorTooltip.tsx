@@ -4,7 +4,7 @@
  * category: Tooltips
  * style: Gradient
  * tags: recent
- * description: Etiquette qui suit le curseur au-dessus d une image ou d un projet, avec leger retard.
+ * description: Étiquette qui suit le curseur au-dessus d'une image ou d'un projet, avec léger retard.
  * prompt: Create a cursor-following label over a project thumbnail: on pointermove inside the card a pill tooltip ("View case study →") follows the pointer with a smoothed lerp (requestAnimationFrame), fades in on enter and out on leave; the card is a link with an accessible name so the tooltip is decorative (aria-hidden). Light and dark mode.
  */
 'use client';

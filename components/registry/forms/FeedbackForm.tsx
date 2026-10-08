@@ -4,7 +4,7 @@
  * category: Forms
  * style: Gradient
  * tags: recent
- * description: Formulaire de feedback avec humeur en emojis, categorie en pastilles et message optionnel.
+ * description: Formulaire de feedback avec humeur en emojis, catégorie en pastilles et message optionnel.
  * prompt: Create a product feedback widget: a 5-emoji sentiment radiogroup (each emoji grows when selected), category chips (Bug, Idea, Praise) as a single-select group, an optional textarea, and a gradient submit button that becomes a "Thanks!" confirmation; submit disabled until a mood is chosen. Light and dark mode.
  */
 'use client';

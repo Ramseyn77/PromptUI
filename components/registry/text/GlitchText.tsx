@@ -4,7 +4,7 @@
  * category: Text
  * style: Dark
  * tags: recent
- * description: Titre au glitch RGB : deux copies decalees cyan et magenta decoupees en tranches qui sautent.
+ * description: Titre au glitch RGB : deux copies décalées cyan et magenta découpées en tranches qui sautent.
  * prompt: Create an RGB glitch headline: the text plus two aria-hidden pseudo-copies (via data-text + before/after) in cyan and magenta, offset horizontally and clipped with animated clip-path inset slices (steps timing) for a digital glitch. Dark stage in both themes; glitch only on hover when prefers-reduced-motion.
  */
 export function GlitchText() {

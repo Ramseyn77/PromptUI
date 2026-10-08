@@ -4,7 +4,7 @@
  * category: Boards
  * style: Editorial
  * tags: recent
- * description: Feuille de route produit en trois horizons avec themes colores et votes des utilisateurs.
+ * description: Feuille de route produit en trois horizons avec thèmes colorés et votes des utilisateurs.
  * prompt: Create a public roadmap board with three columns (Now, Next, Later) each with a colored top border, cards showing a theme tag, title, short description and an upvote button with count that toggles (aria-pressed). Stacks on mobile. Light and dark mode.
  */
 'use client';

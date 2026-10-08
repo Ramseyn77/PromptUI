@@ -4,7 +4,7 @@
  * category: Text
  * style: Dark
  * tags: featured, recent
- * description: Texte qui se dechiffre lettre par lettre depuis des caracteres aleatoires, relancable au survol.
+ * description: Texte qui se déchiffre lettre par lettre depuis des caractères aléatoires, relançable au survol.
  * prompt: Create a decrypting text effect: characters start as random glyphs and resolve left-to-right into the final text over ~1s (interval), spaces preserved; re-runs on hover/focus. Monospace, the real text available to screen readers (aria-label), static with reduced motion. Light and dark mode.
  */
 'use client';

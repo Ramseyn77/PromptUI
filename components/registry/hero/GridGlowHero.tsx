@@ -4,7 +4,7 @@
  * category: Hero
  * style: Dark
  * tags: featured, recent
- * description: Hero centre sur fond quadrille qui s estompe, halo lumineux et double CTA.
+ * description: Hero centré sur fond quadrillé qui s'estompe, halo lumineux et double CTA.
  * prompt: Create a centered hero on a masked grid background (CSS linear-gradient lines fading with a radial mask) with a soft top glow, pill badge, large headline, subtitle and two CTAs. Dark by default with a light mode variant.
  */
 export function GridGlowHero() {

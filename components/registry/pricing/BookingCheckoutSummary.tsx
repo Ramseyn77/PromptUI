@@ -4,7 +4,7 @@
  * category: Pricing
  * style: SaaS
  * tags: recent
- * description: Recapitulatif de reservation avec prestation, options, reduction et total dynamique.
+ * description: Récapitulatif de réservation avec prestation, options, réduction et total dynamique.
  * prompt: Create a responsive booking checkout summary with appointment details, selectable add-ons, promo discount, itemized subtotal and total, cancellation policy and confirm button.
  */
 'use client';

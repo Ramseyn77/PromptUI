@@ -4,7 +4,7 @@
  * category: Charts
  * style: Minimal
  * tags: recent
- * description: Graphiques a puces comparant realise et objectif sur fond de zones qualitatives.
+ * description: Graphiques à puces comparant réalisé et objectif sur fond de zones qualitatives.
  * prompt: Create bullet charts for KPIs: each row has a label + unit, a horizontal track with three qualitative bands (poor/ok/good in zinc shades), a thick actual-value bar and a vertical target marker; value text on the right; role="img" with a descriptive aria-label per row. Light and dark mode.
  */
 const metrics = [

@@ -4,7 +4,7 @@
  * category: Tables
  * style: SaaS
  * tags: recent
- * description: Tableau vide avec illustration legere, message clair et action pour importer ou creer.
+ * description: Tableau vide avec illustration légère, message clair et action pour importer ou créer.
  * prompt: Create a table shell with headers and a full-width empty state: a stacked-cards illustration made of divs, "No customers yet" title, one-sentence help, primary "Add customer" and secondary "Import CSV" buttons; clicking Add inserts a sample row. Light and dark mode.
  */
 'use client';

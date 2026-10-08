@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: Minimal
  * tags: recent
- * description: Bloc repliable « Reflexion pendant 8 s » qui revele le raisonnement de l assistant.
+ * description: Bloc repliable « Réflexion pendant 8 s » qui révèle le raisonnement de l'assistant.
  * prompt: Create a collapsible "Thought for 8 seconds" reasoning block above an answer: a disclosure button (aria-expanded, chevron rotates) revealing a bordered list of reasoning steps with a smooth grid-rows height transition. Light and dark mode.
  */
 'use client';

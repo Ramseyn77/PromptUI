@@ -4,7 +4,7 @@
  * category: CTA
  * style: SaaS
  * tags: recent
- * description: Bandeau d appel a l action compact a inserer dans un contenu, icone, texte et bouton fermable.
+ * description: Bandeau d'appel à l'action compact à insérer dans un contenu, icône, texte et bouton fermable.
  * prompt: Create an inline content CTA banner (for docs or articles): icon tile, bold title + one line of text, primary action link, and a dismiss button (aria-label) that collapses it with a height transition; horizontal on sm, stacked on mobile. Light and dark mode.
  */
 'use client';

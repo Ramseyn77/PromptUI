@@ -4,7 +4,7 @@
  * category: Boards
  * style: Minimal
  * tags: recent
- * description: Pipeline commercial avec montant total par etape, probabilite et deals en cartes.
+ * description: Pipeline commercial avec montant total par étape, probabilité et deals en cartes.
  * prompt: Create a CRM deals pipeline: columns (Lead 10%, Proposal 40%, Negotiation 70%, Won 100%) with a header showing the summed deal value and a thin colored probability bar, deal cards with company, amount and close date. Horizontal scroll on mobile. Light and dark mode.
  */
 const stages = [

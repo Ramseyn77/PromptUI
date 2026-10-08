@@ -4,7 +4,7 @@
  * category: Loader
  * style: Editorial
  * tags: recent
- * description: Sablier en SVG dont le sable s ecoule puis qui se retourne en boucle.
+ * description: Sablier en SVG dont le sable s'écoule puis qui se retourne en boucle.
  * prompt: Create an hourglass loader in SVG: two triangular glass halves, sand in the top half shrinking (scaleY from bottom) while the bottom pile grows, a thin falling stream, and the whole hourglass flipping 180° at the end of each cycle via keyframes. role="status". Warm amber sand, frame adapts to light/dark.
  */
 export function HourglassLoader() {

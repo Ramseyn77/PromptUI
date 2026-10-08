@@ -4,7 +4,7 @@
  * category: Buttons
  * style: Dark
  * tags: recent
- * description: Bouton neon qui s allume au survol avec halo diffus et reflet au sol, sur scene sombre.
+ * description: Bouton néon qui s'allume au survol avec halo diffus et reflet au sol, sur scène sombre.
  * prompt: Create a neon outline button on a dark stage: thin cyan border and text, on hover/focus it fills with cyan, the text turns dark, and layered box-shadows create a glow plus a blurred reflection below (pseudo element). Slight flicker keyframe on first hover; reduced-motion safe. Stage stays dark in both themes.
  */
 export function NeonButton() {

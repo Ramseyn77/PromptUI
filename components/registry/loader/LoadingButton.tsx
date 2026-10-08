@@ -4,7 +4,7 @@
  * category: Loader
  * style: SaaS
  * tags: featured, recent
- * description: Bouton qui passe par les etats inactif, chargement avec spinner puis succes avant de revenir.
+ * description: Bouton qui passe par les états inactif, chargement avec spinner puis succès avant de revenir.
  * prompt: Create a submit button with states: idle "Save changes" → loading (spinner, "Saving…", disabled, aria-busy, width stays stable) → success (green, check, "Saved") → back to idle after 1.5s. Status announced via aria-live. Light and dark mode.
  */
 'use client';

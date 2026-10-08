@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: Minimal
  * tags: recent
- * description: Barre laterale avec selecteur d espace de travail deroulant en haut et navigation groupee.
+ * description: Barre latérale avec sélecteur d'espace de travail déroulant en haut et navigation groupée.
  * prompt: Create a sidebar with a workspace switcher at the top (logo tile, name, plan, chevrons; opens a listbox of workspaces with check and "Create workspace"), then grouped navigation sections with small uppercase headings. defaultOpen prop for previews. Light and dark mode.
  */
 'use client';

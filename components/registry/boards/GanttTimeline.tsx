@@ -4,7 +4,7 @@
  * category: Boards
  * style: SaaS
  * tags: featured, recent
- * description: Diagramme de Gantt sur 8 semaines avec barres de taches colorees, avancement et ligne du jour.
+ * description: Diagramme de Gantt sur 8 semaines avec barres de tâches colorées, avancement et ligne du jour.
  * prompt: Create a compact Gantt chart: left column of task names, an 8-week header, task bars positioned by start/length with a lighter progress fill, and a vertical "Today" marker line; horizontal scroll on small screens. Bars have title tooltips. Light and dark mode.
  */
 const weeks = 8;

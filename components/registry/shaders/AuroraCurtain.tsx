@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Dark
  * tags: featured, recent
- * description: Rideau d aurore boreale fait de bandes verticales floues qui ondulent sur un ciel nocturne.
+ * description: Rideau d'aurore boréale fait de bandes verticales floues qui ondulent sur un ciel nocturne.
  * prompt: Create a northern-lights background: several tall blurred gradient bands (green, teal, violet) skewed and swaying with offset keyframes, mix-blend screen, over a night-sky gradient with a few static stars. Always a night scene; reduced-motion safe.
  */
 export function AuroraCurtain() {

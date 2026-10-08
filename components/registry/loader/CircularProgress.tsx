@@ -4,7 +4,7 @@
  * category: Loader
  * style: SaaS
  * tags: recent
- * description: Progression circulaire determinee qui avance jusqu a 100 % puis affiche une coche.
+ * description: Progression circulaire déterminée qui avance jusqu'à 100 % puis affiche une coche.
  * prompt: Create a determinate circular progress (SVG ring with stroke-dashoffset) that simulates an upload from 0 to 100% with percentage text in the center, then turns green and shows a check icon; a Restart button replays it. role="progressbar" with aria-valuenow. Light and dark mode.
  */
 'use client';

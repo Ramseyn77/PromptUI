@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Editorial
  * tags: recent
- * description: Grande citation editoriale en serif avec guillemet decoratif geant et signature.
+ * description: Grande citation éditoriale en serif avec guillemet décoratif géant et signature.
  * prompt: Create an editorial testimonial: an oversized decorative quote mark, a large serif quote with one highlighted phrase, and a signature row (avatar, name, title, company wordmark) separated by a rule. Warm paper in light mode, charcoal in dark mode.
  */
 export function QuoteSpotlight() {

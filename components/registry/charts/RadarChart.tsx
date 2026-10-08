@@ -38,7 +38,7 @@ export function RadarChart() {
         ))}
       </svg>
       <div className="flex justify-center gap-4">{profiles.map((profile) => <span key={profile.name} className="inline-flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400"><span className="size-2.5 rounded-full" style={{ background: profile.color }} />{profile.name}</span>)}</div>
-      <table className="sr-only"><caption>Scores out of 10</caption><thead><tr><th>Axis</th>{profiles.map((profile) => <th key={profile.name}>{profile.name}</th>)}</tr></thead><tbody>{axes.map((axis, index) => <tr key={axis}><td>{axis}</td>{profiles.map((profile) => <td key={profile.name}>{profile.values[index]}</td>)}</tr>)}</tbody></table>
+      <div className="sr-only"><table><caption>Scores out of 10</caption><thead><tr><th>Axis</th>{profiles.map((profile) => <th key={profile.name}>{profile.name}</th>)}</tr></thead><tbody>{axes.map((axis, index) => <tr key={axis}><td>{axis}</td>{profiles.map((profile) => <td key={profile.name}>{profile.values[index]}</td>)}</tr>)}</tbody></table></div>
     </section>
   );
 }

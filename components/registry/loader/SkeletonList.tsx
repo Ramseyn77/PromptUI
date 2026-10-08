@@ -4,7 +4,7 @@
  * category: Loader
  * style: Minimal
  * tags: recent
- * description: Liste squelette qui pulse puis revele le vrai contenu apres le chargement simule.
+ * description: Liste squelette qui pulse puis révèle le vrai contenu après le chargement simulé.
  * prompt: Create a list that shows 4 pulsing skeleton rows (avatar circle, two text bars, trailing pill) with aria-busy, then after 2s swaps to real rows with a fade-in; a "Reload" button repeats it. Light and dark mode.
  */
 'use client';

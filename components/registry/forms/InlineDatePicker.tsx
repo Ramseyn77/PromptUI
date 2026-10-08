@@ -4,7 +4,7 @@
  * category: Forms
  * style: Minimal
  * tags: recent
- * description: Calendrier mensuel avec navigation, jour selectionne, aujourd hui marque et jours passes desactives.
+ * description: Calendrier mensuel avec navigation, jour sélectionné, aujourd'hui marqué et jours passés désactivés.
  * prompt: Create an inline month calendar date picker: header with month/year and prev/next buttons, weekday row, a grid of day buttons (Monday-first) with today ringed, past days disabled, the selected day filled (aria-pressed), and a footer showing the chosen date formatted with Intl. Fixed demo month to avoid hydration drift. Light and dark mode.
  */
 'use client';
@@ -12,6 +12,11 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 
 const today = new Date(2026, 8, 29);
+// Formatted by hand: Node and browser ICU data disagree on punctuation ("Tuesday, 1 September" vs "Tuesday 1 September"), which breaks hydration.
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const weekdayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const fullLabel = (date: Date) => `${weekdayNames[date.getDay()]} ${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+const mediumLabel = (date: Date) => `${date.getDate()} ${monthNames[date.getMonth()].slice(0, 3)} ${date.getFullYear()}`;
 
 export function InlineDatePicker() {
   const [month, setMonth] = useState(new Date(2026, 8, 1));
@@ -36,11 +41,11 @@ export function InlineDatePicker() {
           const past = date < today && !same(date, today);
           const isSelected = same(date, selected);
           return (
-            <button key={index} type="button" disabled={past} aria-pressed={isSelected} aria-label={new Intl.DateTimeFormat('en-GB', { dateStyle: 'full' }).format(date)} onClick={() => setSelected(date)} className={`grid aspect-square place-items-center rounded-lg text-sm transition disabled:text-zinc-300 dark:disabled:text-zinc-700 ${isSelected ? 'bg-teal-600 font-semibold text-white' : same(date, today) ? 'font-semibold text-teal-700 ring-1 ring-teal-500 dark:text-teal-300' : 'text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900'}`}>{index + 1}</button>
+            <button key={index} type="button" disabled={past} aria-pressed={isSelected} aria-label={fullLabel(date)} onClick={() => setSelected(date)} className={`grid aspect-square place-items-center rounded-lg text-sm transition disabled:text-zinc-300 dark:disabled:text-zinc-700 ${isSelected ? 'bg-teal-600 font-semibold text-white' : same(date, today) ? 'font-semibold text-teal-700 ring-1 ring-teal-500 dark:text-teal-300' : 'text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900'}`}>{index + 1}</button>
           );
         })}
       </div>
-      <p className="mt-3 border-t border-zinc-200 pt-3 text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">Selected: <strong className="text-zinc-900 dark:text-white">{new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium' }).format(selected)}</strong></p>
+      <p className="mt-3 border-t border-zinc-200 pt-3 text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">Selected: <strong className="text-zinc-900 dark:text-white">{mediumLabel(selected)}</strong></p>
     </div>
   );
 }

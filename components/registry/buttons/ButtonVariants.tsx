@@ -4,7 +4,7 @@
  * category: Buttons
  * style: Minimal
  * tags: recent
- * description: Jeu complet de boutons : primaire, secondaire, fantome, destructif, lien, tailles et desactive.
+ * description: Jeu complet de boutons : primaire, secondaire, fantôme, destructif, lien, tailles et désactivé.
  * prompt: Create a small button system showcase from one cva-like helper (variant + size maps): primary, secondary, outline, ghost, destructive and link variants in sm/md/lg sizes, with icon support, focus-visible rings and disabled styles. Light and dark mode.
  */
 import { Plus, Trash2 } from 'lucide-react';

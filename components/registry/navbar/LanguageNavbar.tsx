@@ -4,7 +4,7 @@
  * category: Navbar
  * style: Minimal
  * tags: recent
- * description: Navigation avec selecteur de langue deroulant et coche sur la langue active.
+ * description: Navigation avec sélecteur de langue déroulant et coche sur la langue active.
  * prompt: Create a navbar with a language switcher: a globe button showing the current code (aria-haspopup="listbox", aria-expanded) opening a listbox of languages with flags as emoji-free two-letter badges and a check on the selected one; defaultOpen prop for previews. Light and dark mode.
  */
 'use client';

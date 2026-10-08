@@ -4,7 +4,7 @@
  * category: Tooltips
  * style: Minimal
  * tags: recent
- * description: Bulle d aide qui s ouvre au clic (adaptee au tactile), annoncee aux lecteurs d ecran et fermee a Echap.
+ * description: Bulle d'aide qui s'ouvre au clic (adaptée au tactile), annoncée aux lecteurs d'écran et fermée à Échap.
  * prompt: Create a toggletip (click-triggered tooltip suitable for touch): a "?" button with aria-expanded toggles a bubble whose content is injected into a role="status" live region so screen readers announce it; closes on outside click and Escape, returns focus to the button. Light and dark mode.
  */
 'use client';

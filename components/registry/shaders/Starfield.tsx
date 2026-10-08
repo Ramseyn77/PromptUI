@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Dark
  * tags: recent
- * description: Champ d etoiles en vitesse lumiere qui accelere au survol, sur canvas.
+ * description: Champ d'étoiles en vitesse lumière qui accélère au survol, sur canvas.
  * prompt: Create a canvas warp-speed starfield: 300 stars with 3D coordinates projected from the center, drawn as streaks whose length grows with speed; hovering the canvas speeds up warp with easing. Deep-space background in both themes; DPR-aware, paused off screen, static with reduced motion.
  */
 'use client';

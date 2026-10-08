@@ -4,7 +4,7 @@
  * category: Tables
  * style: Gradient
  * tags: recent
- * description: Classement avec medailles pour le podium, barres de progression et evolution de rang.
+ * description: Classement avec médailles pour le podium, barres de progression et évolution de rang.
  * prompt: Create a leaderboard table: rank with gold/silver/bronze medal badges for the top 3, player with avatar, a points progress bar relative to the leader, and a rank-change indicator (▲ green / ▼ rose / – neutral). Light and dark mode.
  */
 const players = [

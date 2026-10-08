@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: Dark
  * tags: featured, recent
- * description: Chronologie d un agent IA qui execute ses etapes une a une : recherche, outil, redaction.
+ * description: Chronologie d'un agent IA qui exécute ses étapes une à une : recherche, outil, rédaction.
  * prompt: Create an AI agent run trace: a vertical timeline of steps (Plan, Search docs, Run tool, Write answer) that complete one after another; each shows a spinner while running, a check when done, a duration and a muted detail line. "Replay" restarts it. role="list", light and dark mode.
  */
 'use client';

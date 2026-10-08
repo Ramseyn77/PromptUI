@@ -4,7 +4,7 @@
  * category: Footer
  * style: Editorial
  * tags: featured, recent
- * description: Pied de page avec nom de marque geant qui deborde, liens discrets et contact en haut.
+ * description: Pied de page avec nom de marque géant qui déborde, liens discrets et contact en haut.
  * prompt: Create an editorial footer with a contact line and small link rows at the top, and a giant wordmark at the bottom that spans the full width (font-size in vw-ish via text-[18vw] capped, tight leading, partially cropped by overflow-hidden). Inverted colors: dark in light mode, light in dark mode.
  */
 export function WordmarkFooter() {

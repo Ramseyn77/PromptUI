@@ -4,7 +4,7 @@
  * category: Navbar
  * style: Gradient
  * tags: recent
- * description: Navigation avec bordure en degrade anime et CTA lumineux.
+ * description: Navigation avec bordure en dégradé animé et CTA lumineux.
  * prompt: Create a navbar wrapped in a 1px animated gradient border (padding + background-position animation on a teal/violet/amber gradient), inner solid surface with logo, links (hidden below md, menu button) and a glowing CTA. Light and dark mode, reduced-motion safe.
  */
 'use client';

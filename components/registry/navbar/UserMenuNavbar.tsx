@@ -4,7 +4,7 @@
  * category: Navbar
  * style: SaaS
  * tags: featured, recent
- * description: Navigation avec menu compte deroulant : profil, plan, raccourcis et deconnexion.
+ * description: Navigation avec menu compte déroulant : profil, plan, raccourcis et déconnexion.
  * prompt: Create a navbar whose avatar button (aria-haspopup="menu", aria-expanded) opens an account menu: user name/email header, items with icons and keyboard shortcuts, a plan usage bar, and a destructive "Log out" item. defaultOpen prop for previews. Light and dark mode.
  */
 'use client';

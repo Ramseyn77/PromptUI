@@ -4,7 +4,7 @@
  * category: Loader
  * style: Gradient
  * tags: recent
- * description: Loader avec trois points en orbite autour d un noyau qui respire.
+ * description: Loader avec trois points en orbite autour d'un noyau qui respire.
  * prompt: Create a loader: three colored dots orbiting a ring with offset animation delays around a breathing gradient core, role="status" with a visible label. Neutral ring color in light and dark mode, reduced-motion safe.
  */
 export function OrbitDotsLoader() {

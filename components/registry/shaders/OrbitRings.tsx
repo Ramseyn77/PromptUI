@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Minimal
  * tags: recent
- * description: Anneaux concentriques en rotation avec des satellites colores, autour d un noyau central.
+ * description: Anneaux concentriques en rotation avec des satellites colorés, autour d'un noyau central.
  * prompt: Create an orbiting system: three concentric rings (border only) rotating at different speeds and directions, each carrying one or two colored satellite dots, around a glowing center logo tile. Ring color adapts to light/dark, reduced-motion safe.
  */
 export function OrbitRings() {

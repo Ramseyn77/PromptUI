@@ -4,7 +4,7 @@
  * category: CTA
  * style: Glass
  * tags: recent
- * description: Invitation a rejoindre la communaute avec avatars en orbite, compteur de membres en ligne et bouton.
+ * description: Invitation à rejoindre la communauté avec avatars en orbite, compteur de membres en ligne et bouton.
  * prompt: Create a community CTA: glass card over a soft gradient, a cluster of avatars arranged around a center icon, "3,412 members online" with a pulsing dot, headline and a Join button. Stacks nicely on mobile; light and dark mode, reduced-motion safe pulse.
  */
 import { MessagesSquare } from 'lucide-react';

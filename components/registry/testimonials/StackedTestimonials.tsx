@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Gradient
  * tags: featured, recent
- * description: Pile de cartes de temoignages ; « Suivant » envoie la carte du dessus a l arriere avec animation.
+ * description: Pile de cartes de témoignages ; « Suivant » envoie la carte du dessus à l'arrière avec animation.
  * prompt: Create a stacked-cards testimonial: three cards stacked with offset, scale and rotation by depth; a "Next" button moves the top card to the back with a spring transition (transforms computed from each card's position in the order array). Colorful gradient cards readable in light and dark mode.
  */
 'use client';

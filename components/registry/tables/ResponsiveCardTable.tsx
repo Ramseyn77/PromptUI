@@ -4,7 +4,7 @@
  * category: Tables
  * style: Minimal
  * tags: featured, recent
- * description: Donnees affichees en tableau sur desktop et en cartes empilees sur mobile, sans defilement horizontal.
+ * description: Données affichées en tableau sur desktop et en cartes empilées sur mobile, sans défilement horizontal.
  * prompt: Create responsive tabular data: a real <table> from md up, and below md the same rows rendered as stacked cards (a <ul> with label/value pairs via <dl>). No horizontal scroll on mobile. Light and dark mode.
  */
 const orders = [

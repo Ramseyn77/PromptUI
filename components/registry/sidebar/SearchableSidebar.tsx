@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: Minimal
  * tags: recent
- * description: Navigation laterale avec filtre instantane qui surligne les correspondances et masque le reste.
+ * description: Navigation latérale avec filtre instantané qui surligne les correspondances et masque le reste.
  * prompt: Create a long sidebar navigation with a search input at the top (⌘/ hint) that filters items across groups instantly, highlights the matched substring with <mark>, hides empty groups and shows "No results" otherwise. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Gradient
  * tags: recent
- * description: Blobs liquides qui fusionnent entre eux grace a un filtre SVG « gooey ».
+ * description: Blobs liquides qui fusionnent entre eux grâce à un filtre SVG « gooey ».
  * prompt: Create a gooey metaball effect: several gradient circles orbiting with different keyframes inside a container filtered by an SVG filter (feGaussianBlur + feColorMatrix alpha threshold) so they merge like liquid. Light and dark backgrounds, reduced-motion safe.
  */
 export function GooeyBlobs() {

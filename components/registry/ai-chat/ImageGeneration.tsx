@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: Glass
  * tags: recent
- * description: Carte de generation d images avec prompt, placeholders scintillants puis resultats.
+ * description: Carte de génération d'images avec prompt, placeholders scintillants puis résultats.
  * prompt: Create an AI image generation card: a prompt row with a Generate button; while generating, a 2x2 grid of shimmering placeholders with a progress percentage, then four gradient "images" fade in with a hover download button. aria-busy on the grid. Light and dark mode.
  */
 'use client';

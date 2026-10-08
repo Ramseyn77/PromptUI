@@ -4,7 +4,7 @@
  * category: Menu
  * style: Gradient
  * tags: featured, recent
- * description: Bouton d action flottant qui deploie des actions en eventail avec etiquettes et rotation du plus.
+ * description: Bouton d'action flottant qui déploie des actions en éventail avec étiquettes et rotation du plus.
  * prompt: Create a floating action button speed dial: the "+" FAB rotates to "×" when open (aria-expanded) and reveals 4 smaller action buttons stacked above it with staggered scale/fade transitions, each with a label pill on the left; Escape closes and returns focus. defaultOpen prop. Light and dark mode.
  */
 'use client';

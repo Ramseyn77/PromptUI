@@ -4,7 +4,7 @@
  * category: Cards
  * style: SaaS
  * tags: featured, recent
- * description: Galerie produit avec loupe realiste, deplacement tactile, angles multiples et points d'information.
+ * description: Galerie produit avec loupe réaliste, déplacement tactile, angles multiples et points d'information.
  * prompt: Create a responsive ecommerce product inspector with a cursor-following magnifying lens that shows the exact zoomed area, pointer/touch support, three image angles, clickable feature hotspots, zoom controls and an accessible reduced-motion experience.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Loader
  * style: Minimal
  * tags: recent
- * description: Spinner classique a 12 segments qui s estompent tour a tour, facon systeme.
+ * description: Spinner classique à 12 segments qui s'estompent tour à tour, façon système.
  * prompt: Create a system-style activity indicator: 12 rounded segments rotated around a center, each fading from opaque to 15% opacity with staggered negative delays so the fade appears to rotate. Uses currentColor (zinc in light, white in dark). role="status" + sr-only label.
  */
 export function SegmentSpinner() {

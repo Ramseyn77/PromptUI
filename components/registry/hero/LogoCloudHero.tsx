@@ -4,7 +4,7 @@
  * category: Hero
  * style: Minimal
  * tags: recent
- * description: Hero centre avec preuve sociale sous forme de nuage de logos textuels.
+ * description: Hero centré avec preuve sociale sous forme de nuage de logos textuels.
  * prompt: Create a centered hero with rating line (five stars + "4.9 from 1,200 reviews"), headline, subtitle, CTA, and a "Trusted by" row of six wordmark logos in muted gray that brighten on hover. Wrap on mobile. Light and dark mode.
  */
 import { Star } from 'lucide-react';

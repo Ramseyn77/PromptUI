@@ -4,7 +4,7 @@
  * category: Forms
  * style: Minimal
  * tags: recent
- * description: Champ de saisie d etiquettes : Entree ou virgule pour ajouter, doublons refuses, limite de 6.
+ * description: Champ de saisie d'étiquettes : Entrée ou virgule pour ajouter, doublons refusés, limite de 6.
  * prompt: Create a tag input: typing then Enter or comma adds a trimmed lowercase tag chip (duplicates rejected with a brief shake, max 6 tags with a counter), Backspace on empty input removes the last tag, each chip has a remove button. Label and hint via aria-describedby. Light and dark mode.
  */
 'use client';

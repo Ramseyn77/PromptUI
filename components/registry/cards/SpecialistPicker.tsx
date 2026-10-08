@@ -4,7 +4,7 @@
  * category: Cards
  * style: Minimal
  * tags: recent
- * description: Selection d'un professionnel avec specialite, note, tarif et prochaine disponibilite.
+ * description: Sélection d'un professionnel avec spécialité, note, tarif et prochaine disponibilité.
  * prompt: Create a responsive specialist selection card listing three professionals with avatar initials, specialty, rating, price and next available time. Allow selecting one provider with accessible radio behavior.
  */
 'use client';

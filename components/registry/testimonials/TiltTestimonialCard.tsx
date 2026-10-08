@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Glass
  * tags: featured, recent
- * description: Carte de temoignage qui s incline en 3D selon la position du curseur, reflet lumineux inclus.
+ * description: Carte de témoignage qui s'incline en 3D selon la position du curseur, reflet lumineux inclus.
  * prompt: Create a 3D tilt testimonial card: on pointermove compute rotateX/rotateY (max 10°) from the cursor position inside a perspective wrapper and move a radial glare highlight; reset smoothly on leave; disabled with prefers-reduced-motion. Glass card on a gradient backdrop, light and dark mode.
  */
 'use client';

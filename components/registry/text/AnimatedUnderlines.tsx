@@ -4,7 +4,7 @@
  * category: Text
  * style: Minimal
  * tags: recent
- * description: Quatre styles de liens souligne anime : glissement, centre, surligneur et vague.
+ * description: Quatre styles de liens soulignés animés : glissement, centré, surligneur et vague.
  * prompt: Create four animated link underline styles shown side by side: slide-in from left (background-size), grow from center (scale-x pseudo), marker fill behind text, and an SVG wavy underline that animates its dash on hover; all work on focus-visible too. Light and dark mode.
  */
 export function AnimatedUnderlines() {

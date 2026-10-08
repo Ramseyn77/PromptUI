@@ -4,7 +4,7 @@
  * category: Footer
  * style: Minimal
  * tags: recent
- * description: Pied de page avec selecteurs de langue, de devise et de theme en bas de page.
+ * description: Pied de page avec sélecteurs de langue, de devise et de thème en bas de page.
  * prompt: Create a footer bottom bar with preference controls: language and currency <select>s with visible labels, and a 3-option theme segmented control (System / Light / Dark icons, aria-pressed), plus copyright; wraps on mobile. Light and dark mode.
  */
 'use client';

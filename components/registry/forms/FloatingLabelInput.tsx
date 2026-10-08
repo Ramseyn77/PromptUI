@@ -4,7 +4,7 @@
  * category: Forms
  * style: Minimal
  * tags: recent
- * description: Champs dont le label remonte au focus ou a la saisie, avec texte d aide.
+ * description: Champs dont le label remonte au focus ou à la saisie, avec texte d'aide.
  * prompt: Create floating label inputs using placeholder=" " and the peer/:placeholder-shown trick: the label sits centered, then moves up and shrinks on focus or when filled. Real <label htmlFor>, hint text via aria-describedby, teal focus ring, dark mode.
  */
 const fields = [

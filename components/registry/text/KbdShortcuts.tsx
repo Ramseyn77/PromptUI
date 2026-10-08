@@ -4,7 +4,7 @@
  * category: Text
  * style: Minimal
  * tags: recent
- * description: Liste de raccourcis clavier avec touches en relief qui s enfoncent quand on les presse vraiment.
+ * description: Liste de raccourcis clavier avec touches en relief qui s'enfoncent quand on les presse vraiment.
  * prompt: Create a keyboard-shortcuts cheat sheet: rows with an action and key combos rendered as 3D <kbd> caps (bottom border shadow); pressing the matching physical key (listen to keydown/keyup on window) visually presses that cap. Platform-neutral symbols, light and dark mode.
  */
 'use client';

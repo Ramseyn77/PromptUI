@@ -4,7 +4,7 @@
  * category: Tables
  * style: SaaS
  * tags: recent
- * description: Tableau a hauteur fixe dont l en-tete et la premiere colonne restent visibles au defilement.
+ * description: Tableau à hauteur fixe dont l'en-tête et la première colonne restent visibles au défilement.
  * prompt: Create a scrollable table in a fixed-height container where the header row is sticky (top-0) and the first column is sticky (left-0), both with opaque backgrounds and subtle shadows, over a 12-row by 6-month dataset. Focusable scroll region with aria-label. Light and dark mode.
  */
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];

@@ -4,7 +4,7 @@
  * category: Charts
  * style: Minimal
  * tags: recent
- * description: Aires empilees par canal d acquisition avec courbes lissees, legende et totaux.
+ * description: Aires empilées par canal d'acquisition avec courbes lissées, légende et totaux.
  * prompt: Create an SVG stacked area chart of traffic by channel (Organic, Paid, Referral) over 8 weeks: compute cumulative stacks, draw smooth areas (quadratic midpoints) with layered opacity, a legend with each channel's latest value, x labels, and an sr-only table. Light and dark mode.
  */
 const weeks = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8'];
@@ -46,7 +46,7 @@ export function StackedAreaChart() {
         })}
         {weeks.map((week, w) => <text key={week} x={x(w)} y="155" textAnchor="middle" className="fill-zinc-400 text-[9px]">{week}</text>)}
       </svg>
-      <table className="sr-only"><caption>Weekly visits in thousands</caption><thead><tr><th>Week</th>{channels.map((channel) => <th key={channel.name}>{channel.name}</th>)}</tr></thead><tbody>{weeks.map((week, w) => <tr key={week}><td>{week}</td>{channels.map((channel) => <td key={channel.name}>{channel.values[w]}</td>)}</tr>)}</tbody></table>
+      <div className="sr-only"><table><caption>Weekly visits in thousands</caption><thead><tr><th>Week</th>{channels.map((channel) => <th key={channel.name}>{channel.name}</th>)}</tr></thead><tbody>{weeks.map((week, w) => <tr key={week}><td>{week}</td>{channels.map((channel) => <td key={channel.name}>{channel.values[w]}</td>)}</tr>)}</tbody></table></div>
     </section>
   );
 }

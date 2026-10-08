@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Gradient
  * tags: featured, recent
- * description: Degrade maille anime fait de plusieurs taches de couleur qui se deplacent lentement.
+ * description: Dégradé maille animé fait de plusieurs taches de couleur qui se déplacent lentement.
  * prompt: Create an animated mesh-gradient background: four radial-gradient color spots layered on one element with an oversized background-size and a slow background-position keyframe, plus a centered label. Softer palette in dark mode, reduced-motion safe.
  */
 export function MeshGradient() {

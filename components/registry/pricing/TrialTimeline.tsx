@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Minimal
  * tags: recent
- * description: Explication transparente de l essai gratuit : aujourd hui, rappel J-2, debut de facturation.
+ * description: Explication transparente de l'essai gratuit : aujourd'hui, rappel J-2, début de facturation.
  * prompt: Create a free-trial explainer: a vertical timeline with three milestones (Today: full access, Day 12: reminder email, Day 14: billing starts $12/mo) using icons and a connecting gradient line, then a "Start free trial" CTA and "No charge today" note. Light and dark mode.
  */
 import { Bell, CreditCard, Unlock } from 'lucide-react';

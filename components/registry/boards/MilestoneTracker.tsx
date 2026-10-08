@@ -4,7 +4,7 @@
  * category: Boards
  * style: SaaS
  * tags: recent
- * description: Suivi des jalons de version avec tickets ouverts et fermes, date cible et etat.
+ * description: Suivi des jalons de version avec tickets ouverts et fermés, date cible et état.
  * prompt: Create a release milestones list: each milestone shows version name, target date, a split bar of closed vs open issues with counts, percent complete and a state badge (Released, In progress, Planned). The released one is muted. Light and dark mode.
  */
 const milestones = [

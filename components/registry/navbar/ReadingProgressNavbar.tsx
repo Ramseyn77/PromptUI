@@ -4,7 +4,7 @@
  * category: Navbar
  * style: Editorial
  * tags: recent
- * description: Barre d article avec titre, temps de lecture et barre de progression qui suit le defilement.
+ * description: Barre d'article avec titre, temps de lecture et barre de progression qui suit le défilement.
  * prompt: Create an article header bar showing the article title, minutes left and a thin progress bar that fills as the reader scrolls a scrollable article container (onScroll computes scrollTop / (scrollHeight - clientHeight)). role="progressbar" with aria-valuenow. Light and dark mode.
  */
 'use client';

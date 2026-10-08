@@ -4,7 +4,7 @@
  * category: Navbar
  * style: SaaS
  * tags: featured, recent
- * description: Navigation avec mega menu Produits en grille d icones, ouverture au clic et Echap.
+ * description: Navigation avec mega menu Produits en grille d'icônes, ouverture au clic et Échap.
  * prompt: Create a navbar with a "Products" trigger (aria-expanded, closes on Escape and outside click) opening a mega menu: 2-column grid of product items with icon tile, title and one-line description, plus a highlighted footer row. Light and dark mode.
  */
 'use client';

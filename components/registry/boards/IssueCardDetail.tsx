@@ -4,7 +4,7 @@
  * category: Boards
  * style: Minimal
  * tags: recent
- * description: Carte de ticket riche : etiquettes, sous-taches, echeance, assignes, commentaires et pieces jointes.
+ * description: Carte de ticket riche : étiquettes, sous-tâches, échéance, assignés, commentaires et pièces jointes.
  * prompt: Create a rich kanban card: colored labels, title, a checklist progress bar "3/5", footer with due date chip (amber when soon), attachment and comment counts, and stacked assignee avatars. Hover lift. Light and dark mode.
  */
 import { CalendarClock, MessageSquare, Paperclip } from 'lucide-react';

@@ -4,7 +4,7 @@
  * category: Forms
  * style: Dark
  * tags: recent
- * description: Panneau d'enchere marketplace en direct : compte a rebours, prix qui monte avec les offres concurrentes et offre rapide.
+ * description: Panneau d'enchère marketplace en direct : compte à rebours, prix qui monte avec les offres concurrentes et offre rapide.
  * prompt: Create a dark responsive auction bidding panel with a live countdown, a current bid that rises when simulated rival bids arrive (with a short highlight and a "You've been outbid" notice), bidder count, quick increment buttons, a numeric bid input that always stays above the current bid, and a place-bid confirmation that makes the user the leading bidder. Simulate activity on the client, announce bid changes through aria-live, close bidding when the timer ends and respect prefers-reduced-motion.
  */
 'use client';

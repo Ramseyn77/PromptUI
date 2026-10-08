@@ -4,7 +4,7 @@
  * category: Boards
  * style: Dark
  * tags: recent
- * description: Tableau de tri des bugs par severite, avec environnement, nombre d utilisateurs touches et filtre.
+ * description: Tableau de tri des bugs par sévérité, avec environnement, nombre d'utilisateurs touchés et filtre.
  * prompt: Create a bug triage board: severity columns (Critical rose, Major amber, Minor zinc) with colored headers, bug cards showing ID, title, environment badge and "affects N users"; a toggle filter "Only production" hides other environments. Horizontal scroll on mobile. Light and dark mode.
  */
 'use client';

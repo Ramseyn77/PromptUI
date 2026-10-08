@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Gradient
  * tags: featured, recent
- * description: Ondes sinusoidales superposees dessinees sur canvas, amplitude qui respire en continu.
+ * description: Ondes sinusoïdales superposées dessinées sur canvas, amplitude qui respire en continu.
  * prompt: Create a canvas "Siri"-style voice wave: three overlapping sine curves (teal, violet, pink) with additive blending, amplitude modulated by an envelope so the edges taper, animated with requestAnimationFrame; DPR-aware resize via ResizeObserver, paused off screen with IntersectionObserver, single static frame with prefers-reduced-motion, cleaned up on unmount.
  */
 'use client';

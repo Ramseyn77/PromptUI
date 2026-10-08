@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Minimal
  * tags: recent
- * description: Surface qui emet des ondes concentriques colorees a chaque clic, a l endroit du clic.
+ * description: Surface qui émet des ondes concentriques colorées à chaque clic, à l'endroit du clic.
  * prompt: Create an interactive ripple surface: every pointer down spawns a ring at the click position (state array with id/x/y/hue), expanding and fading via keyframe, removed on animationend. Keyboard: Enter/Space spawns a ripple at the center. Light and dark mode.
  */
 'use client';

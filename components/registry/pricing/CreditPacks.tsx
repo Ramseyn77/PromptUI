@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Gradient
  * tags: recent
- * description: Achat de packs de credits IA avec prix par credit, meilleure valeur et bouton d achat.
+ * description: Achat de packs de crédits IA avec prix par crédit, meilleure valeur et bouton d'achat.
  * prompt: Create credit pack cards (radiogroup): 100, 500 and 2,000 credits with total price, computed price per credit, a "Best value" ribbon on the biggest pack, selected pack with a gradient ring, and a buy button showing the selected total. Light and dark mode.
  */
 'use client';

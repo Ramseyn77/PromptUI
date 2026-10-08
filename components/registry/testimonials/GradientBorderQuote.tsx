@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Gradient
  * tags: recent
- * description: Citation encadree d une bordure degradee avec etoiles et badge « Achat verifie ».
+ * description: Citation encadrée d'une bordure dégradée avec étoiles et badge « Achat vérifié ».
  * prompt: Create a single testimonial card with a 1.5px gradient border (padding + inner surface), five stars, the quote, and a footer with avatar, name, and a "Verified purchase" badge with check icon. Light and dark mode.
  */
 import { BadgeCheck, Star } from 'lucide-react';

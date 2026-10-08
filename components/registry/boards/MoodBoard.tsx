@@ -4,7 +4,7 @@
  * category: Boards
  * style: Editorial
  * tags: recent
- * description: Planche d inspiration en mosaique : couleurs, typographie, citations et textures.
+ * description: Planche d'inspiration en mosaïque : couleurs, typographie, citations et textures.
  * prompt: Create a design mood board as a CSS masonry (columns-2 on mobile, columns-3 on sm) mixing tiles: gradient "photos", color swatches with hex codes that copy on click, a type specimen "Aa", a quote card and a texture tile. Rounded tiles, light and dark mode.
  */
 'use client';

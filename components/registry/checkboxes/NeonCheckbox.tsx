@@ -4,7 +4,7 @@
  * category: Checkboxes
  * style: Dark
  * tags: recent
- * description: Cases a cocher neon lumineuses qui s allument avec un halo colore sur fond sombre.
+ * description: Cases à cocher néon lumineuses qui s'allument avec un halo coloré sur fond sombre.
  * prompt: Create neon checkboxes on a dark panel: sr-only inputs with square boxes outlined in cyan/magenta/lime; when checked the box fills and glows (layered box-shadows) and the label text lights up with a text-shadow. Focus ring included; the panel stays dark in both themes.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Cards
  * style: Editorial
  * tags: featured, recent
- * description: Grille bento de fonctionnalites avec tuiles mises en avant, chiffre cle et tags.
+ * description: Grille bento de fonctionnalités avec tuiles mises en avant, chiffre clé et tags.
  * prompt: Create a responsive bento feature grid (1 column on mobile, 3 from sm): a wide inverted hero tile with a glow, a stat tile, an accessibility tile and a wide gradient tile with tags. Inverted tile flips colors in dark mode.
  */
 import { Layers, ShieldCheck, Sparkles, Zap } from 'lucide-react';

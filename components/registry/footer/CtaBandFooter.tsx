@@ -4,7 +4,7 @@
  * category: Footer
  * style: Dark
  * tags: recent
- * description: Pied de page sombre precede d un bandeau d appel a l action lumineux avec double bouton.
+ * description: Pied de page sombre précédé d'un bandeau d'appel à l'action lumineux avec double bouton.
  * prompt: Create a dark footer that starts with a glowing CTA band (headline, subtitle, two buttons, radial glow) and continues with compact link columns and a bottom copyright row. Always dark; responsive stacking.
  */
 export function CtaBandFooter() {

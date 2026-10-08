@@ -4,7 +4,7 @@
  * category: Loader
  * style: Gradient
  * tags: recent
- * description: Carre en degrade qui se retourne en 3D sur ses axes X et Y alternativement.
+ * description: Carré en dégradé qui se retourne en 3D sur ses axes X et Y alternativement.
  * prompt: Create a 3D flipping-square loader: a gradient square in a perspective container rotating rotateX then rotateY in sequence (keyframes 0/50/100), with a soft reflection shadow below that shrinks mid-flip. role="status". Works on light and dark, reduced-motion safe.
  */
 export function FlippingSquare() {

@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: SaaS
  * tags: recent
- * description: Widget de taches du jour avec priorite, echeance, cases a cocher et ajout rapide.
+ * description: Widget de tâches du jour avec priorité, échéance, cases à cocher et ajout rapide.
  * prompt: Create a "Today" tasks widget: checkbox tasks with priority tags (High rose, Medium amber, Low zinc) and due times, completed tasks struck through and sorted last, a progress summary, and a quick-add input that appends a task on Enter. Light and dark mode.
  */
 'use client';

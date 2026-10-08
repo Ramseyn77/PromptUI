@@ -4,7 +4,7 @@
  * category: Tables
  * style: SaaS
  * tags: featured, recent
- * description: Tableau de projets avec onglets de filtre compteurs, recherche et etat vide.
+ * description: Tableau de projets avec onglets de filtre compteurs, recherche et état vide.
  * prompt: Create a projects table with filter tabs (All, Active, Paused, Archived) showing live counts, a search input, and a filtered body; when nothing matches show an empty state row with a "Clear filters" button. Light and dark mode.
  */
 'use client';

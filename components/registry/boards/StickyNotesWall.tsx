@@ -4,7 +4,7 @@
  * category: Boards
  * style: Gradient
  * tags: recent
- * description: Mur de post-it legerement inclines, editables sur place, avec ajout et suppression.
+ * description: Mur de post-it légèrement inclinés, éditables sur place, avec ajout et suppression.
  * prompt: Create a sticky-notes wall: pastel notes slightly rotated at random angles in a responsive grid, each with an editable textarea (aria-label) and a delete button; "Add note" appends a new note with a pop-in animation and focuses it. Paper shadows, readable in light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: Gradient
  * tags: recent
- * description: Grille de suggestions de prompts avec icones, a cliquer pour pre-remplir la saisie.
+ * description: Grille de suggestions de prompts avec icônes, à cliquer pour pré-remplir la saisie.
  * prompt: Create an AI welcome block: greeting, then a 2x2 grid (1 column on mobile) of suggestion cards with icon, title and subtitle; clicking one fills the input below and focuses it. Gradient greeting text, light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Checkboxes
  * style: Minimal
  * tags: recent
- * description: Cases de consentement obligatoire et optionnelle avec erreur si non cochee a l envoi.
+ * description: Cases de consentement obligatoire et optionnelle avec erreur si non cochée à l'envoi.
  * prompt: Create signup consent checkboxes: a required "I agree to the Terms and Privacy Policy" (links inside the label) and an optional marketing opt-in with helper text; submitting without the required one shows an error (aria-invalid, aria-describedby, focus moved) and a success message otherwise. Light and dark mode.
  */
 'use client';

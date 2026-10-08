@@ -4,7 +4,7 @@
  * category: Forms
  * style: SaaS
  * tags: recent
- * description: Champ telephone avec indicatif pays, format automatique par groupes et validation de longueur.
+ * description: Champ téléphone avec indicatif pays, format automatique par groupes et validation de longueur.
  * prompt: Create an international phone field: a country select (FR +33, CI +225, US +1, SN +221) joined to a tel input that keeps digits only and auto-formats into groups of two (or 3-3-4 for US), with a validity check icon when the length matches the country's expected digits; aria-describedby example hint. Light and dark mode.
  */
 'use client';

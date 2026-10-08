@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Minimal
  * tags: recent
- * description: Recapitulatif de commande avec code promo valide ou refuse et remise appliquee au total.
+ * description: Récapitulatif de commande avec code promo valide ou refusé et remise appliquée au total.
  * prompt: Create an order summary with a coupon field: applying "LAUNCH20" shows a green removable chip and a -20% line, any other code shows an inline error (aria-invalid + aria-describedby); subtotal, discount and total update. Light and dark mode.
  */
 'use client';

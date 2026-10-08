@@ -4,7 +4,7 @@
  * category: Loader
  * style: Gradient
  * tags: recent
- * description: Barres d egaliseur audio qui montent et descendent a des rythmes differents.
+ * description: Barres d'égaliseur audio qui montent et descendent à des rythmes différents.
  * prompt: Create an audio-equalizer loader: 5 rounded bars with a teal-to-violet vertical gradient scaling on Y from the bottom at different durations/delays, plus a "Buffering…" caption. role="status". Light and dark mode, reduced-motion safe.
  */
 export function EqualizerBars() {

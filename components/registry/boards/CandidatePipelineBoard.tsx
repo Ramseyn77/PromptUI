@@ -4,7 +4,7 @@
  * category: Boards
  * style: SaaS
  * tags: recent
- * description: Pipeline recruteur interactif : les candidats avancent d etape en un clic, colonnes empilees sur mobile.
+ * description: Pipeline recruteur interactif : les candidats avancent d'étape en un clic, colonnes empilées sur mobile.
  * prompt: Create a responsive, interactive recruiting pipeline with three stages (New, Interview, Offer). Each candidate card shows initials, name, role and a match score; an "Advance" button moves the candidate to the next stage (the card animates in), and candidates in Offer show a "Ready to hire" badge instead. Show per-stage counts and a header summary of active candidates. On mobile the stages stack vertically with no horizontal scrolling; from md they sit side by side in three columns. Announce moves through aria-live, keep visible focus, support light/dark mode and prefers-reduced-motion.
  */
 'use client';

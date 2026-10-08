@@ -4,7 +4,7 @@
  * category: Tables
  * style: Gradient
  * tags: recent
- * description: Tableau de retention en carte de chaleur, l intensite de couleur suit la valeur de chaque cellule.
+ * description: Tableau de rétention en carte de chaleur, l'intensité de couleur suit la valeur de chaque cellule.
  * prompt: Create a cohort retention heatmap table: cohorts as rows, weeks as columns, each cell showing a percentage with background opacity proportional to the value (teal), text switching to white on strong cells; empty future cells stay blank. Legend below. Light and dark mode.
  */
 const cohorts = [

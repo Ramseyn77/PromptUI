@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Minimal
  * tags: recent
- * description: Temoignages courts accompagnes du logo client et d un resultat chiffre en grand.
+ * description: Témoignages courts accompagnés du logo client et d'un résultat chiffré en grand.
  * prompt: Create a three-column (stacked on mobile) testimonial row where each item has a customer wordmark, a large metric with label, a one-sentence quote and the author's name/role, separated by vertical hairlines on md. Light and dark mode.
  */
 const items = [

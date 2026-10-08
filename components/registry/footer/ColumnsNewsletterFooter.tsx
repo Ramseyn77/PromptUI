@@ -4,7 +4,7 @@
  * category: Footer
  * style: SaaS
  * tags: featured, recent
- * description: Pied de page complet avec colonnes de liens, inscription newsletter et barre legale.
+ * description: Pied de page complet avec colonnes de liens, inscription newsletter et barre légale.
  * prompt: Create a full footer: brand block with tagline, three link columns (Product, Company, Resources) in a nav with headings, a newsletter form with label and success state, and a bottom bar with copyright and legal links. 1 column mobile → 2 on sm → 5-col grid on lg. Light and dark mode.
  */
 'use client';

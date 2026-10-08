@@ -4,7 +4,7 @@
  * category: Toggle
  * style: Minimal
  * tags: recent
- * description: Interrupteur en relief doux (neumorphisme) avec voyant lumineux et bouton qui s enfonce.
+ * description: Interrupteur en relief doux (neumorphisme) avec voyant lumineux et bouton qui s'enfonce.
  * prompt: Create a neumorphic power switch on a soft surface: a pill track with inset shadows, a raised knob with outer highlight/shadow pair that slides, and an LED dot that glows teal when on; role="switch" + visible label. Separate light (#e8ebf0) and dark (#1f2226) neumorphic palettes.
  */
 'use client';

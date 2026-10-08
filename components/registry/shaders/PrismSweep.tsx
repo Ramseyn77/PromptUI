@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Gradient
  * tags: recent
- * description: Surface prismatique animee composee de faisceaux colores et de reflets en mouvement.
+ * description: Surface prismatique animée composée de faisceaux colorés et de reflets en mouvement.
  * prompt: Create a responsive prismatic light surface using layered CSS gradients only: a dark base, two large blurred conic gradients rotating in opposite directions, diagonal light streaks crossing the canvas, subtle grain and a centered glass label. Scope every keyframe name, keep contrast in light/dark contexts and stop decorative motion with prefers-reduced-motion.
  */
 

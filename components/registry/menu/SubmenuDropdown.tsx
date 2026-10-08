@@ -4,7 +4,7 @@
  * category: Menu
  * style: SaaS
  * tags: recent
- * description: Menu deroulant avec sous-menu qui s ouvre a droite au survol ou avec la fleche droite.
+ * description: Menu déroulant avec sous-menu qui s'ouvre à droite au survol ou avec la flèche droite.
  * prompt: Create a dropdown menu with a nested submenu: "Share" item (aria-haspopup, aria-expanded) opens a submenu to the right on hover, click or ArrowRight and closes on ArrowLeft; other items include a checkbox item (menuitemcheckbox, aria-checked) and a disabled item. defaultOpen prop for previews. Light and dark mode.
  */
 'use client';

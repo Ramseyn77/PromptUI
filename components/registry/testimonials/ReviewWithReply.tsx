@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: SaaS
  * tags: recent
- * description: Avis client avec note, utilite « Cet avis vous a aide ? » et reponse de l equipe depliable.
+ * description: Avis client avec note, utilité « Cet avis vous a aidé ? » et réponse de l'équipe dépliable.
  * prompt: Create a product review item: author, star rating, date, title and text, "Was this helpful?" Yes/No buttons that record a vote (aria-pressed) with a thank-you, and a collapsible "Response from the team" block (aria-expanded) with the company avatar. Light and dark mode.
  */
 'use client';

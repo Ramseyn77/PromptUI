@@ -4,7 +4,7 @@
  * category: Buttons
  * style: Gradient
  * tags: featured, recent
- * description: Bouton noir borde d un arc-en-ciel anime avec halo colore diffus en dessous.
+ * description: Bouton noir bordé d'un arc-en-ciel animé avec halo coloré diffus en dessous.
  * prompt: Create a rainbow button: dark pill with a 2px animated rainbow border (two backgrounds: solid padding-box + linear rainbow border-box, background-position animated) and a blurred rainbow glow under it (pseudo element); inverts to a white pill in dark mode. Reduced-motion keeps it static.
  */
 export function RainbowButton() {

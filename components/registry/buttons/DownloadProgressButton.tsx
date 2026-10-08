@@ -4,7 +4,7 @@
  * category: Buttons
  * style: SaaS
  * tags: recent
- * description: Bouton de telechargement qui se remplit comme une barre de progression puis confirme.
+ * description: Bouton de téléchargement qui se remplit comme une barre de progression puis confirme.
  * prompt: Create a download button whose background fills left-to-right as a progress bar while "Downloading 42%" updates (aria-live), then shows a check and "Downloaded" before resetting after 2s; width stays stable. Light and dark mode.
  */
 'use client';

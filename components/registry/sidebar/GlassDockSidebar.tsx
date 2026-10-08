@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: Glass
  * tags: featured, recent
- * description: Barre laterale flottante en verre, icones qui grossissent au survol et etiquettes qui glissent.
+ * description: Barre latérale flottante en verre, icônes qui grossissent au survol et étiquettes qui glissent.
  * prompt: Create a floating vertical glass dock sidebar over a colorful backdrop: rounded translucent pill with backdrop blur, icon buttons that scale up on hover/focus with a label sliding out to the right (tooltip role), and an active indicator dot. Light and dark mode.
  */
 'use client';
@@ -17,7 +17,7 @@ export function GlassDockSidebar() {
   const [active, setActive] = useState('Home');
 
   return (
-    <div className="flex h-96 w-full max-w-sm items-center rounded-3xl bg-[radial-gradient(circle_at_20%_20%,#5eead4,transparent_45%),radial-gradient(circle_at_80%_70%,#c4b5fd,transparent_50%),#f4f4f5] p-6 dark:bg-[radial-gradient(circle_at_20%_20%,#115e59,transparent_45%),radial-gradient(circle_at_80%_70%,#4c1d95,transparent_50%),#09090b]">
+    <div className="flex h-96 w-full max-w-sm items-center rounded-3xl bg-[radial-gradient(circle_at_20%_20%,#5eead4,transparent_45%),radial-gradient(circle_at_80%_70%,#c4b5fd,transparent_50%),linear-gradient(#f4f4f5,#f4f4f5)] p-6 dark:bg-[radial-gradient(circle_at_20%_20%,#115e59,transparent_45%),radial-gradient(circle_at_80%_70%,#4c1d95,transparent_50%),linear-gradient(#09090b,#09090b)]">
       <nav aria-label="Main" className="flex flex-col gap-2 rounded-full border border-white/60 bg-white/50 p-2 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-white/10">
         {items.map(([Icon, label]) => (
           <div key={label} className="group relative">

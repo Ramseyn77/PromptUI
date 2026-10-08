@@ -4,7 +4,7 @@
  * category: CTA
  * style: Editorial
  * tags: recent
- * description: Appel a l action appuye par trois chiffres cles en grand et un bouton centre.
+ * description: Appel à l'action appuyé par trois chiffres clés en grand et un bouton centré.
  * prompt: Create a CTA section: centered headline, three big stats in a row separated by hairlines (value + label), and one primary button with arrow; stats stack on mobile. Editorial serif numbers, light and dark mode.
  */
 import { ArrowRight } from 'lucide-react';

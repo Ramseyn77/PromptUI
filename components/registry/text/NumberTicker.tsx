@@ -4,7 +4,7 @@
  * category: Text
  * style: Minimal
  * tags: featured, recent
- * description: Chiffres qui comptent jusqu a leur valeur quand ils entrent a l ecran, avec easing.
+ * description: Chiffres qui comptent jusqu'à leur valeur quand ils entrent à l'écran, avec easing.
  * prompt: Create animated stat counters that count up from 0 to their value with an ease-out curve (requestAnimationFrame) when they scroll into view (IntersectionObserver, once), formatted with Intl.NumberFormat and a suffix; the final value is rendered for SSR/reduced motion. 3 stats in a row. Light and dark mode.
  */
 'use client';

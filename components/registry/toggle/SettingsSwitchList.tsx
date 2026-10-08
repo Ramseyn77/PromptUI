@@ -4,7 +4,7 @@
  * category: Toggle
  * style: SaaS
  * tags: featured, recent
- * description: Liste de reglages avec interrupteurs, descriptions, interrupteur maitre et enregistrement automatique.
+ * description: Liste de réglages avec interrupteurs, descriptions, interrupteur maître et enregistrement automatique.
  * prompt: Create a notification settings card: a master switch that enables/disables the whole group, then rows (label + description) each with a switch (button role="switch", aria-checked, aria-labelledby/-describedby); child switches are disabled when the master is off; an "All changes saved" status appears after each change. Light and dark mode.
  */
 'use client';

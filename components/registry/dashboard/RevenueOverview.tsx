@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: SaaS
  * tags: featured, recent
- * description: Carte de revenus avec courbe en aire SVG, onglets de periode et point survole avec valeur.
+ * description: Carte de revenus avec courbe en aire SVG, onglets de période et point survolé avec valeur.
  * prompt: Create a revenue overview card: total and delta, period tabs (7D, 30D, 12M) that swap datasets, an SVG area chart with gradient fill and gridlines, and hover columns that show a marker + tooltip with the value. Keyboard-accessible via a visually hidden data table. Light and dark mode.
  */
 'use client';
@@ -55,7 +55,7 @@ export function RevenueOverview() {
           </div>
         )}
       </div>
-      <table className="sr-only"><caption>Revenue for {period}</caption><tbody>{data.map((value, index) => <tr key={index}><td>Point {index + 1}</td><td>${value}k</td></tr>)}</tbody></table>
+      <div className="sr-only"><table><caption>Revenue for {period}</caption><tbody>{data.map((value, index) => <tr key={index}><td>Point {index + 1}</td><td>${value}k</td></tr>)}</tbody></table></div>
     </section>
   );
 }

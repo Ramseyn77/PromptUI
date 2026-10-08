@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Dark
  * tags: featured, recent
- * description: Compteur de visiteurs en temps reel avec point pulse et histogramme qui defile chaque seconde.
+ * description: Compteur de visiteurs en temps réel avec point pulsant et histogramme qui défile chaque seconde.
  * prompt: Create a realtime visitors widget: pulsing "Live" dot, a big number that updates every second with small random changes, and a 30-bar histogram that shifts left as new values arrive (last bar highlighted); top pages list below. aria-live="off" for the ticking number with an sr-only summary. Light and dark mode.
  */
 'use client';

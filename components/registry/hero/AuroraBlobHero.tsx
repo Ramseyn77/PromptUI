@@ -4,7 +4,7 @@
  * category: Hero
  * style: Gradient
  * tags: recent
- * description: Hero sur fond aurore de blobs flous qui derivent lentement.
+ * description: Hero sur fond aurore de blobs flous qui dérivent lentement.
  * prompt: Create a hero over an aurora background made of three blurred color blobs (teal, violet, amber) drifting with long keyframe animations, a frosted headline area, subtitle and CTA. Blob opacity tuned for light and dark mode; reduced-motion safe.
  */
 export function AuroraBlobHero() {

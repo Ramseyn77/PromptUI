@@ -4,7 +4,7 @@
  * category: Footer
  * style: Glass
  * tags: recent
- * description: Pied de page en carte de verre flottante au-dessus d un fond colore, liens en pastilles.
+ * description: Pied de page en carte de verre flottante au-dessus d'un fond coloré, liens en pastilles.
  * prompt: Create a floating glass footer card over a soft gradient backdrop: rounded translucent panel with backdrop blur, logo, pill-shaped links that fill on hover, and a small "Made with PromptUI" tag. Light and dark mode.
  */
 export function FloatingCardFooter() {

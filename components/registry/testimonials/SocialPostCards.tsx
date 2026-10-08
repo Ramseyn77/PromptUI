@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: SaaS
  * tags: recent
- * description: Temoignages au format publication sociale avec pseudo, badge verifie, date et reactions.
+ * description: Témoignages au format publication sociale avec pseudo, badge vérifié, date et réactions.
  * prompt: Create social-post style testimonials: cards with avatar, display name + verified badge, @handle, post text with highlighted @mention, date, and interaction counts (replies, reposts, likes) with a like button that toggles (aria-pressed) and increments. 2 columns from md. Light and dark mode.
  */
 'use client';

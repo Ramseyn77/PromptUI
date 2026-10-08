@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Gradient
  * tags: recent
- * description: Halo circulaire en degrade conique qui tourne derriere un disque, effet eclipse lumineuse.
+ * description: Halo circulaire en dégradé conique qui tourne derrière un disque, effet éclipse lumineuse.
  * prompt: Create an eclipse-like glow: a blurred conic-gradient ring rotating slowly behind a solid disc (page-colored), with an inner thin gradient border; centered on a card. Works in light and dark mode, reduced-motion safe.
  */
 export function ConicHalo() {

@@ -4,7 +4,7 @@
  * category: Hero
  * style: Editorial
  * tags: recent
- * description: Hero facon magazine avec typographie serif, numero d edition et image en encart.
+ * description: Hero façon magazine avec typographie serif, numéro d'édition et image en encart.
  * prompt: Create a magazine-style hero: top rule with issue number and date, an oversized serif headline with an italic word, a short standfirst and byline, and an inset gradient "cover" image; 1 column on mobile, 12-col split on md. Light and dark mode.
  */
 export function EditorialHero() {

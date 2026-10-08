@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Minimal
  * tags: recent
- * description: Liste compacte de temoignages courts avec avatars, idealle en barre laterale ou colonne.
+ * description: Liste compacte de témoignages courts avec avatars, idéale en barre latérale ou colonne.
  * prompt: Create a compact list of short testimonials for sidebars: each row has a small avatar, a one-line quote in quotes, and name · company in muted text, separated by dividers; heading "Loved by makers" with an overall rating chip. Light and dark mode.
  */
 const quotes = [

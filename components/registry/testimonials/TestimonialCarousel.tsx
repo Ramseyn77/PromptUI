@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Minimal
  * tags: featured, recent
- * description: Carrousel de temoignages avec fleches, points, defilement automatique mis en pause au survol.
+ * description: Carrousel de témoignages avec flèches, points, défilement automatique mis en pause au survol.
  * prompt: Create a testimonial carousel: one quote at a time with fade transition, avatar, name and role, prev/next buttons, dot indicators (aria-current), autoplay every 5s that pauses on hover/focus and is disabled with prefers-reduced-motion; region with aria-roledescription="carousel". Light and dark mode.
  */
 'use client';

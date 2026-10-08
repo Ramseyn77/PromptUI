@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: SaaS
  * tags: featured, recent
- * description: Barre laterale qui se replie en rail d icones avec info-bulles et animation de largeur.
+ * description: Barre latérale qui se replie en rail d'icônes avec info-bulles et animation de largeur.
  * prompt: Create an app sidebar that collapses from 240px to a 64px icon rail (button with aria-expanded and aria-label), animating width; labels fade out when collapsed and each icon link gets a title tooltip; active item highlighted with aria-current. Light and dark mode.
  */
 'use client';

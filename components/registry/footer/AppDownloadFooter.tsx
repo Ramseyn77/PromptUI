@@ -4,7 +4,7 @@
  * category: Footer
  * style: Gradient
  * tags: recent
- * description: Pied de page d application mobile avec boutons de stores, QR code stylise et liens.
+ * description: Pied de page d'application mobile avec boutons de stores, QR code stylisé et liens.
  * prompt: Create a mobile-app footer: gradient card with "Get the app" headline, App Store / Google Play buttons and a decorative QR code (CSS grid of squares, aria-hidden, with sr-only text), then a simple links row and copyright below. Stacks on mobile. Light and dark mode.
  */
 import { Apple, Play } from 'lucide-react';

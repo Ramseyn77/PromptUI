@@ -4,7 +4,7 @@
  * category: Text
  * style: Gradient
  * tags: recent
- * description: Mot rempli d un degrade multicolore qui coule lentement a l interieur des lettres.
+ * description: Mot rempli d'un dégradé multicolore qui coule lentement à l'intérieur des lettres.
  * prompt: Create an aurora text effect: a heading where one keyword uses background-clip:text with a 6-stop teal/cyan/violet/pink/amber gradient at 300% size whose background-position animates back and forth, so colors flow inside the letters; real text stays readable to screen readers. Light and dark mode, reduced-motion safe.
  */
 export function AuroraText() {

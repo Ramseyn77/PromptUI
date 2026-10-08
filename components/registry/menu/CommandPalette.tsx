@@ -4,7 +4,7 @@
  * category: Menu
  * style: SaaS
  * tags: featured, recent
- * description: Palette de commandes ⌘K avec recherche, groupes, raccourcis et navigation complete au clavier.
+ * description: Palette de commandes ⌘K avec recherche, groupes, raccourcis et navigation complète au clavier.
  * prompt: Create a ⌘K command palette: search input (role="combobox") filtering grouped commands (Navigation, Actions) in a listbox, ArrowUp/Down with wrap-around keeping the active option visible (scroll the list only, not the page), Enter runs (shows a toast line), Escape clears; each item has icon, label and shortcut; empty state. Rendered inline (defaultOpen) for previews, opens with ⌘/Ctrl+K. Light and dark mode.
  */
 'use client';

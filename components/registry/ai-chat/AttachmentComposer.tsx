@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: SaaS
  * tags: recent
- * description: Saisie de chat avec pieces jointes en vignettes, taille des fichiers et suppression.
+ * description: Saisie de chat avec pièces jointes en vignettes, taille des fichiers et suppression.
  * prompt: Create a chat composer with attachment chips above the input: each chip shows a file-type icon tile, name (truncated), size and a remove button (aria-label "Remove file"); an attach button adds a demo file. Light and dark mode.
  */
 'use client';

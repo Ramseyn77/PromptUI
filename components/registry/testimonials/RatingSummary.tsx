@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Minimal
  * tags: recent
- * description: Synthese des avis avec note moyenne, repartition par etoiles et filtre par note.
+ * description: Synthèse des avis avec note moyenne, répartition par étoiles et filtre par note.
  * prompt: Create a reviews summary: big average rating with stars and review count, a distribution of 5→1 stars as clickable rows (aria-pressed) with bars and percentages that filter a short review list below, plus "Clear filter". Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Buttons
  * style: SaaS
  * tags: recent
- * description: Bouton scinde : action principale et fleche ouvrant un menu d actions secondaires.
+ * description: Bouton scindé : action principale et flèche ouvrant un menu d'actions secondaires.
  * prompt: Create a split button: primary "Deploy" action joined to a chevron button (aria-haspopup="menu", aria-expanded) that opens a menu of alternatives (Deploy to staging, Schedule deploy, Deploy with cache cleared) with icons; choosing one updates the primary label. Closes on Escape/outside click; defaultOpen prop for previews. Light and dark mode.
  */
 'use client';

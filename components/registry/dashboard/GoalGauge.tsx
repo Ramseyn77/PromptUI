@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Gradient
  * tags: recent
- * description: Jauge semi-circulaire d objectif avec degrade, valeur au centre et reste a atteindre.
+ * description: Jauge semi-circulaire d'objectif avec dégradé, valeur au centre et reste à atteindre.
  * prompt: Create a half-circle goal gauge: SVG arc track and a gradient progress arc (stroke-dasharray on a path), animated from 0 on mount, center value and "of $50k goal", plus two stat chips below. role="meter". Light and dark mode.
  */
 'use client';

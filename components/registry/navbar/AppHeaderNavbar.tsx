@@ -4,7 +4,7 @@
  * category: Navbar
  * style: SaaS
  * tags: recent
- * description: En-tete d application avec fil d Ariane, recherche, notifications et avatar.
+ * description: En-tête d'application avec fil d'Ariane, recherche, notifications et avatar.
  * prompt: Create an application header: breadcrumb (Workspace / Projects / Website), a search field (hidden below md, replaced by an icon button), notification bell with unread dot, and avatar. aria-label on icon buttons. Light and dark mode.
  */
 import { Bell, ChevronRight, Search } from 'lucide-react';

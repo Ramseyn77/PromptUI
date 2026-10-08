@@ -4,7 +4,7 @@
  * category: Forms
  * style: Minimal
  * tags: recent
- * description: Notation par etoiles au clavier et a la souris avec apercu au survol et libelle de la note.
+ * description: Notation par étoiles au clavier et à la souris avec aperçu au survol et libellé de la note.
  * prompt: Create an accessible star rating input as a radiogroup of 5 visually-hidden radio inputs with star labels: hover previews the rating, click/Space selects, arrow keys move natively, the selected label text (Terrible → Excellent) shows beside it. Amber stars, light and dark mode.
  */
 'use client';

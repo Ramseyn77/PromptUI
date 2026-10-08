@@ -4,7 +4,7 @@
  * category: Boards
  * style: SaaS
  * tags: featured, recent
- * description: Kanban ou l on glisse les cartes entre colonnes, avec alternative clavier par boutons de deplacement.
+ * description: Kanban où l'on glisse les cartes entre colonnes, avec alternative clavier par boutons de déplacement.
  * prompt: Create a kanban board with native HTML5 drag and drop between three columns (To do, In progress, Done), a highlighted drop zone while dragging, per-column counts, and keyboard-accessible "move left/right" buttons on each card as an alternative to dragging. Columns scroll horizontally on mobile. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: SaaS
  * tags: recent
- * description: Plan de cours lateral avec modules, lecons terminees, lecon en cours et progression globale.
+ * description: Plan de cours latéral avec modules, leçons terminées, leçon en cours et progression globale.
  * prompt: Create a course curriculum sidebar: overall progress bar with percentage, modules as headings with "3/4" counts, lessons showing a check (done), a play icon (current, highlighted, aria-current="step") or a lock (locked) plus duration. Light and dark mode.
  */
 import { CheckCircle2, Lock, PlayCircle } from 'lucide-react';

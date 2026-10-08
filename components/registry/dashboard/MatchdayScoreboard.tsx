@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Dark
  * tags: recent
- * description: Tableau de score sportif en direct : chronometre qui avance, but qui met a jour le score, statistiques et fil d evenements en temps reel.
+ * description: Tableau de score sportif en direct : chronomètre qui avance, but qui met à jour le score, statistiques et fil d'événements en temps réel.
  * prompt: Create a responsive live football match scoreboard with teams, a running match clock, a score that updates with a short highlight when a goal is scored, a recent event feed where new events slide in, live stats (shots, corners, saves) and a possession bar that drifts over time. Simulate the live match on the client without network calls, include a control to follow or unfollow the match, announce goals through aria-live and respect prefers-reduced-motion. Mobile-first: compact team badges and score under sm, no horizontal overflow at 320px.
  */
 'use client';

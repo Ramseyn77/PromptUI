@@ -4,7 +4,7 @@
  * category: Boards
  * style: Minimal
  * tags: recent
- * description: Objectifs trimestriels avec resultats cles, progression, statut de confiance et responsable.
+ * description: Objectifs trimestriels avec résultats clés, progression, statut de confiance et responsable.
  * prompt: Create an OKR board: objective cards each with owner avatar, overall progress ring, and key results listed with current/target values, mini progress bars and a confidence status pill (On track green, At risk amber, Off track rose). Two columns from md. Light and dark mode.
  */
 const objectives = [

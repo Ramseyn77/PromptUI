@@ -4,7 +4,7 @@
  * category: Tables
  * style: Editorial
  * tags: recent
- * description: Facture avec lignes d articles, quantites, sous-total, TVA et total mis en avant.
+ * description: Facture avec lignes d'articles, quantités, sous-total, TVA et total mis en avant.
  * prompt: Create an invoice line-items table: description with muted detail, qty, unit price, amount; a <tfoot> with subtotal, tax (20%) and a bold total row; right-aligned tabular numbers and an "Invoice #" header. Light and dark mode.
  */
 const lines = [

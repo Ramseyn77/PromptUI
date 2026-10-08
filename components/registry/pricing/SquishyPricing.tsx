@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Gradient
  * tags: featured, recent
- * description: Cartes colorees qui s ecrasent et rebondissent au survol, avec formes decoratives.
+ * description: Cartes colorées qui s'écrasent et rebondissent au survol, avec formes décoratives.
  * prompt: Create playful pricing cards in bold colors (teal, violet, amber) with a large decorative circle shape; on hover they scale and squish with a springy cubic-bezier, the circle drifts, and on press they compress (active:scale-95). Dark text on light colors for contrast in both themes.
  */
 const plans = [

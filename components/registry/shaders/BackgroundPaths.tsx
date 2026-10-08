@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Minimal
  * tags: recent
- * description: Faisceau de courbes SVG dont le trace parcourt lentement les chemins en boucle.
+ * description: Faisceau de courbes SVG dont le tracé parcourt lentement les chemins en boucle.
  * prompt: Create an animated background of ~18 flowing SVG bezier paths generated in a loop, each with a dashed stroke whose dashoffset animates at a different speed so light travels along the lines; stroke uses currentColor (dark gray in light mode, light in dark mode). Headline on top.
  */
 const paths = Array.from({ length: 18 }, (_, index) => {

@@ -4,7 +4,7 @@
  * category: Forms
  * style: SaaS
  * tags: featured, recent
- * description: Selection multiple avec pastilles supprimables, recherche filtrante et navigation clavier.
+ * description: Sélection multiple avec pastilles supprimables, recherche filtrante et navigation clavier.
  * prompt: Create a multi-select combobox: selected values as removable chips inside the field, a text input that filters a listbox of options (role="combobox"/"listbox", aria-multiselectable, aria-activedescendant), ArrowUp/Down to move, Enter to toggle, Backspace on empty input removes the last chip. Light and dark mode.
  */
 'use client';

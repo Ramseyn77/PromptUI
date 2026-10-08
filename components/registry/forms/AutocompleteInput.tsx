@@ -4,7 +4,7 @@
  * category: Forms
  * style: Minimal
  * tags: recent
- * description: Recherche de ville avec suggestions filtrees, texte correspondant en gras et navigation clavier.
+ * description: Recherche de ville avec suggestions filtrées, texte correspondant en gras et navigation clavier.
  * prompt: Create a city autocomplete: as the user types, show up to 5 matching suggestions (bold matched prefix, country in muted text) in a listbox; ArrowUp/Down move (aria-activedescendant), Enter selects and fills the input, Escape closes; results count announced via aria-live. Light and dark mode.
  */
 'use client';

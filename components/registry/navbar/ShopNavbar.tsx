@@ -4,7 +4,7 @@
  * category: Navbar
  * style: Minimal
  * tags: recent
- * description: Navigation e-commerce avec categories, recherche, favoris et panier avec compteur.
+ * description: Navigation e-commerce avec catégories, recherche, favoris et panier avec compteur.
  * prompt: Create an e-commerce navbar: logo, category links (hidden below lg), icon buttons for search, wishlist and cart with an item-count badge; clicking "Add" demo increments the badge with a bump animation. aria-labels include counts. Light and dark mode.
  */
 'use client';

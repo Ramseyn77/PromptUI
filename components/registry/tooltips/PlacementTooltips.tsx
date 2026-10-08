@@ -4,7 +4,7 @@
  * category: Tooltips
  * style: Minimal
  * tags: featured, recent
- * description: Quatre info-bulles avec fleche, en haut, a droite, en bas et a gauche, au survol et au focus.
+ * description: Quatre info-bulles avec flèche, en haut, à droite, en bas et à gauche, au survol et au focus.
  * prompt: Create tooltips in four placements (top, right, bottom, left) around buttons, each with a small rotated-square arrow pointing at the trigger, shown on hover and focus-visible with a fade/scale from the trigger side, role="tooltip" linked via aria-describedby. Dark tooltip in light mode, light in dark mode.
  */
 const placements = {

@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Dark
  * tags: recent
- * description: Pluie de caracteres qui tombent en colonnes sur canvas, facon terminal.
+ * description: Pluie de caractères qui tombent en colonnes sur canvas, façon terminal.
  * prompt: Create a canvas "digital rain": columns of random glyphs (katakana + digits) falling at 14px font size, the head glyph bright and the trail fading via a translucent background fill each frame; columns reset randomly at the bottom. Always dark; DPR-aware, paused off screen, static with reduced motion.
  */
 'use client';

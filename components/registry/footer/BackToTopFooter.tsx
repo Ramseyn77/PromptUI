@@ -4,7 +4,7 @@
  * category: Footer
  * style: SaaS
  * tags: recent
- * description: Pied de page avec bouton « retour en haut » circulaire qui anime sa fleche au survol.
+ * description: Pied de page avec bouton « retour en haut » circulaire qui anime sa flèche au survol.
  * prompt: Create a footer with logo and links on one side and a round "Back to top" button on the other; the arrow slides up and loops on hover, click scrolls the window smoothly to the top (behavior respects prefers-reduced-motion). Light and dark mode.
  */
 'use client';

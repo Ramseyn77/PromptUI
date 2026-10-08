@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Dark
  * tags: recent
- * description: Lignes horizontales parcourues par des impulsions lumineuses a vitesses differentes.
+ * description: Lignes horizontales parcourues par des impulsions lumineuses à vitesses différentes.
  * prompt: Create a "data stream" background: 7 thin horizontal lines, each with a short glowing gradient pulse (box-shadow glow) traveling left to right at its own speed and delay. Pulse colors teal/violet; line color adapts to light and dark mode, reduced-motion safe.
  */
 export function GlowLines() {

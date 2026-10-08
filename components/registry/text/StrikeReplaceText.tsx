@@ -4,7 +4,7 @@
  * category: Text
  * style: Editorial
  * tags: recent
- * description: Titre ou un mot se fait barrer d un trait puis remplacer par un autre ecrit au-dessus.
+ * description: Titre où un mot se fait barrer d'un trait puis remplacer par un autre écrit au-dessus.
  * prompt: Create a headline "Building UI is hard" where "hard" gets struck through by an animated line (scaleX from left) and then the replacement word "fun" drops in above it in an accent color with a handwritten feel; loops every few seconds, static final state with reduced motion. Full sentence for screen readers. Light and dark mode.
  */
 export function StrikeReplaceText() {

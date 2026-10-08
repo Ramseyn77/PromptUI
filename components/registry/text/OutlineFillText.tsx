@@ -4,7 +4,7 @@
  * category: Text
  * style: Editorial
  * tags: recent
- * description: Liste de mots en contour qui se remplissent de couleur de gauche a droite au survol.
+ * description: Liste de mots en contour qui se remplissent de couleur de gauche à droite au survol.
  * prompt: Create a list of huge outlined words (-webkit-text-stroke, transparent fill) where hovering or focusing a word fills it left-to-right with color using a clipped duplicate layer (clip-path inset transition) and shows a small arrow. Links in a nav; light and dark mode.
  */
 import { ArrowUpRight } from 'lucide-react';

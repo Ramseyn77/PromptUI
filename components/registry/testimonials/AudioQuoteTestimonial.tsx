@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Editorial
  * tags: recent
- * description: Temoignage client audio avec citation, progression de lecture et portrait.
+ * description: Témoignage client audio avec citation, progression de lecture et portrait.
  * prompt: Create an editorial audio testimonial card with a customer portrait, quote, play/pause button, waveform-style progress and responsive layout. Simulate playback without external audio.
  */
 'use client';

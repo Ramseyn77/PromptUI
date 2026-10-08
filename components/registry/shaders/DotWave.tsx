@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Minimal
  * tags: recent
- * description: Matrice de points qui ondule en vague diagonale grace a des delais d animation calcules.
+ * description: Matrice de points qui ondule en vague diagonale grâce à des délais d'animation calculés.
  * prompt: Create a dot-matrix wave: a 16x8 CSS grid of small dots, each scaling and brightening with a keyframe whose animation-delay depends on (x + y) so a diagonal wave sweeps across. Dot color adapts to light/dark, reduced-motion safe.
  */
 export function DotWave() {

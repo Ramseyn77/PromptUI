@@ -4,7 +4,7 @@
  * category: Loader
  * style: SaaS
  * tags: featured, recent
- * description: Chargement en etapes nommees qui defilent : envoi, analyse, generation, termine.
+ * description: Chargement en étapes nommées qui défilent : envoi, analyse, génération, terminé.
  * prompt: Create a multi-step loading indicator: a list of steps (Uploading, Analyzing, Generating preview, Done) where the current step shows a spinner, completed steps show checks and future steps are muted; steps advance every second and loop. Current step announced via aria-live. Light and dark mode.
  */
 'use client';

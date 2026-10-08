@@ -4,7 +4,7 @@
  * category: Buttons
  * style: Gradient
  * tags: featured, recent
- * description: Bouton coeur qui eclate en particules colorees et rebondit quand on aime, avec compteur.
+ * description: Bouton cœur qui éclate en particules colorées et rebondit quand on aime, avec compteur.
  * prompt: Create a like button: heart icon that pops (scale keyframe) and fills rose when liked, 8 colored particles bursting outward (CSS variables for angle) plus a ring, and a count that increments; toggling off just unfills. aria-pressed and aria-label with count; particles aria-hidden, reduced-motion safe. Light and dark mode.
  */
 'use client';

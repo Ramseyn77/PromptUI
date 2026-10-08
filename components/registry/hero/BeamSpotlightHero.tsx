@@ -4,7 +4,7 @@
  * category: Hero
  * style: Dark
  * tags: featured, recent
- * description: Hero sombre eclaire par un faisceau conique qui balaie doucement le titre.
+ * description: Hero sombre éclairé par un faisceau conique qui balaie doucement le titre.
  * prompt: Create a dark hero lit by a slowly swinging conic-gradient light beam from the top (rotating keyframe, blurred), with a headline in a white-to-gray gradient, subtitle and CTA. Always dark (it is a stage), reduced-motion safe.
  */
 export function BeamSpotlightHero() {

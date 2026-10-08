@@ -4,7 +4,7 @@
  * category: Navbar
  * style: Gradient
  * tags: recent
- * description: Navigation surmontee d une banniere d annonce en degrade que l on peut fermer.
+ * description: Navigation surmontée d'une bannière d'annonce en dégradé que l'on peut fermer.
  * prompt: Create a navbar topped by a dismissible gradient announcement bar (message + link + close button with aria-label). Below it, logo, links (hidden below md with a menu button) and CTA. Light and dark mode.
  */
 'use client';

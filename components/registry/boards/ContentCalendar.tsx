@@ -4,7 +4,7 @@
  * category: Boards
  * style: Gradient
  * tags: recent
- * description: Planning editorial de la semaine avec publications par reseau, statut et heure.
+ * description: Planning éditorial de la semaine avec publications par réseau, statut et heure.
  * prompt: Create a weekly content calendar board: 5 day columns (Mon–Fri) with post cards colored by channel (Blog teal, Newsletter violet, Social amber), time, title and a status dot (Draft, Scheduled, Published) with a legend. Horizontal scroll on mobile. Light and dark mode.
  */
 const channels = { Blog: 'border-l-teal-500 bg-teal-500/5', Newsletter: 'border-l-violet-500 bg-violet-500/5', Social: 'border-l-amber-500 bg-amber-500/5' } as const;

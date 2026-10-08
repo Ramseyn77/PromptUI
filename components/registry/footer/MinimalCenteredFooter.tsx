@@ -4,7 +4,7 @@
  * category: Footer
  * style: Minimal
  * tags: recent
- * description: Pied de page centre et epure : logo, liens en ligne, icones de contact et copyright.
+ * description: Pied de page centré et épuré : logo, liens en ligne, icônes de contact et copyright.
  * prompt: Create a minimal centered footer: small logo mark, a wrapping row of links, a row of round icon buttons (Mail, RSS, website) with aria-labels, and a muted copyright line. Light and dark mode.
  */
 import { AtSign, Globe, Rss } from 'lucide-react';

@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Minimal
  * tags: recent
- * description: Barre d espace de stockage segmentee par type de fichier avec legende et bouton d upgrade.
+ * description: Barre d'espace de stockage segmentée par type de fichier avec légende et bouton d'upgrade.
  * prompt: Create a storage usage card: "38.4 GB of 50 GB used", a single segmented bar with colored segments per file type (documents, images, video, other) and remaining space, a legend with sizes, and an upgrade link. Accessible text summary. Light and dark mode.
  */
 const segments = [

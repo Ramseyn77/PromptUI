@@ -4,7 +4,7 @@
  * category: Navbar
  * style: SaaS
  * tags: recent
- * description: Navigation en controle segmente avec pastille qui glisse sous l element actif.
+ * description: Navigation en contrôle segmenté avec pastille qui glisse sous l'élément actif.
  * prompt: Create a segmented-control navigation: equal-width items inside a rounded track with a sliding white pill (translateX by index, spring easing) behind the active item; icons + labels, labels hidden below sm. Light and dark mode.
  */
 'use client';

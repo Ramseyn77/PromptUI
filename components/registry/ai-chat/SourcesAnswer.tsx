@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: Editorial
  * tags: featured, recent
- * description: Reponse IA avec citations numerotees et cartes de sources qui se surlignent au survol.
+ * description: Réponse IA avec citations numérotées et cartes de sources qui se surlignent au survol.
  * prompt: Create an AI answer with inline numbered citations; a row of source cards (favicon letter, domain, title) sits above the answer, and hovering or focusing a citation highlights its source card (shared state). Horizontal scroll for sources on mobile. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: SaaS
  * tags: recent
- * description: Barre laterale de messagerie avec bouton Nouveau message, dossiers, compteurs et etiquettes.
+ * description: Barre latérale de messagerie avec bouton Nouveau message, dossiers, compteurs et étiquettes.
  * prompt: Create an email client sidebar: prominent "Compose" button, folder links (Inbox, Starred, Sent, Drafts, Trash) with icons and unread counts, active folder highlighted, then a "Labels" section with colored dots. Light and dark mode.
  */
 'use client';

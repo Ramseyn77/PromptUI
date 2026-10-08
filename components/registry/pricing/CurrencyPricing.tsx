@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Minimal
  * tags: recent
- * description: Offres avec selecteur de devise EUR, USD ou XOF et prix formates selon la locale.
+ * description: Offres avec sélecteur de devise EUR, USD ou XOF et prix formatés selon la locale.
  * prompt: Create pricing cards with a currency selector (EUR, USD, XOF) that reformats every price with Intl.NumberFormat for the right locale and currency (no decimals for XOF). Two plans side by side from sm. Light and dark mode.
  */
 'use client';

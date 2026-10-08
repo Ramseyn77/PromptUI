@@ -4,7 +4,7 @@
  * category: Pricing
  * style: SaaS
  * tags: recent
- * description: Estimateur de facture a l usage avec deux curseurs et detail ligne par ligne du cout.
+ * description: Estimateur de facture à l'usage avec deux curseurs et détail ligne par ligne du coût.
  * prompt: Create a usage-based pricing estimator: sliders for API requests (0–10M) and storage (0–500 GB) with formatted values, a free allowance, a line-by-line cost breakdown and an estimated monthly total that animates its color when it changes tier. Light and dark mode.
  */
 'use client';

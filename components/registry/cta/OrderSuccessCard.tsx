@@ -4,7 +4,7 @@
  * category: CTA
  * style: Gradient
  * tags: recent
- * description: Confirmation de commande avec numero copiable, suivi et prochaines etapes.
+ * description: Confirmation de commande avec numéro copiable, suivi et prochaines étapes.
  * prompt: Create a responsive order success card with animated success mark, copyable order number, delivery estimate, progress steps and track-order and continue-shopping actions.
  */
 'use client';

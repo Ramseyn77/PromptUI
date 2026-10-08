@@ -4,7 +4,7 @@
  * category: Hero
  * style: SaaS
  * tags: featured, recent
- * description: Hero en deux colonnes avec texte, double CTA et maquette d application a droite.
+ * description: Hero en deux colonnes avec texte, double CTA et maquette d'application à droite.
  * prompt: Create a two-column SaaS hero (stacked on mobile, side by side from lg): eyebrow badge, bold headline, subtitle, primary and secondary CTAs, and on the right a mock dashboard window with toolbar dots, stat tiles and bars. Light and dark mode.
  */
 import { ArrowRight, Play } from 'lucide-react';

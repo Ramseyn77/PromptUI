@@ -4,7 +4,7 @@
  * category: Tooltips
  * style: Minimal
  * tags: recent
- * description: Pile d avatars ou chaque avatar montre le nom et le role en bulle au survol, avec compteur +N.
+ * description: Pile d'avatars où chaque avatar montre le nom et le rôle en bulle au survol, avec compteur +N.
  * prompt: Create an overlapping avatar stack where each avatar (a focusable button) lifts on hover/focus and shows a tooltip with name and role above it; the last chip "+4" shows the remaining names in its tooltip. role="tooltip" + aria-describedby, light and dark mode.
  */
 const people = [

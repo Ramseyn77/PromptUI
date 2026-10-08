@@ -4,7 +4,7 @@
  * category: Navbar
  * style: Minimal
  * tags: recent
- * description: Navigation secondaire en onglets avec soulignement qui glisse vers l onglet actif.
+ * description: Navigation secondaire en onglets avec soulignement qui glisse vers l'onglet actif.
  * prompt: Create secondary navigation tabs with a sliding underline indicator (measured from the active tab's offsetLeft/width, CSS transition), horizontal scroll on small screens, role="tablist" semantics and count badges. Light and dark mode.
  */
 'use client';

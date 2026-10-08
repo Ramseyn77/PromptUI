@@ -4,7 +4,7 @@
  * category: Checkboxes
  * style: Minimal
  * tags: recent
- * description: Cases rondes dont le contour se trace en cercle puis la coche apparait, facon liste de courses.
+ * description: Cases rondes dont le contour se trace en cercle puis la coche apparaît, façon liste de courses.
  * prompt: Create circular checkboxes for a shopping list: SVG ring that draws around (stroke-dashoffset) when checked, then a check path draws inside with a delay; the item text fades and strikes through. Native sr-only inputs, focus-visible ring, reduced-motion safe. Light and dark mode.
  */
 'use client';

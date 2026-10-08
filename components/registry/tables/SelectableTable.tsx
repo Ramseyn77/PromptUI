@@ -4,7 +4,7 @@
  * category: Tables
  * style: SaaS
  * tags: featured, recent
- * description: Tableau avec selection de lignes, case tout-selectionner indeterminee et barre d actions groupees.
+ * description: Tableau avec sélection de lignes, case tout-sélectionner indéterminée et barre d'actions groupées.
  * prompt: Create a table with row checkboxes, a header "select all" checkbox that becomes indeterminate for partial selection, selected rows tinted, and a bulk-actions bar ("3 selected · Archive · Delete") that slides in when anything is selected. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Text
  * style: Gradient
  * tags: recent
- * description: Titre en degrade anime qui derive lentement, lisible sur fond clair et sombre.
+ * description: Titre en dégradé animé qui dérive lentement, lisible sur fond clair et sombre.
  * prompt: Create a hero headline with background-clip text and a teal/violet/amber gradient at 200% size that pans slowly with a keyframe. Add an eyebrow and subtitle with light and dark text colors.
  */
 export function GradientText() {

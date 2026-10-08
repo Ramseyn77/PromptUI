@@ -4,7 +4,7 @@
  * category: Buttons
  * style: Minimal
  * tags: recent
- * description: Boutons en relief qui s enfoncent physiquement au clic.
+ * description: Boutons en relief qui s'enfoncent physiquement au clic.
  * prompt: Create tactile 3D push buttons: a darker base layer and a raised face translated up 6px that rises on hover and sinks to 0 on :active. Provide a primary teal and a neutral variant, both with dark mode colors and a focus ring.
  */
 export function PushButton() {

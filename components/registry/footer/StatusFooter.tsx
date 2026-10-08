@@ -4,7 +4,7 @@
  * category: Footer
  * style: Dark
  * tags: recent
- * description: Pied de page developpeur avec statut des systemes, version, commit et raccourcis.
+ * description: Pied de page développeur avec statut des systèmes, version, commit et raccourcis.
  * prompt: Create a developer-product footer: left a pulsing green "All systems normal" status link, center version and short commit hash in mono, right keyboard shortcut hint (⌘K) and docs/changelog links; single row on md, stacked on mobile. Light and dark mode.
  */
 export function StatusFooter() {

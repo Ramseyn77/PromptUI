@@ -4,7 +4,7 @@
  * category: Tables
  * style: SaaS
  * tags: recent
- * description: Liste de fichiers avec icones par type, taille, date, partage et actions au survol.
+ * description: Liste de fichiers avec icônes par type, taille, date, partage et actions au survol.
  * prompt: Create a file manager table: file-type icon tile (PDF red, image violet, sheet green, folder amber), name, owner avatars, size and modified date (hidden below sm), and row actions (download, more) revealed on hover and on focus-within. Light and dark mode.
  */
 import { Download, FileSpreadsheet, FileText, Folder, ImageIcon, MoreHorizontal } from 'lucide-react';

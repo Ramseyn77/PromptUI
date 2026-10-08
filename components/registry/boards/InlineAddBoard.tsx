@@ -4,7 +4,7 @@
  * category: Boards
  * style: Minimal
  * tags: recent
- * description: Colonnes de taches avec ajout de carte en ligne : bouton, champ auto-focus, Entree pour valider.
+ * description: Colonnes de tâches avec ajout de carte en ligne : bouton, champ auto-focus, Entrée pour valider.
  * prompt: Create board columns where "+ Add card" turns into an inline textarea with Add/Cancel buttons (autofocus, Enter submits, Escape cancels, Shift+Enter newline); new cards appear at the bottom with a quick fade. Horizontal scroll on mobile. Light and dark mode.
  */
 'use client';

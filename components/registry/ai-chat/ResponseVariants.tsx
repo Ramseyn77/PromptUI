@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: Minimal
  * tags: recent
- * description: Reponse IA avec plusieurs versions et pagination « 2 / 3 » pour naviguer entre elles.
+ * description: Réponse IA avec plusieurs versions et pagination « 2 / 3 » pour naviguer entre elles.
  * prompt: Create an assistant reply with multiple generated versions: prev/next buttons and a "2 / 3" counter (aria-live) switch between variants with a quick fade, buttons disabled at the ends. Light and dark mode.
  */
 'use client';

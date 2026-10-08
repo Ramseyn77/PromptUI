@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: Minimal
  * tags: recent
- * description: Barre d actions sous une reponse IA : copier, pouce haut ou bas, relancer, avec retour d etat.
+ * description: Barre d'actions sous une réponse IA : copier, pouce haut ou bas, relancer, avec retour d'état.
  * prompt: Create an assistant message with an action bar: copy (shows check), thumbs up / thumbs down as mutually exclusive toggles (aria-pressed, filled when active), regenerate, and a small "Thanks for the feedback" status after voting. Icon buttons have tooltips via title and aria-labels. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Buttons
  * style: Dark
  * tags: recent
- * description: Bouton de suppression qu il faut maintenir enfonce, une jauge se remplit avant de valider.
+ * description: Bouton de suppression qu'il faut maintenir enfoncé, une jauge se remplit avant de valider.
  * prompt: Create a destructive "hold to delete" button: pressing (pointer or Space/Enter held) fills a rose overlay left-to-right over 1.2s via a CSS transition; releasing early cancels and drains it, completing triggers a "Deleted" state that resets after 2s. Instruction text for screen readers, light and dark mode.
  */
 'use client';

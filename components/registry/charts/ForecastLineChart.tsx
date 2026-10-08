@@ -4,7 +4,7 @@
  * category: Charts
  * style: SaaS
  * tags: featured, recent
- * description: Courbe reelle pleine prolongee par une prevision en pointilles avec intervalle de confiance.
+ * description: Courbe réelle pleine prolongée par une prévision en pointillés avec intervalle de confiance.
  * prompt: Create an SVG line chart where actual data is a solid line with end dot, the forecast continues as a dashed line, and a shaded confidence band widens over the forecast period; a vertical "Today" divider, month labels, legend and an sr-only table. Light and dark mode.
  */
 const months = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -36,7 +36,7 @@ export function ForecastLineChart() {
         <circle cx={x(start)} cy={y(actual[start])} r="4" fill="#14b8a6" stroke="white" strokeWidth="2" className="dark:stroke-zinc-950" />
         {months.map((month, index) => <text key={month} x={x(index)} y="155" textAnchor="middle" className="fill-zinc-400 text-[9px]">{month}</text>)}
       </svg>
-      <table className="sr-only"><caption>Revenue in k$, actual then forecast</caption><tbody>{months.map((month, index) => <tr key={month}><td>{month}</td><td>{index < actual.length ? `${actual[index]} actual` : `${forecast[index - start]} forecast`}</td></tr>)}</tbody></table>
+      <div className="sr-only"><table><caption>Revenue in k$, actual then forecast</caption><tbody>{months.map((month, index) => <tr key={month}><td>{month}</td><td>{index < actual.length ? `${actual[index]} actual` : `${forecast[index - start]} forecast`}</td></tr>)}</tbody></table></div>
     </section>
   );
 }

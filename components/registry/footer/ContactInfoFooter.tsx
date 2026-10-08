@@ -4,7 +4,7 @@
  * category: Footer
  * style: Minimal
  * tags: recent
- * description: Pied de page commerce local avec adresse, horaires d ouverture, telephone et carte stylisee.
+ * description: Pied de page commerce local avec adresse, horaires d'ouverture, téléphone et carte stylisée.
  * prompt: Create a local-business footer: contact block using <address> (street, phone link, email link) with icons, opening hours as a <dl> with today highlighted, and a decorative map tile (CSS grid streets + pin, aria-hidden). 1 column mobile, 3 columns md. Light and dark mode.
  */
 import { Clock, MapPin, Phone } from 'lucide-react';

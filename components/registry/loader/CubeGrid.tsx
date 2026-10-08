@@ -4,7 +4,7 @@
  * category: Loader
  * style: Dark
  * tags: recent
- * description: Grille 3x3 de cubes qui s agrandissent et retrecissent en vague diagonale.
+ * description: Grille 3x3 de cubes qui s'agrandissent et rétrécissent en vague diagonale.
  * prompt: Create a 3x3 cube-grid loader: nine squares scaling down to zero and back with animation delays based on their diagonal (row + column), in a teal gradient. role="status" + sr-only label, reduced-motion safe, works on light and dark.
  */
 export function CubeGrid() {

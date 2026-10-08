@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: Minimal
  * tags: featured, recent
- * description: Reponse d assistant qui s ecrit mot a mot avec curseur, puis bouton pour relancer.
+ * description: Réponse d'assistant qui s'écrit mot à mot avec curseur, puis bouton pour relancer.
  * prompt: Create an assistant message that streams its answer word by word (interval), shows a blinking block cursor while streaming, then reveals a "Regenerate" button that replays it. Full text in an aria-live region only once complete. Light and dark mode.
  */
 'use client';

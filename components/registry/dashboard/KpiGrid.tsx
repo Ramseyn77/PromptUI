@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: SaaS
  * tags: featured, recent
- * description: Grille de quatre indicateurs cles avec variation, mini courbe et periode de comparaison.
+ * description: Grille de quatre indicateurs clés avec variation, mini courbe et période de comparaison.
  * prompt: Create a KPI grid (1 col mobile, 2 on sm, 4 on lg): each card has a label, big value, a green/red delta badge with arrow, a tiny SVG sparkline colored by trend, and "vs last week". Light and dark mode.
  */
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react';

@@ -4,7 +4,7 @@
  * category: Boards
  * style: Gradient
  * tags: featured, recent
- * description: Tableau de retrospective avec notes colorees par colonne, votes et ajout de note.
+ * description: Tableau de rétrospective avec notes colorées par colonne, votes et ajout de note.
  * prompt: Create a sprint retrospective board: three colored columns (Went well green, To improve amber, Actions violet) of sticky-note cards with a vote button (+count) each, notes sorted by votes, and an inline "Add a note" form per column. Stacks on mobile. Light and dark mode.
  */
 'use client';

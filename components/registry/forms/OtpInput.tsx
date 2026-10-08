@@ -4,7 +4,7 @@
  * category: Forms
  * style: SaaS
  * tags: featured, recent
- * description: Saisie de code a 6 chiffres avec avance auto, collage et validation.
+ * description: Saisie de code à 6 chiffres avec avance auto, collage et validation.
  * prompt: Create a 6-digit OTP input: digits only, auto-advance, Backspace goes back, arrow keys move, pasting a code fills every box, inputMode numeric and autocomplete one-time-code. Borders turn green with a status message when complete. Light and dark mode.
  */
 'use client';

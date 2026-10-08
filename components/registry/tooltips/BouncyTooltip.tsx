@@ -4,7 +4,7 @@
  * category: Tooltips
  * style: Gradient
  * tags: recent
- * description: Info-bulle en degrade qui surgit avec un rebond elastique et une petite rotation.
+ * description: Info-bulle en dégradé qui surgit avec un rebond élastique et une petite rotation.
  * prompt: Create a playful tooltip that pops from the trigger with a springy overshoot (scale 0 → 1.1 → 1 and slight rotate) using a cubic-bezier with overshoot, gradient background and arrow, on hover and focus-visible; role="tooltip". Reduced motion uses a simple fade. Light and dark mode.
  */
 export function BouncyTooltip() {

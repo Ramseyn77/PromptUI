@@ -4,7 +4,7 @@
  * category: AI Chat
  * style: SaaS
  * tags: recent
- * description: Selecteur de modele IA avec descriptions, badges de vitesse et coche sur le modele actif.
+ * description: Sélecteur de modèle IA avec descriptions, badges de vitesse et coche sur le modèle actif.
  * prompt: Create an AI model picker: trigger button showing the current model (aria-haspopup="listbox"), opening a listbox of models with name, one-line description, a speed/quality badge and a check on the selected one. defaultOpen prop for previews. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Toggle
  * style: Gradient
  * tags: featured, recent
- * description: Interrupteur jour et nuit avec soleil, lune, etoiles et nuage animes.
+ * description: Interrupteur jour et nuit avec soleil, lune, étoiles et nuage animés.
  * prompt: Create a day/night switch (role="switch", aria-checked): sky background turns indigo, the knob springs across and swaps sun for moon, stars fade in and a cloud drifts out. Focus ring and smooth 500ms transitions.
  */
 'use client';

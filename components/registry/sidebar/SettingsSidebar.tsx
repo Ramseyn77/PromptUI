@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: Minimal
  * tags: recent
- * description: Navigation de parametres par groupes qui devient un select sur mobile, avec panneau de contenu.
+ * description: Navigation de paramètres par groupes qui devient un select sur mobile, avec panneau de contenu.
  * prompt: Create a settings layout: on md+ a left nav with grouped items (Account, Workspace) and an active indicator bar; below md the same items become a labeled <select> for compact navigation; the right panel shows the selected section title. Light and dark mode.
  */
 'use client';

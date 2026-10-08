@@ -4,7 +4,7 @@
  * category: Boards
  * style: SaaS
  * tags: recent
- * description: Tableau en couloirs par equipe, colonnes de statut communes et compteurs par couloir.
+ * description: Tableau en couloirs par équipe, colonnes de statut communes et compteurs par couloir.
  * prompt: Create a swimlane board: rows per team (Web, Mobile) with a sticky team label on the left and a count, columns Todo / Doing / Done shared across lanes, small task chips in each cell, empty cells showing a faint dash. Horizontal scroll on mobile. Light and dark mode.
  */
 const columns = ['Todo', 'Doing', 'Done'];

@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: SaaS
  * tags: featured, recent
- * description: Navigation laterale qui devient un tiroir coulissant sur mobile avec fond assombri et Echap.
+ * description: Navigation latérale qui devient un tiroir coulissant sur mobile avec fond assombri et Échap.
  * prompt: Create a responsive layout shell: on lg the sidebar is always visible; below lg a header "Menu" button (aria-expanded, aria-controls) slides the sidebar in as a drawer over a dimmed backdrop, closing on backdrop click, Escape or link click. Contained demo frame; light and dark mode.
  */
 'use client';

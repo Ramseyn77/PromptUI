@@ -4,7 +4,7 @@
  * category: Toggle
  * style: Minimal
  * tags: recent
- * description: Interrupteurs dont le bouton affiche une icone qui change : cadenas, volume, wifi.
+ * description: Interrupteurs dont le bouton affiche une icône qui change : cadenas, volume, wifi.
  * prompt: Create switches whose knob contains an icon that swaps with a rotate/fade transition when toggled (lock/unlock, volume/mute, wifi/wifi-off); track colors per switch, visible labels, role="switch" + aria-checked. Light and dark mode.
  */
 'use client';

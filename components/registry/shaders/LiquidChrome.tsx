@@ -4,7 +4,7 @@
  * category: Shaders
  * style: Gradient
  * tags: recent
- * description: Surface chromee liquide aux reflets irises qui coulent et changent de teinte.
+ * description: Surface chromée liquide aux reflets irisés qui coulent et changent de teinte.
  * prompt: Create a liquid-chrome surface: layered repeating-linear and conic gradients in silver tones with an iridescent overlay (mix-blend color-dodge) whose background-position and hue-rotate animate slowly, plus a blurred highlight streak. Readable label on top; reduced-motion safe.
  */
 export function LiquidChrome() {

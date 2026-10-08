@@ -4,7 +4,7 @@
  * category: Forms
  * style: SaaS
  * tags: recent
- * description: Choix du mode de livraison avec prix, delai et point relais.
+ * description: Choix du mode de livraison avec prix, délai et point relais.
  * prompt: Create a responsive shipping method selector with standard, express and pickup options, delivery dates, prices, accessible radio selection and a dynamic summary.
  */
 'use client';

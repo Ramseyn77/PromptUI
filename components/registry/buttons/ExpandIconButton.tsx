@@ -4,7 +4,7 @@
  * category: Buttons
  * style: Minimal
  * tags: recent
- * description: Boutons icones ronds qui s elargissent au survol pour reveler leur libelle.
+ * description: Boutons icônes ronds qui s'élargissent au survol pour révéler leur libellé.
  * prompt: Create a row of circular icon buttons that expand horizontally on hover/focus-visible to reveal a text label (max-width transition from 0), each with its own accent color; aria-label always present so collapsed state stays accessible. Light and dark mode.
  */
 import { Download, Heart, Share2 } from 'lucide-react';

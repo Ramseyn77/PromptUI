@@ -4,7 +4,7 @@
  * category: Footer
  * style: Minimal
  * tags: recent
- * description: Barre legale fine avec liens reglementaires et bouton de gestion des cookies qui ouvre un panneau.
+ * description: Barre légale fine avec liens réglementaires et bouton de gestion des cookies qui ouvre un panneau.
  * prompt: Create a thin legal footer bar: copyright, company registration line, links (Privacy, Terms, Legal notice, Sitemap) and a "Cookie settings" button (aria-expanded) that reveals a small panel with toggles for Analytics and Marketing and a Save button. defaultOpen prop for previews. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Tooltips
  * style: SaaS
  * tags: recent
- * description: Curseur dont la valeur s affiche dans une bulle qui suit la poignee pendant le glissement.
+ * description: Curseur dont la valeur s'affiche dans une bulle qui suit la poignée pendant le glissement.
  * prompt: Create a range slider with a value bubble that follows the thumb (left computed from the value with thumb-width compensation), grows while dragging/focused and shows the formatted value (e.g. "68%"); aria-valuetext mirrors it. Custom track fill, light and dark mode.
  */
 'use client';

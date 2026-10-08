@@ -4,7 +4,7 @@
  * category: Tables
  * style: Editorial
  * tags: recent
- * description: Fiche technique produit en paires cle-valeur groupees par section, avec rayures discretes.
+ * description: Fiche technique produit en paires clé-valeur groupées par section, avec rayures discrètes.
  * prompt: Create a product specifications table grouped into sections (Display, Performance, Battery) using <th scope="row"> keys and value cells, subtle zebra striping and section headings; stacks key above value below sm. Light and dark mode.
  */
 const sections = [

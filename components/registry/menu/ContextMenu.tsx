@@ -4,7 +4,7 @@
  * category: Menu
  * style: Minimal
  * tags: recent
- * description: Menu contextuel au clic droit, positionne au curseur, avec raccourcis, separateurs et action destructive.
+ * description: Menu contextuel au clic droit, positionné au curseur, avec raccourcis, séparateurs et action destructive.
  * prompt: Create a right-click context menu inside a canvas area: contextmenu event opens a role="menu" at the pointer (clamped inside the area), items with icons and shortcuts, a separator and a destructive Delete item; ArrowUp/Down move focus between menuitems, Escape/outside click closes. Shift+F10 on the focused area opens it too. Light and dark mode.
  */
 'use client';

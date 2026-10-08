@@ -4,7 +4,7 @@
  * category: Tooltips
  * style: Dark
  * tags: recent
- * description: Pastilles de statut de services avec bulle detaillee : etat, latence et dernier incident.
+ * description: Pastilles de statut de services avec bulle détaillée : état, latence et dernier incident.
  * prompt: Create a row of service status chips (API, Web, Queue, DB) with colored dots (green/amber/rose, pulsing when degraded); hovering or focusing a chip shows a dark tooltip card with status label, latency and last incident time. role="tooltip" + aria-describedby; light and dark mode.
  */
 const services = [

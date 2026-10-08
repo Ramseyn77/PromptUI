@@ -4,7 +4,7 @@
  * category: Pricing
  * style: Gradient
  * tags: recent
- * description: Selecteur de billets pour evenement sportif avec tarifs, disponibilite et quantite.
+ * description: Sélecteur de billets pour événement sportif avec tarifs, disponibilité et quantité.
  * prompt: Create a responsive sports event ticket selector with three ticket tiers, availability indicators, quantity controls, calculated total and checkout button. Make selection state accessible.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: SaaS
  * tags: featured, recent
- * description: Mur de temoignages en maconnerie avec cartes de hauteurs variees et fondu en bas.
+ * description: Mur de témoignages en maçonnerie avec cartes de hauteurs variées et fondu en bas.
  * prompt: Create a testimonial wall using CSS columns (1 → 2 on sm → 3 on lg) with cards of varying lengths (avatar, name, handle, quote, 5 stars), break-inside-avoid, and a bottom fade mask with a "Read all 1,200 reviews" button. Light and dark mode.
  */
 import { Star } from 'lucide-react';

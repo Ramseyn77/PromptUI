@@ -4,7 +4,7 @@
  * category: Text
  * style: Editorial
  * tags: recent
- * description: Signature manuscrite en SVG qui se dessine d un trait continu, avec bouton pour la retracer.
+ * description: Signature manuscrite en SVG qui se dessine d'un trait continu, avec bouton pour la retracer.
  * prompt: Create an animated SVG signature: a single cursive-like path drawn with stroke-dasharray/dashoffset over ~2.5s (pathLength="1" for easy math), round caps, ink color via currentColor, restart via a key change on a "Sign again" button; sr-only text of the name. Light and dark mode.
  */
 'use client';

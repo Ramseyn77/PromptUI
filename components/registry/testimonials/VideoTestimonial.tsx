@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: Gradient
  * tags: recent
- * description: Temoignage video en format portrait avec bouton lecture, duree, sous-titre et citation courte.
+ * description: Témoignage vidéo en format portrait avec bouton lecture, durée, sous-titre et citation courte.
  * prompt: Create a video testimonial card: portrait gradient "poster" with a play button (aria-label, toggles to a playing state with an animated progress bar), duration badge, captions-style quote overlay at the bottom, and the person's name and company below. Light and dark mode.
  */
 'use client';

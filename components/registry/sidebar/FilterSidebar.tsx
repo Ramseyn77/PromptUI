@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: Minimal
  * tags: recent
- * description: Panneau de filtres e-commerce : categories cochees, fourchette de prix, tailles et reinitialisation.
+ * description: Panneau de filtres e-commerce : catégories cochées, fourchette de prix, tailles et réinitialisation.
  * prompt: Create a product filter sidebar: category checkboxes with counts, a price range with two number inputs, size toggle buttons (aria-pressed), color swatches with sr-only names, an active-filters count and "Clear all". Light and dark mode.
  */
 'use client';

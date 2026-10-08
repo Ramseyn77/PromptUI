@@ -4,7 +4,7 @@
  * category: Menu
  * style: Glass
  * tags: featured, recent
- * description: Dock compact dont la recherche s ouvre en douceur pendant que les actions secondaires s effacent.
+ * description: Dock compact dont la recherche s'ouvre en douceur pendant que les actions secondaires s'effacent.
  * prompt: Create a floating glass dock with Home, Search, Favorites and Profile actions. Search expands into an input inside the dock while the secondary actions collapse and fade away (they stay mounted but become inert); Escape and the close button restore the compact dock and return focus to Search. Use aria-expanded, accessible labels, keyboard focus, smooth width and opacity transitions, a mobile-safe maximum width and prefers-reduced-motion. Support light/dark mode.
  */
 'use client';

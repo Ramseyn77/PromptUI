@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: Gradient
  * tags: recent
- * description: Barre laterale avec carte d upgrade degradee refermable et profil utilisateur en bas.
+ * description: Barre latérale avec carte d'upgrade dégradée refermable et profil utilisateur en bas.
  * prompt: Create a full-height sidebar: logo, nav links with active state, a dismissible gradient "Upgrade to Pro" card (usage bar + CTA) pinned near the bottom, and a user row with avatar, name, email and a logout icon button. Light and dark mode.
  */
 'use client';

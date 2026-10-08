@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: Minimal
  * tags: recent
- * description: Navigation laterale a sous-menus depliables avec ligne de rattachement et element actif.
+ * description: Navigation latérale à sous-menus dépliables avec ligne de rattachement et élément actif.
  * prompt: Create a sidebar with collapsible groups: parent buttons (aria-expanded, chevron rotation) reveal indented child links connected by a vertical guide line; the active child is highlighted and its group open by default. Smooth grid-rows height animation. Light and dark mode.
  */
 'use client';

@@ -4,7 +4,7 @@
  * category: Tooltips
  * style: Minimal
  * tags: recent
- * description: Aide contextuelle de champ : icone « i » a cote du label qui explique le champ au survol et au focus.
+ * description: Aide contextuelle de champ : icône « i » à côté du label qui explique le champ au survol et au focus.
  * prompt: Create form fields with contextual help: next to each label a small info icon button (aria-label "More info about …") shows a tooltip on hover/focus explaining the field; the input also references the help text via aria-describedby. Light and dark mode.
  */
 import { Info } from 'lucide-react';

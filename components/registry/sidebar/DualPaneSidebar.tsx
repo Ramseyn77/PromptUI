@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: Dark
  * tags: featured, recent
- * description: Rail d icones sombre combine a un panneau secondaire dont le contenu change selon la section.
+ * description: Rail d'icônes sombre combiné à un panneau secondaire dont le contenu change selon la section.
  * prompt: Create a dual-pane sidebar: a narrow dark icon rail (sections with aria-current and title tooltips) and a secondary light panel listing the selected section's sub-links with a heading; switching sections swaps the panel content. Light and dark mode.
  */
 'use client';

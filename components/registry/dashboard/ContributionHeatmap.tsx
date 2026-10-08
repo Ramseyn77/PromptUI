@@ -4,7 +4,7 @@
  * category: Dashboard
  * style: Minimal
  * tags: recent
- * description: Calendrier de contributions facon GitHub, 20 semaines de cases colorees par intensite.
+ * description: Calendrier de contributions façon GitHub, 20 semaines de cases colorées par intensité.
  * prompt: Create a contribution calendar: 20 weeks x 7 days grid of small squares colored in 5 teal intensity levels from deterministic pseudo-random data, weekday labels, a "Less ▢▢▢▢▢ More" legend and total count; each square has a title with its count. Horizontal scroll on narrow screens. Light and dark mode.
  */
 const weeks = 20;

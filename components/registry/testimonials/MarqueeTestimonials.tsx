@@ -4,7 +4,7 @@
  * category: Testimonials
  * style: SaaS
  * tags: featured, recent
- * description: Deux rangees de temoignages qui defilent en sens inverse et se mettent en pause au survol.
+ * description: Deux rangées de témoignages qui défilent en sens inverse et se mettent en pause au survol.
  * prompt: Create two infinite marquee rows of testimonial cards moving in opposite directions (list duplicated, translateX -50%), paused on hover, edges faded with a mask. Duplicates are aria-hidden. Light and dark card styles.
  */
 const quotes = [

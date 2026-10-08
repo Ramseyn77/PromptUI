@@ -4,7 +4,7 @@
  * category: Sidebar
  * style: Dark
  * tags: featured, recent
- * description: Barre laterale de messagerie avec canaux, messages directs, non-lus en gras et presence.
+ * description: Barre latérale de messagerie avec canaux, messages directs, non-lus en gras et présence.
  * prompt: Create a team-chat sidebar: workspace header, "Channels" with # names (unread ones bold with a count badge, active highlighted), "Direct messages" with avatars and presence dots (online green, away amber), and collapsible sections. Purple-tinted dark surface, lighter variant in light mode.
  */
 'use client';

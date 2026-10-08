@@ -4,7 +4,7 @@
  * category: Checkboxes
  * style: SaaS
  * tags: featured, recent
- * description: Options selectionnables en cartes avec icone, description et coche dans le coin.
+ * description: Options sélectionnables en cartes avec icône, description et coche dans le coin.
  * prompt: Create multi-select option cards: each card is a <label> wrapping a visually hidden checkbox, with icon tile, title, description and a corner check badge; checked cards get a teal border/tint, focus-visible ring via has-[:focus-visible]. 1 column mobile, 2 from sm. Light and dark mode.
  */
 'use client';
