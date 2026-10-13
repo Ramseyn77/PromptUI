@@ -48,21 +48,28 @@ export default async function HomePage({ params }: HomeProps) {
   const number = (value: number) => value.toLocaleString(intlLocale[lang]);
   const categoryList = categories.filter((x) => x !== 'All');
   const styleList = styles.filter((x) => x !== 'All');
+  // Showcase picks: the most visual blocks, in the spirit of what the Magic UI / 21st.dev / uiverse
+  // communities share most. Swap for real view counts once analytics exist.
   const recentComponents = pickComponents([
+    'integrations-orbit-hero',
+    'boarding-pass-card',
+    'neon-flicker-text',
+    'early-bird-pricing',
+    'polaroid-testimonials',
+    'plasma-field',
+    'checklist-progress-card',
     'liquid-metal-upgrade-cta',
-    'responsive-banner-cta',
-    'image-fan-cta',
-    'team-dashboard',
-    'dithered-shader-cta',
-    'floating-gallery-cta',
   ]);
   const promptReadyComponents = pickComponents([
     'macos-dock',
-    'magnetic-dock',
-    'expanding-search-dock',
+    'ai-generate-button',
     'holographic-card',
-    'pipeline-sankey-chart',
-    'gradient-glow-tooltip',
+    'media-device-toggles',
+    'emoji-picker-menu',
+    'airplane-mode-toggle',
+    'bump-chart',
+    'lock-unlock-toggle',
+    'scroll-velocity-text',
   ]);
   const stats = [
     [number(components.length), t.stats.components],
